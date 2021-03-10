@@ -1,0 +1,29 @@
+.m-navbar {
+    background-color: #6c6361 !important;
+    height: 8Vh !important;
+    padding: 0 2vw !important;
+    
+    .m-icon {
+        margin-right: 2vw !important;
+        color: white !important;
+    }
+    .m-logo {
+        height: 100% !important;
+        margin-left: 2vw;
+    }
+    .m-title{
+        margin-left: 2vw;
+        color: white !important;
+        font-size: medium !important;
+        font-family: "goodsans-light";
+    }
+    #m-avatar {
+        height: 3vh !important;
+        width: 3vh !important;
+        border-radius: 50px;            
+    }
+    .navbar-toggler {
+        color: white !important;
+    }
+
+}
