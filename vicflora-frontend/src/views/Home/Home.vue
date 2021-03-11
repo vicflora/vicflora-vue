@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 @import "./Home.scss";
 </style>
+
 <template>
   <div>
       <banner></banner>
