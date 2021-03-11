@@ -7,7 +7,7 @@
             <b-container fluid="xl">
                 <div class="m-logo-title">
                     <a href="https://www.rbg.vic.gov.au/">
-                        <img class="m-logo" src="@/assets/logo–white.png" alt="Logo">
+                        <img class="m-logo" src="@/assets/images/logo–white.png" alt="Logo">
                     </a>
                     <a href="https://vicflora.rbg.vic.gov.au/">
                         <div class="m-title">

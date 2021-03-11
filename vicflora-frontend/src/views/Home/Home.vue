@@ -5,7 +5,12 @@
 <template>
   <div>
       <banner></banner>
-      <div class="font" style="font-size:50px">Contenttttt
+      <div class="font">Contenttttt
+        <b-dropdown id="dropdown-left" text="Left align" variant="melbourne" class="m-2">
+          <b-dropdown-item href="#">Contenttt</b-dropdown-item>
+          <b-dropdown-item href="#">Another action</b-dropdown-item>
+          <b-dropdown-item href="#">Something else here</b-dropdown-item>
+        </b-dropdown>
       </div>
   </div>
 </template>

@@ -7,7 +7,8 @@ import store from './store'
 
 //import Bootstrp Icons as Icons library
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap/dist/css/bootstrap.css'
+import './assets/scss/styles.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 //import font style
 import './assets/fonts/fonts.css'

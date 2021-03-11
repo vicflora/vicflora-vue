@@ -45,7 +45,7 @@
                     </b-nav-item>
                     <b-nav-item>
                         <!-- <span class="m-username">Username</span> -->
-                        <img id="m-avatar" src="@/assets/Tree.jpg">
+                        <img id="m-avatar" src="@/assets/images/Tree.jpg">
                     </b-nav-item>
                 </b-navbar-nav>
 
