@@ -1,29 +1,21 @@
 .m-navbar {
-    background-color: #6c6361 !important;
-    height: 8Vh !important;
-    padding: 0 2vw !important;
-    
+    background-color: #ee3f75 !important;
+    border-bottom: 1px solid #6c6361;
     .m-icon {
-        margin-right: 2vw !important;
-        color: white !important;
+        color: white;
     }
-    .m-logo {
-        height: 100% !important;
-        margin-left: 2vw;
+    .m-menu-item {
+        a {
+            color: white !important;
+        }   
     }
-    .m-title{
-        margin-left: 2vw;
-        color: white !important;
-        font-size: medium !important;
-        font-family: "goodsans-light";
-    }
-    #m-avatar {
-        height: 3vh !important;
-        width: 3vh !important;
-        border-radius: 50px;            
-    }
-    .navbar-toggler {
-        color: white !important;
-    }
-
 }
+
+#m-avatar {
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 50px;            
+}
+
+
+
