@@ -1,5 +1,7 @@
+@import '~/src/assets/scss/custom_variables.scss';
+
 .m-banner {
-    background-color: #ee3f75;
+    background-color: $primary;
     span {
         color: white;
     }
