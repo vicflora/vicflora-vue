@@ -4,7 +4,7 @@
 <template>
   <div>
       <banner></banner>
-      <div class="font" style="font-size:50px">Content
+      <div class="font" style="font-size:50px">Contenttttt
       </div>
   </div>
 </template>

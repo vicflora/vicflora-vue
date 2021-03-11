@@ -20,9 +20,9 @@
                     <b-nav-item href="#" class="m-menu-item">CheckLists</b-nav-item>
                     <b-nav-item href="#" class="m-menu-item">Glossary</b-nav-item>
                     <b-nav-item href="#" class="m-menu-item">Bioregions & Vegetation</b-nav-item>
-                    <b-nav-item-dropdown>
+                    <b-nav-item-dropdown no-caret>
                         <template #button-content>
-                            <span class="m-menu-item-more">User</span>
+                            <span class="m-menu-item-more">More</span>
                         </template>
                         <b-dropdown-item href="#">Help</b-dropdown-item>
                         <b-dropdown-item href="#">About</b-dropdown-item>
