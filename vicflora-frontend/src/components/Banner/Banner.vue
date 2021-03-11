@@ -11,7 +11,7 @@
                     </a>
                     <a href="https://vicflora.rbg.vic.gov.au/">
                         <div class="m-title">
-                            VICTORY
+                            VICFLORA
                             <span class="m-sub-title">Flora of Victoria</span>  
                         </div>
                     </a>                   

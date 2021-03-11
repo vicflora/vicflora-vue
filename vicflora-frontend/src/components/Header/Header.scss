@@ -5,8 +5,10 @@
         color: white;
     }
     .m-menu-item {
+        margin-top: 4px;
         a {
             color: white !important;
+            font-size: small;       
         }   
     }
 }
@@ -17,5 +19,14 @@
     border-radius: 50px;            
 }
 
-
+.m-menu-item-more {
+    color: white !important;
+    font-size: small !important;
+    margin-right: 3px;
+    text-align: center !important;
+    align-items: center;
+}
+.show {
+    color: white !important;
+}
 
