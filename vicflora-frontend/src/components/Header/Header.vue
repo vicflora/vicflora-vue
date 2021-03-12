@@ -1,9 +1,11 @@
 <style lang="scss" scoped>
-@import "./Header.scss";
+.header::v-deep {
+    @import "./Header.scss";
+}
 </style>
 
 <template>
-   <div>
+   <div class="header">
     <b-navbar toggleable="lg" type="light" variant="info" class="m-navbar">
         <b-container fluid="xl">
             <b-navbar-nav>

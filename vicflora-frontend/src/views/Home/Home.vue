@@ -4,7 +4,6 @@
 
 <template>
   <div>
-      <banner></banner>
       <div class="font">Contenttttt
         <b-dropdown id="dropdown-left" text="Left align" variant="melbourne" class="m-2">
           <b-dropdown-item href="#">Contenttt</b-dropdown-item>
@@ -16,12 +15,9 @@
 </template>
 
 <script>
-import Banner from "../../components/Banner/Banner"
 export default {
   name: 'Home',
   components: {
-    Banner,
-
   }
 }
 </script>

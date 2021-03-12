@@ -3,6 +3,9 @@
     <div id="header">
       <Header></Header>
     </div>
+    <div id="banner">
+      <Banner></Banner>
+    </div>
     <router-view/>
     <div id="footer">
       <Footer></Footer>
@@ -23,11 +26,13 @@
 <script>
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
+import Banner from "./components/Banner/Banner"
 export default {
   name: 'App',
   components: {
     Header,
     Footer,
+    Banner,
   }
 }
 </script>
