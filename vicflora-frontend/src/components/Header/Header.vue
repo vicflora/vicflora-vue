@@ -9,7 +9,7 @@
     <b-navbar toggleable="lg" type="light" variant="info" class="m-navbar">
         <b-container fluid="xl">
             <b-navbar-nav>
-                <b-nav-item href="https://vicflora.rbg.vic.gov.au/">
+                <b-nav-item href="/">
                     <b-icon icon="house-door-fill" font-scale="1.5" class="m-icon"></b-icon>
                 </b-nav-item>
             </b-navbar-nav>  

@@ -1,3 +1,7 @@
+<style lang="scss" scoped>
+@import "./Carousel.scss";
+</style>
+
 <template>
   <div>
     <b-carousel
@@ -7,8 +11,8 @@
       controls
       indicators
       background="#ababab"
-      img-width="1024"
-      img-height="480"
+      img-width="530"
+      img-height="690"
       style="text-shadow: 1px 1px 2px #333;"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"

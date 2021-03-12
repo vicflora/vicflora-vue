@@ -4,6 +4,8 @@
   background-color: white;
   .m-introduction {
     margin: 15px 15px;
+    text-align: justify;
+    text-justify: auto;
   }
   .m-btn {
     margin: 5px 15px;
@@ -12,7 +14,7 @@
     margin: 15px 15px -15px 15px;
     p {
       color: $grey;
-      font-family: "goodsans-regular";
+      font-family: "goodsans-black";
       font-size: larger;
     }
   }
@@ -38,6 +40,8 @@
     margin: 2% 0;
     p {
       margin: 0px !important;
+      text-align: justify;
+      text-justify: auto;
     }
     b {
       font-family: "goodsans-bold";

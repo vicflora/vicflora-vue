@@ -9,7 +9,7 @@
           <b-col cols="12" class="text-left" lg="6">
             <b-row>
               <div class="m-introduction">
-                VICFLORA is a comprehensive and current guide to the wild plants of Victoria. With plant profiles, 
+                <b>VICFLORA</b> is a comprehensive and current guide to the wild plants of Victoria. With plant profiles, 
                 identification tools and richly illustrated, the Royal Botanic Gardens Victoria provides this resource free-of-charge for land managers, 
                 scientists, students and indeed anyone with an interest in Victorian plants.
               </div>
@@ -17,7 +17,7 @@
 
             <b-row>
               <b-button block class="m-btn" variant="primary" >Search</b-button>
-              <b-button block class="m-btn" variant="primary">Browse</b-button>
+              <b-button block class="m-btn" variant="primary">Browse classification</b-button>
               <b-button block class="m-btn" variant="primary">Keys</b-button>
             </b-row>
 
