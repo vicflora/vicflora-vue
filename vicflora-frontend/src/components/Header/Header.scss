@@ -1,43 +1,42 @@
 .m-navbar {
-    background-color: #ee3f75 !important;
-    border-bottom: 1px solid #6c6361;
-    .m-icon {
-        color: white;
+  background-color: #ee3f75 !important;
+  border-bottom: 1px solid #6c6361;
+  .m-icon {
+    color: white;
+  }
+  .m-menu-item {
+    margin-top: 4px;
+    a {
+      color: white !important;
+      font-size: small;
     }
-    .m-menu-item {
-        margin-top: 4px;
-        a {
-            color: white !important;
-            font-size: small;       
-        }   
-    }
+  }
 }
 
 #m-avatar {
-    height: 30px !important;
-    width: 30px !important;
-    border-radius: 50px;            
+  height: 30px !important;
+  width: 30px !important;
+  border-radius: 50px;
 }
 
 .m-menu-item-more {
-    color: white !important;
-    font-size: small !important;
-    margin-right: 3px;
-    text-align: center !important;
-    align-items: center;
+  color: white !important;
+  font-size: small !important;
+  margin-right: 3px;
+  text-align: center !important;
+  align-items: center;
 }
 .show {
-    color: white !important;
+  color: white !important;
 }
 
- .dropdown-item {
-    background-color: #ee3f75 !important;
-    color: white;
-    font-family: "goodsans-thin";
-    font-size: small;
+.dropdown-item {
+  background-color: #ee3f75 !important;
+  color: white;
+  font-family: "goodsans-thin";
+  font-size: small;
 }
 
- .dropdown-menu {
-    background-color: #ee3f75;
+.dropdown-menu {
+  background-color: #ee3f75;
 }
-

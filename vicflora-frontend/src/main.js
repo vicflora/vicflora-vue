@@ -4,9 +4,10 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 //import Bootstrap as UI framework
-
 //import Bootstrp Icons as Icons library
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+//use customized variable
 //import 'bootstrap/dist/css/bootstrap.css'
 import './assets/scss/styles.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'

@@ -1,5 +1,55 @@
-.font {
-  font-family: "goodsans-thin";
+@import "~/src/assets/scss/custom_variables.scss";
+
+.m-homepage {
   background-color: white;
-  height: 80vh;
+  .m-introduction {
+    margin: 15px 15px;
+  }
+  .m-btn {
+    margin: 5px 15px;
+  }
+  .m-highlight-title {
+    margin: 15px 15px -15px 15px;
+    p {
+      color: $grey;
+      font-family: "goodsans-regular";
+      font-size: larger;
+    }
+  }
+  .m-highlight {
+    padding: 0 !important;
+    border: 2px solid $grey !important;
+    border-radius: 10px;
+    text-align: left;
+    margin: 10px 0;
+    .m-highlight-col{
+      display: flex;
+      justify-items: center;
+      align-items: center;
+    }
+    .m-highlight-image {
+      margin: 5px 0;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .m-hightlight-1 {
+    line-height: 17px;
+    margin: 2% 0;
+    p {
+      margin: 0px !important;
+    }
+    b {
+      font-family: "goodsans-bold";
+    }
+
+  }
+  .m-hightlight-new {
+    color: red;
+    font-family: "goodsans-black";
+  }
+  .m-carousel {
+    margin: 15px 5px;
+    border-radius: 10px;
+  }
 }
