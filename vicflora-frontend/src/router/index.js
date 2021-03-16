@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home/Home.vue'
+import Acknowledgements from '../views/Acknowledgements/Acknowledgements.vue'
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/static/acknowledgements',
+    name: 'Acknowledgements',
+    component: Acknowledgements,
   },
   {
     path: '/about',
