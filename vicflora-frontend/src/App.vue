@@ -16,9 +16,16 @@
 <style lang="scss">
 #app {
   font-family: goodsans-thin, Helvetica, Arial, sans-serif;
-<<<<<<< HEAD
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
 </style>
 
 <script>
