@@ -17,7 +17,7 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item href="#" class="m-menu-item">Search</b-nav-item>
-                    <b-nav-item href="#" class="m-menu-item">Browse classification</b-nav-item>
+                    <b-nav-item href="/flora/classification" class="m-menu-item">Browse classification</b-nav-item>
                     <b-nav-item href="#" class="m-menu-item">Keys</b-nav-item>
                     <b-nav-item href="#" class="m-menu-item">CheckLists</b-nav-item>
                     <b-nav-item href="#" class="m-menu-item">Glossary</b-nav-item>
