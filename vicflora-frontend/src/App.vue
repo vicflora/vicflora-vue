@@ -16,6 +16,7 @@
 <style lang="scss">
 #app {
   font-family: goodsans-thin, Helvetica, Arial, sans-serif;
+<<<<<<< HEAD
   font-size: 14px;
 }
 </style>

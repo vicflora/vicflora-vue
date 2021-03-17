@@ -1,36 +1,36 @@
-@import '~/src/assets/scss/custom_variables.scss';
+@import "~/src/assets/scss/custom_variables.scss";
 
 .m-banner {
-    background-color: $primary;
-    padding: 10px 0;
-    span {
-        color: white;
+  background-color: $primary;
+  padding: 10px 0;
+  span {
+    color: white;
+  }
+  .m-logo-title {
+    text-align: start !important;
+    display: flex;
+    align-items: flex-end;
+    .m-title {
+      color: white;
+      display: inline-block;
+      vertical-align: baseline;
+      font-family: goodsans-regular;
+      font-size: 45px;
+      letter-spacing: 1px;
     }
-    .m-logo-title {
-        text-align: start !important; 
-        display: flex;
-        align-items: flex-end;   
-        .m-title {
-            color: white;
-            display: inline-block;
-            vertical-align: baseline;
-            font-family: goodsans-regular;  
-            font-size: 45px;   
-            letter-spacing: 1px 
-        }
-        .m-sub-title {
-            font-family: goodsans-thin;
-            font-size: 20px; 
-            letter-spacing: -1px;   
-        }   
+    .m-sub-title {
+      font-family: goodsans-thin;
+      font-size: 20px;
+      letter-spacing: -1px;
     }
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .m-sub-title {
-        display: none;
-    }
-    .m-title {
-        font-size: 40px !important;
-    }
+  .m-sub-title {
+    display: none;
+  }
+  .m-title {
+    font-size: 40px !important;
+  }
 }

@@ -28,7 +28,7 @@
                         </template>
                         <b-dropdown-item href="#">Help</b-dropdown-item>
                         <b-dropdown-item href="#">About</b-dropdown-item>
-                        <b-dropdown-item href="#">Acknowledgements</b-dropdown-item>
+                        <b-dropdown-item href="/static/acknowledgements">Acknowledgements</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
             
@@ -37,7 +37,7 @@
                 <b-navbar-nav class="ml-auto">
                     <b-nav-item>
                         <b-input-group>
-                            <b-form-input size="sm" placeholder="Search here"></b-form-input>
+                            <b-form-input size="sm" placeholder="Enter taxon name..."></b-form-input>
                             <b-input-group-append>
                                 <b-button size="sm">
                                     <b-icon font-scale="1" icon="search" />
