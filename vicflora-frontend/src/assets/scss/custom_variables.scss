@@ -4,12 +4,14 @@ $melbourne: #00accd;
 $cranbourne: #f58220;
 $grey: #6c6361;
 $black: #000000;
+$light : #dddddd;
+
 
 $theme-colors: (
   "melbourne": $melbourne,
   "cranbourne": $cranbourne,
   "grey": $grey,
-  "black": $black,
+  "black": $black
 );
 // Seasonal colors
 $summer: #fff685;

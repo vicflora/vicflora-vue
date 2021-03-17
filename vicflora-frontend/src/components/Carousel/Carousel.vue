@@ -6,7 +6,7 @@
   <div>
     <b-carousel
       id="carousel-1"
-      v-model="slide"
+      v-model="currentSlide"
       :interval="4000"
       controls
       indicators
@@ -17,34 +17,7 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <!-- Text slides with image -->
-      <b-carousel-slide
-        text="Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
-        img-src="https://data.rbg.vic.gov.au/cip/preview/image/public/4?maxsize=600"
-      ></b-carousel-slide>
-
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://data.rbg.vic.gov.au/cip/preview/image/public/20?maxsize=600"
-         text="Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
-      >
-      </b-carousel-slide>
-
-      <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://data.rbg.vic.gov.au/cip/preview/image/public/12?maxsize=600"
-        text="Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
-      ></b-carousel-slide>
-
-       <b-carousel-slide img-src="https://data.rbg.vic.gov.au/cip/preview/image/public/14?maxsize=600"
-        text="Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
-      ></b-carousel-slide>
-
-       <b-carousel-slide img-src="https://data.rbg.vic.gov.au/cip/preview/image/public/2?maxsize=600"
-        text="Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
-      ></b-carousel-slide>
-
-      <b-carousel-slide img-src="https://data.rbg.vic.gov.au/cip/preview/image/public/6?maxsize=600"
-        text="Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
-      ></b-carousel-slide>
+      <b-carousel-slide v-for="slide in slides" :key="slide.index" :img-src="slide.imgSrc" :text="slide.caption"></b-carousel-slide>
     </b-carousel>
   </div>
 </template>
@@ -54,7 +27,39 @@
     name: "Carousel",
     data() {
       return {
-        slide: 0,
+        slides: [
+          {
+            index: 0,
+            imgSource: "https://data.rbg.vic.gov.au/cip/preview/image/public/4?maxsize=600",
+            caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
+          },
+          {
+            index: 1,
+            imgSource: "https://data.rbg.vic.gov.au/cip/preview/image/public/20?maxsize=600",
+            caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
+          },
+          {
+            index: 2,
+            imgSource: "https://data.rbg.vic.gov.au/cip/preview/image/public/12?maxsize=600",
+            caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
+          },
+          {
+            index: 3,
+            imgSource: "https://data.rbg.vic.gov.au/cip/preview/image/public/14?maxsize=600",
+            caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
+          },
+          {
+            index: 4,
+            imgSrc: "https://data.rbg.vic.gov.au/cip/preview/image/public/2?maxsize=600",
+            caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
+          },
+          {
+            index: 5,
+            imgSrc: "https://data.rbg.vic.gov.au/cip/preview/image/public/6?maxsize=600",
+            caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
+          }
+        ],
+        currentSlide: 2,
         sliding: null
       }
     },

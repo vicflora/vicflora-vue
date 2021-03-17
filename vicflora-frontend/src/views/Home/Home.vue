@@ -16,69 +16,13 @@
             </b-row>
 
             <b-row>
-              <b-button block class="m-btn" variant="primary" >Search</b-button>
-              <b-button block class="m-btn" variant="primary">Browse classification</b-button>
-              <b-button block class="m-btn" variant="primary">Keys</b-button>
+              <b-button block class="m-btn" size="lg" variant="primary" >Search</b-button>
+              <b-button block class="m-btn" size="lg" variant="primary">Browse classification</b-button>
+              <b-button block class="m-btn" size="lg" variant="primary">Keys</b-button>
             </b-row>
 
-            <b-row>
-              <div class="m-highlight-title">
-                <p>HIGHLIGHTS</p>
-              </div>
-            </b-row>
+            <highlights></highlights>
 
-            <b-row class="m-highlight">
-              <b-col cols="3" class="m-highlight-col">
-                <div>
-                  <img src="https://vicflora.rbg.vic.gov.au/images/home/lucid-logo-icon-150.png" class="m-highlight-image" alt=""/>
-                </div>
-              </b-col>
-              <b-col cols="9" class="m-highlight-col">
-                <div class="m-hightlight-1">
-                  <h5><b><span class="m-hightlight-new">New</span> multi-access keys</b></h5>
-                  New multi-access keys to <a href="https://vicflora.rbg.vic.gov.au/static/keys/fabaceae">Fabaceae</a> (excl. Acacia), 
-                  <a href="https://vicflora.rbg.vic.gov.au/static/keys/cyperaceae">Cyperaceae</a> and 
-                  <a href="https://vicflora.rbg.vic.gov.au/static/keys/juncaceae">Juncaceae</a> in Victoria.
-                </div>   
-              </b-col>
-            </b-row>
-
-            <b-row class="m-highlight">
-              <b-col cols="3" class="m-highlight-col">
-                <div>
-                  <img src="https://vicflora.rbg.vic.gov.au/images/home/eucalcom.jpg" class="m-highlight-image" alt=""/>
-                </div>
-              </b-col>
-              <b-col cols="9" class="m-highlight-col">
-                <div class="m-hightlight-1">
-                    <b>
-                      <a href="https://vicflora.rbg.vic.gov.au/static/keys/eucalypts">
-                        Multi-access key to the Eucalypts
-                      </a>
-                    </b>
-                  <p>Check out our new multi-access key to the 159 species and infraspecific taxa of <i>Eucalyptus</i>, <i>Angophora</i> and <i>Corymbia</i> in Victoria.</p>
-                </div>   
-              </b-col>
-            </b-row>
-
-            <b-row class="m-highlight">
-              <b-col cols="3" class="m-highlight-col">
-                <div>
-                  <img src="https://vicflora.rbg.vic.gov.au/images/home/microwal.jpg" class="m-highlight-image" alt=""/>
-                </div>
-              </b-col>
-              <b-col cols="9" class="m-highlight-col">
-                <div class="m-hightlight-1">
-                  <b>
-                    <a href="https://vicflora.rbg.vic.gov.au/static/keys/asteraceae">
-                      Multi-access key to the Asteraceae
-                    </a>
-                  </b>   
-                  <p>Check out our new multi-access key to the 618 species and infraspecific taxa of Asteraceae in Victoria.</p>
-                </div>   
-              </b-col>
-            </b-row>
-            
           </b-col>
           <b-col cols="12" lg="6">
             <Carousel class="m-carousel"></Carousel>
@@ -90,11 +34,13 @@
 </template>
 
 <script>
-import Carousel from "../../components/Carousel/Carousel" 
+import Carousel from "../../components/Carousel/Carousel"
+import Highlights from "../../components/Home/Highlights"
 export default {
   name: 'Home',
   components: {
     Carousel,
+    Highlights
   }
 }
 </script>
