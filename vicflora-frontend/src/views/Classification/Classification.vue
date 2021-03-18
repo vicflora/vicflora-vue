@@ -58,11 +58,9 @@
                                 </span>
                             </b-col>
                            <div :style="`margin-left:${(data.taxonConcept.higherClassification.length+1)*3}vw;`" class="text-left">
-                               <span class="m-taxon-name">
-                                   <b-link :to="'/flora/classification/taxon/'+ data.taxonConcept.id">
+                                <a :href="'/flora/classification/taxon/'+ data.taxonConcept.id" class="m-taxon-name">
                                     {{data.taxonConcept.taxonName.fullName}}
-                                   </b-link> 
-                                </span>
+                                </a>                     
                            </div>
                         </b-row>
                         <hr class="m-hr-bottom" />
