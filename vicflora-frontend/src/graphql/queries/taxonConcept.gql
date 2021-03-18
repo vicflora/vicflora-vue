@@ -1,0 +1,67 @@
+query taxonConceptQuery($id: ID!) {
+  taxonConcept(id: $id) {
+    id
+    guid
+    taxonName {
+      id
+      fullName
+      authorship
+    }
+    taxonTreeDefItem {
+      id
+      name
+    }
+    parent {
+      id
+      guid
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    children {
+      id
+      guid
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+      taxonTreeDefItem {
+        id
+        name
+      }
+    }
+    siblings {
+      id
+      guid
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    higherClassification {
+      id
+      depth
+      taxonConcept {
+        id
+        guid
+        taxonName {
+          id
+          fullName
+          authorship
+        }
+        taxonTreeDefItem {
+          id
+          name
+        }
+      }
+    }
+    taxonomicStatus {
+      id
+      name
+    }
+  }
+}

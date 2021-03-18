@@ -1,3 +1,7 @@
+@import "~/src/assets/scss/custom_variables.scss";
+.m-container {
+    height: 72vh;
+}
 .m-title {
   h2 {
     font-family: "goodsans-medium";
@@ -5,3 +9,27 @@
     margin-bottom: 15px;
   }
 }
+.m-taxon-treedefitem-name {
+    color: $grey;
+}
+.m-taxon-name{
+    font-family: "goodsans-black";
+}
+.m-indent {
+    width: 15px;
+}
+.m-hr-top {
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+.m-hr-bottom {
+    margin-top: 12px;
+    margin-bottom: 2px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .m-indent {
+        display: none;
+    }
+  }

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home/Home.vue'
 import Acknowledgements from '../views/Acknowledgements/Acknowledgements.vue'
 import Classification from '../views/Classification/Classification.vue'
+import Taxon from '../components/Taxon/Taxon.vue'
 
 Vue.use(VueRouter)
 
@@ -18,9 +19,15 @@ const routes = [
     component: Acknowledgements,
   },
   {
-    path: '/flora/classification',
+    path: '/flora/classification/:id',
     name: 'Classification',
     component: Classification,
+  },
+  {
+    path: '/flora/classification/taxon/:id',
+    name: 'Taxon',
+    component: Taxon,
+
   },
   {
     path: '/about',
