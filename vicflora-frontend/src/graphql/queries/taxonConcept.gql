@@ -2,6 +2,9 @@ query taxonConceptQuery($id: ID!) {
   taxonConcept(id: $id) {
     id
     guid
+    currentProfile {
+      profile
+    }
     taxonName {
       id
       fullName
@@ -60,6 +63,14 @@ query taxonConceptQuery($id: ID!) {
       }
     }
     taxonomicStatus {
+      id
+      name
+    }
+    occurrenceStatus {
+      id
+      name
+    }
+   	establishmentMeans {
       id
       name
     }

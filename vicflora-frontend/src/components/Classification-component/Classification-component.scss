@@ -1,5 +1,10 @@
 @import "~/src/assets/scss/custom_variables.scss";
-
+.m-container {
+    height: 72vh;
+}
+.m-row {
+    margin-bottom: 8px;
+}
 .m-title {
   h2 {
     font-family: "goodsans-medium";

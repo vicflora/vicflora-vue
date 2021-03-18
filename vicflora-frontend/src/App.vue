@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <div id="header">
-      <Header></Header>
-    </div>
-    <div id="banner">
-      <Banner></Banner>
-    </div>
-    <router-view/>
+    <div id="content">
+      <div id="header">
+        <Header></Header>
+      </div>
+      <div id="banner">
+        <Banner></Banner>
+      </div>
+      <router-view />
+    </div> 
     <div id="footer">
       <Footer></Footer>
     </div>
@@ -14,6 +16,16 @@
 </template>
 
 <style lang="scss">
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    }
+
 #app {
   font-family: goodsans-thin, Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -22,8 +34,15 @@
   text-align: center;
   color: #2c3e50;
   display: flex;
+  width: 100%;
+  min-height: 100%;
   flex-direction: column;
-  min-height: 100vh;
+}
+#content {
+  flex: 1;
+}
+#footer {
+  height: 7%;
 }
 
 </style>
