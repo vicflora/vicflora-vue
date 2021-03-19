@@ -19,7 +19,7 @@
             <div v-else-if="data" class="result apollo">
                 <!-- higherClass -->
                 <b-row 
-                v-for="(higherItem,index) in data.taxonConcept.higherClassification.sort((a, b) => (a.depth - b.depth))" 
+                v-for="(higherItem,index) in data.taxonConcept.higherClassification.slice().sort((a, b) => (a.depth - b.depth))" 
                 :key="higherItem.id" 
                 class="justify-content-md-left m-row">
                     <b-col cols="2" class="text-left">
@@ -28,11 +28,14 @@
                         </span>
                     </b-col>
                     <div :style="`margin-left:${index*3}vw;`" class="text-left">
-                        <span class="m-taxon-name">
-                            <b-link :to="'/flora/classification/' + higherItem.taxonConcept.id">
-                            {{ higherItem.taxonConcept.taxonName.fullName }}
-                            </b-link> 
-                        </span>
+                        
+                        <a :href="'/flora/classification/' + higherItem.taxonConcept.id">
+                            <span class="m-taxon-name"
+                                :style="higherItem.taxonConcept.taxonTreeDefItem.name === 'genus'|| higherItem.taxonConcept.taxonTreeDefItem.name ==='species'||higherItem.taxonConcept.taxonTreeDefItem.name ==='subspecies'? 'font-style:italic;':'font-style:normal;'"
+                            >{{ higherItem.taxonConcept.taxonName.fullName}}</span>&nbsp;
+                            <span class="m-author">{{ higherItem.taxonConcept.taxonName.authorship}}</span>
+                        </a> 
+                        
                     </div>
                 </b-row>
                 <b-row>
@@ -46,13 +49,16 @@
                 <!-- Item -->
                     <b-row class="justify-content-md-left">
                     <b-col cols="1" class="text-left">
-                            <span class="m-taxon-treedefitem-name">
+                        <span class="m-taxon-treedefitem-name">
                             {{ data.taxonConcept.taxonTreeDefItem.name }}
                         </span>
                     </b-col>
                     <div :style="`margin-left:${(data.taxonConcept.higherClassification.length+1)*3}vw;`" class="text-left">
-                        <a :href="'/flora/classification/taxon/'+ data.taxonConcept.id" class="m-taxon-name">
-                            {{data.taxonConcept.taxonName.fullName}}
+                        <a :href="'/flora/classification/taxon/'+ data.taxonConcept.id">
+                            <span class="m-taxon-name"
+                                 :style="data.taxonConcept.taxonTreeDefItem.name==='genus'||data.taxonConcept.taxonTreeDefItem.name==='species'||data.taxonConcept.taxonTreeDefItem.name==='subspecies'? 'font-style:italic;':'font-style:normal;'"
+                            >{{data.taxonConcept.taxonName.fullName}}</span>&nbsp;    
+                            <span class="m-author">{{ data.taxonConcept.taxonName.authorship}}</span>
                         </a>                     
                     </div>
                 </b-row>
@@ -65,7 +71,7 @@
                 </b-row>
                 <!-- Child class -->
                 <b-row 
-                    v-for="childItem in data.taxonConcept.children.sort((a, b) => {
+                    v-for="childItem in data.taxonConcept.children.slice().sort((a, b) => {
                         let fa = a.taxonName.fullName.toLowerCase(),
                             fb = b.taxonName.fullName.toLowerCase();
 
@@ -84,11 +90,13 @@
                         </span>
                     </b-col>
                     <div :style="`margin-left:${(data.taxonConcept.higherClassification.length+2)*3}vw;`" class="text-left">
-                        <span class="m-taxon-name">
-                            <b-link :to="'/flora/classification/' + childItem.id">
-                            {{ childItem.taxonName.fullName }}
-                            </b-link> 
-                        </span>
+                        <b-link :to="'/flora/classification/' + childItem.id">
+                            <span class="m-taxon-name"
+                                :style="childItem.taxonTreeDefItem.name==='genus'||childItem.taxonTreeDefItem.name==='species'||childItem.taxonTreeDefItem.name==='subspecies'? 'font-style:italic;':'font-style:normal;'"
+                            >{{ childItem.taxonName.fullName }}</span>&nbsp;    
+                            <span class="m-author">{{childItem.taxonName.authorship}}</span>
+                        </b-link>
+                        
                     </div>
                 </b-row>
                 

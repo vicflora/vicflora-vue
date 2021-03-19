@@ -1,27 +1,34 @@
 @import "~/src/assets/scss/custom_variables.scss";
 
 .m-name {
-    font-family: "goodsans-bold";
-    margin: 20px 0px;
-    color: $primary;
+  font-family: "goodsans-bold";
+  margin: 20px 0px;
+  color: $primary;
 }
 
 .m-status-class {
-    font-family: "goodsans-black";
-    width: 180px;
-    display: inline-flex;
-    margin-bottom: 5px;
+  font-family: "goodsans-black";
+  width: 180px;
+  display: inline-flex;
+  margin-bottom: 5px;
 }
-.m-status-content{
-    text-transform: capitalize;
+.m-status-content {
+  text-transform: capitalize;
 }
 
 .m-row {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 .m-overview-item {
-    font-family: "goodsans-bold";
-    margin-right: 40px;
+  font-family: "goodsans-bold";
+  margin-right: 40px;
 }
-
-
+.m-description-title {
+  font-family: "goodsans-black";
+  width: 100px;
+  display: inline-flex;
+  margin-bottom: 5px;
+}
+.m-description-text {
+    margin-left: 5px;
+}

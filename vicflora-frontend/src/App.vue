@@ -42,7 +42,7 @@ html, body {
   flex: 1;
 }
 #footer {
-  height: 7%;
+  height: auto;
 }
 
 </style>

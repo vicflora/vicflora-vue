@@ -2,6 +2,24 @@ query taxonConceptQuery($id: ID!) {
   taxonConcept(id: $id) {
     id
     guid
+    createdBy{
+      name
+    }
+    modifiedBy{
+      name
+    }
+    createdAt
+    updatedAt
+    version
+    heroImage {
+      previewUrl
+    }
+    images {
+      previewUrl
+    }
+    currentProfile {
+      profile
+    }
     taxonName {
       id
       fullName
