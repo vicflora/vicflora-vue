@@ -32,3 +32,36 @@
 .m-description-text {
     margin-left: 5px;
 }
+
+.scientific_name {
+    color: $primary;
+    font-style: italic;
+}
+
+.m-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .m-image{
+        width: 200px;
+        height: 150px;
+        margin-bottom: 15px;
+        margin-right: 15px;
+    }
+}
+
+.breadcrumb{
+  background-color: white;
+  margin: 0;
+  padding-left: 0;
+  align-items: start;
+}
+
+.m-breadcrumb-selector-item{
+  margin-top: -10px;
+  display: inline-block;
+  .custom-select-sm{
+    font-size: 11px;
+  }
+}

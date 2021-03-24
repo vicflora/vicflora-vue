@@ -2,10 +2,10 @@ query taxonConceptQuery($id: ID!) {
   taxonConcept(id: $id) {
     id
     guid
-    createdBy{
+    createdBy {
       name
     }
-    modifiedBy{
+    modifiedBy {
       name
     }
     createdAt
@@ -15,7 +15,11 @@ query taxonConceptQuery($id: ID!) {
       previewUrl
     }
     images {
+      id
       previewUrl
+    }
+    specimenImages {
+      id
     }
     currentProfile {
       profile
@@ -85,7 +89,7 @@ query taxonConceptQuery($id: ID!) {
       id
       name
     }
-   	establishmentMeans {
+    establishmentMeans {
       id
       name
     }
