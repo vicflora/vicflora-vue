@@ -46,7 +46,7 @@
                     </div>
                   </b-breadcrumb-item>
                   <!-- Children -->
-                   <b-breadcrumb-item>
+                   <b-breadcrumb-item v-if="data.taxonConcept.children.length !== 0">
                     <div class="m-breadcrumb-selector-item">
                       <b-form-select v-model="childrenSelected" size="sm">
                         <template #first>
@@ -66,7 +66,7 @@
             <!-- Name -->
             <b-row>
               <b-col class="text-left">
-                <div>
+                <div class="m-title">
                   <h2
                     class="m-name"
                     :style="
@@ -81,6 +81,14 @@
                   >
                     {{ data.taxonConcept.taxonName.fullName }}
                   </h2>
+                  <span class="m-authorship">{{ data.taxonConcept.taxonName.authorship }}</span>
+                  <span v-if="data.taxonConcept.preferredVernacularName" class="m-vernacular-names">{{ data.taxonConcept.preferredVernacularName.name }}</span>
+                </div>
+                <div class="m-protologue" v-if="data.taxonConcept.taxonName.protologue">
+                  <i>{{ data.taxonConcept.taxonName.protologue.title}}</i>
+                  <b>{{ data.taxonConcept.taxonName.protologue.volume+': '}}</b>
+                  <span>{{ data.taxonConcept.taxonName.protologue.pages}}</span>
+
                 </div>
               </b-col>
             </b-row>

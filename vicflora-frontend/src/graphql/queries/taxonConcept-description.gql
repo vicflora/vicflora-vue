@@ -2,6 +2,10 @@ query taxonConceptQuery($id: ID!) {
   taxonConcept(id: $id) {
     id
     guid
+    preferredVernacularName{
+      id
+      name
+    }
     createdBy {
       name
     }
@@ -28,6 +32,13 @@ query taxonConceptQuery($id: ID!) {
       id
       fullName
       authorship
+      protologue{
+        id
+        title
+        publicationYear
+        volume
+        pages
+      }
     }
     taxonTreeDefItem {
       id
