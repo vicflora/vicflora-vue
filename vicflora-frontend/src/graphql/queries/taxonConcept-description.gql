@@ -2,6 +2,24 @@ query taxonConceptQuery($id: ID!) {
   taxonConcept(id: $id) {
     id
     guid
+    mapLinks{
+      profileMap
+			distributionMap
+    }
+    bioregions{
+      id
+      occurrenceStatus{
+        name
+      }
+      establishmentMeans{name}
+      bioregion{
+        type
+        properties{
+          # region
+          subregion
+        }
+      }
+    }
     preferredVernacularName{
       id
       name
@@ -21,8 +39,17 @@ query taxonConceptQuery($id: ID!) {
     images {
       id
       previewUrl
+			assetCreationDate
+			caption
+			creator
+			license
+			rights
+			subtype
     }
     specimenImages {
+      id
+    }
+    specimenImagesAccepted{
       id
     }
     currentProfile {
@@ -38,11 +65,13 @@ query taxonConceptQuery($id: ID!) {
         publicationYear
         volume
         pages
+        
       }
     }
     taxonTreeDefItem {
       id
       name
+      rankId
     }
     parent {
       id

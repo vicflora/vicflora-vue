@@ -26,7 +26,7 @@
                 <b-breadcrumb>
                   <!-- higherClassification -->
                   <b-breadcrumb-item 
-                    v-for="higherItem in data.taxonConcept.higherClassification.slice().sort((a, b) => a.depth - b.depth)" 
+                    v-for="higherItem in data.taxonConcept.higherClassification.slice().sort((a, b) => a.depth - b.depth).slice(3)" 
                     :key="higherItem.id"
                     :href="'/flora/classification/taxon/' + higherItem.taxonConcept.id">{{higherItem.taxonConcept.taxonName.fullName}}
                   </b-breadcrumb-item>
@@ -141,7 +141,7 @@
             </b-row>
             <!-- Tabs -->
             <b-tabs v-model="tabIndex" content-class="mt-4 mb-3 m-row" v-else>
-              <b-tab title="Overview" active>
+              <b-tab title="Overview" active class="m-tab-title">
                 <b-row>
                   <b-col>
                     <!-- Description -->
@@ -204,18 +204,32 @@
                           >
                         </div>
                       </b-col>
-                      <!-- img -->
+                      
                       <b-col md="4">
+                        <!-- Hero img -->
+                        <div class="m-heroimage-container" v-if="data.taxonConcept.heroImage">
+                          <a href="#">
+                            <b-img
+                              @click="() => tabIndex++"
+                              thumbnail
+                              fluid
+                              :src="
+                                'https://data.rbg.vic.gov.au/cip/' +
+                                data.taxonConcept.heroImage.previewUrl
+                              "
+                              alt="Hero Image"
+                            ></b-img>
+                          </a>
+                        </div>
+                        
+                        <!-- Map -->
                         <a href="#">
                           <b-img
-                            @click="() => tabIndex++"
+                            class="m-dictribution-map"
                             thumbnail
                             fluid
-                            :src="
-                              'https://data.rbg.vic.gov.au/cip/' +
-                              data.taxonConcept.heroImage.previewUrl
-                            "
-                            alt="Hero Image"
+                            :src="data.taxonConcept.mapLinks.profileMap"
+                            alt="Map"
                           ></b-img>
                         </a>
                       </b-col>
@@ -226,27 +240,90 @@
               <b-tab title="Images">
                    <div class="m-images" v-viewer>
                         <p v-if="data.taxonConcept.images.length===0">No Images...</p>
-                        <b-img
-                            v-else
-                            class="m-image"
-                            v-for="image in data.taxonConcept.images" :key="image.id"
+                        <div v-else v-for="image in data.taxonConcept.images" 
+                            :key="image.id" class="m-image-container">
+                          <b-img 
                             thumbnail
                             fluid
                             :src="
                               'https://data.rbg.vic.gov.au/cip/' +
                               image.previewUrl
                             "
-                            :alt="image.id"
-                        ></b-img>              
+                            :alt="`${data.taxonConcept.taxonName.fullName}. ${image.caption?image.caption:''}
+                            ${image.subtype?image.subtype:''}: ${image.creator?image.creator:''}
+                            ${image.rights?image.rights:''}
+                            `"
+                        >
+                          </b-img>   
+                        </div>
+                          
                     </div>
               </b-tab>
+              <!-- Specimen images -->
               <b-tab title="Specimen Images"
                 >
                 <div class="m-images" v-viewer>
                   <p v-if="data.taxonConcept.specimenImages.length===0">No Images...</p>
                 </div>
-                </b-tab
-              >
+              </b-tab>
+              <!-- Distribution -->
+              <b-tab title="Distribution">
+                <b-row>
+                  <b-col class="text-left">
+                    <h4 class="m-distribution-title">Distribution</h4>
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <!-- Map -->
+                  <b-col lg="6" cols="12">
+                    <div class="m-images">
+                      <figure>
+                        <div class="m-map-container">
+                          <img
+                            :src="data.taxonConcept.mapLinks.distributionMap"
+                            usemap="#vicflora_bioregion"
+                            :alt="'Distribution of '+  data.taxonConcept.taxonName.fullName"
+                          >
+                          <DistributionMapConfig></DistributionMapConfig>
+                        </div>
+                      </figure>
+                      <div class="m-legend">
+                        <b-dropdown id="dropdown-left" text="Legend" variant="primary" size="sm">
+                          <b-dropdown-item>
+                            <img src="https://vicflora.rbg.vic.gov.au/images/vicflora-map-legend.png">
+                          </b-dropdown-item>
+                        </b-dropdown>
+                      </div>          
+                    </div>
+                    <b-row>
+                      <b-col class="text-left">
+                        <b>Source:</b>
+                      </b-col>
+                    </b-row>
+                  </b-col> 
+                  <!-- Map table -->
+                  <b-col lg="6" cols="12" class="m-table">
+                    <table>
+                      <tr>
+                        <th></th>
+                        <th>Bioregion</th>
+                        <th>Occurrence status</th>
+                        <th>Establishment means</th>
+                      </tr>
+                      <tr v-for="bioregionItem in data.taxonConcept.bioregions" :key="bioregionItem.id">
+                        <td><div class="m-table-color-box" :style="`background-color: ${bioregionItem.occurrenceStatus.name==='extinct'?'#e9aaff':'#a4f27d'};`"></div></td>
+                        <td>{{bioregionItem.bioregion.properties.subregion}}</td>
+                        <td>{{bioregionItem.occurrenceStatus.name}}</td>
+                        <td>{{bioregionItem.establishmentMeans.name}}</td>
+                      </tr>
+                    </table>
+                    <div class="text-right mt-4">
+                      <b-link >Bioregions of Victoria</b-link>
+                    </div>
+                  </b-col>                
+                </b-row>
+                
+              </b-tab>
               <b-tab title="Classification" lazy
                 >
                 <TaxonClassificationComponent></TaxonClassificationComponent>
@@ -264,6 +341,7 @@
 </template>
 
 <script>
+import DistributionMapConfig from "../Distribution-map-config/Distribution-map-config";
 import TaxonClassificationComponent from "../Taxon-classification-component/Taxon-classification-component";
 import "viewerjs/dist/viewer.css";
 import Viewer from "v-viewer";
@@ -274,6 +352,7 @@ export default {
   name: "Taxon",
   components: {
     TaxonClassificationComponent,
+    DistributionMapConfig,
   },
   data() {
     return {
@@ -281,6 +360,22 @@ export default {
       tabIndex: 1,
       siblingSelected:this.$route.params.id,
       childrenSelected:null,
+      viewerOptions: {
+        inline: true,
+        button: true,
+        navbar: true,
+        title: true,
+        toolbar: true,
+        tooltip: true,
+        movable: true,
+        zoomable: true,
+        rotatable: true,
+        scalable: true,
+        transition: true,
+        fullscreen: true,
+        keyboard: true,
+        url: 'data-source'
+      },
     };
   },
   methods: {
