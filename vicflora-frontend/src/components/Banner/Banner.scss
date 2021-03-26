@@ -10,13 +10,22 @@
     text-align: start !important;
     display: flex;
     align-items: flex-end;
+    .m-logo-container{
+      max-width: 6vw;
+      min-width: 70px;
+    }
+    .m-logo{
+      max-width: 6vw;
+      min-width: 70px;
+    }
     .m-title {
       color: white;
       display: inline-block;
       vertical-align: baseline;
       font-family: goodsans-regular;
-      font-size: 45px;
+      font-size: 2vw;
       letter-spacing: 1px;
+      margin-left: 1vw;
     }
     .m-sub-title {
       font-family: goodsans-thin;
@@ -26,11 +35,11 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
   .m-sub-title {
     display: none;
   }
   .m-title {
-    font-size: 40px !important;
+    font-size: 3vw !important;
   }
 }

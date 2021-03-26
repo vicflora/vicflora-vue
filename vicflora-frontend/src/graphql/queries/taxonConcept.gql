@@ -8,6 +8,7 @@ query taxonConceptQuery($id: ID!) {
       authorship
     }
     taxonTreeDefItem {
+      rankId
       id
       name
     }
@@ -31,6 +32,7 @@ query taxonConceptQuery($id: ID!) {
       taxonTreeDefItem {
         id
         name
+        rankId
       }
     }
     siblings {
@@ -56,6 +58,7 @@ query taxonConceptQuery($id: ID!) {
         taxonTreeDefItem {
           id
           name
+          rankId
         }
       }
     }

@@ -90,11 +90,18 @@
     }
 }
 .m-heroimage-container {
-  height: 263px;
-  width: 350px;
+  border-radius: 10px;
+  border: grey solid 1px;
+  background-color: white;
+  height: 205px;
+  width: 340px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
-    max-height: 263px;
-    max-width: 350px;
+    max-height: 195px;
+    max-width: 330px;
   }
 }
 .m-dictribution-map{

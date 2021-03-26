@@ -9,7 +9,7 @@
     <b-container>
       <ApolloQuery
         :query="require('../../graphql/queries/taxonConcept-description.gql')"
-        :variables="{ id }"
+        :variables="{ id, imagesPage, specimenImagesPage }"
       >
         <template v-slot="{ result: { loading, error, data } }">
           <!-- Loading -->
@@ -70,11 +70,7 @@
                   <h2
                     class="m-name"
                     :style="
-                      data.taxonConcept.taxonTreeDefItem.name === 'genus' ||
-                      data.taxonConcept.taxonTreeDefItem.name === 'species' ||
-                      data.taxonConcept.taxonTreeDefItem.name ===
-                        'subspecies' ||
-                      data.taxonConcept.taxonTreeDefItem.name === 'variety'
+                      data.taxonConcept.taxonTreeDefItem.rankId>=rankClass.genus
                         ? 'font-style:italic;'
                         : 'font-style:normal;'
                     "
@@ -127,11 +123,7 @@
             <b-row
               class="m-row"
               v-if="
-                data.taxonConcept.taxonTreeDefItem.name !== 'family' &&
-                data.taxonConcept.taxonTreeDefItem.name !== 'genus' &&
-                data.taxonConcept.taxonTreeDefItem.name !== 'species' &&
-                data.taxonConcept.taxonTreeDefItem.name !== 'subspecies' &&
-                data.taxonConcept.taxonTreeDefItem.name !== 'variety'
+                data.taxonConcept.taxonTreeDefItem.rankId < rankClass.family
               "
             >
               <b-col class="text-left">
@@ -151,6 +143,7 @@
                       <b-col
                         class="text-left"
                         v-if="data.taxonConcept.currentProfile"
+                        lg="8"
                       >
                         <div
                           v-html="data.taxonConcept.currentProfile.profile"
@@ -205,50 +198,45 @@
                         </div>
                       </b-col>
                       
-                      <b-col md="4">
+                      <b-col lg="4" align-self="center" >
                         <!-- Hero img -->
                         <div class="m-heroimage-container" v-if="data.taxonConcept.heroImage">
-                          <a href="#">
-                            <b-img
-                              @click="() => tabIndex++"
-                              thumbnail
-                              fluid
+                          <a>
+                            <img
+                              @click="() => data.taxonConcept.imagesPaginated.data.length>0?tabIndex++:''"
                               :src="
-                                'https://data.rbg.vic.gov.au/cip/' +
-                                data.taxonConcept.heroImage.previewUrl
+                                data.taxonConcept.heroImage.thumbnailUrl
                               "
                               alt="Hero Image"
-                            ></b-img>
+                            >
                           </a>
                         </div>
                         
                         <!-- Map -->
-                        <a href="#">
-                          <b-img
-                            class="m-dictribution-map"
-                            thumbnail
-                            fluid
-                            :src="data.taxonConcept.mapLinks.profileMap"
-                            alt="Map"
-                          ></b-img>
-                        </a>
+                        <div href="#" class="m-heroimage-container">
+                          <a>
+                            <img
+                              class="m-dictribution-map"
+                              :src="data.taxonConcept.mapLinks.profileMap"
+                              alt="Map"
+                            >
+                          </a>
+                        </div>
                       </b-col>
                     </b-row>
                   </b-col>
                 </b-row>
               </b-tab>
-              <b-tab title="Images">
+              <b-tab title="Images" v-if="data.taxonConcept.imagesPaginated.data.length>0">
                    <div class="m-images" v-viewer>
-                        <p v-if="data.taxonConcept.images.length===0">No Images...</p>
-                        <div v-else v-for="image in data.taxonConcept.images" 
+                        <p v-if="data.taxonConcept.imagesPaginated.data.length===0">No Images...</p>
+                        <div v-else v-for="image in data.taxonConcept.imagesPaginated.data" 
                             :key="image.id" class="m-image-container">
                           <b-img 
                             thumbnail
                             fluid
-                            :src="
-                              'https://data.rbg.vic.gov.au/cip/' +
-                              image.previewUrl
-                            "
+                            :src="image.thumbnailUrl"
+                            :data-src="image.previewUrl"
                             :alt="`${data.taxonConcept.taxonName.fullName}. ${image.caption?image.caption:''}
                             ${image.subtype?image.subtype:''}: ${image.creator?image.creator:''}
                             ${image.rights?image.rights:''}
@@ -258,16 +246,57 @@
                         </div>
                           
                     </div>
+                   
+                    <div>
+                      <b-pagination-nav
+                        v-if="data.taxonConcept.imagesPaginated.paginatorInfo.total>24"
+                        class="mt-3 mb-5"
+                        v-model="imagesPage"
+                        :number-of-pages="data.taxonConcept.imagesPaginated.paginatorInfo.total%24===0 ?data.taxonConcept.imagesPaginated.paginatorInfo.total/24:data.taxonConcept.imagesPaginated.paginatorInfo.total/24+1"
+                        base-url="#"
+                        first-number
+                        last-number
+                        align="center"
+                      ></b-pagination-nav>
+                    </div>
               </b-tab>
               <!-- Specimen images -->
-              <b-tab title="Specimen Images"
+              <b-tab title="Specimen Images" v-if="data.taxonConcept.specimenImagesPaginated.data.length>0"
                 >
-                <div class="m-images" v-viewer>
-                  <p v-if="data.taxonConcept.specimenImages.length===0">No Images...</p>
-                </div>
+               <div class="m-images" v-viewer="{
+                  inline: true,
+                  url: 'data-src'}">
+                        <p v-if="data.taxonConcept.specimenImagesPaginated.data.length===0">No Images...</p>
+                        <div v-else v-for="image in data.taxonConcept.specimenImagesPaginated.data" 
+                            :key="image.id" class="m-image-container">
+                          <b-img 
+                            thumbnail
+                            fluid
+                            :src="image.thumbnailUrl"
+                            :data-src="image.previewUrl"
+                            :alt="`${data.taxonConcept.taxonName.fullName}. ${image.caption?image.caption:''}
+                            ${image.subtype?image.subtype:''}: ${image.creator?image.creator:''}
+                            ${image.rights?image.rights:''}
+                            `"
+                        >
+                          </b-img>   
+                        </div>     
+                    </div>
+                    <div>
+                      <b-pagination-nav
+                        class="mt-3 mb-5"
+                        v-if="data.taxonConcept.specimenImagesPaginated.paginatorInfo.total>24"
+                        v-model="imagesPage"
+                        :number-of-pages="data.taxonConcept.specimenImagesPaginated.paginatorInfo.total%24===0 ?data.taxonConcept.specimenImagesPaginated.paginatorInfo.total/24:data.taxonConcept.specimenImagesPaginated.paginatorInfo.total/24+1"
+                        base-url="#"
+                        first-number
+                        last-number
+                        align="center"
+                      ></b-pagination-nav>
+                    </div>
               </b-tab>
               <!-- Distribution -->
-              <b-tab title="Distribution">
+              <b-tab title="Distribution" v-if="data.taxonConcept.mapLinks">
                 <b-row>
                   <b-col class="text-left">
                     <h4 class="m-distribution-title">Distribution</h4>
@@ -298,6 +327,7 @@
                     <b-row>
                       <b-col class="text-left">
                         <b>Source:</b>
+                        <p v-html="data.taxonConcept.mapLinks.mapSource"></p>
                       </b-col>
                     </b-row>
                   </b-col> 
@@ -360,6 +390,8 @@ export default {
       tabIndex: 1,
       siblingSelected:this.$route.params.id,
       childrenSelected:null,
+      imagesPage:1,
+      specimenImagesPage:1,
       viewerOptions: {
         inline: true,
         button: true,
@@ -376,6 +408,17 @@ export default {
         keyboard: true,
         url: 'data-source'
       },
+      rankClass:{
+        life: -9999,
+        kingdom: 10,
+        phylum: 30,
+        class:60,
+        superorder:90,
+        order:100,
+        family:140,
+        genus:180,
+        species:220,
+      }
     };
   },
   methods: {

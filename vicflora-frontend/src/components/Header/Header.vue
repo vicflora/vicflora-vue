@@ -7,7 +7,7 @@
 <template>
   <div class="header">
     <b-navbar toggleable="lg" type="light" variant="info" class="m-navbar">
-      <b-container fluid="xl">
+      <b-container>
         <b-navbar-nav>
           <b-nav-item href="/">
             <b-icon

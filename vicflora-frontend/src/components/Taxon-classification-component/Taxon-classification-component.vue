@@ -40,12 +40,7 @@
                 <span
                   class="m-taxon-name"
                   :style="
-                    higherItem.taxonConcept.taxonTreeDefItem.name === 'genus' ||
-                    higherItem.taxonConcept.taxonTreeDefItem.name ===
-                      'species' ||
-                    higherItem.taxonConcept.taxonTreeDefItem.name ===
-                      'subspecies'||
-                    higherItem.taxonConcept.taxonTreeDefItem.name === 'variety'
+                    higherItem.taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus
                       ? 'font-style:italic;'
                       : 'font-style:normal;'
                   "
@@ -84,10 +79,7 @@
                 <span
                   class="m-taxon-name"
                   :style="
-                    data.taxonConcept.taxonTreeDefItem.name === 'genus' ||
-                    data.taxonConcept.taxonTreeDefItem.name === 'species' ||
-                    data.taxonConcept.taxonTreeDefItem.name === 'subspecies' ||
-                    data.taxonConcept.taxonTreeDefItem.name === 'variety'
+                    data.taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus
                       ? 'font-style:italic;'
                       : 'font-style:normal;'
                   "
@@ -142,10 +134,7 @@
                 <span
                   class="m-taxon-name"
                   :style="
-                    childItem.taxonTreeDefItem.name === 'genus' ||
-                    childItem.taxonTreeDefItem.name === 'species' ||
-                    childItem.taxonTreeDefItem.name === 'subspecies' ||
-                    childItem.taxonTreeDefItem.name === 'variety'
+                    childItem.taxonTreeDefItem.rankId >= rankClass.genus
                       ? 'font-style:italic;'
                       : 'font-style:normal;'
                   "
@@ -176,6 +165,17 @@ export default {
       higherItemNum: 0,
       id: 32065,
       indentNum: 0,
+      rankClass:{
+        life: -9999,
+        kingdom: 10,
+        phylum: 30,
+        class:60,
+        superorder:90,
+        order:100,
+        family:140,
+        genus:180,
+        species:220,
+      }
     };
   },
   //Apollo-specific options

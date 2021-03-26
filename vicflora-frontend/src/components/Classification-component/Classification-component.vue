@@ -31,7 +31,7 @@
                         
                         <a :href="'/flora/classification/' + higherItem.taxonConcept.id">
                             <span class="m-taxon-name"
-                                :style="higherItem.taxonConcept.taxonTreeDefItem.name === 'genus'|| higherItem.taxonConcept.taxonTreeDefItem.name ==='species'||higherItem.taxonConcept.taxonTreeDefItem.name ==='subspecies'? 'font-style:italic;':'font-style:normal;'"
+                                :style="higherItem.taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus? 'font-style:italic;':'font-style:normal;'"
                             >{{ higherItem.taxonConcept.taxonName.fullName}}</span>&nbsp;
                             <span class="m-author">{{ higherItem.taxonConcept.taxonName.authorship}}</span>
                         </a> 
@@ -56,7 +56,7 @@
                     <div :style="`margin-left:${(data.taxonConcept.higherClassification.length+1)*3}vw;`" class="text-left">
                         <a :href="'/flora/classification/taxon/'+ data.taxonConcept.id">
                             <span class="m-taxon-name"
-                                 :style="data.taxonConcept.taxonTreeDefItem.name==='genus'||data.taxonConcept.taxonTreeDefItem.name==='species'||data.taxonConcept.taxonTreeDefItem.name==='subspecies'? 'font-style:italic;':'font-style:normal;'"
+                                 :style="data.taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus? 'font-style:italic;':'font-style:normal;'"
                             >{{data.taxonConcept.taxonName.fullName}}</span>&nbsp;    
                             <span class="m-author">{{ data.taxonConcept.taxonName.authorship}}</span>
                         </a>                     
@@ -92,7 +92,7 @@
                     <div :style="`margin-left:${(data.taxonConcept.higherClassification.length+2)*3}vw;`" class="text-left">
                         <b-link :to="'/flora/classification/' + childItem.id">
                             <span class="m-taxon-name"
-                                :style="childItem.taxonTreeDefItem.name==='genus'||childItem.taxonTreeDefItem.name==='species'||childItem.taxonTreeDefItem.name==='subspecies'? 'font-style:italic;':'font-style:normal;'"
+                                :style="childItem.taxonTreeDefItem.rankId >= rankClass.genus? 'font-style:italic;':'font-style:normal;'"
                             >{{ childItem.taxonName.fullName }}</span>&nbsp;    
                             <span class="m-author">{{childItem.taxonName.authorship}}</span>
                         </b-link>
@@ -119,6 +119,17 @@ export default {
             higherItemNum:0,
             id: 32065,
             indentNum:0,
+            rankClass:{
+                life: -9999,
+                kingdom: 10,
+                phylum: 30,
+                class:60,
+                superorder:90,
+                order:100,
+                family:140,
+                genus:180,
+                species:220,
+            }
             
         }
     },

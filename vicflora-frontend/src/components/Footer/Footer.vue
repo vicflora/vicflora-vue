@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="m-footer">
-        <b-container fluid="lg">
+        <b-container>
             <b-row >
                 <b-col cols="5">
                     <b-row>

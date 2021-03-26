@@ -4,17 +4,21 @@
 <template>
     <div>
         <div class="m-banner">
-            <b-container fluid="xl">
+            <b-container>
                 <div class="m-logo-title">
-                    <a href="https://www.rbg.vic.gov.au/">
-                        <img class="m-logo" src="@/assets/images/logo–white.png" alt="Logo">
-                    </a>
-                    <a href="https://vicflora.rbg.vic.gov.au/">
-                        <div class="m-title">
-                            VICFLORA
-                            <span class="m-sub-title">Flora of Victoria</span>  
-                        </div>
-                    </a>                   
+                    <div class="m-logo-container">
+                        <a href="https://www.rbg.vic.gov.au/">
+                            <img class="m-logo" src="@/assets/images/logo–white.png" alt="Logo">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://vicflora.rbg.vic.gov.au/">
+                            <div class="m-title">
+                                VICFLORA
+                                <span class="m-sub-title">Flora of Victoria</span>  
+                            </div>
+                        </a>  
+                    </div>                              
                 </div>
             </b-container>
         </div>

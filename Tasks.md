@@ -17,14 +17,15 @@
   
 > ## 3/25
 ### Done
-- Most parts of distribution
-- Fixed the layout of Images
+- Most parts of distribution 
+- Fixed the layout of Images 
 - Added the map in the overview tag
 - Added v-viewer title
 ### To do
 - Distribution - source & link to bioregion
 - Threat status
 - Ask the requirements of Protologue Publication year and Overview Referneces -
-- Use RankID to identify the class
-- Finish the taxon part
-- begin the CheckList part
+- Use RankID to identify the class √
+- Finish the taxon part √
+- begin the CheckList part ×
+- Key btn on the classification 

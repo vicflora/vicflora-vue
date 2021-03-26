@@ -17,7 +17,7 @@
 
 <style lang="scss">
 html, body {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -39,6 +39,7 @@ html, body {
   flex-direction: column;
 }
 #content {
+  width: 100%;
   flex: 1;
 }
 #footer {
