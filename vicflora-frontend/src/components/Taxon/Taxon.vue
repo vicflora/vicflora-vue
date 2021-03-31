@@ -201,9 +201,8 @@
                       <b-col lg="4" align-self="center" >
                         <!-- Hero img -->
                         <div class="m-heroimage-container" v-if="data.taxonConcept.heroImage">
-                          <a>
-                            <img
-                              @click="() => data.taxonConcept.images.data.length>0?tabIndex++:''"
+                          <a  @click="() => data.taxonConcept.images.data.length>0?tabIndex=1:''">
+                            <img                            
                               :src="
                                 data.taxonConcept.heroImage.thumbnailUrl
                               "
@@ -213,8 +212,8 @@
                         </div>
                         
                         <!-- Map -->
-                        <div href="#" class="m-heroimage-container">
-                          <a>
+                        <div href="#" class="m-heroimage-container" v-if="data.taxonConcept.bioregions.length!==0">
+                          <a @click="() => data.taxonConcept.images.data.length>0?tabIndex=3:''">
                             <img
                               class="m-dictribution-map"
                               :src="data.taxonConcept.mapLinks.profileMap"
@@ -312,7 +311,7 @@
                 </div>  
               </b-tab>
               <!-- Distribution -->
-              <b-tab title="Distribution" v-if="data.taxonConcept.mapLinks">
+              <b-tab title="Distribution" v-if="data.taxonConcept.bioregions.length!==0">
                 <b-row>
                   <b-col class="text-left">
                     <h4 class="m-distribution-title">Distribution</h4>
