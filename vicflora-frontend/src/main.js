@@ -17,6 +17,7 @@ import './assets/fonts/fonts.css'
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
 
+
 const apolloClient = new ApolloClient({
   // You should use your graphQL URL here
   uri: 'http://vicflora-api-test.rbg.vic.gov.au/graphql'

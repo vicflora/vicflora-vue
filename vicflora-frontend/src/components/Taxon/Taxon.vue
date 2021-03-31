@@ -203,7 +203,7 @@
                         <div class="m-heroimage-container" v-if="data.taxonConcept.heroImage">
                           <a>
                             <img
-                              @click="() => data.taxonConcept.imagesPaginated.data.length>0?tabIndex++:''"
+                              @click="() => data.taxonConcept.images.data.length>0?tabIndex++:''"
                               :src="
                                 data.taxonConcept.heroImage.thumbnailUrl
                               "
@@ -227,11 +227,11 @@
                   </b-col>
                 </b-row>
               </b-tab>
-              <b-tab title="Images" v-if="data.taxonConcept.imagesPaginated.data.length>0">
-                   <div class="m-images" v-viewer>
-                        <p v-if="data.taxonConcept.imagesPaginated.data.length===0">No Images...</p>
-                        <div v-else v-for="image in data.taxonConcept.imagesPaginated.data" 
-                            :key="image.id" class="m-image-container">
+              <b-tab title="Images" v-if="data.taxonConcept.images.data.length>0">
+                   <div class="m-images" >
+                        <p v-if="data.taxonConcept.images.data.length===0">No Images...</p>
+                        <div v-else v-for="image in data.taxonConcept.images.data" 
+                            :key="image.id" class="m-image-container" v-viewer="viewerOptions">
                           <b-img 
                             thumbnail
                             fluid
@@ -243,16 +243,15 @@
                             `"
                         >
                           </b-img>   
-                        </div>
-                          
-                    </div>
+                        </div>                    
+                  </div>          
                    
                     <div>
                       <b-pagination-nav
-                        v-if="data.taxonConcept.imagesPaginated.paginatorInfo.total>24"
+                        v-if="data.taxonConcept.images.paginatorInfo.total>24"
                         class="mt-3 mb-5"
                         v-model="imagesPage"
-                        :number-of-pages="data.taxonConcept.imagesPaginated.paginatorInfo.total%24===0 ?data.taxonConcept.imagesPaginated.paginatorInfo.total/24:data.taxonConcept.imagesPaginated.paginatorInfo.total/24+1"
+                        :number-of-pages="data.taxonConcept.images.paginatorInfo.total%24===0 ?data.taxonConcept.images.paginatorInfo.total/24:data.taxonConcept.images.paginatorInfo.total/24+1"
                         base-url="#"
                         first-number
                         last-number
@@ -261,39 +260,56 @@
                     </div>
               </b-tab>
               <!-- Specimen images -->
-              <b-tab title="Specimen Images" v-if="data.taxonConcept.specimenImagesPaginated.data.length>0"
+              <b-tab title="Specimen Images" v-if="data.taxonConcept.specimenImages.data.length>0"
                 >
-               <div class="m-images" v-viewer="{
-                  inline: true,
-                  url: 'data-src'}">
-                        <p v-if="data.taxonConcept.specimenImagesPaginated.data.length===0">No Images...</p>
-                        <div v-else v-for="image in data.taxonConcept.specimenImagesPaginated.data" 
-                            :key="image.id" class="m-image-container">
+               <div class="m-images">
+                        <p v-if="data.taxonConcept.specimenImages.data.length===0">No Images...</p>
+                        <div 
+                            v-else v-for="image in data.taxonConcept.specimenImages.data" 
+                            :key="image.id" class="m-image-container"
+                            @click="()=>{specimenImagesModal=image}"
+                            >
                           <b-img 
                             thumbnail
-                            fluid
+                            fluid   
                             :src="image.thumbnailUrl"
                             :data-src="image.previewUrl"
                             :alt="`${data.taxonConcept.taxonName.fullName}. ${image.caption?image.caption:''}
                             ${image.subtype?image.subtype:''}: ${image.creator?image.creator:''}
                             ${image.rights?image.rights:''}
-                            `"
-                        >
-                          </b-img>   
-                        </div>     
-                    </div>
-                    <div>
-                      <b-pagination-nav
-                        class="mt-3 mb-5"
-                        v-if="data.taxonConcept.specimenImagesPaginated.paginatorInfo.total>24"
-                        v-model="imagesPage"
-                        :number-of-pages="data.taxonConcept.specimenImagesPaginated.paginatorInfo.total%24===0 ?data.taxonConcept.specimenImagesPaginated.paginatorInfo.total/24:data.taxonConcept.specimenImagesPaginated.paginatorInfo.total/24+1"
-                        base-url="#"
-                        first-number
-                        last-number
-                        align="center"
-                      ></b-pagination-nav>
-                    </div>
+                            `"  
+                          >
+                          </b-img>                                      
+                        </div>  
+                        <div class="modal m-modal-class" :style="'display:'+ `${specimenImagesModal?'flex':'none'}`" v-if="specimenImagesModal">                           
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h6 class="modal-title">{{specimenImagesModal.caption}}</h6>
+                                <button type="button" class="close" @click="()=>{specimenImagesModal=null}">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <iframe
+                                class="m-modal-iframe"
+                                :src="'https://vicflora.rbg.vic.gov.au/flora/specimen_image_viewer/'+specimenImagesModal.alaImageUuid">
+                                </iframe>
+                              </div>
+                            </div>                           
+                        </div>                    
+                </div>       
+                <div>
+                  <b-pagination-nav
+                    class="mt-3 mb-5"
+                    v-if="data.taxonConcept.specimenImages.paginatorInfo.total>24"
+                    v-model="imagesPage"
+                    :number-of-pages="data.taxonConcept.specimenImages.paginatorInfo.total%24===0 ?data.taxonConcept.specimenImages.paginatorInfo.total/24:data.taxonConcept.specimenImages.paginatorInfo.total/24+1"
+                    base-url="#"
+                    first-number
+                    last-number
+                    align="center"
+                  ></b-pagination-nav>
+                </div>  
               </b-tab>
               <!-- Distribution -->
               <b-tab title="Distribution" v-if="data.taxonConcept.mapLinks">
@@ -392,21 +408,9 @@ export default {
       childrenSelected:null,
       imagesPage:1,
       specimenImagesPage:1,
+      specimenImagesModal:null,
       viewerOptions: {
-        inline: true,
-        button: true,
-        navbar: true,
-        title: true,
-        toolbar: true,
-        tooltip: true,
-        movable: true,
-        zoomable: true,
-        rotatable: true,
-        scalable: true,
-        transition: true,
-        fullscreen: true,
-        keyboard: true,
-        url: 'data-source'
+        url: 'data-src'
       },
       rankClass:{
         life: -9999,
