@@ -1,0 +1,39 @@
+.m-main-title {
+    h2 {
+      font-family: "goodsans-medium";
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+.m-subtitle{
+    font-family: "goodsans-regular";
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.m-row {
+    margin-bottom: 15px;
+    margin-right: 5px;
+}
+.card {
+    border: none;
+    .card-body{
+        padding: 10px 0;
+        padding-left: 2px;
+    }
+}
+
+.h4:focus,
+.h4:active:focus,
+.h4.active:focus,
+.h4.focus,
+.h4:active.focus,
+.h4.active.focus {
+    outline: none;
+    box-shadow:none;
+}
+
+.collapsed > .when-opened,
+:not(.collapsed) > .when-closed {
+  display: none;
+}

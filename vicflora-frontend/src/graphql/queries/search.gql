@@ -1,0 +1,27 @@
+query searchQuery($input: SearchInput!) {
+  search(input: $input) {
+    docs{
+      id
+      scientificName
+    }
+    meta {
+      params {
+        q
+        fq
+        fl
+        rows 
+      }
+      pagination{
+        count
+        total
+        currentPage
+      }
+    }
+    facetFields{
+      fieldName
+      facets{
+        value
+      }
+    }
+  }
+}

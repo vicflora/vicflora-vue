@@ -20,7 +20,7 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#" class="m-menu-item">Search</b-nav-item>
+            <b-nav-item href="/flora/search?*:*" class="m-menu-item">Search</b-nav-item>
             <b-nav-item href="/flora/classification/32063" class="m-menu-item"
               >Browse classification</b-nav-item
             >
@@ -30,7 +30,7 @@
             <b-nav-item href="#" class="m-menu-item"
               >Bioregions & Vegetation</b-nav-item
             >
-            <b-nav-item-dropdown no-caret>
+            <b-nav-item-dropdown no-caret class="m-more-item">
               <template #button-content>
                 <span class="m-menu-item-more">More</span>
               </template>
@@ -40,6 +40,8 @@
                 >Acknowledgements</b-dropdown-item
               >
             </b-nav-item-dropdown>
+            
+            
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->

@@ -4,6 +4,7 @@ import Home from '../views/Home/Home.vue'
 import Acknowledgements from '../views/Acknowledgements/Acknowledgements.vue'
 import Classification from '../views/Classification/Classification.vue'
 import Taxon from '../components/Taxon/Taxon.vue'
+import Search from '../views/Search/Search.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,12 @@ const routes = [
     path: '/flora/classification/taxon/:id',
     name: 'Taxon',
     component: Taxon,
+
+  },
+  {
+    path: '/flora/search',
+    name: 'Search',
+    component: Search,
 
   },
   {

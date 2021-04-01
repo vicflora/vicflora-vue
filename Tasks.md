@@ -33,11 +33,18 @@
 > ### Done
 - Complete the specimen images
 - Fix a bug when genus doesn't have distribution
-### To do
+> ### To do
 - Threat status
 - Key btn on the classification 
 - Distribution - source & link to bioregion
 - Distribution - legend bug when in the mobile advice
 - Search part
 - tags switch
-- a style bug on the header - More
+- a style bug on the header - More √
+
+> ## 3/31
+> ### Done
+- Fix a style bug on the header - More
+> ### To do
+- Search part
+- tags switch
