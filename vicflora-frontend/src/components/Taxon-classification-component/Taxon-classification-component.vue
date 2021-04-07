@@ -20,7 +20,7 @@
           <!-- higherClass -->
           <b-row
             v-for="(higherItem,
-            index) in data.taxonConcept.higherClassification
+            index) in data.taxonConceptByGUID.higherClassification
               .slice()
               .sort((a, b) => a.depth - b.depth)"
             :key="higherItem.id"
@@ -34,7 +34,7 @@
             <div :style="`margin-left:${index * 3}vw;`" class="text-left">
               <a
                 :href="
-                  '/flora/classification/taxon/' + higherItem.taxonConcept.id
+                  '/flora/classification/taxon/' + higherItem.taxonConcept.guid
                 "
               >
                 <span
@@ -64,29 +64,29 @@
           <b-row class="justify-content-md-left">
             <b-col cols="1" class="text-left">
               <span class="m-taxon-treedefitem-name">
-                {{ data.taxonConcept.taxonTreeDefItem.name }}
+                {{ data.taxonConceptByGUID.taxonTreeDefItem.name }}
               </span>
             </b-col>
             <div
               :style="
-                `margin-left:${(data.taxonConcept.higherClassification.length +
+                `margin-left:${(data.taxonConceptByGUID.higherClassification.length +
                   1) *
                   3}vw;`
               "
               class="text-left"
             >
-              <a :href="'/flora/classification/taxon/' + data.taxonConcept.id">
+              <a :href="'/flora/classification/taxon/' + data.taxonConceptByGUID.guid">
                 <span
                   class="m-taxon-name"
                   :style="
-                    data.taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus
+                    data.taxonConceptByGUID.taxonTreeDefItem.rankId >= rankClass.genus
                       ? 'font-style:italic;'
                       : 'font-style:normal;'
                   "
-                  >{{ data.taxonConcept.taxonName.fullName }}</span
+                  >{{ data.taxonConceptByGUID.taxonName.fullName }}</span
                 >&nbsp;
                 <span class="m-author">{{
-                  data.taxonConcept.taxonName.authorship
+                  data.taxonConceptByGUID.taxonName.authorship
                 }}</span>
               </a>
             </div>
@@ -100,7 +100,7 @@
           </b-row>
           <!-- Child class -->
           <b-row
-            v-for="childItem in data.taxonConcept.children
+            v-for="childItem in data.taxonConceptByGUID.children
               .slice()
               .sort((a, b) => {
                 let fa = a.taxonName.fullName.toLowerCase(),
@@ -124,13 +124,13 @@
             </b-col>
             <div
               :style="
-                `margin-left:${(data.taxonConcept.higherClassification.length +
+                `margin-left:${(data.taxonConceptByGUID.higherClassification.length +
                   2) *
                   3}vw;`
               "
               class="text-left"
             >
-              <b-link :to="'/flora/classification/taxon/' + childItem.id">
+              <b-link :to="'/flora/classification/taxon/' + childItem.guid">
                 <span
                   class="m-taxon-name"
                   :style="
@@ -163,7 +163,7 @@ export default {
     return {
       taxonConcept: "",
       higherItemNum: 0,
-      id: 32065,
+      id: "6abc498a-70de-11e6-a989-005056b0018f",
       indentNum: 0,
       rankClass:{
         life: -9999,

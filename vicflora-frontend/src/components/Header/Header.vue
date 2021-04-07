@@ -21,7 +21,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item href="/flora/search?*:*" class="m-menu-item">Search</b-nav-item>
-            <b-nav-item href="/flora/classification/32063" class="m-menu-item"
+            <b-nav-item href="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f" class="m-menu-item"
               >Browse classification</b-nav-item
             >
             <b-nav-item href="#" class="m-menu-item">Keys</b-nav-item>

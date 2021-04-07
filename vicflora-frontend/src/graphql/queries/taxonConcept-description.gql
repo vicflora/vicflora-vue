@@ -1,29 +1,27 @@
-query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
-  taxonConcept(id: $id) {
+query taxonConceptQuery($id: UUID!,$imagesPage:Int,$specimenImagesPage:Int) {
+  taxonConceptByGUID(guid: $id) {
     id
     guid
-    mapLinks {
+    mapLinks{
       profileMap
-      distributionMap
+			distributionMap
       mapSource
     }
-    bioregions {
+    bioregions{
       id
-      occurrenceStatus {
+      occurrenceStatus{
         name
       }
-      establishmentMeans {
-        name
-      }
-      bioregion {
+      establishmentMeans{name}
+      bioregion{
         type
-        properties {
+        properties{
           # region
           subregion
         }
       }
     }
-    preferredVernacularName {
+    preferredVernacularName{
       id
       name
     }
@@ -40,7 +38,7 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
       thumbnailUrl
       previewUrl
     }
-    images(page: $imagesPage, first: 24) {
+    images(page:$imagesPage,first:24){
       data {
         id
         previewUrl
@@ -51,22 +49,22 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
         license
         rights
         subtype
-      }
-      paginatorInfo {
+			}
+      paginatorInfo{
         count
         currentPage
         hasMorePages
         total
       }
     }
-    specimenImages(page: $specimenImagesPage, first: 24) {
-      data {
+    specimenImages(page:$specimenImagesPage,first:24){
+       data {
         id
         thumbnailUrl
         alaImageUuid
         caption
-      }
-      paginatorInfo {
+			}
+      paginatorInfo{
         count
         currentPage
         hasMorePages
@@ -81,12 +79,13 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
       id
       fullName
       authorship
-      protologue {
+      protologue{
         id
         title
         publicationYear
         volume
         pages
+        
       }
     }
     taxonTreeDefItem {

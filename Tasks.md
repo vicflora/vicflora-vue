@@ -47,4 +47,5 @@
 - Fix a style bug on the header - More
 > ### To do
 - Search part
-- tags switch
+- Tags switch
+- How to trigger the facet modal

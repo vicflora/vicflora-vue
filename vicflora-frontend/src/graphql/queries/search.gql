@@ -2,7 +2,10 @@ query searchQuery($input: SearchInput!) {
   search(input: $input) {
     docs{
       id
+      family
+      taxonRank
       scientificName
+      scientificNameAuthorship
     }
     meta {
       params {
@@ -12,7 +15,7 @@ query searchQuery($input: SearchInput!) {
         rows 
       }
       pagination{
-        count
+        lastPage
         total
         currentPage
       }
@@ -21,6 +24,8 @@ query searchQuery($input: SearchInput!) {
       fieldName
       facets{
         value
+        count
+        fq
       }
     }
   }

@@ -1,5 +1,5 @@
-query taxonConceptQuery($id: ID!) {
-  taxonConcept(id: $id) {
+query taxonConceptQuery($id: UUID!) {
+  taxonConceptByGUID(guid: $id) {
     id
     guid
     taxonName {

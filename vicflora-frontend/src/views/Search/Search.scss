@@ -1,6 +1,8 @@
+@import "~/src/assets/scss/custom_variables.scss";
 .m-main-title {
     h2 {
       font-family: "goodsans-medium";
+      
       margin-top: 30px;
       margin-bottom: 30px;
     }
@@ -11,6 +13,11 @@
     margin-top: 10px;
     margin-bottom: 5px;
 }
+.m-facet-title{
+    font-family: "goodsans-regular";
+    font-size: large;
+}
+
 .m-row {
     margin-bottom: 15px;
     margin-right: 5px;
@@ -37,3 +44,23 @@
 :not(.collapsed) > .when-closed {
   display: none;
 }
+
+.m-item{
+    .m-item-name{
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 15px;
+        font-family: "goodsans-regular";
+        color: $primary;
+    }
+    .m-item-author{
+        font-size: smaller;
+    }
+    .m-item-vernacularname{
+
+    }
+    .m-item-familyname{
+        font-size: small;
+    }
+}
+
