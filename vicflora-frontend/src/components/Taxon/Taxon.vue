@@ -26,9 +26,9 @@
                 <b-breadcrumb>
                   <!-- higherClassification -->
                   <b-breadcrumb-item 
-                    v-for="higherItem in data.taxonConceptByGUID.higherClassification.slice().sort((a, b) => a.depth - b.depth).slice(3)" 
+                    v-for="higherItem in data.taxonConcept.higherClassification.slice().sort((a, b) => a.depth - b.depth).slice(3)" 
                     :key="higherItem.id"
-                    :href="'/flora/classification/taxon/' + higherItem.taxonConcept.guid">{{higherItem.taxonConcept.taxonName.fullName}}
+                    :href="'/flora/classification/taxon/' + higherItem.taxonConcept.id">{{higherItem.taxonConcept.taxonName.fullName}}
                   </b-breadcrumb-item>
                   <!-- Siblings -->
                   <b-breadcrumb-item>
@@ -38,24 +38,24 @@
                           <b-form-select-option :value="null" disabled>Select sibling...</b-form-select-option>
                         </template>
                         <b-form-select-option 
-                          v-for="siblingItem in data.taxonConceptByGUID.siblings"
+                          v-for="siblingItem in data.taxonConcept.siblings"
                           :key="siblingItem.id"
-                          :value="siblingItem.guid"
+                          :value="siblingItem.id"
                         >{{siblingItem.taxonName.fullName}}</b-form-select-option>
                       </b-form-select>
                     </div>
                   </b-breadcrumb-item>
                   <!-- Children -->
-                   <b-breadcrumb-item v-if="data.taxonConceptByGUID.children.length !== 0">
+                   <b-breadcrumb-item v-if="data.taxonConcept.children.length !== 0">
                     <div class="m-breadcrumb-selector-item">
                       <b-form-select v-model="childrenSelected" size="sm">
                         <template #first>
                           <b-form-select-option :value="null" disabled>Select child...</b-form-select-option>
                         </template>
                         <b-form-select-option 
-                          v-for="childItem in data.taxonConceptByGUID.children"
+                          v-for="childItem in data.taxonConcept.children"
                           :key="childItem.id"
-                          :value="childItem.guid"
+                          :value="childItem.id"
                         >{{childItem.taxonName.fullName}}</b-form-select-option>
                       </b-form-select>
                     </div>
@@ -70,20 +70,20 @@
                   <h2
                     class="m-name"
                     :style="
-                      data.taxonConceptByGUID.taxonTreeDefItem.rankId>=rankClass.genus
+                      data.taxonConcept.taxonTreeDefItem.rankId>=rankClass.genus
                         ? 'font-style:italic;'
                         : 'font-style:normal;'
                     "
                   >
-                    {{ data.taxonConceptByGUID.taxonName.fullName }}
+                    {{ data.taxonConcept.taxonName.fullName }}
                   </h2>
-                  <span class="m-authorship">{{ data.taxonConceptByGUID.taxonName.authorship }}</span>
-                  <span v-if="data.taxonConceptByGUID.preferredVernacularName" class="m-vernacular-names">{{ data.taxonConceptByGUID.preferredVernacularName.name }}</span>
+                  <span class="m-authorship">{{ data.taxonConcept.taxonName.authorship }}</span>
+                  <span v-if="data.taxonConcept.preferredVernacularName" class="m-vernacular-names">{{ data.taxonConcept.preferredVernacularName.name }}</span>
                 </div>
-                <div class="m-protologue" v-if="data.taxonConceptByGUID.taxonName.protologue">
-                  <i>{{ data.taxonConceptByGUID.taxonName.protologue.title}}</i>
-                  <b>{{ data.taxonConceptByGUID.taxonName.protologue.volume+': '}}</b>
-                  <span>{{ data.taxonConceptByGUID.taxonName.protologue.pages}}</span>
+                <div class="m-protologue" v-if="data.taxonConcept.taxonName.protologue">
+                  <i>{{ data.taxonConcept.taxonName.protologue.title}}</i>
+                  <b>{{ data.taxonConcept.taxonName.protologue.volume+': '}}</b>
+                  <span>{{ data.taxonConcept.taxonName.protologue.pages}}</span>
 
                 </div>
               </b-col>
@@ -91,29 +91,29 @@
             <!-- Status -->
             <b-row class="m-row">
               <b-col class="text-left">
-                <b-row v-if="data.taxonConceptByGUID.taxonomicStatus">
+                <b-row v-if="data.taxonConcept.taxonomicStatus">
                   <b-col>
                     <p class="m-status-class">Taxonomic status:</p>
                     <span class="m-status-content">{{
-                      data.taxonConceptByGUID.taxonomicStatus.name
+                      data.taxonConcept.taxonomicStatus.name
                     }}</span>
                   </b-col>
                 </b-row>
 
-                <b-row v-if="data.taxonConceptByGUID.occurrenceStatus">
+                <b-row v-if="data.taxonConcept.occurrenceStatus">
                   <b-col>
                     <p class="m-status-class">Occurrence status:</p>
                     <span class="m-status-content">{{
-                      data.taxonConceptByGUID.occurrenceStatus.name
+                      data.taxonConcept.occurrenceStatus.name
                     }}</span>
                   </b-col>
                 </b-row>
 
-                <b-row v-if="data.taxonConceptByGUID.establishmentMeans">
+                <b-row v-if="data.taxonConcept.establishmentMeans">
                   <b-col>
                     <p class="m-status-class">Establishment means:</p>
                     <span class="m-status-content">{{
-                      data.taxonConceptByGUID.establishmentMeans.name
+                      data.taxonConcept.establishmentMeans.name
                     }}</span>
                   </b-col>
                 </b-row>
@@ -123,7 +123,7 @@
             <b-row
               class="m-row"
               v-if="
-                data.taxonConceptByGUID.taxonTreeDefItem.rankId < rankClass.family
+                data.taxonConcept.taxonTreeDefItem.rankId < rankClass.family
               "
             >
               <b-col class="text-left">
@@ -142,11 +142,11 @@
                       <!-- use .replaceAll() to replace the tags in HTML -->
                       <b-col
                         class="text-left"
-                        v-if="data.taxonConceptByGUID.currentProfile"
+                        v-if="data.taxonConcept.currentProfile"
                         lg="8"
                       >
                         <div
-                          v-html="data.taxonConceptByGUID.currentProfile.profile"
+                          v-html="data.taxonConcept.currentProfile.profile"
                         ></div>
                         <!-- Source -->
                         <div class="m-row">
@@ -162,8 +162,8 @@
                             </span>
                             <span>{{
                               `${
-                                data.taxonConceptByGUID.createdBy.name
-                              }, ${data.taxonConceptByGUID.createdAt.slice(0, 10)}`
+                                data.taxonConcept.createdBy.name
+                              }, ${data.taxonConcept.createdAt.slice(0, 10)}`
                             }}</span>
                           </div>
                           <!-- Updated info -->
@@ -173,15 +173,15 @@
                             </span>
                             <span>{{
                               `${
-                                data.taxonConceptByGUID.modifiedBy.name
-                              }, ${data.taxonConceptByGUID.updatedAt.slice(0, 10)}`
+                                data.taxonConcept.modifiedBy.name
+                              }, ${data.taxonConcept.updatedAt.slice(0, 10)}`
                             }}</span>
                           </div>
                         </div>
                         <div
                           class="m-row"
                           v-if="
-                            data.taxonConceptByGUID.taxonTreeDefItem.name !==
+                            data.taxonConcept.taxonTreeDefItem.name !==
                             'species'
                           "
                         >
@@ -189,22 +189,22 @@
                             >Key to the
                             {{
                               getBtnText(
-                                data.taxonConceptByGUID.taxonTreeDefItem.name
+                                data.taxonConcept.taxonTreeDefItem.name
                               )
                             }}
                             of
-                            {{ data.taxonConceptByGUID.taxonName.fullName }}</b-button
+                            {{ data.taxonConcept.taxonName.fullName }}</b-button
                           >
                         </div>
                       </b-col>
                       
                       <b-col lg="4" align-self="center" >
                         <!-- Hero img -->
-                        <div class="m-heroimage-container" v-if="data.taxonConceptByGUID.heroImage">
-                          <a  @click="() => data.taxonConceptByGUID.images.data.length>0?tabIndex=1:''">
+                        <div class="m-heroimage-container" v-if="data.taxonConcept.heroImage">
+                          <a  @click="() => data.taxonConcept.images.data.length>0?tabIndex=1:''">
                             <img                            
                               :src="
-                                data.taxonConceptByGUID.heroImage.thumbnailUrl
+                                data.taxonConcept.heroImage.thumbnailUrl
                               "
                               alt="Hero Image"
                             >
@@ -212,11 +212,11 @@
                         </div>
                         
                         <!-- Map -->
-                        <div href="#" class="m-heroimage-container" v-if="data.taxonConceptByGUID.bioregions.length!==0">
-                          <a @click="() => data.taxonConceptByGUID.images.data.length>0?tabIndex=3:''">
+                        <div href="#" class="m-heroimage-container" v-if="data.taxonConcept.bioregions.length!==0">
+                          <a @click="() => data.taxonConcept.images.data.length>0?tabIndex=3:''">
                             <img
                               class="m-dictribution-map"
-                              :src="data.taxonConceptByGUID.mapLinks.profileMap"
+                              :src="data.taxonConcept.mapLinks.profileMap"
                               alt="Map"
                             >
                           </a>
@@ -226,17 +226,17 @@
                   </b-col>
                 </b-row>
               </b-tab>
-              <b-tab title="Images" v-if="data.taxonConceptByGUID.images.data.length>0">
+              <b-tab title="Images" v-if="data.taxonConcept.images.data.length>0">
                    <div class="m-images" >
-                        <p v-if="data.taxonConceptByGUID.images.data.length===0">No Images...</p>
-                        <div v-else v-for="image in data.taxonConceptByGUID.images.data" 
+                        <p v-if="data.taxonConcept.images.data.length===0">No Images...</p>
+                        <div v-else v-for="image in data.taxonConcept.images.data" 
                             :key="image.id" class="m-image-container" v-viewer="viewerOptions">
                           <b-img 
                             thumbnail
                             fluid
                             :src="image.thumbnailUrl"
                             :data-src="image.previewUrl"
-                            :alt="`${data.taxonConceptByGUID.taxonName.fullName}. ${image.caption?image.caption:''}
+                            :alt="`${data.taxonConcept.taxonName.fullName}. ${image.caption?image.caption:''}
                             ${image.subtype?image.subtype:''}: ${image.creator?image.creator:''}
                             ${image.rights?image.rights:''}
                             `"
@@ -247,10 +247,10 @@
                    
                     <div>
                       <b-pagination-nav
-                        v-if="data.taxonConceptByGUID.images.paginatorInfo.total>24"
+                        v-if="data.taxonConcept.images.paginatorInfo.total>24"
                         class="mt-3 mb-5"
                         v-model="imagesPage"
-                        :number-of-pages="data.taxonConceptByGUID.images.paginatorInfo.total%24===0 ?data.taxonConceptByGUID.images.paginatorInfo.total/24:data.taxonConceptByGUID.images.paginatorInfo.total/24+1"
+                        :number-of-pages="data.taxonConcept.images.paginatorInfo.total%24===0 ?data.taxonConcept.images.paginatorInfo.total/24:data.taxonConcept.images.paginatorInfo.total/24+1"
                         base-url="#"
                         first-number
                         last-number
@@ -259,12 +259,12 @@
                     </div>
               </b-tab>
               <!-- Specimen images -->
-              <b-tab title="Specimen Images" v-if="data.taxonConceptByGUID.specimenImages.data.length>0"
+              <b-tab title="Specimen Images" v-if="data.taxonConcept.specimenImages.data.length>0"
                 >
                <div class="m-images">
-                        <p v-if="data.taxonConceptByGUID.specimenImages.data.length===0">No Images...</p>
+                        <p v-if="data.taxonConcept.specimenImages.data.length===0">No Images...</p>
                         <div 
-                            v-else v-for="image in data.taxonConceptByGUID.specimenImages.data" 
+                            v-else v-for="image in data.taxonConcept.specimenImages.data" 
                             :key="image.id" class="m-image-container"
                             @click="()=>{specimenImagesModal=image}"
                             >
@@ -273,7 +273,7 @@
                             fluid   
                             :src="image.thumbnailUrl"
                             :data-src="image.previewUrl"
-                            :alt="`${data.taxonConceptByGUID.taxonName.fullName}. ${image.caption?image.caption:''}
+                            :alt="`${data.taxonConcept.taxonName.fullName}. ${image.caption?image.caption:''}
                             ${image.subtype?image.subtype:''}: ${image.creator?image.creator:''}
                             ${image.rights?image.rights:''}
                             `"  
@@ -300,9 +300,9 @@
                 <div>
                   <b-pagination-nav
                     class="mt-3 mb-5"
-                    v-if="data.taxonConceptByGUID.specimenImages.paginatorInfo.total>24"
+                    v-if="data.taxonConcept.specimenImages.paginatorInfo.total>24"
                     v-model="imagesPage"
-                    :number-of-pages="data.taxonConceptByGUID.specimenImages.paginatorInfo.total%24===0 ?data.taxonConceptByGUID.specimenImages.paginatorInfo.total/24:data.taxonConceptByGUID.specimenImages.paginatorInfo.total/24+1"
+                    :number-of-pages="data.taxonConcept.specimenImages.paginatorInfo.total%24===0 ?data.taxonConcept.specimenImages.paginatorInfo.total/24:data.taxonConcept.specimenImages.paginatorInfo.total/24+1"
                     base-url="#"
                     first-number
                     last-number
@@ -311,7 +311,7 @@
                 </div>  
               </b-tab>
               <!-- Distribution -->
-              <b-tab title="Distribution" v-if="data.taxonConceptByGUID.bioregions.length!==0">
+              <b-tab title="Distribution" v-if="data.taxonConcept.bioregions.length!==0">
                 <b-row>
                   <b-col class="text-left">
                     <h4 class="m-distribution-title">Distribution</h4>
@@ -324,9 +324,9 @@
                       <figure>
                         <div class="m-map-container">
                           <img
-                            :src="data.taxonConceptByGUID.mapLinks.distributionMap"
+                            :src="data.taxonConcept.mapLinks.distributionMap"
                             usemap="#vicflora_bioregion"
-                            :alt="'Distribution of '+  data.taxonConceptByGUID.taxonName.fullName"
+                            :alt="'Distribution of '+  data.taxonConcept.taxonName.fullName"
                           >
                           <DistributionMapConfig></DistributionMapConfig>
                         </div>
@@ -342,7 +342,7 @@
                     <b-row>
                       <b-col class="text-left">
                         <b>Source:</b>
-                        <p v-html="data.taxonConceptByGUID.mapLinks.mapSource"></p>
+                        <p v-html="data.taxonConcept.mapLinks.mapSource"></p>
                       </b-col>
                     </b-row>
                   </b-col> 
@@ -355,7 +355,7 @@
                         <th>Occurrence status</th>
                         <th>Establishment means</th>
                       </tr>
-                      <tr v-for="bioregionItem in data.taxonConceptByGUID.bioregions" :key="bioregionItem.id">
+                      <tr v-for="bioregionItem in data.taxonConcept.bioregions" :key="bioregionItem.id">
                         <td><div class="m-table-color-box" :style="`background-color: ${bioregionItem.occurrenceStatus.name==='extinct'?'#e9aaff':'#a4f27d'};`"></div></td>
                         <td>{{bioregionItem.bioregion.properties.subregion}}</td>
                         <td>{{bioregionItem.occurrenceStatus.name}}</td>

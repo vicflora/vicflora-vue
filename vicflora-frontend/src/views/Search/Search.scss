@@ -30,20 +30,20 @@
     }
 }
 
-.h4:focus,
-.h4:active:focus,
-.h4.active:focus,
-.h4.focus,
-.h4:active.focus,
-.h4.active.focus {
-    outline: none;
-    box-shadow:none;
-}
+// .h4:focus,
+// .h4:active:focus,
+// .h4.active:focus,
+// .h4.focus,
+// .h4:active.focus,
+// .h4.active.focus {
+//     outline: none;
+//     box-shadow:none;
+// }
 
-.collapsed > .when-opened,
-:not(.collapsed) > .when-closed {
-  display: none;
-}
+// .collapsed > .when-opened,
+// :not(.collapsed) > .when-closed {
+//   display: none;
+// }
 
 .m-item{
     .m-item-name{
@@ -57,7 +57,8 @@
         font-size: smaller;
     }
     .m-item-vernacularname{
-
+        margin-left: 15px;
+        color: $primary;
     }
     .m-item-familyname{
         font-size: small;

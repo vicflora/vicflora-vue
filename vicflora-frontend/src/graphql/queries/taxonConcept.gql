@@ -1,7 +1,7 @@
-query taxonConceptQuery($id: UUID!) {
-  taxonConceptByGUID(guid: $id) {
+query taxonConceptQuery($id: ID!) {
+  taxonConcept(id: $id) {
     id
-    guid
+    
     taxonName {
       id
       fullName
@@ -14,7 +14,7 @@ query taxonConceptQuery($id: UUID!) {
     }
     parent {
       id
-      guid
+      
       taxonName {
         id
         fullName
@@ -23,7 +23,7 @@ query taxonConceptQuery($id: UUID!) {
     }
     children {
       id
-      guid
+      
       taxonName {
         id
         fullName
@@ -37,7 +37,7 @@ query taxonConceptQuery($id: UUID!) {
     }
     siblings {
       id
-      guid
+      
       taxonName {
         id
         fullName
@@ -49,7 +49,7 @@ query taxonConceptQuery($id: UUID!) {
       depth
       taxonConcept {
         id
-        guid
+        
         taxonName {
           id
           fullName

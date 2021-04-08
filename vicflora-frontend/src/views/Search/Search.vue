@@ -53,13 +53,18 @@
               <!-- Query -->
               <div>
                 <div>
-                  <span v-b-toggle.collapse-query class="m-subtitle">
+                  <span
+                    aria-controls="collapse-query"
+                    @click="queryFacet = !queryFacet"
+                    class="m-subtitle"
+                    
+                >
                     Query
-                    <span class="when-opened"><b-icon icon="caret-down-fill"></b-icon></span>
-                    <span class="when-closed"><b-icon icon="caret-right-fill"></b-icon></span>
+                    <b-icon icon="caret-down-fill" v-if="queryFacet"></b-icon>
+                    <b-icon icon="caret-right-fill" v-else></b-icon>
                   </span>
 
-                  <b-collapse visible id="collapse-query">
+                  <b-collapse visible id="collapse-query" v-model="queryFacet">
                     <b-card>
                         <span class="m-facet-title">Query term:</span>
                         <span>
@@ -74,25 +79,32 @@
               <!-- Filters -->
               <div>
                 <div>
-                  <span v-b-toggle.collapse-filter class="m-subtitle">
+                  <span 
+                  class="m-subtitle" 
+         
+                  aria-controls="collapse-filter"
+                 @click="filtersFacet = !filtersFacet"
+                  >
                     Filters
-                    <span class="when-opened"><b-icon icon="caret-down-fill"></b-icon></span>
-                    <span class="when-closed"><b-icon icon="caret-right-fill"></b-icon></span>
+                    <b-icon icon="caret-down-fill" v-if="filtersFacet"></b-icon>
+                    <b-icon icon="caret-right-fill" v-else></b-icon>
                   </span>
 
-                  <b-collapse visible id="collapse-filter">
+                  <b-collapse  visible id="collapse-filter" v-model="filtersFacet">
                     <b-card>
                         <div v-for="facetField in data.search.facetFields" :key="facetField.fieldName" >
-                            <p class="m-facet-title mb-1 mt-3">{{facetName[facetField.fieldName]}}</p>
+                            <!-- <p class="m-facet-title mb-1 mt-3">{{facetName[facetField.fieldName]}}</p>
                             <p class="mb-1"
                             v-for="facet in facetField.facets" :key="facet.value">
                                 {{facet.value}}
-                            </p>
+                            </p> -->
+                            <FacetField :facetField="facetField"></FacetField>
                         </div>
                     </b-card>
                   </b-collapse>
                 </div>
               </div>
+
             </b-col>
 
             <b-col lg="8" cols="12">
@@ -113,7 +125,7 @@
                     ></b-pagination-nav>
                   </div>
                 </b-col>
-                <b-col cols="4" align-self="baseline" class="text-right">
+                <b-col cols="3" align-self="baseline" class="text-right">
                   <b-btn size="sm">Download</b-btn>
                 </b-col>
               </b-row>
@@ -123,7 +135,7 @@
                       <b-col cols="8">
                           <a :href="`/flora/classification/taxon/${item.id}`" class="m-item-name" :style="rankClass[item.taxonRank]>140?'font-style: italic;':''">{{ item.scientificName }}</a>
                           <span class="m-item-author">{{ item.scientificNameAuthorship }}</span>
-                          <span class="m-item-vernacularname">{{  }}</span>
+                          <span class="m-item-vernacularname">{{ item.vernacularName }}</span>
                       </b-col>
                       <b-col class="text-right">
                           <span class="m-item-familyname">{{ item.family }}</span>
@@ -148,7 +160,7 @@
                     ></b-pagination-nav>
                   </div>
                 </b-col>
-                <b-col cols="4" align-self="baseline" class="text-right">
+                <b-col cols="3" align-self="baseline" class="text-right">
                 </b-col>
               </b-row>
             </b-col>
@@ -162,15 +174,18 @@
 </template>
 
 <script>
+import FacetField from "../../components/Facets-collapse/Facets-collapse"
 export default {
   name: "Search",
-  components: {},
+  components: {
+      FacetField,
+      },
   data() {
     return {
       exclusionCheckbox: false,
       currentPage: 1,
       input: {
-        q: "*bor*",
+        q: "**",
         rows: 50,
         page: 1,
       },
@@ -188,22 +203,8 @@ export default {
         species:220,
         subspecies: 230,
       },
-      facetName:{
-        nameType:'Type of name',
-        taxonomicStatus:'Taxonomic status',
-        taxonRank:'Taxon rank',
-        occurrenceStatus:'Occurrence status',
-        establishmentMeans:'',
-        threatStatus:'Threat status',
-        class:'Class',
-        subclass:'Subclass',
-        superorder:'Superorder',
-        order:'Order',
-        family:'Family',
-        ibra7Subregion:'Subregion',
-        nrmRegion:'Bioregion',
-        media:'Media',
-      },
+      filtersFacet:true,
+      queryFacet:true,
     };
   },
   methods: {
@@ -215,6 +216,7 @@ export default {
         ...this.input,
         q: `*${this.inputText}*`,
       };
+
     },
   },
   computed: {
