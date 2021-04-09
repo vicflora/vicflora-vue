@@ -2,11 +2,15 @@ query searchQuery($input: SearchInput!) {
   search(input: $input) {
     docs{
       id
-      family
       taxonRank
-      vernacularName
+      acceptedNameUsage
+      acceptedNameUsageID
+    	vernacularName
       scientificName
       scientificNameAuthorship
+      family
+      taxonomicStatus
+      nameAccordingTo
     }
     meta {
       params {

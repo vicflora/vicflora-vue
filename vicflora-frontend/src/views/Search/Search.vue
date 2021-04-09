@@ -66,12 +66,24 @@
 
                   <b-collapse visible id="collapse-query" v-model="queryFacet">
                     <b-card>
-                        <span class="m-facet-title">Query term:</span>
-                        <span>
-                           {{input.q}} 
-                           <b-icon icon="x" font-scale="1.1" variant="danger"></b-icon>
-                        </span>
-                        
+                        <div>
+                            <span class="m-facet-title">Query term:</span>
+                            <span>
+                            {{input.q}} 
+                            <b-icon icon="x" font-scale="1.1" variant="danger"></b-icon>
+                            </span>
+                        </div>
+                        <div v-if="fq">
+                            <span class="m-facet-title">Filter queries:</span>
+                            <!-- <div  v-for="(fqItem,index) in fq" :key="index"> -->
+                                <li style="margin-left:10px;">
+                                    {{fq}} 
+                                    <b-icon icon="x" font-scale="1.1" variant="danger"></b-icon>
+                                </li>
+                            <!-- </div> -->
+                           
+                        </div>
+
                     </b-card>
                   </b-collapse>
                 </div>
@@ -98,7 +110,7 @@
                             v-for="facet in facetField.facets" :key="facet.value">
                                 {{facet.value}}
                             </p> -->
-                            <FacetField :facetField="facetField"></FacetField>
+                            <FacetField :facetField="facetField" @fqChange="handleFq($event)"></FacetField>
                         </div>
                     </b-card>
                   </b-collapse>
@@ -118,7 +130,7 @@
                       style="align-items:center;"
                       size="sm"
                       v-model="currentPage"
-                      :number-of-pages="data.search.meta.pagination.lastPage"
+                      :number-of-pages="data.search.meta.pagination.lastPage===0?1:data.search.meta.pagination.lastPage"
                       base-url="#"
                       first-number
                       last-number
@@ -132,8 +144,8 @@
               <b-row>
                 <b-col class="text-left mb-4" cols="12">
                   <b-row v-for="item in data.search.docs" :key="item.id" class="m-item">
-                      <b-col cols="8">
-                          <a :href="`/flora/classification/taxon/${item.id}`" class="m-item-name" :style="rankClass[item.taxonRank]>140?'font-style: italic;':''">{{ item.scientificName }}</a>
+                      <b-col cols="9">
+                          <a :href="`/flora/classification/taxon/${item.id}`" class="m-item-name" :style="rankClass[item.taxonRank]>140?'font-style: italic;':''">{{ item.acceptedNameUsage }}</a>
                           <span class="m-item-author">{{ item.scientificNameAuthorship }}</span>
                           <span class="m-item-vernacularname">{{ item.vernacularName }}</span>
                       </b-col>
@@ -184,10 +196,12 @@ export default {
     return {
       exclusionCheckbox: false,
       currentPage: 1,
+      selectedFq:{},
       input: {
-        q: "**",
+        q: "*:*",
         rows: 50,
         page: 1,
+        fq:this.fq,
       },
       inputText: "",
       search: "",
@@ -209,26 +223,47 @@ export default {
   },
   methods: {
     checkText: function() {
-    //   if (this.inputText.length < 2) {
-    //     return;
-    //   }
-      this.input = {
-        ...this.input,
-        q: `*${this.inputText}*`,
-      };
+        this.$router.push({
+            query: {
+                q:`*${this.inputText}*`,
+            }
+        });
+        this.input = {
+            ...this.input,
+            q: `*${this.inputText}*`,
+        };
+    },
+    handleFq: function(val){
+        for(let i in val){
+            this.selectedFq[i] = val[i]
+        }
+        console.log(this.selectedFq)
 
     },
   },
-  computed: {
-    // input:function(){
-    // }
-  },
+  computed:{
+        q: function(){
+            return this.$route.query.q
+        },
+        fq:function(){
+            return this.$route.query.fq
+        },
+},
   watch: {
     currentPage: function(newVal) {
       this.input = {       
           ...this.input,
           page: newVal,
       }
+    },
+    fq:{
+        immediate: true,
+        handler:function(){
+            this.input = {
+                ...this.input,
+                fq:this.fq,
+            }
+        } 
     },
   },
 };

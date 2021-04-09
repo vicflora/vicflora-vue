@@ -18,9 +18,6 @@
                         <b-icon icon="caret-right-fill" v-else></b-icon>
                     </span>
                 </b-col>
-                <b-col style="text-align: end;" v-if="selected.length>0">
-                        <b-button size="sm" variant="primary">Apply</b-button>
-                </b-col>
             </b-row>
 
             <b-collapse visible :id="localFacetField.fieldName" v-model="visible">
@@ -29,6 +26,7 @@
                     <b-form-checkbox-group
                         v-model="selected"
                         :aria-describedby="ariaDescribedby"
+                        @change="applySelected"
                     >
                         <b-form-checkbox 
                         :value="facet.value"
@@ -164,11 +162,6 @@ export default {
 
         }
     },
-    mounted:function(){
-        // if(this.facetField.facets.length===0){
-        //     this.visible = false
-        // }
-    },
     methods:{
         // includeSelected: function () {
         //     this.$emit("includeSelected");
@@ -201,6 +194,40 @@ export default {
             })
             this.order = 'count'
         },
+        applySelected:function(){         
+            let key = this.localFacetField.fieldName.replace(/([A-Z])/g,"_$1").toLowerCase()
+            let fqStr = `${key}: ()`
+            
+            for(let i=0;i<this.selected.length;i++){
+                if(i===0){
+                    fqStr = fqStr.replace(")",this.selected[i]+")")
+                }else{
+                    fqStr = fqStr.replace(")"," OR "+this.selected[i]+")")
+                }
+            }
+            let emitFQ = {}
+            emitFQ[key] = fqStr
+            this.$emit("fqChange",emitFQ)
+            
+            // this.$router.push({
+            //     path:"/flora/search",
+            //     query: {
+            //     ...this.$route.query,
+            //     fq:Array.from(new Set([...this.selected,...newfq]))
+            //     }
+            // });
+        },
     },
+    watch:{
+
+    },
+    computed:{
+        q: function(){
+            return this.$route.query.q
+        },
+        fq:function(){
+            return this.$route.query.fq
+        },
+    }
 }
 </script>
