@@ -194,28 +194,41 @@ export default {
             })
             this.order = 'count'
         },
-        applySelected:function(){         
+        applySelected:function(){        
             let key = this.localFacetField.fieldName.replace(/([A-Z])/g,"_$1").toLowerCase()
-            let fqStr = `${key}: ()`
-            
+            let facetQueryString = []
             for(let i=0;i<this.selected.length;i++){
-                if(i===0){
-                    fqStr = fqStr.replace(")",this.selected[i]+")")
-                }else{
-                    fqStr = fqStr.replace(")"," OR "+this.selected[i]+")")
-                }
+                facetQueryString.push(`${key}:${this.selected[i]}`)
             }
-            let emitFQ = {}
-            emitFQ[key] = fqStr
-            this.$emit("fqChange",emitFQ)
+            // ["name_type:scientific","taxonomic_status:synonym","taxonomic_status:accepted"]
+            if(typeof(this.$route.query.fq) === 'object'){
+                // console.log("object")
+                // console.log(this.$route.query.fq)
+                this.$router.push({
+                    path:"/flora/search",
+                    query: {
+                    ...this.$route.query,
+                    fq: Array.from(new Set([...this.$route.query.fq, ...facetQueryString]))
+                    }
+                });
+            }else if(typeof(this.$route.query.fq) === 'string'){
+                this.$router.push({
+                    path:"/flora/search",
+                    query: {
+                    ...this.$route.query,
+                    fq: Array.from(new Set([this.$route.query.fq, ...facetQueryString]))
+                    }
+                });
+            }else{
+                this.$router.push({
+                    path:"/flora/search",
+                    query: {
+                    ...this.$route.query,
+                    fq: facetQueryString,
+                    }
+                });
+            }
             
-            // this.$router.push({
-            //     path:"/flora/search",
-            //     query: {
-            //     ...this.$route.query,
-            //     fq:Array.from(new Set([...this.selected,...newfq]))
-            //     }
-            // });
         },
     },
     watch:{

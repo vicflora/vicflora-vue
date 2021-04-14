@@ -49,3 +49,8 @@
 - Search part
 - Tags switch
 - How to trigger the facet modal
+
+> ## 4/14
+> ### To do
+- fq modal
+- 

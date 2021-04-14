@@ -28,16 +28,7 @@ export default {
       search:'',
     };
   },
-//   apollo: {
-//     search: {
-//       query: gql`${searchgql}`,
-//       variables() {
-//         return {
-//           input: this.input,
-//         };
-//       },
-//     },
-//   },
+
   methods: {
     checkText() {
       if (this.inputText.length < 2) {

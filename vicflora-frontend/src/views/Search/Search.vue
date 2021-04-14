@@ -69,16 +69,21 @@
                         <div>
                             <span class="m-facet-title">Query term:</span>
                             <span>
-                            {{input.q}} 
-                            <b-icon icon="x" font-scale="1.1" variant="danger"></b-icon>
+                            {{q}} 
+                            <b-icon icon="x" font-scale="1.1" variant="danger" @click="removeq"></b-icon>
                             </span>
                         </div>
                         <div v-if="fq">
                             <span class="m-facet-title">Filter queries:</span>
                             <!-- <div  v-for="(fqItem,index) in fq" :key="index"> -->
-                                <li style="margin-left:10px;">
-                                    {{fq}} 
-                                    <b-icon icon="x" font-scale="1.1" variant="danger"></b-icon>
+                                <li v-if="typeof(fq) === 'string'">
+                                  <span class="filter-queries-key">{{facetName[fq.split(':')[0]]}}</span>{{`: ${fq.split(':')[1]}`}}
+                                  <b-icon icon="x" font-scale="1.1" variant="danger" @click="removefqString"></b-icon>
+
+                                </li>
+                                <li v-else style="margin-left:10px;" v-for="item in fq" :key="item">
+                                    <span class="filter-queries-key">{{facetName[item.split(':')[0]]}}</span>{{`: ${item.split(':')[1]}`}}
+                                    <b-icon icon="x" font-scale="1.1" variant="danger" @click="removefqList(item)"></b-icon>
                                 </li>
                             <!-- </div> -->
                            
@@ -110,7 +115,10 @@
                             v-for="facet in facetField.facets" :key="facet.value">
                                 {{facet.value}}
                             </p> -->
-                            <FacetField :facetField="facetField" @fqChange="handleFq($event)"></FacetField>
+                            <FacetField 
+                            :facetField="facetField" 
+                            
+                            ></FacetField>
                         </div>
                     </b-card>
                   </b-collapse>
@@ -197,6 +205,7 @@ export default {
       exclusionCheckbox: false,
       currentPage: 1,
       selectedFq:{},
+      selectedFqList:{},
       input: {
         q: "*:*",
         rows: 50,
@@ -219,6 +228,22 @@ export default {
       },
       filtersFacet:true,
       queryFacet:true,
+      facetName:{
+          name_type:'Type of name',
+          taxonomic_status:'Taxonomic status',
+          taxon_rank:'Taxon rank',
+          occurrence_status:'Occurrence status',
+          establishment_means:'Establishment means',
+          threat_status:'Threat status',
+          class:'Class',
+          subclass:'Subclass',
+          superorder:'Superorder',
+          order:'Order',
+          family:'Family',
+          ibra7_subregion:'Subregion',
+          nrm_region:'Bioregion',
+          media:'Media',
+      },
     };
   },
   methods: {
@@ -233,12 +258,45 @@ export default {
             q: `*${this.inputText}*`,
         };
     },
-    handleFq: function(val){
-        for(let i in val){
-            this.selectedFq[i] = val[i]
-        }
-        console.log(this.selectedFq)
+    removeq: function () {
+      this.inputText = ""
+      this.$router.push({
+            query: {
+                q:`*:*`,
+            }
+        });
+        this.input = {
+            ...this.input,
+            q: `*:*`,
+        };
+    },
+    removefqString:function () {
+      this.$router.push({
+            query: {
+                q:this.q,
+            }
+      });
+      this.input = {
+          ...this.input,
+          q: this.q,
+      };
+    },
+    removefqList:function (val) {
 
+      let newfq = [...this.fq].filter(word => word !== val)
+
+      this.$router.push({
+            query: {
+              q: this.q,
+              fq:newfq,
+            }
+      });
+      this.$router.push({
+            query: {
+              q: this.q,
+              fq:newfq,
+            }
+      });
     },
   },
   computed:{
@@ -265,6 +323,7 @@ export default {
             }
         } 
     },
+
   },
 };
 </script>

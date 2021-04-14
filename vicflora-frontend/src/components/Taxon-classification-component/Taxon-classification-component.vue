@@ -183,7 +183,6 @@ export default {
     taxonConceptFields: gql`
       fragment taxonConceptFields on TaxonConcept {
         id
-        guid
         taxonName {
           id
           fullName
