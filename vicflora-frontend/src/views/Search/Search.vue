@@ -70,23 +70,15 @@
                             <span class="m-facet-title">Query term:</span>
                             <span>
                             {{q}} 
-                            <b-icon icon="x" font-scale="1.1" variant="danger" @click="removeq"></b-icon>
+                            <b-icon v-if="q" icon="x" font-scale="1.1" variant="danger" @click="removeq"></b-icon>
                             </span>
                         </div>
-                        <div v-if="fq">
-                            <span class="m-facet-title">Filter queries:</span>
-                            <!-- <div  v-for="(fqItem,index) in fq" :key="index"> -->
-                                <li v-if="typeof(fq) === 'string'">
-                                  <span class="filter-queries-key">{{facetName[fq.split(':')[0]]}}</span>{{`: ${fq.split(':')[1]}`}}
-                                  <b-icon icon="x" font-scale="1.1" variant="danger" @click="removefqString"></b-icon>
-
+                        <div v-if="fq.length > 0">
+                            <span class="m-facet-title">Filter queries:</span>              
+                                <li style="margin-left:10px;" v-for="item in fq" :key="item" >
+                                    <span class="filter-queries-key">{{facetName[item.split(':')[0]]?facetName[item.split(':')[0]]:item.split(':')[0]}}</span>{{`: ${item.split(':')[1]}`}}
+                                    <b-icon v-if="item.split(':')[0]!=='end_or_higher_taxon'" icon="x" font-scale="1.1" variant="danger" @click="removefqList(item)"></b-icon>
                                 </li>
-                                <li v-else style="margin-left:10px;" v-for="item in fq" :key="item">
-                                    <span class="filter-queries-key">{{facetName[item.split(':')[0]]}}</span>{{`: ${item.split(':')[1]}`}}
-                                    <b-icon icon="x" font-scale="1.1" variant="danger" @click="removefqList(item)"></b-icon>
-                                </li>
-                            <!-- </div> -->
-                           
                         </div>
 
                     </b-card>
@@ -116,8 +108,9 @@
                                 {{facet.value}}
                             </p> -->
                             <FacetField 
-                            :facetField="facetField" 
-                            
+                            :facetField="{...facetField}"
+                            :removeFilterVal = removeFilterVal
+                            :key ="key"  
                             ></FacetField>
                         </div>
                     </b-card>
@@ -152,9 +145,18 @@
               <b-row>
                 <b-col class="text-left mb-4" cols="12">
                   <b-row v-for="item in data.search.docs" :key="item.id" class="m-item">
-                      <b-col cols="9">
+                      <b-col cols="9" v-if="item.taxonomicStatus==='accepted'">
+                          <a :href="`/flora/classification/taxon/${item.acceptedNameUsageId}`" class="m-item-name-accepted" :style="rankClass[item.taxonRank]>140?'font-style: italic;':''">{{ item.acceptedNameUsage }}</a>
+                          <span class="m-item-author">{{ item.acceptedNameUsageAuthorship }}</span>
+                          <span class="m-item-vernacularname">{{ item.vernacularName }}</span>
+                      </b-col>
+                      <b-col cols="9" v-else>
+                        <div>
                           <a :href="`/flora/classification/taxon/${item.id}`" class="m-item-name" :style="rankClass[item.taxonRank]>140?'font-style: italic;':''">{{ item.acceptedNameUsage }}</a>
-                          <span class="m-item-author">{{ item.scientificNameAuthorship }}</span>
+                          <span class="m-item-author">{{ item.scientificNameAuthorship}}</span>
+                        </div>
+                          {{`= `}}<a :href="`/flora/classification/taxon/${item.acceptedNameUsageId}`" class="m-item-name-accepted" :style="rankClass[item.taxonRank]>140?'font-style: italic;':''">{{ item.acceptedNameUsage }}</a>
+                          <span class="m-item-author">{{ item.acceptedNameUsageAuthorship }}</span>
                           <span class="m-item-vernacularname">{{ item.vernacularName }}</span>
                       </b-col>
                       <b-col class="text-right">
@@ -203,14 +205,16 @@ export default {
   data() {
     return {
       exclusionCheckbox: false,
+      key:0,
       currentPage: 1,
       selectedFq:{},
       selectedFqList:{},
+      removeFilterVal:"",
       input: {
         q: "*:*",
         rows: 50,
         page: 1,
-        fq:this.fq,
+        fq:this.$route.query.fq,
       },
       inputText: "",
       search: "",
@@ -240,7 +244,7 @@ export default {
           superorder:'Superorder',
           order:'Order',
           family:'Family',
-          ibra7_subregion:'Subregion',
+          ibra_7_subregion:'Subregion',
           nrm_region:'Bioregion',
           media:'Media',
       },
@@ -270,33 +274,29 @@ export default {
             q: `*:*`,
         };
     },
-    removefqString:function () {
-      this.$router.push({
-            query: {
-                q:this.q,
-            }
-      });
-      this.input = {
-          ...this.input,
-          q: this.q,
-      };
-    },
     removefqList:function (val) {
-
-      let newfq = [...this.fq].filter(word => word !== val)
-
-      this.$router.push({
+      if(val[0]==='-'){
+        this.$router.push({
             query: {
               q: this.q,
-              fq:newfq,
+              fq:this.fq.filter(word=>word!==val),
             }
-      });
-      this.$router.push({
-            query: {
-              q: this.q,
-              fq:newfq,
-            }
-      });
+        });
+      }
+      // let newfq = [...this.fq].filter(word => word !== val)
+      // this.$router.push({
+      //       query: {
+      //         q: this.q,
+      //         fq:newfq,
+      //       }
+      // });
+      // this.$router.push({
+      //       query: {
+      //         q: this.q,
+      //         fq:newfq,
+      //       }
+      // });
+      this.removeFilterVal = val
     },
   },
   computed:{
@@ -304,7 +304,16 @@ export default {
             return this.$route.query.q
         },
         fq:function(){
+          // more than 1 filter in fq
+          if(typeof(this.$route.query.fq)==="object"){
             return this.$route.query.fq
+            //1 filter in fq
+          }else if(typeof(this.$route.query.fq)==="string"){
+            return [this.$route.query.fq]
+            // null in fq
+          }else{
+            return ''
+          }      
         },
 },
   watch: {
@@ -319,11 +328,31 @@ export default {
         handler:function(){
             this.input = {
                 ...this.input,
-                fq:this.fq,
+                fq:this.$route.query.fq,
             }
-        } 
+        }   
     },
-
+    exclusionCheckbox:function(newVal,oldVal){
+      if(newVal===true && oldVal ===false){
+        this.$router.push({
+            query: {
+              q: this.q,
+              fq:[...this.fq,'end_or_higher_taxon:end']
+            }
+        });
+      }
+      if(newVal===false && oldVal ===true){
+        this.$router.push({
+            query: {
+              q: this.q,
+              fq:this.fq.filter(word=>word !== 'end_or_higher_taxon:end')
+            }
+        });
+      }
+    }
+  },
+  mounted(){
+    this.exclusionCheckbox = this.fq.includes('end_or_higher_taxon:end')
   },
 };
 </script>

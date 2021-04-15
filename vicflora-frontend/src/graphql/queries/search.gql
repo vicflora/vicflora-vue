@@ -4,7 +4,8 @@ query searchQuery($input: SearchInput!) {
       id
       taxonRank
       acceptedNameUsage
-      acceptedNameUsageID
+      acceptedNameUsageId
+      acceptedNameUsageAuthorship
     	vernacularName
       scientificName
       scientificNameAuthorship

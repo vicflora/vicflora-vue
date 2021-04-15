@@ -29,7 +29,8 @@
                         @change="applySelected"
                     >
                         <b-form-checkbox 
-                        :value="facet.value"
+                        :value="facet.fq.split(':')[1]"
+                        :label="facet.value"
                         v-for="facet in localFacetField.facets.slice(0,3)" 
                         :key="facet.value"
                         class="m-facetvalue"
@@ -41,69 +42,64 @@
                         <p class="m-more" @click="()=>{moreFacet=true}">More...</p>
                     </div>
                 </b-form-group>
-
-                <!-- <span>
-                    <b-icon icon="x" font-scale="1.1" variant="danger"></b-icon>
-                </span> -->
-                
             </b-card>
             </b-collapse>
         </div>
-        <b-modal v-model="moreFacet" size="lg" :title="facetName[localFacetField.fieldName]">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">
-                            <b-row>
-                                <b-col>
-                                    <p style="display:inline-block;" class="mb-0">Value</p> 
-                                </b-col>
-                                <b-col cols="2"> 
-                                    <div>                                        
-                                    <b-button size="sm" :disabled="order==='value'" variant="secondary" @click="sortByValue"><b-icon font-scale="1" icon="sort-alpha-down" /></b-button>    
-                                    </div>
-                                </b-col>
-                            </b-row>         
-                        </th>
-                        <th scope="col">
-                            <b-row>
-                                <b-col>
-                                    <p style="display:inline-block;" class="mb-0">Count</p> 
-                                </b-col>
-                                <b-col cols="2"> 
-                                    <div>                                        
-                                    <b-button size="sm" :disabled="order==='count'" variant="secondary" @click="sortByCount"><b-icon font-scale="1" icon="sort-down" /></b-button>    
-                                    </div>
-                                </b-col>
-                            </b-row>         
-                        </th>    
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="facet in localFacetField.facets"  :key="facet.value">
-                        <td>
-                            <b-form-checkbox
-                            style="display:inline-block;"
-                            v-model="status"
-                            :value="facet.value"
-                            unchecked-value="not_accepted"
-                            >
-                            </b-form-checkbox>
-                            <span class="m-facet-value">{{facet.value}}</span>
-                        </td>
-                        <td><span style="font-size: small;">{{facet.count}}</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-
-
-
+        <b-modal v-model="moreFacet" size="lg" :title="facetName[localFacetField.fieldName]" id='facetModal'>
+            <b-form-checkbox-group v-model="modalSelected">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <b-row>
+                                    <b-col>
+                                        <p style="display:inline-block;" class="mb-0">Value</p> 
+                                    </b-col>
+                                    <b-col cols="2"> 
+                                        <div>                                        
+                                        <b-button size="sm" :disabled="order==='value'" variant="secondary" @click="sortByValue"><b-icon font-scale="1" icon="sort-alpha-down" /></b-button>    
+                                        </div>
+                                    </b-col>
+                                </b-row>         
+                            </th>
+                            <th scope="col">
+                                <b-row>
+                                    <b-col>
+                                        <p style="display:inline-block;" class="mb-0">Count</p> 
+                                    </b-col>
+                                    <b-col cols="2"> 
+                                        <div>                                        
+                                        <b-button size="sm" :disabled="order==='count'" variant="secondary" @click="sortByCount"><b-icon font-scale="1" icon="sort-down" /></b-button>    
+                                        </div>
+                                    </b-col>
+                                </b-row>         
+                            </th>    
+                        </tr>
+                    </thead>
+                    
+                        <tbody>
+                            <tr v-for="facet in localFacetField.facets"  :key="facet.value">
+                                <td>
+                                    <b-form-checkbox
+                                        style="display:inline-block;"
+                                        :value="facet.fq.split(':')[1]"
+                                        :label="facet.value"
+                                        unchecked-value="not_accepted"
+                                    >
+                                    </b-form-checkbox>
+                                    <span class="m-facet-value">{{facet.value}}</span>
+                                </td>
+                                <td><span style="font-size: small;">{{facet.count}}</span></td>
+                            </tr>
+                        </tbody>
+                    
+                </table>
+            </b-form-checkbox-group>
             <template #modal-footer>       
                 <b-button @click="includeSelected()">
                     Include selected
                 </b-button>
-                <b-button>
+                <b-button @click="excludeSelected()">
                     Exclude selected
                 </b-button>       
                 <b-button
@@ -122,12 +118,13 @@
 <script>
 export default {
     name:"facetsCollapse",
-    props: ['facetField'],
+    props: ['facetField','removeFilterVal'],
     data(){
         return{
             localFacetField: this.facetField,
             order:"count",
-            status: [],
+            // status of facet modal
+            modalSelected: [],
             fields: [
                 {
                     key: 'value',
@@ -163,9 +160,7 @@ export default {
         }
     },
     methods:{
-        // includeSelected: function () {
-        //     this.$emit("includeSelected");
-        // },
+        // sort the array by value name of facet 
         sortByValue:function(){
             this.localFacetField.facets = this.localFacetField.facets.slice().sort((a, b) => {
                 let fa = a.value.toLowerCase(),
@@ -180,6 +175,7 @@ export default {
             })
             this.order = 'value'
         },
+        // sort the array by count of facet
         sortByCount:function(){
              this.localFacetField.facets = this.localFacetField.facets.slice().sort((a, b) => {
                 let fa = a.count,
@@ -194,31 +190,39 @@ export default {
             })
             this.order = 'count'
         },
-        applySelected:function(){        
-            let key = this.localFacetField.fieldName.replace(/([A-Z])/g,"_$1").toLowerCase()
+        // when the status changed, submit this change
+        applySelected:function(){       
+            let key = this.localFacetField.facets[0].fq.split(':')[0]
+            // let value = this.localFacetField.facets[0].fq.split(':')[1]
+            
             let facetQueryString = []
             for(let i=0;i<this.selected.length;i++){
                 facetQueryString.push(`${key}:${this.selected[i]}`)
             }
-            // ["name_type:scientific","taxonomic_status:synonym","taxonomic_status:accepted"]
+            
+
+            // if the fq is a array - more than 1 element 
+            // sample: ["name_type:scientific","taxonomic_status:synonym","taxonomic_status:accepted"]
             if(typeof(this.$route.query.fq) === 'object'){
-                // console.log("object")
-                // console.log(this.$route.query.fq)
+                let newfq = this.$route.query.fq.filter(item=>item.split(':')[0] !== key)
                 this.$router.push({
                     path:"/flora/search",
                     query: {
                     ...this.$route.query,
-                    fq: Array.from(new Set([...this.$route.query.fq, ...facetQueryString]))
+                    fq: Array.from(new Set([...newfq, ...facetQueryString]))
                     }
                 });
+                // if the fq is a string - only have 1 element 
             }else if(typeof(this.$route.query.fq) === 'string'){
+                let newfq = this.$route.query.fq.split(':')[0] === key? this.selected:[this.$route.query.fq]
                 this.$router.push({
                     path:"/flora/search",
                     query: {
                     ...this.$route.query,
-                    fq: Array.from(new Set([this.$route.query.fq, ...facetQueryString]))
+                    fq: Array.from(new Set([...newfq, ...facetQueryString]))
                     }
                 });
+                // without fq query
             }else{
                 this.$router.push({
                     path:"/flora/search",
@@ -230,8 +234,51 @@ export default {
             }
             
         },
+        includeSelected:function(){
+            let newfq = `${this.localFacetField.facets[0].fq.split(':')[0]}:(`
+            for(let item of this.modalSelected){
+                newfq = `${newfq}${item} `
+            }
+            newfq = newfq + ')'
+            this.$router.push({
+                    path:"/flora/search",
+                    query: {
+                    ...this.$route.query,
+                    fq: Array.from(new Set([...this.fq,newfq]))
+                    }
+            });
+            this.$bvModal.hide('facetModal')
+        },
+        excludeSelected:function(){
+            let newfq = `-${this.localFacetField.facets[0].fq.split(':')[0]}:(`
+            for(let item of this.modalSelected){
+                newfq = `${newfq}${item} `
+            }
+            newfq = newfq + ')'
+            this.$router.push({
+                    path:"/flora/search",
+                    query: {
+                    ...this.$route.query,
+                    fq: Array.from(new Set([...this.fq,newfq]))
+                    }
+            });
+            this.$bvModal.hide('facetModal')
+        },
     },
     watch:{
+        facetField:function () {
+            this.localFacetField = this.facetField        
+        },
+        removeFilterVal: function(){
+            let keyName = this.localFacetField.facets[0].fq.split(':')[0]
+            if(this.removeFilterVal.split(':')[0] === keyName){
+                this.selected = this.selected.filter(item=>item !== this.removeFilterVal.split(':')[1])
+                this.applySelected()
+            }   
+        },
+        selected:function(){
+            this.modalSelected = this.selected
+        },
 
     },
     computed:{
@@ -239,8 +286,26 @@ export default {
             return this.$route.query.q
         },
         fq:function(){
-            return this.$route.query.fq
+            if(typeof(this.$route.query.fq) === "string"){
+                return [this.$route.query.fq]
+            }else if (typeof(this.$route.query.fq) === "object"){
+                return this.$route.query.fq
+            }else{
+                return ''
+            }    
         },
-    }
+    },
+    mounted:function(){
+        // show the check status of checkbox
+        // if the fq is a string - only have 1 element 
+        let keyName = this.localFacetField.facets[0].fq.split(':')[0]
+        if (typeof(this.fq) === "object"){
+            for (let i of this.fq){
+                if(i.split(':')[0]===keyName){                
+                    this.selected.push(i.split(':')[1])
+                }
+            }
+        }
+    },
 }
 </script>
