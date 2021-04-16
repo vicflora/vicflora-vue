@@ -47,18 +47,7 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item>
-              <!-- <b-input-group>
-                <b-form-input
-                  size="sm"
-                  placeholder="Enter taxon name..."
-                ></b-form-input>
-                <b-input-group-append>
-                  <b-button size="sm">
-                    <b-icon font-scale="1" icon="search" />
-                  </b-button>
-                </b-input-group-append>
-              </b-input-group> -->
-              <SearchInput></SearchInput>
+              <SearchInput class="m-search-input"></SearchInput>
             </b-nav-item>
             <b-nav-item>
               <!-- <span class="m-username">Username</span> -->

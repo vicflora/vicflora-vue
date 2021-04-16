@@ -5,69 +5,81 @@
 </style>
 
 <template>
-  <ApolloQuery
-      :query="require('../../graphql/queries/nameTypeAhead.gql')"
-      :variables="{ q }"
-    >
-      <template v-slot="{ result: { loading, error, data } }">
-        <!-- Loading -->
-        <div v-if="loading" class="loading apollo">Loading...</div>
-
-        <!-- Error -->
-        <div v-else-if="error" class="error apollo">An error occurred</div>
-
-        <!-- Result -->
-        <div v-else-if="data" class="result apollo m-search-input">
-          <div>
-            <b-input-group>
-
-              <b-form-input v-model="q" list="search-list-id" size="sm" placeholder="Enter taxon name..." @change="submit"></b-form-input>
-              <b-form-datalist v-if="q.length > 3" id="search-list-id" :options="data.nameTypeAhead"></b-form-datalist>
-              <b-input-group-append>
-                        <b-button size="sm" @click="submit">
-                          <b-icon font-scale="1" icon="search" />
-                        </b-button>
-              </b-input-group-append>
-
-              
-            </b-input-group>
-            
+          <div class=".m-search-input">
+            <VueTypeaheadBootstrap
+              class="mb-4"
+              size="sm"
+              v-model="query"
+              :data="[query,...nameTypeAhead]"
+              :serializer="item => item"
+              placeholder="Enter taxon name..."
+              @input="searchWords"
+              @keyup.enter="search"
+              :maxMatches=100
+            >
+              <template slot="append">
+                <b-button size="sm">
+                  <b-icon font-scale="1" icon="search"  @click="search"/>
+                </b-button>
+              </template>
+            </VueTypeaheadBootstrap>        
           </div>
-        </div>
-        <!-- No result -->
-        <div v-else class="no-result apollo">No result :(</div>
-      </template>
-    </ApolloQuery>
 </template>
 
 <script>
+import VueTypeaheadBootstrap from 'vue-typeahead-bootstrap';
+import 'bootstrap/scss/bootstrap.scss';
+import {debounce} from 'lodash';
+
+import gql from 'graphql-tag';
+var nameTypeAheadGql=gql`query nameTypeAhead($q: String!){
+  nameTypeAhead(q:$q)
+}`;
+
 export default {
-  name:"SearchInput",
-  components:{
-  },
-  data(){
-    return{
-      q:"",
-    }
-  },
-  methods:{
-    submit:function(){
+    components:{
+      VueTypeaheadBootstrap
+    },
+    data(){
+      return {
+        nameTypeAhead:[],
+        query: '',
+        userRepositories: {},
+        users: []
+
+      }
+    },
+
+    methods: {
+      search:function () {
        this.$router.push({
             query: {
-                q:`*${this.q}*`,
+                q:`*${this.query}*`.replace(/ /g, ' AND '),
             }
         });
+      },
+      searchWords: debounce(function(){
+          this.$apollo.addSmartQuery('nameTypeAhead', {
+              query:nameTypeAheadGql,
+              variables: {
+                  q: `${this.query}`
+              },
+              result ({data}) {
+                return data
+              },
+              error (error) {
+                    console.error('We\'ve got an error!', error)
+              }
+          })
+      },1000),
     },
-    
-  },
-  watch:{
-    '$route'() {
-      this.q = this.$route.query.q.replace(/[*]/g,"");
-    }
-    
-  },
-  mounted(){
-    this.q = this.$route.query.q.replace(/[*]/g,"");
-  },
-}
+    watch:{
+      '$route':{
+        immediate:true,
+        handler:function(){
+          this.query = this.$route.query.q.replace(/[*]/g,"").replace(/ AND /g, ' ')
+        }       
+      }  
+    },
+  }
 </script>

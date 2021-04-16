@@ -53,5 +53,5 @@
 > ## 4/14
 > ### To do
 - fq modal √
-- Typeahead
+- Typeahead √
 - Scroll of modal
