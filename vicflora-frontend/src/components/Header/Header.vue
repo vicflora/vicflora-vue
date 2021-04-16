@@ -20,7 +20,7 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="/flora/search?q=*:*" class="m-menu-item">Search</b-nav-item>
+            <b-nav-item href="/flora/search?q=**" class="m-menu-item">Search</b-nav-item>
             <b-nav-item href="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f" class="m-menu-item"
               >Browse classification</b-nav-item
             >
@@ -47,7 +47,7 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item>
-              <b-input-group>
+              <!-- <b-input-group>
                 <b-form-input
                   size="sm"
                   placeholder="Enter taxon name..."
@@ -57,7 +57,8 @@
                     <b-icon font-scale="1" icon="search" />
                   </b-button>
                 </b-input-group-append>
-              </b-input-group>
+              </b-input-group> -->
+              <SearchInput></SearchInput>
             </b-nav-item>
             <b-nav-item>
               <!-- <span class="m-username">Username</span> -->
@@ -71,7 +72,11 @@
 </template>
 
 <script>
+import SearchInput from "../Search-input/Search-input";
 export default {
   name: "Header",
+  components: {
+    SearchInput,
+  },
 };
 </script>

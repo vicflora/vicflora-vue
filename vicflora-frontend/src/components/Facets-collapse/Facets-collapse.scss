@@ -1,40 +1,45 @@
 @import "~/src/assets/scss/custom_variables.scss";
-.m-facetvalue{
-    display: block;
-    color: $primary;
-    text-transform:capitalize;
+.m-facetvalue {
+  display: block;
+  color: $primary;
+  text-transform: capitalize;
 }
 
 .card-body {
-    padding-bottom: 0 !important;
-    padding-top: 3px !important;
+  padding-bottom: 0 !important;
+  padding-top: 3px !important;
 }
 
 .btn-sm {
-    padding: 2px 6px;
+  padding: 2px 6px;
 }
-.m-more{
-    color: $primary;
-    cursor: pointer;
-    margin-bottom: 0;
-    font-size: small;
+.m-more {
+  color: $primary;
+  cursor: pointer;
+  margin-bottom: 0;
+  font-size: small;
 }
 
-.m-more:hover{
-    text-decoration:underline;
-  }
-
-
-.m-facet-value{
-    color: $primary;
-    font-size: small;
-    text-transform:capitalize;
+.m-more:hover {
+  text-decoration: underline;
 }
-.m-facet-value:hover{
-    text-decoration:underline;
-    cursor: pointer;
-  }
 
-.table{
-    margin-bottom:0;
+.m-facet-value {
+  color: $primary;
+  font-size: small;
+  text-transform: capitalize;
+}
+.m-facet-value:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.table {
+  margin-bottom: 0;
+  width: 99%;
+}
+.m-table {
+  width: 100%;
+  max-height: 60vh;
+  overflow: auto;
 }
