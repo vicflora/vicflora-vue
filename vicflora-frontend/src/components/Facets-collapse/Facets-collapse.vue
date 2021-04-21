@@ -55,109 +55,60 @@
           </b-form-group>
         </b-card>
       </b-collapse>
+      <FacetsCollapseModal
+        :moreFacet="moreFacet"
+        :facetName="localFacetField.facets[0].fq.split(':')[0]"
+        :data="facetField"
+        v-if="moreFacet"
+        @changeModal="
+          $event => {
+            moreFacet = $event;
+          }
+        "
+      ></FacetsCollapseModal>
     </div>
-    <b-modal
-      v-model="moreFacet"
-      size="lg"
-      :title="facetName[localFacetField.fieldName]"
-      id="facetModal"
-    >
-      <b-form-checkbox-group v-model="modalSelected">
-        <div class="m-table">
-          <table class="table table-striped table-hover">
-            <thead style="width:99%">
-              <tr>
-                <th scope="col">
-                  <b-row>
-                    <b-col class="mr-auto" cols="auto">
-                      <p style="display:inline-block;" class="mb-0">Value</p>
-                    </b-col>
-                    <b-col cols="auto">
-                      <div>
-                        <b-button
-                          size="sm"
-                          :disabled="order === 'value'"
-                          variant="secondary"
-                          @click="sortByValue"
-                          ><b-icon font-scale="1" icon="sort-alpha-down"
-                        /></b-button>
-                      </div>
-                    </b-col>
-                  </b-row>
-                </th>
-                <th scope="col">
-                  <b-row>
-                    <b-col class="mr-auto" cols="auto">
-                      <p style="display:inline-block;" class="mb-0">Count</p>
-                    </b-col>
-                    <b-col cols="auto">
-                      <div>
-                        <b-button
-                          size="sm"
-                          :disabled="order === 'count'"
-                          variant="secondary"
-                          @click="sortByCount"
-                          ><b-icon font-scale="1" icon="sort-down"
-                        /></b-button>
-                      </div>
-                    </b-col>
-                  </b-row>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              
-                <tr v-for="facet in localFacetField.facets" :key="facet.value">
-                  <td>
-                    <b-form-checkbox
-                      style="display:inline-block;"
-                      :value="facet.fq.split(':')[1]"
-                      :label="facet.value"
-                      unchecked-value="not_accepted"
-                    >
-                    </b-form-checkbox>
-
-                    <span class="m-facet-value">{{ facet.value }}</span>
-                  </td>
-                  <td>
-                    <span style="font-size: small;">{{ facet.count }}</span>
-                  </td>
-                </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      </b-form-checkbox-group>
-      <template #modal-footer>
-        <b-button @click="includeSelected()">
-          Include selected
-        </b-button>
-        <b-button @click="excludeSelected()">
-          Exclude selected
-        </b-button>
-        <b-button
-          variant="primary"
-          class="float-right"
-          @click="moreFacet = false"
-        >
-          Close
-        </b-button>
-      </template>
-    </b-modal>
   </div>
 </template>
 
 <script>
+import FacetsCollapseModal from "../Facets-collapse-modal/Facets-collapse-modal";
+import gql from "graphql-tag";
+
+var SearchResultFacetFieldGql = gql`
+  query facetField($input: FieldFacetInput) {
+    facetField(input: $input) {
+      fieldName
+      facets {
+        value
+        count
+        fq
+      }
+    }
+  }
+`;
 export default {
   name: "facetsCollapse",
-  props: ["facetField", "removeFilterVal"],
+  props: ["facetFields", "removeFilterVal"],
+  components: {
+    FacetsCollapseModal,
+  },
+  apollo: {
+    facetField() {
+      return {
+        query: SearchResultFacetFieldGql,
+        variables: {
+          input: {
+            field: this.localFacetField.facets[0].fq.split(":")[0].replace("-",""),
+            q: this.q,
+          },
+        },
+      };
+    },
+  },
   data() {
     return {
-      localFacetField: this.facetField,
-      order: "count",
-      // status of facet modal
-      modalSelected: [],
+      facetField: {}, 
+      localFacetField: this.facetFields,
       fields: [
         {
           key: "value",
@@ -192,40 +143,6 @@ export default {
     };
   },
   methods: {
-    // sort the array by value name of facet
-    sortByValue: function() {
-      this.localFacetField.facets = this.localFacetField.facets
-        .slice()
-        .sort((a, b) => {
-          let fa = a.value.toLowerCase(),
-            fb = b.value.toLowerCase();
-          if (fa < fb) {
-            return -1;
-          }
-          if (fa > fb) {
-            return 1;
-          }
-          return 0;
-        });
-      this.order = "value";
-    },
-    // sort the array by count of facet
-    sortByCount: function() {
-      this.localFacetField.facets = this.localFacetField.facets
-        .slice()
-        .sort((a, b) => {
-          let fa = a.count,
-            fb = b.count;
-          if (fa < fb) {
-            return 1;
-          }
-          if (fa > fb) {
-            return -1;
-          }
-          return 0;
-        });
-      this.order = "count";
-    },
     // when the status changed, submit this change
     applySelected: function() {
       let key = this.localFacetField.facets[0].fq.split(":")[0];
@@ -273,40 +190,10 @@ export default {
         });
       }
     },
-    includeSelected: function() {
-      let newfq = `${this.localFacetField.facets[0].fq.split(":")[0]}:(`;
-      for (let item of this.modalSelected) {
-        newfq = `${newfq}${item} `;
-      }
-      newfq = newfq + ")";
-      this.$router.push({
-        path: "/flora/search",
-        query: {
-          ...this.$route.query,
-          fq: Array.from(new Set([...this.fq, newfq])),
-        },
-      });
-      this.$bvModal.hide("facetModal");
-    },
-    excludeSelected: function() {
-      let newfq = `-${this.localFacetField.facets[0].fq.split(":")[0]}:(`;
-      for (let item of this.modalSelected) {
-        newfq = `${newfq}${item} `;
-      }
-      newfq = newfq + ")";
-      this.$router.push({
-        path: "/flora/search",
-        query: {
-          ...this.$route.query,
-          fq: Array.from(new Set([...this.fq, newfq])),
-        },
-      });
-      this.$bvModal.hide("facetModal");
-    },
   },
   watch: {
-    facetField: function() {
-      this.localFacetField = this.facetField;
+    facetFields: function() {
+      this.localFacetField = this.facetFields;
     },
     removeFilterVal: function() {
       let keyName = this.localFacetField.facets[0].fq.split(":")[0];

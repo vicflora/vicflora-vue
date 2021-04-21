@@ -122,7 +122,7 @@
                                 {{facet.value}}
                             </p> -->
                         <FacetField
-                          :facetField="{ ...facetField }"
+                          :facetFields="{ ...facetField }"
                           :removeFilterVal="removeFilterVal"
                           :key="key"
                         ></FacetField>
