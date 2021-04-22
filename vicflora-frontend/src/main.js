@@ -6,7 +6,7 @@ import store from './store'
 //import Bootstrap as UI framework
 //import Bootstrp Icons as Icons library
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-import infiniteScroll from 'vue-infinite-scroll'
+
 
 //use customized variable
 //import 'bootstrap/dist/css/bootstrap.css'
@@ -28,7 +28,7 @@ const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
 })
 
-Vue.use(infiniteScroll)
+
 Vue.use(VueApollo)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)

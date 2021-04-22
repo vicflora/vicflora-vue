@@ -100,6 +100,8 @@ export default {
           input: {
             field: this.localFacetField.facets[0].fq.split(":")[0].replace("-",""),
             q: this.q,
+            limit:20,
+            offset:0
           },
         },
       };

@@ -10,58 +10,55 @@
       id="facetModal"
     >
       <b-form-checkbox-group v-model="modalSelected">
-        <div class="m-table" 
-            v-infinite-scroll="loadMore"
-            infinite-scroll-disabled="false"
-            infinite-scroll-distance="50"
-              >
-          <table class="table table-striped table-hover">
-            <thead style="width:99%">
-              <tr>
-                <th scope="col">
-                  <b-row>
-                    <b-col class="mr-auto" cols="auto">
-                      <p style="display:inline-block;" class="mb-0">
-                        Value
-                      </p>
-                    </b-col>
-                    <b-col cols="auto">
-                      <div>
-                        <b-button
-                          size="sm"
-                          :disabled="order === 'value'"
-                          variant="secondary"
-                          @click="sortByValue()"
-                          ><b-icon font-scale="1" icon="sort-alpha-down"
-                        /></b-button>
-                      </div>
-                    </b-col>
-                  </b-row>
-                </th>
-                <th scope="col">
-                  <b-row>
-                    <b-col class="mr-auto" cols="auto">
-                      <p style="display:inline-block;" class="mb-0">
-                        Count
-                      </p>
-                    </b-col>
-                    <b-col cols="auto">
-                      <div>
-                        <b-button
-                          size="sm"
-                          :disabled="order === 'count'"
-                          variant="secondary"
-                          @click="sortByCount()"
-                          ><b-icon font-scale="1" icon="sort-down"
-                        /></b-button>
-                      </div>
-                    </b-col>
-                  </b-row>
-                </th>
-              </tr>
-            </thead>
+        <div class="m-table">
+          <PullTo @infinite-scroll="loadMore" style="max-height: 60vh;">
+            <table class="table table-striped table-hover">
+              <thead style="width:99%">
+                <tr>
+                  <th scope="col">
+                    <b-row>
+                      <b-col class="mr-auto" cols="auto">
+                        <p style="display:inline-block;" class="mb-0">
+                          Value
+                        </p>
+                      </b-col>
+                      <b-col cols="auto">
+                        <div>
+                          <b-button
+                            size="sm"
+                            :disabled="order === 'value'"
+                            variant="secondary"
+                            @click="sortByValue()"
+                            ><b-icon font-scale="1" icon="sort-alpha-down"
+                          /></b-button>
+                        </div>
+                      </b-col>
+                    </b-row>
+                  </th>
+                  <th scope="col">
+                    <b-row>
+                      <b-col class="mr-auto" cols="auto">
+                        <p style="display:inline-block;" class="mb-0">
+                          Count
+                        </p>
+                      </b-col>
+                      <b-col cols="auto">
+                        <div>
+                          <b-button
+                            size="sm"
+                            :disabled="order === 'count'"
+                            variant="secondary"
+                            @click="sortByCount()"
+                            ><b-icon font-scale="1" icon="sort-down"
+                          /></b-button>
+                        </div>
+                      </b-col>
+                    </b-row>
+                  </th>
+                </tr>
+              </thead>
 
-            <tbody>
+              <tbody>
                 <tr v-for="facet in facetData.facets" :key="facet.value">
                   <td>
                     <b-form-checkbox
@@ -77,8 +74,9 @@
                     <span style="font-size: small;">{{ facet.count }}</span>
                   </td>
                 </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </PullTo>
         </div>
       </b-form-checkbox-group>
       <template #modal-footer>
@@ -100,19 +98,45 @@
   </div>
 </template>
 <script>
+import PullTo from "vue-pull-to";
+import gql from "graphql-tag";
+// import { fetchDataList } from 'api'
+var SearchResultFacetFieldGql = gql`
+  query facetField($input: FieldFacetInput) {
+    facetField(input: $input) {
+      fieldName
+      facets {
+        value
+        count
+        fq
+      }
+    }
+  }
+`;
+
 export default {
   name: "FacetsCollapseModal",
   props: ["moreFacet", "facetName", "data"],
+  components: {
+    PullTo,
+  },
   data() {
     return {
       // infinite scroll
-      count: 0,
-      scrollData: [],
+      offset:20,
+      input: {
+        field: this.data.facets[0].fq.split(":")[0].replace("-", ""),
+        q: this.q,
+        limit: 20,
+        offset: this.offset,
+      },
+      
       busy: false,
-
+      order: "count",
       facetData: this.data,
       showModal: this.moreFacet,
-      order: "count",
+    // the result of more data showed in infinite scroll
+      facetField:[],
       // status of facet modal
       modalSelected: [],
       facetNameList: {
@@ -134,15 +158,23 @@ export default {
     };
   },
   methods: {
+    getData(input) {
+      this.$apollo.addSmartQuery("facetField", {
+        query: SearchResultFacetFieldGql,
+        variables: {
+          input,
+        },
+        result({ data }) {
+          return data
+        },
+        error(error) {
+          console.error("We've got an error!", error);
+        },
+      });
+    },
     loadMore: function() {
-      this.busy = true
-      setTimeout(() => {
-        for (var i = 0, j = 10; i < j; i++) {
-          this.data.push({name: this.count++ })
-        }
-        console.log(this.scrollData)
-        this.busy = false
-      }, 1000)
+      console.log("listen");
+      this.getData(this.input);
     },
     // sort the array by value name of facet
     sortByValue: function() {
@@ -233,6 +265,10 @@ export default {
   watch: {
     showModal: function(newVal) {
       this.$emit("changeModal", newVal);
+    },
+    facetField: function (newVal) {
+        console.log(newVal)
+        this.facetData.facets = this.facetData.facets.filter(item=>item.value!=='(blank)').concat(newVal.facets)
     },
   },
 };
