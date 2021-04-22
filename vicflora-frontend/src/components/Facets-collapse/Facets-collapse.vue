@@ -100,7 +100,7 @@ export default {
           input: {
             field: this.localFacetField.facets[0].fq.split(":")[0].replace("-",""),
             q: this.q,
-            limit:20,
+            limit:50,
             offset:0
           },
         },
@@ -125,6 +125,7 @@ export default {
       ],
       moreFacet: false,
       selected: [],
+      // controller of collapse
       visible: true,
       facetName: {
         nameType: "Type of name",
@@ -234,6 +235,10 @@ export default {
           this.selected.push(i.split(":")[1]);
         }
       }
+    }
+    // change the status of collapse
+    if(window.innerWidth < 992){
+      this.visible = false
     }
   },
 };

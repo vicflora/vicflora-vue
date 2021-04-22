@@ -116,11 +116,6 @@
                         v-for="facetField in data.search.facetFields"
                         :key="facetField.fieldName"
                       >
-                        <!-- <p class="m-facet-title mb-1 mt-3">{{facetName[facetField.fieldName]}}</p>
-                            <p class="mb-1"
-                            v-for="facet in facetField.facets" :key="facet.value">
-                                {{facet.value}}
-                            </p> -->
                         <FacetField
                           :facetFields="{ ...facetField }"
                           :removeFilterVal="removeFilterVal"
@@ -252,7 +247,11 @@
           </b-row>
         </div>
         <!-- No result -->
-        <div v-else class="no-result apollo">No result :(</div>
+        <div v-else class="no-result apollo">
+          <div class="spinner-border mt-5 mb-1" role="status">
+          </div>
+          <h5>Loading...</h5>
+        </div>
       </template>
     </ApolloQuery>
   </b-container>
@@ -414,6 +413,10 @@ export default {
   },
   mounted() {
     this.exclusionCheckbox = this.fq.includes("end_or_higher_taxon:end");
+    // change the status of collapse
+    if(window.innerWidth < 992){
+      this.filtersFacet = false
+    }
   },
 };
 </script>

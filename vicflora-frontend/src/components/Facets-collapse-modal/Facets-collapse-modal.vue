@@ -12,7 +12,7 @@
       <b-form-checkbox-group v-model="modalSelected">
         <div class="m-table">
           <PullTo @infinite-scroll="loadMore" style="max-height: 60vh;">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-sm">
               <thead style="width:99%">
                 <tr>
                   <th scope="col">
@@ -59,7 +59,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="facet in facetData.facets" :key="facet.value">
+                <tr v-for="(facet, index) in facetData.facets" :key="index">
                   <td>
                     <b-form-checkbox
                       style="display:inline-block;"
@@ -123,20 +123,20 @@ export default {
   data() {
     return {
       // infinite scroll
-      offset:20,
       input: {
         field: this.data.facets[0].fq.split(":")[0].replace("-", ""),
         q: this.q,
-        limit: 20,
-        offset: this.offset,
+        limit: 50,
+        offset: 0,
+        sort: "count",
       },
-      
+
       busy: false,
       order: "count",
       facetData: this.data,
       showModal: this.moreFacet,
-    // the result of more data showed in infinite scroll
-      facetField:[],
+      // the result of more data showed in infinite scroll
+      facetField: [],
       // status of facet modal
       modalSelected: [],
       facetNameList: {
@@ -158,53 +158,43 @@ export default {
     };
   },
   methods: {
-    getData(input) {
+    getData: function(input) {
       this.$apollo.addSmartQuery("facetField", {
         query: SearchResultFacetFieldGql,
         variables: {
           input,
         },
         result({ data }) {
-          return data
+          return data;
         },
         error(error) {
           console.error("We've got an error!", error);
         },
       });
     },
+    // when the scroll is at the bottom, trigger to load more data
     loadMore: function() {
-      console.log("listen");
+      this.input.limit = this.input.limit + 50;
+      if (this.order === "count") {
+        this.input.sort = "count";
+      } else {
+        this.input.sort = "value";
+      }
       this.getData(this.input);
     },
     // sort the array by value name of facet
-    sortByValue: function() {
-      this.facetData.facets = this.facetData.facets.slice().sort((a, b) => {
-        let fa = a.value.toLowerCase(),
-          fb = b.value.toLowerCase();
-        if (fa < fb) {
-          return -1;
-        }
-        if (fa > fb) {
-          return 1;
-        }
-        return 0;
-      });
+    sortByValue: async function() {
+      this.input.sort = "value"
       this.order = "value";
+      this.getData(this.input);
+      this.modalSelected = []
     },
     // sort the array by count of facet
     sortByCount: function() {
-      this.facetData.facets = this.facetData.facets.slice().sort((a, b) => {
-        let fa = a.count,
-          fb = b.count;
-        if (fa < fb) {
-          return 1;
-        }
-        if (fa > fb) {
-          return -1;
-        }
-        return 0;
-      });
+      this.input.sort = "count"
       this.order = "count";
+      this.getData(this.input);
+      this.modalSelected = []
     },
     includeSelected: function() {
       let newfq = `${this.facetData.facets[0].fq.split(":")[0]}:(`;
@@ -266,9 +256,8 @@ export default {
     showModal: function(newVal) {
       this.$emit("changeModal", newVal);
     },
-    facetField: function (newVal) {
-        console.log(newVal)
-        this.facetData.facets = this.facetData.facets.filter(item=>item.value!=='(blank)').concat(newVal.facets)
+    facetField: function(newVal) {
+      this.facetData.facets = newVal.facets
     },
   },
 };

@@ -40,7 +40,8 @@
                 <span
                   class="m-taxon-name"
                   :style="
-                    higherItem.taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus
+                    higherItem.taxonConcept.taxonTreeDefItem.rankId >=
+                    rankClass.genus
                       ? 'font-style:italic;'
                       : 'font-style:normal;'
                   "
@@ -149,7 +150,10 @@
         </div>
 
         <!-- No result -->
-        <div v-else class="no-result apollo text-left">Loading...No result</div>
+        <div v-else class="no-result apollo">
+          <div class="spinner-border mt-5 mb-1" role="status"></div>
+          <h5>Loading...</h5>
+        </div>
       </template>
     </ApolloQuery>
   </div>
@@ -165,17 +169,17 @@ export default {
       higherItemNum: 0,
       id: "6abc498a-70de-11e6-a989-005056b0018f",
       indentNum: 0,
-      rankClass:{
+      rankClass: {
         life: -9999,
         kingdom: 10,
         phylum: 30,
-        class:60,
-        superorder:90,
-        order:100,
-        family:140,
-        genus:180,
-        species:220,
-      }
+        class: 60,
+        superorder: 90,
+        order: 100,
+        family: 140,
+        genus: 180,
+        species: 220,
+      },
     };
   },
   //Apollo-specific options
