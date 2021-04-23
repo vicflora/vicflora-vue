@@ -35,7 +35,7 @@
 
 <script>
 import Carousel from "../../components/Carousel/Carousel"
-import Highlights from "../../components/Home/Highlights"
+import Highlights from "../../components/Highlights/Highlights"
 export default {
   name: 'Home',
   components: {
