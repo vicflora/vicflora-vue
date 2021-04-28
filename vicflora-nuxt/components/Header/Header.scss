@@ -1,0 +1,65 @@
+.m-navbar {
+  background-color: #ee3f75 !important;
+  border-bottom: 1px solid #6c6361;
+  .m-icon {
+    color: white;
+  }
+  .m-menu-item {
+    margin-top: 4px;
+    a {
+      color: white !important;
+      font-size: small;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .m-more-item{
+    margin-top: 2px;
+  }
+}
+
+#m-avatar {
+  height: 30px !important;
+  width: 30px !important;
+  border-radius: 50px;
+}
+
+.m-menu-item-more {
+  color: white !important;
+  font-size: small !important;
+  margin-right: 3px;
+  text-align: center !important;
+  align-items: center;
+}
+.show {
+  color: white !important;
+}
+
+.dropdown-item {
+  background-color: #ee3f75 !important;
+  color: white;
+  font-family: "goodsans-thin";
+  font-size: small;
+}
+
+.dropdown-menu {
+  background-color: #ee3f75;
+}
+
+.navbar-toggler {
+  border-color: #ee3f75 !important
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !important;
+}
+
+.m-search-input{
+  height: 30px;
+}
+
+.container {
+  min-height: auto;
+}
+

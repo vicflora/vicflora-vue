@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'goodsans-black';
+  /* 重命名字体名 */
+  src: url('./GoodSans-Black.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'goodsans-bold';
+/* 重命名字体名 */
+src: url('./GoodSans-Bold.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+  font-family: 'goodsans-light';
+/* 重命名字体名 */
+src: url('./GoodSans-Light.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+  font-family: 'goodsans-medium';
+/* 重命名字体名 */
+src: url('./GoodSans-Medium.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+  font-family: 'goodsans-regular';
+/* 重命名字体名 */
+src: url('./GoodSans-Regular.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+  font-family: 'goodsans-thin';
+/* 重命名字体名 */
+src: url('./GoodSans-Thin.otf');
+font-weight: normal;
+font-style: normal;
+}

@@ -1,0 +1,54 @@
+@import "~/assets/scss/custom_variables.scss";
+
+.m-banner {
+  background-color: $primary;
+  padding: 10px 0;
+  span {
+    color: white;
+  }
+  .m-logo-title {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-items: left;
+    justify-content: left;
+    a {
+      display: inline-block;
+    }
+    .m-logo-container{
+      max-width: 6vw;
+      min-width: 70px;
+    }
+    .m-logo{
+      max-width: 6vw;
+      min-width: 70px;
+    }
+    .m-title {
+      color: white;
+      display: inline-block;
+      vertical-align: baseline;
+      font-family: goodsans-regular;
+      font-size: 2vw;
+      letter-spacing: 1px;
+      margin-left: 1vw;
+    }
+    .m-sub-title {
+      font-family: goodsans-thin;
+      font-size: 20px;
+      letter-spacing: -1px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .m-sub-title {
+    display: none;
+  }
+  .m-title {
+    font-size: 3vw !important;
+  }
+}
+
+.container {
+  min-height: auto;
+}
