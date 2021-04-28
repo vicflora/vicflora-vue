@@ -51,7 +51,11 @@
               </b-col>
             </b-row>
             <!-- Tabs -->
-            <TaxonTabs v-else :data="data"></TaxonTabs>
+            <b-row class="m-row" v-else>
+              <b-col>
+                <TaxonTabs :data="data" class="w-100"></TaxonTabs>
+              </b-col>
+            </b-row>
           </div>
 
           <!-- No result -->
@@ -79,7 +83,7 @@ export default {
     TaxonName,
     TaxonStatus,
     TaxonTabs,
-    TaxonClassificationComponent,
+    TaxonClassificationComponent
   },
   data() {
     return {
