@@ -1,0 +1,23 @@
+query taxonConceptQuery($id: ID!, $specimenImagesPage: Int) {
+  taxonConcept(id: $id) {
+    id
+    taxonName {
+      id
+      fullName
+    }
+    specimenImages(page: $specimenImagesPage, first: 24) {
+      data {
+        id
+        thumbnailUrl
+        alaImageUuid
+        caption
+      }
+      paginatorInfo {
+        count
+        currentPage
+        hasMorePages
+        total
+      }
+    }
+  }
+}

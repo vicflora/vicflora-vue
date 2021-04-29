@@ -49,15 +49,12 @@
 <script>
 import Carousel from "@/components/Carousel/Carousel";
 import Highlights from "@/components/Highlights/Highlights";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+
 export default {
   name: "Home",
   components: {
     Carousel,
     Highlights,
-    Header,
-    Footer
   }
 };
 </script>

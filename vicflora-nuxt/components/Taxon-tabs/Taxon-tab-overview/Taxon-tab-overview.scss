@@ -1,0 +1,24 @@
+.m-heroimage-container:hover {
+  cursor: pointer;
+}
+
+.m-heroimage-container {
+  border-radius: 10px;
+  border: grey solid 1px;
+  background-color: white;
+  height: 205px;
+  width: 340px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  img {
+    max-height: 95%;
+    max-width: 95%;
+  }
+}
+
+.m-dictribution-map {
+  margin-top: 8px;
+}

@@ -53,7 +53,20 @@
             <!-- Tabs -->
             <b-row class="m-row" v-else>
               <b-col>
-                <TaxonTabs :data="data" class="w-100"></TaxonTabs>
+                <TaxonTabs
+                  :data="data"
+                  class="w-100"
+                  @imagesPage="
+                    $event => {
+                      this.imagesPage = $event;
+                    }
+                  "
+                  @specimenImagesPage="
+                    $event => {
+                      this.specimenImagesPage = $event;
+                    }
+                  "
+                ></TaxonTabs>
               </b-col>
             </b-row>
           </div>
@@ -88,11 +101,10 @@ export default {
   data() {
     return {
       id: "6abc498a-70de-11e6-a989-005056b0018f",
-      tabIndex: 0,
 
       imagesPage: 1,
       specimenImagesPage: 1,
-      specimenImagesModal: null,
+
       viewerOptions: {
         url: "data-src"
       },
@@ -110,16 +122,7 @@ export default {
       }
     };
   },
-  methods: {
-    getBtnText: function(name) {
-      switch (name) {
-        case "family":
-          return "genera";
-        case "genus":
-          return "species";
-      }
-    }
-  },
+
   computed: {
     urlId: {
       get: function() {

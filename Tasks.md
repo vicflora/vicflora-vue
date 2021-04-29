@@ -55,3 +55,28 @@
 - fq modal √
 - Typeahead √
 - Scroll of modal
+
+> ## 4/21
+> ### Done
+- Complete the facet modal
+
+> ## 4/22
+> ### Done
+- Complete the infinite scroll
+  
+> ## 4/23
+> ### Done
+- Begin to magiation from Vue to Nuxt.js
+  
+> ## 4/28
+> ### Done
+- continue to magiation
+
+> ## 4/29
+> ### Done
+- continue to magiation
+- refactor the pages and redesign the project folds
+- fix bugs
+> ### To do
+- add spinner in images container
+

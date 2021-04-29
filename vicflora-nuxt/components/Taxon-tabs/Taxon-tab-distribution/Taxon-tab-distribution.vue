@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-// the style file in the Taxon.scss
+@import "./Taxon-tab-distribution.scss";
 </style>
 
 <template>

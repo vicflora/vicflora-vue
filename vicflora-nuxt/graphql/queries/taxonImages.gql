@@ -1,0 +1,28 @@
+query taxonConceptQuery($id: ID!, $imagesPage: Int) {
+  taxonConcept(id: $id) {
+    id
+    taxonName {
+      id
+      fullName
+    }
+    images(page: $imagesPage, first: 24) {
+      data {
+        id
+        previewUrl
+        thumbnailUrl
+        assetCreationDate
+        caption
+        creator
+        license
+        rights
+        subtype
+      }
+      paginatorInfo {
+        count
+        currentPage
+        hasMorePages
+        total
+      }
+    }
+  }
+}

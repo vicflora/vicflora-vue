@@ -5,25 +5,28 @@
   <div>
     <b-tabs v-model="tabIndex" content-class="mt-4 mb-3 m-row w-100">
       <b-tab title="Overview">
-       <TaxonTabOverview :data="data"></TaxonTabOverview>
+        <TaxonTabOverview
+          :data="data"
+          :tabIndex.sync="tabIndex"
+        ></TaxonTabOverview>
       </b-tab>
       <b-tab title="Images" v-if="data.taxonConcept.images.data.length > 0">
-       <!-- <TaxonTabImages :data="data"></TaxonTabImages> -->
+        <TaxonTabImages></TaxonTabImages>
       </b-tab>
+
       <!-- Specimen images -->
-      
       <b-tab
         title="Specimen Images"
         v-if="data.taxonConcept.specimenImages.data.length > 0"
       >
-      <!-- <TaxonTabSpecimenImages :data="data"></TaxonTabSpecimenImages> -->
+        <TaxonTabSpecimenImages></TaxonTabSpecimenImages>
       </b-tab>
       <!-- Distribution -->
       <b-tab
         title="Distribution"
         v-if="data.taxonConcept.bioregions.length !== 0"
       >
-        <!-- <TaxonTabDistribution :data="data"></TaxonTabDistribution> -->
+        <TaxonTabDistribution :data="data"></TaxonTabDistribution>
       </b-tab>
       <!-- Classification -->
       <b-tab title="Classification" lazy>
@@ -42,7 +45,6 @@ import TaxonTabImages from "@/components/Taxon-tabs/Taxon-tab-images/Taxon-tab-i
 import TaxonTabSpecimenImages from "@/components/Taxon-tabs/Taxon-tab-specimen-images/Taxon-tab-specimen-images";
 import TaxonTabDistribution from "@/components/Taxon-tabs/Taxon-tab-distribution/Taxon-tab-distribution";
 
-
 export default {
   name: "TaxonTabs",
   components: {
@@ -56,10 +58,8 @@ export default {
   props: ["data"],
   data() {
     return {
-      imagesPage: 1,
-      specimenImagesPage: 1,
-      specimenImagesModal: null,
-      
+      tabIndex: 0,
+
       rankClass: {
         life: -9999,
         kingdom: 10,

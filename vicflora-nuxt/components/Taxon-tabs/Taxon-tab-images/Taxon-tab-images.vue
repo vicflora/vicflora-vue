@@ -1,74 +1,85 @@
 <style lang="scss" scoped>
-// the style file in the Taxon.scss
+@import "./Taxon-tab-images.scss";
 </style>
 
 <template>
-  <div>
-    <div class="m-images">
-      <p v-if="data.taxonConcept.images.data.length === 0">
-        No Images...
-      </p>
-      <div
-        v-else
-        v-for="image in data.taxonConcept.images.data"
-        :key="image.id"
-        class="m-image-container"
-        v-viewer="viewerOptions"
-      >
-        <b-img
-          thumbnail
-          fluid
-          :src="image.thumbnailUrl"
-          :data-src="image.previewUrl"
-          :alt="
-            `${data.taxonConcept.taxonName.fullName}. ${
-              image.caption ? image.caption : ''
-            }
-                            ${image.subtype ? image.subtype : ''}: ${
-              image.creator ? image.creator : ''
-            }
-                            ${image.rights ? image.rights : ''}
-                            `
-          "
-        >
-        </b-img>
-      </div>
-    </div>
+  <ApolloQuery
+    :query="require('@/graphql/queries/taxonImages.gql')"
+    :variables="{ id, imagesPage }"
+  >
+    <template v-slot="{ result: { loading, error, data } }">
+      <!-- Loading -->
+      <div v-if="loading" class="loading apollo">Loading...</div>
 
-    <div>
-      <b-pagination-nav
-        v-if="data.taxonConcept.images.paginatorInfo.total > 24"
-        class="mt-3 mb-5"
-        v-model="imagesPage"
-        :number-of-pages="
-          data.taxonConcept.images.paginatorInfo.total % 24 === 0
-            ? data.taxonConcept.images.paginatorInfo.total / 24
-            : data.taxonConcept.images.paginatorInfo.total / 24 + 1
-        "
-        base-url="#"
-        first-number
-        last-number
-        align="center"
-      ></b-pagination-nav>
-    </div>
-  </div>
+      <!-- Error -->
+      <div v-else-if="error" class="error apollo">An error occurred</div>
+
+      <!-- Result -->
+      <div v-else-if="data" class="result apollo">
+        <div class="m-images">
+          <p v-if="data.taxonConcept.images.length === 0">
+            No Images...
+          </p>
+          <div
+            v-else
+            v-for="image in data.taxonConcept.images.data"
+            :key="image.id"
+            class="m-image-container"
+            v-viewer="viewerOptions"
+          >
+            <TaxonTabImageContainer :data="data" :image="image"></TaxonTabImageContainer>
+          </div>
+        </div>
+
+        <div>
+          <b-pagination-nav
+            v-if="data.taxonConcept.images.paginatorInfo.total > 24"
+            class="mt-3 mb-5"
+            v-model="imagesPage"
+            :number-of-pages="
+              data.taxonConcept.images.paginatorInfo.total % 24 === 0
+                ? data.taxonConcept.images.paginatorInfo.total / 24
+                : data.taxonConcept.images.paginatorInfo.total / 24 + 1
+            "
+            base-url="#"
+            first-number
+            last-number
+            align="center"
+          ></b-pagination-nav>
+        </div>
+      </div>
+    </template>
+  </ApolloQuery>
 </template>
 
 <script>
 import "viewerjs/dist/viewer.css";
 import Viewer from "v-viewer";
 import Vue from "vue";
+import TaxonTabImageContainer from "@/components/Taxon-tabs/Taxon-tab-image-container/Taxon-tab-image-container";
+
 Vue.use(Viewer);
 
 export default {
   name: "TaxonTabImages",
-  props: ["data"],
+  components: {
+    TaxonTabImageContainer
+  },
+
   data() {
     return {
+      imagesPage: 1,
+      
       viewerOptions: {
         url: "data-src"
       }
     };
-  }
+  },
+  computed: {
+    id: function() {
+      return this.$route.params.id;
+    }
+  },
+  
 };
 </script>

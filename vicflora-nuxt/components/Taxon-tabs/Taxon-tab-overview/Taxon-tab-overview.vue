@@ -1,5 +1,6 @@
 <style lang="scss" scoped>
 // the style file in the Taxon-tabs.scss
+@import "./Taxon-tab-overview.scss";
 </style>
 
 <template>
@@ -52,18 +53,15 @@
 
         <b-col lg="4" align-self="center">
           <!-- Hero img -->
-          <div class="m-heroimage-container" v-if="data.taxonConcept.heroImage">
-            <a
-              @click="
-                () =>
-                  data.taxonConcept.images.data.length > 0 ? (tabIndex = 1) : ''
-              "
-            >
-              <img
-                :src="data.taxonConcept.heroImage.thumbnailUrl"
-                alt="Hero Image"
-              />
-            </a>
+          <div
+            class="m-heroimage-container"
+            v-if="data.taxonConcept.heroImage"
+            @click="clickImage()"
+          >
+            <img
+              :src="data.taxonConcept.heroImage.thumbnailUrl"
+              alt="Hero Image"
+            />
           </div>
 
           <!-- Map -->
@@ -71,19 +69,13 @@
             href="#"
             class="m-heroimage-container"
             v-if="data.taxonConcept.bioregions.length !== 0"
+            @click="clickMap()"
           >
-            <a
-              @click="
-                () =>
-                  data.taxonConcept.images.data.length > 0 ? (tabIndex = 3) : ''
-              "
-            >
-              <img
-                class="m-dictribution-map"
-                :src="data.taxonConcept.mapLinks.profileMap"
-                alt="Map"
-              />
-            </a>
+            <img
+              class="m-dictribution-map"
+              :src="data.taxonConcept.mapLinks.profileMap"
+              alt="Map"
+            />
           </div>
         </b-col>
       </b-row>
@@ -92,8 +84,40 @@
 </template>
 
 <script>
+
+
 export default {
   name: "TaxonTabOverview",
-  props: ["data"]
+  props: ["data", "tabIndex"],
+  methods: {
+    getBtnText: function(name) {
+      switch (name) {
+        case "family":
+          return "genera";
+        case "genus":
+          return "species";
+      }
+    },
+    clickImage: function() {
+      if (this.data.taxonConcept.images.data.length > 0) {
+        this.$emit("update:tabIndex", 1);
+      }
+    },
+    clickMap: function() {
+      if (this.data.taxonConcept.images.data.length > 0) {
+        this.$emit("update:tabIndex", 3);
+      }
+    }
+  }
+  // computed:{
+  //   tabIdx:function (){
+  //     return this.tabIndex
+  //   }
+  // },
+  // watch:{
+  //   tabIdx: function (){
+
+  //   },
+  // }
 };
 </script>
