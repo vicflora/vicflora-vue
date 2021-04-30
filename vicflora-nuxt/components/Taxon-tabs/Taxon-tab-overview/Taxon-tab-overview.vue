@@ -51,7 +51,7 @@
           </div>
         </b-col>
 
-        <b-col lg="4" align-self="center">
+        <b-col lg="4">
           <!-- Hero img -->
           <div
             class="m-heroimage-container"
@@ -61,7 +61,14 @@
             <img
               :src="data.taxonConcept.heroImage.thumbnailUrl"
               alt="Hero Image"
+              @load="loadHeroImage"
+              v-show="showHeroImage === true"
             />
+            <b-spinner
+              label="Spinning"
+              v-show="showHeroImage === false"
+              variant="primary"
+            ></b-spinner>
           </div>
 
           <!-- Map -->
@@ -75,7 +82,14 @@
               class="m-dictribution-map"
               :src="data.taxonConcept.mapLinks.profileMap"
               alt="Map"
+              @load="loadMapImage"
+              v-show="showMapImage === true"
             />
+            <b-spinner
+              label="Spinning"
+              v-show="showMapImage === false"
+              variant="primary"
+            ></b-spinner>
           </div>
         </b-col>
       </b-row>
@@ -84,11 +98,15 @@
 </template>
 
 <script>
-
-
 export default {
   name: "TaxonTabOverview",
   props: ["data", "tabIndex"],
+  data() {
+    return {
+      showHeroImage: false,
+      showMapImage: false
+    };
+  },
   methods: {
     getBtnText: function(name) {
       switch (name) {
@@ -105,19 +123,21 @@ export default {
     },
     clickMap: function() {
       if (this.data.taxonConcept.images.data.length > 0) {
-        this.$emit("update:tabIndex", 3);
+        if(this.data.taxonConcept.specimenImages.data.length > 0){
+          this.$emit("update:tabIndex", 3);
+        }else{
+          this.$emit("update:tabIndex", 2);
+        }    
+      }else{
+        this.$emit("update:tabIndex", 1);
       }
+    },
+    loadHeroImage() {
+      this.showHeroImage = true;
+    },
+    loadMapImage() {
+      this.showMapImage = true;
     }
   }
-  // computed:{
-  //   tabIdx:function (){
-  //     return this.tabIndex
-  //   }
-  // },
-  // watch:{
-  //   tabIdx: function (){
-
-  //   },
-  // }
 };
 </script>
