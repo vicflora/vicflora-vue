@@ -16,7 +16,7 @@
 
       <!-- Result -->
       <div v-else-if="data" class="result apollo">
-        <div class="m-images">
+        <div class="m-images" v-viewer="viewerOptions">
           <p v-if="data.taxonConcept.images.length === 0">
             No Images...
           </p>
@@ -25,7 +25,6 @@
             v-for="image in data.taxonConcept.images.data"
             :key="image.id"
             class="m-image-container"
-            v-viewer="viewerOptions"
           >
             <TaxonTabImageContainer :data="data" :image="image"></TaxonTabImageContainer>
           </div>
