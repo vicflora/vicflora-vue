@@ -11,7 +11,7 @@
     >
       <b-form-checkbox-group v-model="modalSelected">
         <div class="m-table">
-          <PullTo @infinite-scroll="loadMore" style="max-height: 60vh;">
+          <component @infinite-scroll="loadMore" style="max-height: 60vh;" :is="pullTo">
             <table class="table table-striped table-hover table-sm">
               <thead style="width:99%">
                 <tr>
@@ -76,7 +76,7 @@
                 </tr>
               </tbody>
             </table>
-          </PullTo>
+          </component>
         </div>
       </b-form-checkbox-group>
       <template #modal-footer>
@@ -98,7 +98,7 @@
   </div>
 </template>
 <script>
-import PullTo from "vue-pull-to";
+// import PullTo from "vue-pull-to";
 import gql from "graphql-tag";
 
 var SearchResultFacetFieldGql = gql`
@@ -118,7 +118,7 @@ export default {
   name: "FacetsCollapseModal",
   props: ["moreFacet", "facetName", "data"],
   components: {
-    PullTo,
+    // PullTo,
   },
   data() {
     return {
@@ -251,6 +251,13 @@ export default {
         return "";
       }
     },
+    pullTo:function(){
+      return () => {
+          if (process.client) {
+            return import("vue-pull-to");
+          }
+        };
+    }
   },
   watch: {
     showModal: function(newVal) {
@@ -260,5 +267,6 @@ export default {
       this.facetData.facets = newVal.facets
     },
   },
+  
 };
 </script>

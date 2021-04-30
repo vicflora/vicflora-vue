@@ -79,4 +79,14 @@
 - fix bugs
 > ### To do
 - add spinner in images container
+- v-viwer swith the images
+- search page
+
+> ## 4/30
+> ### Done
+- search page migration 
+> ### To do
+- add spinner in images container
+- v-viwer swith the images
+- accepted name link
 
