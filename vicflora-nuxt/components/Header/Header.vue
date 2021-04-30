@@ -27,7 +27,7 @@
             <b-nav-item href="/" class="m-menu-item">Keys</b-nav-item>
             <b-nav-item href="/" class="m-menu-item">CheckLists</b-nav-item>
             <b-nav-item href="/" class="m-menu-item">Glossary</b-nav-item>
-            <b-nav-item href="/" class="m-menu-item"
+            <b-nav-item href="/bioregions" class="m-menu-item"
               >Bioregions & Vegetation</b-nav-item
             >
             <b-nav-item-dropdown no-caret class="m-more-item">
