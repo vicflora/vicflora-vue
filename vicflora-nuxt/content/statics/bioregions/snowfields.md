@@ -4,7 +4,7 @@ title: Snowfields
 permalink: /bioregions/snowfields
 ---
 
-{% include warning.html text="Snowfields in the Flora of Victoria system of natural regions (Conn 1993) comprises the IBRA 7 <b>Victorian Alps</b> and <b>Snowy Mountains</b> subregions. In the current system of Victorian bioregions these are merged into <b>Victorian Alps</b>." %}
+<div class="alert alert-warning">Snowfields in the Flora of Victoria system of natural regions (Conn 1993) comprises the IBRA 7 <b>Victorian Alps</b> and <b>Snowy Mountains</b> subregions. In the current system of Victorian bioregions these are merged into <b>Victorian Alps</b>.</div>
 
 ## Location
 
@@ -58,9 +58,9 @@ Open-heathland is the most common community on the Bogong High Plains. The shrub
 
 The rocky alpine areas support another open-heathland subcommunity that is characterized by rock-loving herbs (e.g. *Brachyscome rigidula*, *Crassula sieberiana*, *Leucochrysum albicans* and *Luzula novae-cambriae*) (Plate 6g). It occurs in rocky gullies, on shale and scree slopes, in rocky crevices and on isolated rocky outcrops (e.g. Mt Buffalo, the Cobberas, the Twins, Mt Blue Rag, the rocky peaks of the Delatite, Jamieson and Macalister River catchments, and Ruined Castle on the Bogong High Plains). The dominant grass is usually *Poa fawcettiae*, *P. hothamensis* or *P. phillipsiana*).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69707?b=512" caption="Snowfields; heathland. Open-heath of <i>Grevillea australis</i> and <i>Orites lancifolia</i>, with grasses <i>Poa fawsettiae</i> and <i>Trisetum spicatum</i>. Mt Feathertop. Note sequence from taller <i>Eucalyptus delegatensis</i> forest to <i>E. pauciflora</i> and <i>E. niphophila</i> woodlands, to grasslands and heathlands on summit of Mt Fainter in middleground. Mt Bogong in background." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69707?b=512"><b>Snowfields; heathland. Open-heath of <i>Grevillea australis</i> and <i>Orites lancifolia</i>, with grasses <i>Poa fawsettiae</i> and <i>Trisetum spicatum</i>. Mt Feathertop. Note sequence from taller <i>Eucalyptus delegatensis</i> forest to <i>E. pauciflora</i> and <i>E. niphophila</i> woodlands, to grasslands and heathlands on summit of Mt Fainter in middleground. Mt Bogong in background.</b>
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69708?encoding=UTF-8&b=512" caption="Snowfields; heathland. Open-heath to herbfield on steep rocky slope. <i>Brachyscome spathulata</i>, <i>Craspedia</i> sp., <i>Grevillea australis</i> (sparse), <i>Leucochrysum albicans</i>, <i>Luzula novae-cambriae</i>, <i>Rhodanthe anthemoides</i> and <i>Hypochoeris radicata</i>. Mt Feathertop summit area." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69708?encoding=UTF-8&b=512"><b>Snowfields; heathland. Open-heath to herbfield on steep rocky slope. <i>Brachyscome spathulata</i>, <i>Craspedia</i> sp., <i>Grevillea australis</i> (sparse), <i>Leucochrysum albicans</i>, <i>Luzula novae-cambriae</i>, <i>Rhodanthe anthemoides</i> and <i>Hypochoeris radicata</i>. Mt Feathertop summit area.</b>
 
 #### Kunzea heathland
 

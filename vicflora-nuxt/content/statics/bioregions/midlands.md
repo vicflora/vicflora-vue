@@ -4,7 +4,7 @@ title: Midlands
 permalink: /bioregions/midlands
 ---
 
-{% include warning.html text="The Midlands region in the Flora of Victoria system of natural regions (Conn 1993) comprises the <b>Goldfields</b>, <b>Central Victorian Uplands</b> and <i>Northern Inland Slopes</i> regions in the current system of bioregions in Victoria." %}
+<div class="alert alert-warning">The Midlands region in the Flora of Victoria system of natural regions (Conn 1993) comprises the <b>Goldfields</b>, <b>Central Victorian Uplands</b> and <i>Northern Inland Slopes</i> regions in the current system of bioregions in Victoria.</div>
 
 ## Location
 
@@ -64,13 +64,13 @@ This alliance is common on the drier northern slopes of the Great Dividing Range
 
 *Eucalyptus polyanthemos* frequently occurs as a co-dominant in a mixed forest. Near Lake Nillah-cootie it occurs with *E. cypellocarpa*, *E. goniocalyx* and *E. radiata*. This area is transitional between the Midlands and the Eastern Highlands Regions. In the Swanpool area the *E. polyanthemos*–*E. melliodora* alliance grades into a mixed open (partlycleared) woodland dominated by *E. goniocalyx*, *E. macrorhyncha*, *E. polyanthemos* and *E. camaldulensis* on the flatter terrain that is transitional between the Midlands and Riverina Regions. Near Beaufort the two species occur with *E. aromaphloia*, *E. melliodora*, *E. obliqua* and *E. rubida*. *E. dives*, *E. goniocalyx*, *E. macrorhyncha* and *E. polyanthemos* dominate a dry sclerophyll forest that occurs on the skeletal soils of the undulating lowlands and foothills in the eastern suburbs of Melbourne (such as at Eltham).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69691?b=512" caption="Midlands; dry open-forest. <i>Eucalyptus macrorhyncha</i> and <i>E. polyanthemos</i>, with heathy shrub-layer, <i>Brachyloma daphnoides</i>, <i>Dillwynia phylicoides</i> and <i>Tetratheca ciliata</i>. Near Alexandra." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69691?b=512"><b>Midlands; dry open-forest. <i>Eucalyptus macrorhyncha</i> and <i>E. polyanthemos</i>, with heathy shrub-layer, <i>Brachyloma daphnoides</i>, <i>Dillwynia phylicoides</i> and <i>Tetratheca ciliata</i>. Near Alexandra.</b>
 
 #### Eucalyptus microcarpa (Grey Box)–E. tricarpa (Red Ironbark)
 
 This alliance is common in areas where the mean average rainfall is less than 635 mm per annum (e.g. near Bendigo, Castlemaine, Maryborough, Rushworth, St Arnaud and Stawell) (Plate 6P). In the Chiltern area *E. tricarpa* is replaced by the closely related *E. sideroxylon*. *Eucalyptus microcarpa*-dominated open-woodlands occur on shallow soils of the hills and ridges in the Inglewood Flora Reserve (Walsh 1987). The understorey comprises a moderately dense shrub-layer of *Acacia calamifolia*. The ground-layer is rich in herbaceous species (e.g. *Cheilanthes austrotenuifolia*, *Gonocarpus elatus*, *Hypoxis glabella* and *Wurmbea latifolia*). *Eucalyptus microcarpa*/*E. Tricarpa*/*E. leucoxylon* open-forests (up to 20 metres high) occur on the flatter terrain, in coarse, often quartz-rich alluvium. The shrub-layer is similar to that found in the [*Eucalyptus viridis*-dominated mallee](#eucalyptus-viridis-green-mallee). On sites with deeper soils (usually on the southern and eastern slopes) a dense shrub-layer develops. The common shrubs include *Correa reflexa*, *Olearia teretifolia* and *Westringia eremicola*. *Eucalyptus leucoxylon* is more common along watercourses and sometimes occurs in pure stands. The shrub-layer is very sparse, and the common herbs include *Einadia hastata*, *Hydrocotyle laxiflora*, *Plantago varia*, *Ranunculus pumilio* and *Stipa elegantissima* (Walsh 1987).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69690?b=512" caption="Midlands; dry open-forest, <i>Eucalyptus microcarpa</i> and <i>E. tricarpa</i>, with open understorey, including <i>Acacia acinacea</i>, <i>A. pycnantha</i>, <i>Cassinia arcuata</i>. Whroo-Rushworth area." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69690?b=512"><b>Midlands; dry open-forest, <i>Eucalyptus microcarpa</i> and <i>E. tricarpa</i>, with open understorey, including <i>Acacia acinacea</i>, <i>A. pycnantha</i>, <i>Cassinia arcuata</i>. Whroo-Rushworth area.</b>
 
 #### Eucalyptus obliqua (Messmate)–E. macrorhyncha (Red Stringybark)–E. baxteri (Brown Stringy-bark
 

@@ -4,7 +4,7 @@ title: Eastern Highlands
 permalink: /bioregions/eastern-highlands
 ---
 
-{% include warning.html text="Eastern Highlands in the Flora of Victoria system (Conn 1993) comprises the <b>Highlands-Southern Falls</b> and <b>Highlands-Northern Falls</b> regions from the current system of bioregions of Victoria." %}
+<div class="alert alert-warning">Eastern Highlands in the Flora of Victoria system (Conn 1993) comprises the <b>Highlands-Southern Falls</b> and <b>Highlands-Northern Falls</b> regions from the current system of bioregions of Victoria.</div>
 
 ## Location
 
@@ -44,7 +44,7 @@ Tall open-forests dominated by *Eucalyptus regnans* are widely distributed throu
 
 Most of the Victorian *Eucalyptus regnans* forests are more or less even-aged (Figure 6.19). This has arisen following the destruction of seed-bearing trees by severe bushfires (Ashton 1976). This community is predominantly confined to the southern slopes of the Great Dividing Range, being common and widespread in the Acheron Valley and the Black Range, and on the Cerberean and Kinglake plateaus, and in the Dandenongs to Walhalla area. The lower limit of this community is at about 450 metres on the sheltered southern escarpments. Other occurrences are in the headwaters of the Bunyip, Latrobe, Thomson, and Yarra Rivers (Gullan et al. 1979). Characteristically it occurs on deep, friable brownish gradational soils; however, at lower elevations it occurs in reddish gradational soils derived from igneous parent rocks.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69696?encoding=UTF-8&b=512" caption="Eastern Highlands; wet sclerophyll forest. <i>Eucalyptus regnans</i> tall open-forest, with <i>E. viminalis</i> open-forest behind. Ground-layer of <i>Lepidosperma elatius</i>, <i>Pteridium esculentum</i> and <i>Tetrarrhena juncea</i>. Ada River area, near Noojee."%}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69696?encoding=UTF-8&b=512"><b>Eastern Highlands; wet sclerophyll forest. <i>Eucalyptus regnans</i> tall open-forest, with <i>E. viminalis</i> open-forest behind. Ground-layer of <i>Lepidosperma elatius</i>, <i>Pteridium esculentum</i> and <i>Tetrarrhena juncea</i>. Ada River area, near Noojee.</b>
 
 ### Damp forests
 
@@ -72,7 +72,7 @@ A low open-forest usually less than 15 metres high, with *Eucalytus rubida* and 
 
 An open-forest occurs on the wet slopes and river banks of most of the major rivers in the region. Gullan et al. (1979) recognize this as riparian forest, however, the distinction from wet sclerophyll forest is not clear. This community is often dominated by *Eucalyptus viminalis* and sometimes by *E. obliqua*. Understorey species commonly include *Acacia dealbata*, *A. melanoxylon*, *Cassinia aculeata*, *Coprosma quadrifida*, *Cyathea australis*, *Dicksonia antarctica*, *Goodenia ovata*, *Kunzea ericoides*, *Lomatia fraseri*, *Pomaderris aspera*, *Prostanthera lasianthos*, *Rubus parvifolius* and *\*Rubus fruticosus* spp. agg. The ground-layer is dominated by *Acaena novae-zelandiae*, *Australina pusilla*, *Blechnum nudum*, *B. wattsii*, *Carex appressa*, *\*Centaurium tenuiflorum*, *Centella cordifolia*, *Gratiola peruviana*, *Hydrocotyle hirta*, *Isolepis inundata*, *Lepidosperma elatius*, *L. laterale*, *Oxalis* spp., *Poa* spp., *Polystichum proliferum*, *\*Prunella vulgaris*, *Pteridium esculentum* and *Viola hederacea*. The liane *Clematis aristata* and the scrambling plant *Tetrarrhena juncea* are also common in this community. Examples of this association can be seen on the Acheron, Taggerty, Thomson and upper Yarra Rivers (Gullan et al. 1979) (Plate 6Y).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69700?encoding=UTF-8&b=512" caption="Eastern Highlands; riparian forest. <i>Eucalyptus viminalis</i> and <i>E. radiata</i> open-forest, with <i>Acacia melanoxylon</i>, <i>Blechnum nudum</i>, <i>Coprosma quadrifolia</i>. <i>Dicksonia antarctica</i> and <i>Gahnia sieberiana</i> fringing creek. Walsh Creek, Upper Yarra Catchment." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69700?encoding=UTF-8&b=512"><b>Eastern Highlands; riparian forest. <i>Eucalyptus viminalis</i> and <i>E. radiata</i> open-forest, with <i>Acacia melanoxylon</i>, <i>Blechnum nudum</i>, <i>Coprosma quadrifolia</i>. <i>Dicksonia antarctica</i> and <i>Gahnia sieberiana</i> fringing creek. Walsh Creek, Upper Yarra Catchment.</b>
 
 ## Land uses
 

@@ -19,6 +19,7 @@
     "jquery": "^3.6.0",
     "jspath": "^0.4.0",
     "lodash": "^4.17.21",
+    "mavon-editor": "^2.9.1",
     "nuxt": "^2.15.3",
     "vue-bootstrap-typeahead": "^0.2.6",
     "vue-lodash": "^2.1.2",

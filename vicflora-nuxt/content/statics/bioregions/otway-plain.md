@@ -4,7 +4,7 @@ title: Otway Plain
 permalink: /bioregions/otway-plain
 ---
 
-{% include warning.html text="In the current system of Victorian bioregions the Otway Plain natural region of Conn (1993) has been divided into the <b>Warrnambool Plain</b> and <b>Otway Plain</b> bioregions." %}
+<div class="alert alert-warning">In the current system of Victorian bioregions the Otway Plain natural region of Conn (1993) has been divided into the <b>Warrnambool Plain</b> and <b>Otway Plain</b> bioregions.</div>
 
 ## Location
 
@@ -58,9 +58,9 @@ A lower open-forest (less than 15 metres high) occurs on drier sites (mean annua
 
 *Leptospermum myrsinoides* (Silky Tea-tree) heathland is largely confined to this region, although it also occurs in the Otway Range, the Brisbane Ranges (Midland Region) and the Gippsland Plain. The dominant species include *Aotus ericoides*, *Epacris impressa*, *Hakea sericea*, *Leptospermum continentale*, *L. myrsinoides* and *Tetratheca ciliata*. Other common species include *Amperea xiphoclada*, *Banksia marginata*, *Bossiaea cinerea*, *Dillwynia glaberrima*, *Goodenia lanata*, *Monotoca glauca*, *M. scoparia*, *Pimelea linifolia* and *Xanthorrhoea australis* (Plate 6T). The community occurs on Tertiary sediments of low nutrient status, in areas of moderate rainfall (mean annual rainfall 660 mm). Adjacent to this community, a dry heathland understorey is dominated by a low open-woodland of *Eucalyptus baxteri*, *E. radiata,* and occasionally *E. willisii*. This community occurs predominantly in the Gellibrand River valley. An *E. willisii*-dominated woodland with a heathy understorey occurs on leached sands that have an impeding layer near the surface (Anon. 1976) (e.g. Bald Hills, north of Anglesea, Plate 6U). It also occurs with *E. baxteri* at Hanson Plain, south-east of Cobden, west of Lavers Hill, and near Barongarook (all on leached sands). *E. baxteri* tends to occur on leached sands that do not have an impeding layer, or it occurs on sodic duplex soils (Anon. 1976).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69694?encoding=UTF-8&b=512" caption="Otway Plain; <i>Leptospermum myrsinoides</i> heathland. Heathland/woodland with <i>Eucalyptus baxteri</i> over <i>Acacia suaveolens</i>, <i>Banksia marginata</i>, <i>Dillwynia glaberrima</i>, <i>Epacris impressa</i>, <i>Leptospermum myrsinoides</i> and <i>Xanthorrhea minor</i>. Forest Reserve, Anglesea." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69694?encoding=UTF-8&b=512"><b>Otway Plain; <i>Leptospermum myrsinoides</i> heathland. Heathland/woodland with <i>Eucalyptus baxteri</i> over <i>Acacia suaveolens</i>, <i>Banksia marginata</i>, <i>Dillwynia glaberrima</i>, <i>Epacris impressa</i>, <i>Leptospermum myrsinoides</i> and <i>Xanthorrhea minor</i>. Forest Reserve, Anglesea.</b>
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69698?encoding=UTF-8&b=512" caption="Otway Plain; <i>Leptospermum mysinoides</i> heathland. Shrub-layer of <i>Allocasuarina misera</i>, <i>Aotus myricoides</i>, <i>Banksia marginata</i>, <i>Leptospermum continentale</i> and <i>L. myrsinoides</i>. <i>Eucalyptus willisii</i> an occasional emergent. <i>Xanthorrhoea australis</i> in background. Bald Hills, Anglesea." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69698?encoding=UTF-8&b=512"><b>Otway Plain; <i>Leptospermum mysinoides</i> heathland. Shrub-layer of <i>Allocasuarina misera</i>, <i>Aotus myricoides</i>, <i>Banksia marginata</i>, <i>Leptospermum continentale</i> and <i>L. myrsinoides</i>. <i>Eucalyptus willisii</i> an occasional emergent. <i>Xanthorrhoea australis</i> in background. Bald Hills, Anglesea.</b>
 
 #### Wet heathland
 

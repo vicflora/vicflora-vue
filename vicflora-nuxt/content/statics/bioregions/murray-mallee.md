@@ -3,7 +3,7 @@ layout: bioregions
 title: Murray Mallee
 permalink: /bioregions/murray-mallee
 ---
-{% include warning.html text="The Murray Mallee as recognised by Conn (1993) includes the <b>Murray Mallee</b>, <b>Murray Scroll Belt</b> and <b>Robinvale Plains</b> regions in the current system of bioregions of Victoria." %}
+<div class="alert alert-warning">The Murray Mallee as recognised by Conn (1993) includes the <b>Murray Mallee</b>, <b>Murray Scroll Belt</b> and <b>Robinvale Plains</b> regions in the current system of bioregions of Victoria.</div>
 
 The physiographic province described by the general term ‘Mallee’ refers to those semi-arid plains of south-eastern Australia characterized by extensive sand-ridges on which eucalypts with a particular growth habit (see ‘The mallee habit’ below) form the dominant cover (Bowler & Magee 1978). This Mallee province is here divided into two regions, namely the Murray Mallee and the Lowan Mallee Regions.
 
@@ -57,7 +57,7 @@ This community is common to the west of the Raak Plain and to the northern Sunse
 
 Anon. (1987) and Cheal and Parkes (in Noble & Bradstock 1989) recognize a ‘shallow-sand mallee’ community which is intermediate between the Chenopod mallee of the swales and the east/west dune mallee and deep-sand mallee of the dunes.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69676?b=512" caption="Murray Mallee; east-west dune mallee. <i>Eucalyptus socialis</i> and <i>E. leptophylla</i> with <i>Callitris verrucosa</i>, <i>Cryptandra amara</i>, <i>Melaleuca lanceolata</i>, <i>Phebalium bullatum</i>. Werrimull South, Sunset Country." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69676?b=512"><b>Murray Mallee; east-west dune mallee. <i>Eucalyptus socialis</i> and <i>E. leptophylla</i> with <i>Callitris verrucosa</i>, <i>Cryptandra amara</i>, <i>Melaleuca lanceolata</i>, <i>Phebalium bullatum</i>. Werrimull South, Sunset Country.</b>
 
 #### Red-swale mallee
 This community characterizes the heavy soils of the swales and plains that are strongly influenced by underlying sandstone. The overstorey is dominated by *Eucalyptus calycogona, E. dumosa* and/or *E. socialis.* The first two eucalypts commonly form a ‘whipstick’ subcommunity over large areas. The very open understorey commonly consists of *Beyeria opaca, Dodonaea bursariifolia, Melaleuca lanceolata* and *Westringia rigida.* The very open ground-layer characteristically includes *Erodium crinitum, Maireana enchylaenoides, Plantago drummondii* and *Sclerolaena diacantha.*
@@ -70,7 +70,7 @@ A community characterized by large, tall, mallee eucalypts (typically *Eucalyptu
 
 Unlike the mallee eucalypts, *Callitris* species are killed by fire and regenerate solely from seed. Extensive grazing of *Callitris* seedlings by rabbits and the deaths by fire have severely reduced the amount of regeneration of these species.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69678?b=512" caption="Murray Mallee; Belah woodland. <i>Casuarina pauper</i> woodland with <i>Myoporum platycarpum</i>, and understorey species <i>Hakea leucoptera</i>, <i>Olearia muelleri</i>, <i>Senna artemisioides</i>, <i>Scaevola spinescens</i>. Yarrara, Sunset Country" %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69678?b=512"><b>Murray Mallee; Belah woodland. <i>Casuarina pauper</i> woodland with <i>Myoporum platycarpum</i>, and understorey species <i>Hakea leucoptera</i>, <i>Olearia muelleri</i>, <i>Senna artemisioides</i>, <i>Scaevola spinescens</i>. Yarrara, Sunset Country</b> 
 
 #### Pine–Buloke woodland
 
@@ -115,7 +115,7 @@ Large copi deposits occur near Cowangie (north-east of Murrayville), on the Sout
 
 The type and density of vegetation on saline playas is determined by the salt concentrations, which, in part, is determined by the season. When crystalline salt is visible on the surface, the vegetation is retricted to the surrounding higher land. The most salt-tolerant species belong to the Chenopodiaceae, particularly the samphires or glassworts (namely *Halosarcia, Pachycornia* and *Sclerostegia*), but also *Atriplex*, *Maireana* and *Sclerolaena.* Other salt-tolerant plants include *Frankenia*, *Disphyma crassifolium* subsp. *clavellatum* and *Zygophyllum* (Plate 6C). Several annual Asteraceae are also common.
 
-{% include figure.html src="http://data.rbg.vic.gov.au/images/P/Library/69677?encoding=UTF-8&b=512" caption="Murray Mallee; halophytic shrubland, <i>Melaleuca halmaturorum</i> (Salt Paperbark) with low succulent shrubs and herbs, including <i>Disphyma</i>, <i>Frankenia</i>, <i>Halosarcia</i>, <i>Sarcocornia</i>. Dune mallee upslope from halophytic shrubland margin. Pink Lakes." %}
+<img src="http://data.rbg.vic.gov.au/images/P/Library/69677?encoding=UTF-8&b=512"><b>Murray Mallee; halophytic shrubland, <i>Melaleuca halmaturorum</i> (Salt Paperbark) with low succulent shrubs and herbs, including <i>Disphyma</i>, <i>Frankenia</i>, <i>Halosarcia</i>, <i>Sarcocornia</i>. Dune mallee upslope from halophytic shrubland margin. Pink Lakes.</b>
 
 ### Alluvial-plain shrubland
 The broad alluvial terraces that occur along the Murray River to the west of Mildura, support an alluvial-plain shrubland. This area is also devoid of trees.

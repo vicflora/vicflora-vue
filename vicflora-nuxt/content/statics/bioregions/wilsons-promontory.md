@@ -64,7 +64,7 @@ These two species form low (about a metre high) dense heathlands on the siliceou
 
 *Eucalyptus baxteri* frequently occurs as emergent shrubs at mid-dense to open densities, forming a community which is structurally intermediate between the heathland and the [*E. baxteri*-dominated woodland](#eucalyptus-baxteri).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69704?encoding=UTF-8&b=512" caption="Wilsons Promontory; heathland. <i>Allocasuarina paludosa</i>, <i>Banksia marginata</i>, <i>Lepidospermum laterale</i> and <i>Leptospermum continentale</i>, with thickets of low <i>Eucalyptus baxteri</i>. North-east coast, Five-mile Beach in background." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69704?encoding=UTF-8&b=512"><b>Wilsons Promontory; heathland. <i>Allocasuarina paludosa</i>, <i>Banksia marginata</i>, <i>Lepidospermum laterale</i> and <i>Leptospermum continentale</i>, with thickets of low <i>Eucalyptus baxteri</i>. North-east coast, Five-mile Beach in background.</b>
 
 #### Leptospermum laevigatum thicket
 
@@ -84,7 +84,7 @@ This association is the most widespread of the swamp communities. It occurs adja
 
 The granitic outcrops on the spurs and summits of Wilsons Promontory are characterized by *Kunzea ambigua* (at elevations below 400–500 metres) and *Callistemon pallidus* (above about 300 metres). These two sclerophyllous shrubs occur in the shallow soils surrounding the rock outcrops. The herb-layer is dominated by bryophytes, lichens, annuals and geophytes. In the salt-affected coastal fringe, *Carpobrotus rossii*, *Disphyma crassifolium* subsp. *clavellatum* and a succulent form of *Senecio lautus* are common in the shallow soils (Plate 6e). In more sheltered areas of *Allocasuarina*–*Leptospermum* heathland (see above), *Kunzea ambigua*-dominated heathland is usually present as an intermediate zone around the granite outcrops. These rock-heaths also occur in *Eucalyptus baxteri* forests/ woodlands and *E. obliqua* forests above elevations of 300 metres. *Callistemon pallidus* rock-heaths occur on the southern aspects of Mt Oberon, associated with *Leptospermum continentale*.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69706?encoding=UTF-8&b=512" caption="Wilsons Promontory; coastal granite outcrop. Shrubs and herbs in salt-spray zone: <i>Chrysocephalum semipapposum</i>, <i>Correa alba</i>, <i>Leucophyta brownii</i>, <i>Poa poiformis</i>, <i>Senecio lautus</i>, <i>Stipa stipoides</i>. <i>Leptospermum laevigatum</i> thicket and <i>Allocasuarina verticillata</i>, <i>Eucalyptus baxteri</i> woodland in background. East coast, Whisky Bay." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69706?encoding=UTF-8&b=512"><b>Wilsons Promontory; coastal granite outcrop. Shrubs and herbs in salt-spray zone: <i>Chrysocephalum semipapposum</i>, <i>Correa alba</i>, <i>Leucophyta brownii</i>, <i>Poa poiformis</i>, <i>Senecio lautus</i>, <i>Stipa stipoides</i>. <i>Leptospermum laevigatum</i> thicket and <i>Allocasuarina verticillata</i>, <i>Eucalyptus baxteri</i> woodland in background. East coast, Whisky Bay.</b>
 
 ### Saltwater communities
 

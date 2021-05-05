@@ -70,7 +70,7 @@ In this region, the main occurrences of this alliance are in the Big Desert and 
 ### Sandstone-rise broombush
 A series of NNW–SSE trending ridges underlie the dunefields. These sandy ridges have been lateritized into red sandstones which occasionally outcrop (e.g. Red Bluff, Big Desert). This community is dominated by *Melaleuca uncinata* and *Baeckea behrii*. *Eucalyptus calycogona*, *E. costata*, *E. dumosa* or *E. socialis* are occasionally present. Other shrubs are uncommon, however, *Acacia calamifolia* and *Cryptandra tomentosa* are usually present (Plate 6E).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69681?b=512" caption="Lowan Mallee; sandstone rise broombush. Shrubland of <i>Melaleuca uncinata</i> and <i>Baeckea behrii</i> on and flanking laterite outcrop, descending to loamy sand mallee dominated by <i>Eucalyptus costata</i>, <i>Callitris verrucosa</i>. Red Bluff, Big Desert." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69681?b=512"><b>Lowan Mallee; sandstone rise broombush. Shrubland of <i>Melaleuca uncinata</i> and <i>Baeckea behrii</i> on and flanking laterite outcrop, descending to loamy sand mallee dominated by <i>Eucalyptus costata</i>, <i>Callitris verrucosa</i>. Red Bluff, Big Desert.</b>
 
 ### Tea-tree scrub
 *Leptospermum coriaceum* (Tea-tree) may form a dense scrub 2–3 metres high. A few other shrubs are also present (e.g. *Aotus ericoides*, *Banksia ornata*, *Hibbertia riparia* or *Micromyrtus ciliata*). The ground-layer is characterized by *Neurachne alopecuroidea*. This community colonizes the sand deposits associated with the Outlet Creek system.

@@ -4,7 +4,7 @@ title: Gippsland Highlands
 permalink: /bioregions/gippsland-highlands
 ---
 
-{% include warning.html text="Gippsland Highlands in the Flora of Victoria system of natural regions (Conn 1993) corresponds to <b>Strzelecki Ranges</b> in the current system of bioregions in Victoria." %}
+<div class="alert alert-warning">Gippsland Highlands in the Flora of Victoria system of natural regions (Conn 1993) corresponds to <b>Strzelecki Ranges</b> in the current system of bioregions in Victoria.</div>
 
 ## Location
 
@@ -32,7 +32,7 @@ Most of the native vegetation of this region has been cleared for settlement. In
 
 A closed-forest dominated by *Nothofagus cunninghamii* occurs in deep, protected gullies within the high rainfall areas of the region (Howard & Ashton 1973; Gullan et al. 1984; Seddon & Cameron 1985a, 1985b). *Atherosperma moschatum* occurs as a sub-dominant or understorey species, together with *Acacia dealbata* and *A. melanoxylon*. *Dicksonia antarctica* is the most common tree-fern, but *Cyathea australis* and *C. cunninghamii* are also common. The trees and shrubs of the understorey include *Bedfordia arborescens*, *Coprosma quadrifida*, *Hedycarya angustifolia*, *Lomatia fraseri*, *Olearia argophylla*, *O. lirata*, *Pittosporum bicolor*, *Pomaderris aspera*, *Polyscias sambucifolia*, *Rapanea howittiana* and *Tasmannia lanceolata*. Common lianas include *Billardiera longiflora*, *Clematis aristata*, *C. glycinoides* and *Parsonsia brownii*. The ground-layer is generally sparse under the closed canopy. It is dominated by *Fieldia australis* (often an epiphyte), with *Australina pusilla*, *Sambucus gaudichaudiana*, *Tetrarrhena juncea* and *Viola hederacea* being common. The diverse fern flora includes terrestrial and epiphytic species. The common ferns include *Asplenium bulbiferum*, *Blechnum fluviatile*, *B. nudum*, *B. wattsii*, *Grammitis billardieri*, *Microsorum pustulatum*, *Polystichum proliferum* and *Pteridium esculentum* (particularly in disturbed areas) (Gullan et al. 1984). Rainforest remnants occur in the Tarra–Bulga National Park (Plate 6b). An ecotonal closed-forest that has elements of wet sclerophyll forest and cool temperate rainforest occurs in environments that are intermediate between the two communities.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69702?encoding=UTF-8&b=512" caption="Gippsland Highlands; cool temparate rainforest. <i>Atherosperma moschatum</i> and <i>Nothofagus cunninghamii</i> canopy, with tree-ferns <i>Dicksonia antarctica</i>, and epiphytes <i>ieldia australis</i> and <i>Microsorum pustulatum</i>. Near Macks Creek, Tarra–Bulga National Park." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69702?encoding=UTF-8&b=512"><b>Gippsland Highlands; cool temparate rainforest. <i>Atherosperma moschatum</i> and <i>Nothofagus cunninghamii</i> canopy, with tree-ferns <i>Dicksonia antarctica</i>, and epiphytes <i>ieldia australis</i> and <i>Microsorum pustulatum</i>. Near Macks Creek, Tarra–Bulga National Park.</b>
 
 #### Wet sclerophyll forest/damp sclerophyll forest
 
@@ -40,7 +40,7 @@ A closed-forest dominated by *Nothofagus cunninghamii* occurs in deep, protected
 
 An open- to tall open-forest (damp sclerophyll forest) commonly occurs on well-drained, sandy loam soils in flat to undulating country of this region, and extends into the neighbouring Gippsland Plain to the south. This community is extremely variable, both floristically and structurally. The dominant eucalypts include *Eucalyptus consideniana*, *E. cypellocarpa*, *E. obliqua* and *E. radiata.* The understorey is commonly dominated by *Acacia dealbata*, *A. mucronata*, *A. verticillata*, *Billardiera scandens*, *Cassinia aculeata*, *Epacris impressa*, *Gahnia radula*, *Gonocarpus tetragynus*, *G. teucrioides*, *Goodenia ovata*, *Lomandra filiformis*, *L. longifolia*, *Platylobium formosum*, *Pomaderris aspera*, *Pteridium esculentum*, *Pultenaea juniperina* and *Tetrarrhena juncea*. Examples of this community occur between Boolarra ([Gippsland Plain]({{ '/bioregions/gippsland-plain' | relative_url }}) region) and Mirboo North.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69705?encoding=UTF-8&b=512" caption="Gippsland Highlands; wet sclerophyll forest. <i>Eucalyptus regnans</i> tall open-forest, with <i>Bedfordia arborescens</i>, <i>Cassinia trinervia</i>, <i>Cyathea australis</i>, <i>Olearia argophylla</i> and <i>Tetrarrhena juncea</i>. Tarra River valley, Tarra–Bulga National Park." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69705?encoding=UTF-8&b=512"><b>Gippsland Highlands; wet sclerophyll forest. <i>Eucalyptus regnans</i> tall open-forest, with <i>Bedfordia arborescens</i>, <i>Cassinia trinervia</i>, <i>Cyathea australis</i>, <i>Olearia argophylla</i> and <i>Tetrarrhena juncea</i>. Tarra River valley, Tarra–Bulga National Park.</b>
 
 ### Woodlands
 

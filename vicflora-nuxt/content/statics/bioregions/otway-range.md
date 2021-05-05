@@ -33,7 +33,7 @@ The climatic variation within the region is primarily associated with the topogr
 
 Cool temperate rainforest is widespread in the region but has been significantly reduced in abundance since European settlement. These forests are geographically isolated from other rainforests in Victoria, and represent the western extremity of this vegetation type in Australia. Examples of this community occur at the headwaters of the Johanna River (Figure 6.17), Carlisle River, Lardner Creek, Upper Gellibrand River, Skenes Creek and Smythe Creek (Gowans, Yugovic & Myers 1985; Earl & Bennett 1986).
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69699?encoding=UTF-8&b=512" caption="Otway Range; cool temperate rainforest. Closed-forest of <i>Nothofagus cunninghamii</i>, with <i>Dicksonia antarctica</i>. Melba Gully area." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69699?encoding=UTF-8&b=512"><b>Otway Range; cool temperate rainforest. Closed-forest of <i>Nothofagus cunninghamii</i>, with <i>Dicksonia antarctica</i>. Melba Gully area.</b>
 
 ### Wet sclerophyll forest/damp sclerophyll forest
 
@@ -45,7 +45,7 @@ The ground-layer and understorey beneath *Eucalyptus globulus* varies with rainf
 
 Wet sclerophyll forests and damp sclerophyll forests are widespread throughout the region, ranging from riparian to montane environments. They predominantly occur in high-rainfall areas on the slopes of the Otway Range and in moist lowland situations on Cretaceous sediments of moderate–high nutrient status (Earl & Bennett 1986). Taller forests occur at higher altitudes, in high-rainfall areas.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69697?encoding=UTF-8&b=512" caption="Otway Range; wet sclerophyl forest. Shrub stratum; <i>Acacia melanoxylon</i>, <i>A. dealbata</i>, <i>Dicksonia antarctica</i>, <i>Phebalium squameum</i> and <i>Prostanthera lasianthos</i>. <i>Eucalyptus regnans</i> (not pictured) forms canopy of surrounding forest. Erskine Falls, near Lorne." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69697?encoding=UTF-8&b=512"><b>Otway Range; wet sclerophyl forest. Shrub stratum; <i>Acacia melanoxylon</i>, <i>A. dealbata</i>, <i>Dicksonia antarctica</i>, <i>Phebalium squameum</i> and <i>Prostanthera lasianthos</i>. <i>Eucalyptus regnans</i> (not pictured) forms canopy of surrounding forest. Erskine Falls, near Lorne.</b>
 
 #### Dry sclerophyll forest/woodland
 

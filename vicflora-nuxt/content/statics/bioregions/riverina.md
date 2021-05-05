@@ -4,7 +4,7 @@ title: Riverina
 permalink: /bioregions/riverina
 ---
 
-{% include warning.html text="The Riverina natural region as recognised by Conn (1993) comprises the <b>Victorian Riverina</b> and <b>Murray Fans</b> regions in the current system of bioregions in Victoria." %}
+<div class="alert alert-warning">The Riverina natural region as recognised by Conn (1993) comprises the <b>Victorian Riverina</b> and <b>Murray Fans</b> regions in the current system of bioregions in Victoria.</div>
 
 ## Location
 
@@ -44,7 +44,7 @@ A lower *E. camaldulensis* open-forest (15–28 metres high) occurs on drier sit
 
 Periodic flooding is an important, albeit complex factor in seed germination in *Eucalyptus camaldulensis*. Prolific germination of the seeds occurs following the retreat of floodwaters in spring, but winter water temperatures are generally unfavourable for germination on flooded sites. Dexter (1978) discusses the relationship between the various factors that are important for effective seed germination and seedling establishment for this species.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69689?encoding=UTF-8&b=512" caption="Riverina; open forest. <i>Eucalyptus camaldulensis</i>, with aquatic herbs <i>Myriophyllum</i> and <i>Triglochin</i>. <i>Pseudoraphis spinescens</i> grassland in background. Gunbower Island." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69689?encoding=UTF-8&b=512"><b>Riverina; open forest. <i>Eucalyptus camaldulensis</i>, with aquatic herbs <i>Myriophyllum</i> and <i>Triglochin</i>. <i>Pseudoraphis spinescens</i> grassland in background. Gunbower Island.</b>
 
 #### Eucalyptus largiflorens (Black Box)
 
@@ -60,7 +60,7 @@ This community also occurs on the drier margin and the internal sand-ridges of t
 
 This community is very similar structurally and floristically to the *Eucalyptus microcarpa*-dominated forest and woodland. *Eucalyptus melliodora* tends to replace *E. microcarpa* in some hillier areas (e.g. Mount Major) and on sand-ridges (e.g. near Cobram) (Anon. 1983). Both communities have similar associated species. *Eucalyptus blakelyi* is frequently a co-dominant, and the resultant alliance forms mosaics with the *E. albens* community, with the former occurring mainly on the river plains, the latter on the adjacent undulating country and extending into the adjacent Midlands Region. *Callitris glaucophylla* is commonly associated with the *Eucalyptus melliodora* community, especially on sandy soils. *Eucalyptus melliodora* tends to grow to a height of 15–20 metres. A taller open-forest community (up to 30 metres high) occurs in the higher-rainfall eastern parts of the region.
 
-{% include figure.html src="https://data.rbg.vic.gov.au/images/P/Library/69687?b=512" caption="Riverina; woodland. <i>Eucalyptus melliodora</i> and <i>E. microcarpa</i>, grassy woodland remnant, with sparse understorey including <i>Acacia acinacea</i>, <i>Eremophila longifolia</i>, <i>Eutaxia microphylla</i> and grasses (<i>Danthonia</i> spp., <i>Stipa</i> spp. and exotics). Katamatire Reserve." %}
+<img src="https://data.rbg.vic.gov.au/images/P/Library/69687?b=512" caption="Riverina; woodland. <i>Eucalyptus melliodora</i> and <i>E. microcarpa</i>, grassy woodland remnant, with sparse understorey including <i>Acacia acinacea</i>, <i>Eremophila longifolia</i>, <i>Eutaxia microphylla</i> and grasses (<i>Danthonia</i> spp., <i>Stipa</i> spp. and exotics). Katamatire Reserve.">
 
 #### Eucalyptus blakelyi (Blakelys Red-gum)
 

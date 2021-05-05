@@ -4,7 +4,7 @@ title: Wannon
 permalink: /bioregions/wannon
 ---
 
-{% include warning.html text="The Wannon natural region described by Conn (1993) includes the <b>Glenelg Plain</b>, <b>Bridgewater</b> and <b>Dundas Tablelands</b> regions in the current system of bioregions of Victoria. Only the disjunct part of the Dundas Tablelands to the south-east of the Grampians does not belong to Wannon, but to Midlands, in Conn's (1993) system." %}
+<div class="alert alert-warning">The Wannon natural region described by Conn (1993) includes the <b>Glenelg Plain</b>, <b>Bridgewater</b> and <b>Dundas Tablelands</b> regions in the current system of bioregions of Victoria. Only the disjunct part of the Dundas Tablelands to the south-east of the Grampians does not belong to Wannon, but to Midlands, in Conn's (1993) system.</div>
 
 ## Location
 ![map](http://data.rbg.vic.gov.au/geoserver/vicflora/wms?service=WMS&version=1.1.0&request=GetMap&layers=vicflora:vic_boundaries,vicflora:vicflora_bioregion&styles=polygon,red_polygon&bbox=140.96179,-39.19847,149.97651,-33.98057&width=480&height=278&srs=EPSG:4326&format=image%2Fsvg&cql_filter=INCLUDE;sub_name_7%20IN%20(%27Glenelg+Plain%27,%27Bridgewater%27,%27Dundas+Tablelands%27))
