@@ -78,13 +78,6 @@ export default {
   beforeDestroy() {
     this.observer.disconnect();
   },
-  async asyncData({ $content }) {
-    const article = await $content("main").fetch();
-
-    return {
-      article
-    };
-  },
   methods: {
     tableOfContentsHeadingClick(link) {
       this.currentlyActiveToc = link.id;

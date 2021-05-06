@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 .m-static::v-deep {
-  @import "./About.scss";
+  @import "./static.scss";
 }
 </style>
 <template>
@@ -32,15 +32,14 @@ export default {
   components: {
     TableOfContent
   },
-  async asyncData({ $content }) {
+  async asyncData({ $content, params }) {
     // fetch our md here
-    const markdown = await $content("statics/about").fetch();
-    console.log(markdown.toc)
+    const markdown = await $content(`statics/${params.id.toLowerCase()}`).fetch();
+    // console.log(markdown.toc)
     return { markdown };
   },
   data() {
     return {
-      handbook: "",
       content: ""
     };
   },
