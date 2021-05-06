@@ -16,8 +16,8 @@
             </b-row>
 
             <b-row>
-              <b-button block class="m-btn" size="lg" variant="primary" >Search</b-button>
-              <b-button block class="m-btn" size="lg" variant="primary">Browse classification</b-button>
+              <b-button block class="m-btn" size="lg" variant="primary" href="/flora/search?q=**">Search</b-button>
+              <b-button block class="m-btn" size="lg" variant="primary" href="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f">Browse classification</b-button>
               <b-button block class="m-btn" size="lg" variant="primary">Keys</b-button>
             </b-row>
 

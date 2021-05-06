@@ -22,10 +22,36 @@
 - Added the map in the overview tag
 - Added v-viewer title
 ### To do
-- Distribution - source & link to bioregion
 - Threat status
 - Ask the requirements of Protologue Publication year and Overview Referneces -
 - Use RankID to identify the class √
 - Finish the taxon part √
 - begin the CheckList part ×
+
+
+> ## 3/30
+> ### Done
+- Complete the specimen images
+- Fix a bug when genus doesn't have distribution
+> ### To do
+- Threat status
 - Key btn on the classification 
+- Distribution - source & link to bioregion
+- Distribution - legend bug when in the mobile advice
+- Search part
+- tags switch
+- a style bug on the header - More √
+
+> ## 3/31
+> ### Done
+- Fix a style bug on the header - More
+> ### To do
+- Search part
+- Tags switch
+- How to trigger the facet modal
+
+> ## 4/14
+> ### To do
+- fq modal √
+- Typeahead √
+- Scroll of modal

@@ -1,7 +1,6 @@
 query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
   taxonConcept(id: $id) {
     id
-    guid
     mapLinks{
       profileMap
 			distributionMap
@@ -38,7 +37,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
       thumbnailUrl
       previewUrl
     }
-    imagesPaginated(page:$imagesPage,first:24){
+    images(page:$imagesPage,first:24){
       data {
         id
         previewUrl
@@ -57,16 +56,12 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
         total
       }
     }
-    specimenImagesPaginated(page:$specimenImagesPage,first:24){
-      data {
+    specimenImages(page:$specimenImagesPage,first:24){
+       data {
         id
         thumbnailUrl
-        assetCreationDate
+        alaImageUuid
         caption
-        creator
-        license
-        rights
-        subtype
 			}
       paginatorInfo{
         count
@@ -76,12 +71,6 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
       }
     }
 
-    specimenImages {
-      id
-    }
-    specimenImagesAccepted{
-      id
-    }
     currentProfile {
       profile
     }
@@ -105,7 +94,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
     }
     parent {
       id
-      guid
+      
       taxonName {
         id
         fullName
@@ -114,7 +103,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
     }
     children {
       id
-      guid
+      
       taxonName {
         id
         fullName
@@ -128,7 +117,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
     }
     siblings {
       id
-      guid
+      
       taxonName {
         id
         fullName
@@ -140,7 +129,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
       depth
       taxonConcept {
         id
-        guid
+        
         taxonName {
           id
           fullName
