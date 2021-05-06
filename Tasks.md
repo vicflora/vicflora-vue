@@ -85,8 +85,23 @@
 > ## 4/30
 > ### Done
 - search page migration 
-> ### To do
-- add spinner in images container
 - v-viwer swith the images
+- add spinner in images container
+> ### To do
 - accepted name link
 
+> ## 5/05
+> ### Done
+- regions static pages
+> ### To do
+- toc style and depth
+- other static pages
+- keys
+  
+> ## 5/06
+> ### Done
+- toc style and depth
+> ### To do
+- style of Markdown {{}}
+- other static pages
+- keys
