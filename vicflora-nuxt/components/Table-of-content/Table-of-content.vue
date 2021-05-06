@@ -12,7 +12,7 @@
               'pl-2': link.depth === 3,
               'pl-3': link.depth === 4,
               'pl-4': link.depth === 5,
-              'pl-5': link.depth === 6,
+              'pl-5': link.depth === 6
             }"
             class="m-hover"
             v-for="link of toc"
@@ -20,7 +20,8 @@
           >
             <a
               :class="{
-                'text-red-500 hover:text-red-600': link.id === currentlyActiveToc,
+                'text-red-500 hover:text-red-600':
+                  link.id === currentlyActiveToc,
                 'text-black hover:gray-900': link.id !== currentlyActiveToc
               }"
               role="button"
@@ -54,20 +55,25 @@ export default {
       }
     };
   },
-   mounted() {
+  mounted() {
     this.observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-          const id = entry.target.getAttribute('id');
-          if (entry.isIntersecting) {
-            this.currentlyActiveToc = id;
-          }
-      });
+      for (let entry of entries) {
+        const id = entry.target.getAttribute("id");
+        if (entry.isIntersecting) {
+          this.currentlyActiveToc = id;
+          break;
+        }
+      }
     }, this.observerOptions);
 
     // Track all sections that have an `id` applied
-    document.querySelectorAll('.nuxt-content h2[id], .nuxt-content h3[id], .nuxt-content h4[id], .nuxt-content h5[id]').forEach((section) => {
+    document
+      .querySelectorAll(
+        ".nuxt-content h2[id], .nuxt-content h3[id], .nuxt-content h4[id], .nuxt-content h5[id]"
+      )
+      .forEach(section => {
         this.observer.observe(section);
-    });
+      });
   },
   beforeDestroy() {
     this.observer.disconnect();
@@ -76,13 +82,13 @@ export default {
     const article = await $content("main").fetch();
 
     return {
-      article,
+      article
     };
   },
   methods: {
     tableOfContentsHeadingClick(link) {
       this.currentlyActiveToc = link.id;
-    },
+    }
   }
 };
 </script>
