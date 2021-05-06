@@ -13,13 +13,13 @@
     </b-row>
     <!-- content -->
     <b-row>
-      <b-col align-self="start" cols="9">
+      <b-col align-self="start" cols="8">
         <markdown class="text-left">
           <nuxt-content :document="markdown" class="m-content" />
         </markdown>
       </b-col>
       <!-- table of content -->
-      <b-col align-self="start" cols="3">
+      <b-col align-self="start" cols="4">
         <TableOfContent :toc="markdown.toc"></TableOfContent>
       </b-col>
     </b-row>
@@ -28,13 +28,14 @@
 <script>
 import TableOfContent from "@/components/Table-of-content/Table-of-content";
 export default {
+  name:"Bioregions",
   components: {
     TableOfContent
   },
   async asyncData({ $content, params }) {
     // fetch our md here
     const markdown = await $content("statics/bioregions", params.id).fetch();
-    console.log(markdown.toc)
+    // console.log(markdown.toc)
     return { markdown };
   },
   data() {
