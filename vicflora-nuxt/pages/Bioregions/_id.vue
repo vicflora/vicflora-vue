@@ -13,13 +13,13 @@
     </b-row>
     <!-- content -->
     <b-row>
-      <b-col align-self="start" cols="8">
+      <b-col align-self="start" cols="9">
         <markdown class="text-left">
-          <nuxt-content :document="markdown" class="m-content" />
+          <nuxt-content :document="markdown" class="m-content" id="scrollspy-nested" />
         </markdown>
       </b-col>
       <!-- table of content -->
-      <b-col align-self="start" cols="4">
+      <b-col align-self="start" cols="3">
         <TableOfContent :toc="markdown.toc"></TableOfContent>
       </b-col>
     </b-row>

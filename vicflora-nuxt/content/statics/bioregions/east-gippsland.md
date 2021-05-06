@@ -132,7 +132,7 @@ The lower reaches, floodplains and some of the valleys of the major river system
 * Mitchell River— 11 900 ha;
 * Snowy River—98 700 ha.
 
-# State Parks
+## State Parks
 
 * Coopracambra—38 800 ha;
 * Lake Tyers (proposed)—7100 ha (plus proposed addition of 1300 ha);
