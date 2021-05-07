@@ -1,13 +1,39 @@
-.m-toc {
-  position: fixed;
+.m-toc-container {
   text-align: left;
   list-style: none;
+  padding-left: 8px;
+  height: 100vh;
+  
+  p {
+    margin-bottom: 4px;
+    font-family: "goodsans-medium";
+  }
+
+  .m-content {
+    padding-left: 10px;
+    margin-bottom: 4px;
+    position: fixed;
+    border-left: 1px solid #eee;
+  }
 }
+
+
+.m-toc {
+  text-align: left;
+  list-style: none;
+  padding-left:0px;
+  padding-top: 2px;
+}
+
 .m-active {
     font-weight:bold;
 }
 
 .m-hover:hover {
     font-weight:bold;
+}
+
+.m-invisible{
+  display: none;
 }
 

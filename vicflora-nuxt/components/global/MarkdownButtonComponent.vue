@@ -1,5 +1,5 @@
 <template>
-  <b-button :size="size"><a :href="href">{{button_text}}</a></b-button>
+  <b-button variant="outline-primary" :size="size"><a :href="href">{{button_text}}</a></b-button>
 </template>
 
 <script>

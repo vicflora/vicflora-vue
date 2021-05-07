@@ -56,7 +56,7 @@ export default {
   },
   content: {
     markdown: {
-      tocDepth: 5,
+      tocDepth: 6,
     }
   },
 

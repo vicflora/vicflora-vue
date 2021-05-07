@@ -2,36 +2,35 @@
 @import "./Table-of-content.scss";
 </style>
 <template>
-  <div v-if="toc.length" class="m-toc">
-    <div>
-      <nav>
-        <ul class="m-toc">
-          <li
-            @click="tableOfContentsHeadingClick(link)"
+  <div class="m-toc-container">
+    <div class="m-content">
+      <p>NAVIGATION</p>
+      <ul class="m-toc">
+        <li
+          @click="tableOfContentsHeadingClick(link)"
+          :class="{
+            'pl-2': link.depth === 3,
+            'pl-3': link.depth === 4,
+            'pl-4': link.depth === 5,
+            'pl-5': link.depth === 6
+          }"
+          class="m-hover"
+          v-for="link of newToc"
+          :key="link.id"
+        >
+          <a
             :class="{
-              'pl-2': link.depth === 3,
-              'pl-3': link.depth === 4,
-              'pl-4': link.depth === 5,
-              'pl-5': link.depth === 6
+              'm-invisible': invisible(link),
+              'text-red-500 hover:text-red-600': link.id === currentlyActiveToc,
+              'text-black hover:gray-900': link.id !== currentlyActiveToc
             }"
-            class="m-hover"
-            v-for="link of toc"
-            :key="link.id"
+            role="button"
+            class="transition-colors duration-75 text-base mb-2 block"
+            :href="`#${link.id}`"
+            >{{ link.text }}</a
           >
-            <a
-              :class="{
-                'text-red-500 hover:text-red-600':
-                  link.id === currentlyActiveToc,
-                'text-black hover:gray-900': link.id !== currentlyActiveToc
-              }"
-              role="button"
-              class="transition-colors duration-75 text-base mb-2 block"
-              :href="`#${link.id}`"
-              >{{ link.text }}</a
-            >
-          </li>
-        </ul>
-      </nav>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -47,6 +46,7 @@ export default {
   },
   data() {
     return {
+      newToc: [],
       currentlyActiveToc: "",
       observer: null,
       observerOptions: {
@@ -56,6 +56,29 @@ export default {
     };
   },
   mounted() {
+    // restucture the toc array
+    let parents = [];
+    this.newToc = [];
+    for (let item of this.toc) {
+      this.newToc.push(JSON.parse(JSON.stringify(item)));
+    }
+    let level = 2;
+    for (let item of this.newToc) {
+      if (item.depth > level) {
+        level = item.depth;
+        item["parents"] = [...parents];
+        parents.push(item.id);
+      } else {
+        while (parents.length >= item.depth - 1) {
+          parents.pop();
+        }
+
+        level = item.depth;
+        item["parents"] = [...parents];
+        parents.push(item.id);
+      }
+    }
+
     this.observer = new IntersectionObserver(entries => {
       for (let entry of entries) {
         const id = entry.target.getAttribute("id");
@@ -68,9 +91,7 @@ export default {
 
     // Track all sections that have an `id` applied
     document
-      .querySelectorAll(
-        ".nuxt-content h2[id], .nuxt-content h3[id], .nuxt-content h4[id], .nuxt-content h5[id]"
-      )
+      .querySelectorAll(".nuxt-content h2[id], .nuxt-content h3[id]")
       .forEach(section => {
         this.observer.observe(section);
       });
@@ -81,6 +102,33 @@ export default {
   methods: {
     tableOfContentsHeadingClick(link) {
       this.currentlyActiveToc = link.id;
+    },
+    invisible(link) {
+      if (link.parents.length === 0) {
+        return false;
+      }
+      for (let item of this.currentlyActiveTocParents) {
+        if (link.parents.includes(item)) {
+          return false;
+        }
+      }
+
+      return true;
+      // for(let item of link.parents){
+      //   if(this.currentlyActiveTocParents.includes(item)){
+      //     return false
+      //   }
+      // }
+    }
+  },
+  computed: {
+    currentlyActiveTocParents: function() {
+      for (let item of this.newToc) {
+        if (item.id === this.currentlyActiveToc) {
+          return item.parents;
+        }
+      }
+      return [];
     }
   }
 };

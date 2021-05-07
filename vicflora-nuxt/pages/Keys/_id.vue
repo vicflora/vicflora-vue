@@ -4,7 +4,7 @@
 }
 </style>
 <template>
-  <b-container class="m-static">
+  <b-container class="m-static" >
     <!-- title -->
     <b-row>
       <b-col class="mt-4 mb-2 m-title">
@@ -43,5 +43,16 @@ export default {
       content: ""
     };
   },
+  // computed:{
+  //   toc: function(){
+  //     this.markdown.toc
+  //   }
+  // }
+  mounted(){
+    
+
+
+    // console.log(this.markdown.toc)
+  }
 };
 </script>
