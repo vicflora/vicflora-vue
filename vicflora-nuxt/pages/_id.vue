@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 .m-static::v-deep {
-  @import "bioregions-static.scss";
+  @import "./static.scss";
 }
 </style>
 <template>
@@ -28,33 +28,22 @@
 <script>
 import TableOfContent from "@/components/Table-of-content/Table-of-content";
 export default {
-  name:"Bioregions",
+  name:"Help",
   components: {
     TableOfContent
   },
   async asyncData({ $content, params }) {
     // fetch our md here
-    const markdown = await $content("statics/bioregions", params.id).fetch();
+    const markdown = await $content(`statics/${params.id.toLowerCase()}`).fetch();
     // console.log(markdown.toc)
     return { markdown };
   },
   data() {
     return {
-      handbook: "",
       content: ""
     };
   },
   computed: {
-    id: function() {
-      return this.$route.params.id;
-    }
   },
-  mounted() {
-    let list = [];
-    for (let word of this.$route.params.id.split("-")) {
-      list.push(word.replace(word[0], word[0].toUpperCase()));
-    }
-    this.title = list.join(" ");
-  }
 };
 </script>

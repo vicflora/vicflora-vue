@@ -34,9 +34,9 @@
               <template #button-content>
                 <span class="m-menu-item-more">More</span>
               </template>
-              <b-dropdown-item href="/">Help</b-dropdown-item>
-              <b-dropdown-item href="/">About</b-dropdown-item>
-              <b-dropdown-item href="/"
+              <b-dropdown-item href="/Help">Help</b-dropdown-item>
+              <b-dropdown-item href="/About">About</b-dropdown-item>
+              <b-dropdown-item href="/Acknowledgements"
                 >Acknowledgements</b-dropdown-item
               >
             </b-nav-item-dropdown>

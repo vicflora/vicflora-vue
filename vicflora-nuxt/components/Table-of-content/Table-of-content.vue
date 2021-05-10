@@ -2,53 +2,37 @@
 @import "./Table-of-content.scss";
 </style>
 <template>
-  <div v-if="toc.length" class="w-full lg:w-1/4 block relative m-toc">
-    <div
-      class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)"
-    >
-      <nav>
-        <scrollactive
-          highlight-first-item
-          active-class="m-active"
-          :offset="8"
-          tag="nav"
+  <div class="m-toc-container">
+    <div class="m-content">
+      <p>NAVIGATION</p>
+      <ul class="m-toc">
+        <li
+          @click="tableOfContentsHeadingClick(link)"
+          :class="{
+            'pl-2': link.depth === 3,
+            'pl-3': link.depth === 4,
+            'pl-4': link.depth === 5,
+            'pl-5': link.depth === 6
+          }"
+          class="m-hover"
+          v-for="link of newToc"
+          :key="link.id"
         >
-          <li
-            v-for="link of toc"
-            :key="link.id"
-            class="text-gray-700 dark:text-gray-300"
+          <a
             :class="{
-              'border-t border-dashed dark:border-gray-800 first:border-t-0':
-               link.depth === 2
+              'm-invisible': invisible(link),
+              'text-red-500 hover:text-red-600': link.id === currentlyActiveToc,
+              'text-black hover:gray-900': link.id !== currentlyActiveToc
             }"
+            role="button"
+            class="transition-colors duration-75 text-base mb-2 block"
+            :href="`#${link.id}`"
+            >{{ link.text }}</a
           >
-            <a
-              :href="`#${link.id}`"
-              class="block text-sm scrollactive-item transition-padding ease-in-out duration-300 hover:pl-1 m-hover"
-              :class="{
-                'py-2': link.depth === 2,
-                'ml-2 pb-2': link.depth === 3,
-                'ml-3 pb-2': link.depth === 4,
-                'ml-4 pb-2': link.depth === 5,
-                'ml-5 pb-2': link.depth === 6
-              }"
-              >{{ link.text }}</a
-            >
-          </li>
-        </scrollactive>
-      </nav>
+        </li>
+      </ul>
     </div>
   </div>
-  <!-- <ul>
-    <li
-      v-for="link of toc"
-      :key="link.id"
-      :class="{ 'toc2': link.depth === 2, 'toc3': link.depth === 3 }"
-
-    >
-      <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
-    </li>
-  </ul> -->
 </template>
 
 <script>
@@ -60,12 +44,92 @@ export default {
       default: () => []
     }
   },
-  components: {
-  },
   data() {
     return {
-      markdown: {}
+      newToc: [],
+      currentlyActiveToc: "",
+      observer: null,
+      observerOptions: {
+        root: this.$refs.nuxtContent,
+        threshold: 0
+      }
     };
+  },
+  mounted() {
+    // restucture the toc array
+    let parents = [];
+    this.newToc = [];
+    for (let item of this.toc) {
+      this.newToc.push(JSON.parse(JSON.stringify(item)));
+    }
+    let level = 2;
+    for (let item of this.newToc) {
+      if (item.depth > level) {
+        level = item.depth;
+        item["parents"] = [...parents];
+        parents.push(item.id);
+      } else {
+        while (parents.length >= item.depth - 1) {
+          parents.pop();
+        }
+
+        level = item.depth;
+        item["parents"] = [...parents];
+        parents.push(item.id);
+      }
+    }
+
+    this.observer = new IntersectionObserver(entries => {
+      for (let entry of entries) {
+        const id = entry.target.getAttribute("id");
+        if (entry.isIntersecting) {
+          this.currentlyActiveToc = id;
+          break;
+        }
+      }
+    }, this.observerOptions);
+
+    // Track all sections that have an `id` applied
+    document
+      .querySelectorAll(".nuxt-content h2[id], .nuxt-content h3[id]")
+      .forEach(section => {
+        this.observer.observe(section);
+      });
+  },
+  beforeDestroy() {
+    this.observer.disconnect();
+  },
+  methods: {
+    tableOfContentsHeadingClick(link) {
+      this.currentlyActiveToc = link.id;
+    },
+    invisible(link) {
+      if (link.parents.length === 0) {
+        return false;
+      }
+      for (let item of this.currentlyActiveTocParents) {
+        if (link.parents.includes(item)) {
+          return false;
+        }
+      }
+
+      return true;
+      // for(let item of link.parents){
+      //   if(this.currentlyActiveTocParents.includes(item)){
+      //     return false
+      //   }
+      // }
+    }
+  },
+  computed: {
+    currentlyActiveTocParents: function() {
+      for (let item of this.newToc) {
+        if (item.id === this.currentlyActiveToc) {
+          return item.parents;
+        }
+      }
+      return [];
+    }
   }
 };
 </script>
