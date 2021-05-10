@@ -1,12 +1,45 @@
 ---
 title: East Gippsland
+warning:
+  type: warning
+  content: >
+    The East Gippsland natural region in the Flora of Victoria system 
+    (Conn 1993) comprises the <b>Monaro Tablelands</b>, <b>Highlands-Far 
+    East</b>, <b>East Gippsland Uplands</b> and <b>East Gippsland Lowlands</b> 
+    regions in the current system of bioregions.
+regions:
+  - Monaro Tablelands
+  - Highlands-Far East
+  - East Gippsland Uplands
+  - East Gippsland Lowlands
+images:
+  - src: https://data.rbg.vic.gov.au/images/P/Library/69709?b=512
+    caption: >
+      <b>East Gippsland; rainshadow woodland. <i>Eucalyptus albens</i> woodland, 
+      with some <i>Callitris glaucophylla</i> on lower slopes. <i>Acacia 
+      mearnsii</i>, <i>Calytrix tetragona</i>, <i>Eucalyptus blakelyi</i>, 
+      <i>Kunzea ericoides</i> and <i>Salix alba</i> beside river, with 
+      orange-flowered <i>Eschscholsia californica</i> on beaches. Upper Snowy 
+      River.</b>
+  - src: https://data.rbg.vic.gov.au/images/P/Library/69711?b=512
+    caption: >
+      <b>East Gippsland; warm temperate rainforest. <i>Acmena smithii</i>, 
+      <i>Tristaniopsis laurina</i> canopy, overgrown by liane <i>Cissus 
+      hypoglauca</i>. Wet sclerophyll forest in background. Martins Creek, 
+      Bonang Highway.</b>
+  - src: https://data.rbg.vic.gov.au/images/P/Library/69710?b=512
+    caption: >
+      <b>East Gippsland; cool temparate rainforest. Characteristic conical trees 
+      of <i>Atherospermum moschatum</i>, with <i>Dicksonia antarctica</i> and 
+      <i>Elaeocarpus holopetalus</i>. <i>Eucalyptus denticulata</i> emergent. 
+      Errinundra plateau.
 ---
 
-<markdown-alert-component :type="'warning'" :content="'The East Gippsland natural region in the Flora of Victoria system (Conn 1993) comprises the <b>Monaro Tablelands</b>, <b>Highlands-Far East</b>, <b>East Gippsland Uplands</b> and <b>East Gippsland Lowlands</b> regions in the current system of bioregions.'"></markdown-alert-component>
+<markdown-alert-component :type="warning.type" :content="warning.content"></markdown-alert-component>
 
 ## Location
 
-![map](<http://data.rbg.vic.gov.au/geoserver/vicflora/wms?service=WMS&version=1.1.0&request=GetMap&layers=vicflora:vic_boundaries,vicflora:vicflora_bioregion&styles=polygon,red_polygon&bbox=140.96179,-39.19847,149.97651,-33.98057&width=480&height=278&srs=EPSG:4326&format=image%2Fsvg&cql_filter=INCLUDE;sub_name_7%20IN%20(%27East+Gippsland+Uplands%27,%27East+Gippsland+Lowlands%27,%27Monaro+Tablelands%27,%27Highlands-Far+East%27)>)
+<bioregion-map-component :regions="regions"></bioregion-map-component>
 
 The north-western boundary of East Gippsland approximates the 1200-metre altitude contour and is shared with the Snowfields Region. The East Gippsland Region includes the area south of this boundary to the Victorian coast. The western boundary has been arbitrarily defined as the Tambo River valley and the Omeo Highway from near Mt Tongio to Tambo Crossing, then sweeping westward to include the gorge and environs of the Mitchell River, with the most westerly limit including the Mt Moornapa Flora Reserve (25 km NNE of Stratford). This boundary is shared by the Eastern Highlands south to Stockdale, from where there is a common boundary to the east with the Gippsland Plains. In New South Wales this region adjoins the Monaro Region _(sensu_ Costin 1954) of the Southern Tablelands and is continuous with the South Coast Region. A small part of the Monaro Tableland extends into Victoria in the vicinity of Bendoc. In New South Wales the ‘East Gippsland’ Region is here defined as including the _Callitris glaucophylla–Eucalyptus albens_ rainshadow woodland association, the _E. melliodora–E. blakelyi_ woodland association, the _E. macrorhyncha–E. rossii_ dry sclerophyll forest association, and the _E. fastigata–E. viminalis_ wet sclerophyll forest association.
 
@@ -64,7 +97,7 @@ A riparian form of this community occurs in coarse alluvial sands periodically i
 
 The distinctiveness of rainshadow woodland from the surrounding vegetation can be observed when travelling north-east into the Snowy River valley on either the Snowy River Road or the Deddick River Road.
 
-<markdown-figure-component :src="'https://data.rbg.vic.gov.au/images/P/Library/69709?encoding=UTF-8&b=512'" :caption="'<b>East Gippsland; rainshadow woodland. <i>Eucalyptus albens</i> woodland, with some <i>Callitris glaucophylla</i> on lower slopes. <i>Acacia mearnsii</i>, <i>Calytrix tetragona</i>, <i>Eucalyptus blakelyi</i>, <i>Kunzea ericoides</i> and <i>Salix alba</i> beside river, with orange-flowered <i>Eschscholsia californica</i> on beaches. Upper Snowy River.</b>'"></markdown-figure-component>
+<markdown-figure-component :src="images[0].src" :caption="images[0].caption"></markdown-figure-component>
 
 ### Forests
 
@@ -92,13 +125,13 @@ These forests are near the southern limit of a vegetation type that is more exte
 
 Many areas have been severely damaged by fire. The largest stands of warm temperate rainforest in Victoria occurred in the upper reaches of Jones Creek, near Genoa. However, this community was severely burnt by wildfire in early 1983, and whether complete recovery will occur is unknown (Parkes, Moorrees & Williams 1985). A well-known example of warm temperate rainforest occurs on the southern slopes of Mt Drummer in the Alfred National Park. Other localities include Martins Creek along the Bonang Highway, and Bemm River along the Combienbar Road. The most westerly occurrence of this community occurs in the Mt Moornapa Flora Reserve (Ashton & Frankenberg 1976; Seddon & Cameron 1985b). Nearby, in the Mitchell River State Park, floristically richer examples of this community occur. For further details of the localities and structure of the warm temperate rainforest refer to Seddon and Cameron (1985a, 1985b) and Cameron (1987).
 
-<markdown-figure-component :src="'https://data.rbg.vic.gov.au/images/P/Library/69711?encoding=UTF-8&b=512'" :caption="'<b>East Gippsland; warm temperate rainforest. <i>Acmena smithii</i>, <i>Tristaniopsis laurina</i> canopy, overgrown by liane <i>Cissus hypoglauca</i>. Wet sclerophyll forest in background. Martins Creek, Bonang Highway.</b>'"></markdown-figure-component>
+<markdown-figure-component :src="images[1].src" :caption="images[1].caption"></markdown-figure-component>
 
 #### Cool temperate rainforest
 
 A closed-forest of wet montane gullies and sheltered slopes occurs at higher altitudes (600–1000 metres altitude), predominantly on the Errinundra Plateau. This community is classified as a cool temperate rainforest by Ashton (1969), Forbes, Gullan and Walsh (1981), and Forbes, Walsh and Gullan (1982). It occasionally merges with the lower-altitude warm temperate rainforest. Cool temperate rainforest is dominated by _Atherosperma moschatum_ and _Elaeocarpus holopetalus_, frequently with _Eucalyptus denticulata_ as an emergent (Plate 6j). _Acacia dealbata_, _Pittosporum bicolor_, _Tasmannia lanceolata_ and _Telopea oreades_ are common shrubs to small trees. Lianes are rare or absent. Of the ferns, _Dicksonia antarctica_ and _Blechnum_ spp. (e.g. _B. wattsii)_ dominate the understorey. Several epiphytic ferns are common (e.g. _Asplenium bulbiferum_ and _Polyphlebium venosum_). Mosses are common on the tree-trunks, fallen logs and rocks (Ashton 1969).
 
-In Victoria, the principal areas of cool temperate rainforest are found in this region, the [Gippsland Highlands](./gippsland-highlands'), [Wilsons Promontory](./wilsons-promontory) and the [Otway Range](./otway-range). The last three regions support rainforests dominated by _Nothofagus cunninghamii_, whereas this species is absent from East Gippsland. The distribution of cool temperate rainforest within Victoria is given by Seddon and Cameron (1985a, 1985b) and Cameron, D. G. (1987).
+In Victoria, the principal areas of cool temperate rainforest are found in this region, the [Gippsland Highlands](./gippsland-highlands), [Wilsons Promontory](./wilsons-promontory) and the [Otway Range](./otway-range). The last three regions support rainforests dominated by _Nothofagus cunninghamii_, whereas this species is absent from East Gippsland. The distribution of cool temperate rainforest within Victoria is given by Seddon and Cameron (1985a, 1985b) and Cameron, D. G. (1987).
 
 Dense mossy rainforest thickets, with emergent _Podocarpus lawrencei_ occur near Goonmirk Rocks, on the Goonmirk Range at an altitude of 1000 metres (Ashton 1969). The dominant shrubs of these thickets include _Notelaea ligustrina_, _Prostanthera lasianthos_, _Tasmannia_ and _Telopea_. _Podocarpus lawrencei_, typically a low alpine shrub, grows to 17 metres high in the shelter of _Atherosperma moschatum_ in one example of this interesting alliance.
 
@@ -106,13 +139,13 @@ Cool temperate rainforest is found in areas where the surrounding forest has not
 
 Examples of cool temperate rainforest and wet sclerophyll forest on the Errinundra Plateau can be seen along the Errinundra Road and Coast Range Road, although mature stands are interspersed with young regrowth after timber harvesting.
 
-<markdown-figure-component :src="'https://data.rbg.vic.gov.au/images/P/Library/69710?encoding=UTF-8&b=512'" :caption="'<b>East Gippsland; cool temparate rainforest. Characteristic conical trees of <i>Atherospermum moschatum</i>, with <i>Dicksonia antarctica</i> and <i>Elaeocarpus holopetalus</i>. <i>Eucalyptus denticulata</i> emergent. Errinundra plateau.'"></markdown-figure-component>
+<markdown-figure-component :src="images[2].src" :caption="images[2].caption"></markdown-figure-component>
 
 #### Montane sclerophyll woodland and montane forest
 
 A tall woodland or tall open-forest occurs on rocky, mountain soils in areas of low effective rainfall (Parkes, Moorrees & Williams 1985). This community is characterized by _Eucalyptus dalrympleana_, _E. dives_, _E. pauciflora_, _E. rubida_, and occasionally by _E. obliqua_ (Figure 6.26). At higher altitudes the association tends to grade with Snow-gum woodland (characteristic of the Snowfields Region) and at lower altitudes, it merges with dry sclerophyll forest. There are isolated occurrences at Mt Tingaringy, Mt Bowen, and on the Gunmark Road (near Bendoc). The canopy is commonly dominated by _Eucalyptus rubida_ (height 30–40 metres), with the other eucalypts forming an open second tree-storey (7–15 metres high). The common species of the tall shrub-layer are _Daviesia ulicifolia_, _Leptospermum grandifolium_, _Leucopogon hookeri_, _L. maccraei_, _Monotoca scoparia_, _Olearia phlogopappa_, _Pultenaea juniperina_ and _Tasmannia lanceolata_.
 
-A tall open-forest, characteristically dominated by _Eucalyptus delegatensis_, occurs at scattered localities throughout the region (e.g. Mt Delegate and Mt Ellery). This community has been more fully discussed in the [Snowfields Region]({{ '/bioregions/snowfields' | relative_url }}).
+A tall open-forest, characteristically dominated by _Eucalyptus delegatensis_, occurs at scattered localities throughout the region (e.g. Mt Delegate and Mt Ellery). This community has been more fully discussed in the [Snowfields Region](./snowfields).
 
 #### Riparian forest
 

@@ -1,14 +1,43 @@
 ---
 title: Murray Mallee
+warning:
+  type: warning
+  content: >
+    The Murray Mallee as recognised by Conn (1993) includes the <b>Murray 
+    Mallee</b>, <b>Murray Scroll Belt</b> and <b>Robinvale Plains</b> regions 
+    in the current system of bioregions of Victoria.
+regions:
+  - Murray Mallee
+  - Murray Scroll Belt
+  - Robinvale Plains
+images:
+  - src: https://data.rbg.vic.gov.au/images/P/Library/69676?b=512
+    caption: >
+      <b>Murray Mallee; east-west dune mallee. <i>Eucalyptus socialis</i> and 
+      <i>E. leptophylla</i> with <i>Callitris verrucosa</i>, <i>Cryptandra 
+      amara</i>, <i>Melaleuca lanceolata</i>, <i>Phebalium bullatum</i>. 
+      Werrimull South, Sunset Country.</b>
+  - src: https://data.rbg.vic.gov.au/images/P/Library/69678?b=512
+    caption: >
+      <b>Murray Mallee; Belah woodland. <i>Casuarina pauper</i> woodland with 
+      <i>Myoporum platycarpum</i>, and understorey species <i>Hakea 
+      leucoptera</i>, <i>Olearia muelleri</i>, <i>Senna artemisioides</i>, 
+      <i>Scaevola spinescens</i>. Yarrara, Sunset Country</b>
+  - src: http://data.rbg.vic.gov.au/images/P/Library/69677?b=512
+    caption: >
+      <b>Murray Mallee; halophytic shrubland, <i>Melaleuca halmaturorum</i> 
+      (Salt Paperbark) with low succulent shrubs and herbs, including 
+      <i>Disphyma</i>, <i>Frankenia</i>, <i>Halosarcia</i>, <i>Sarcocornia</i>. 
+      Dune mallee upslope from halophytic shrubland margin. Pink Lakes.</b>
 ---
 
-<markdown-alert-component :type="'warning'" :content="'The Murray Mallee as recognised by Conn (1993) includes the <b>Murray Mallee</b>, <b>Murray Scroll Belt</b> and <b>Robinvale Plains</b> regions in the current system of bioregions of Victoria.'"></markdown-alert-component>
+<markdown-alert-component :type="warning.type" :content="warning.content"></markdown-alert-component>
 
 The physiographic province described by the general term ‘Mallee’ refers to those semi-arid plains of south-eastern Australia characterized by extensive sand-ridges on which eucalypts with a particular growth habit (see ‘The mallee habit’ below) form the dominant cover (Bowler & Magee 1978). This Mallee province is here divided into two regions, namely the Murray Mallee and the Lowan Mallee Regions.
 
 ## Location
 
-![map](<http://data.rbg.vic.gov.au/geoserver/vicflora/wms?service=WMS&version=1.1.0&request=GetMap&layers=vicflora:vic_boundaries,vicflora:vicflora_bioregion&styles=polygon,red_polygon&bbox=140.96179,-39.19847,149.97651,-33.98057&width=480&height=278&srs=EPSG:4326&format=image%2Fsvg&cql_filter=INCLUDE;sub_name_7%20IN%20(%27Murray+Mallee%27,%27Murray+Scroll+Belt%27,%27Robinvale+Plains%27)>)
+<bioregion-map-component :regions="regions"></bioregion-map-component>
 
 The southern limits of the Murray Mallee Region forms a narrow zone in the Dimboola and Gerang Gerung area that separates the western and eastern parts of the Wimmera Region. The Little Desert of the Lowan Mallee Region isolates a small disjunct area of the Murray Mallee to the west of Horsham. The region extends beyond the Murray River (into New South Wales and South Australia) in the north to about the 33°S meridian of latitude, with more scattered occurrences extending towards Menindee (latitude about 32°30’S). In New South Wales this region occurs mainly to the east of the Darling River and then to the west of the Silver City Highway. In South Australia the northern limits approximate the northern boundary of the Dangalli Conservation Park, north of Renmark. Although no attempt has been made to map the exact extent of this region in South Australia, it extends north into the southern (particularly, south-western) part of the South Olary Plains environmental region of the Eastern province (Laut et al. 1977a, 1977b). The eastern boundary (in Victoria) is formed by the western limit of the current floodplain of the Avoca River, with the western boundary adjoining the eastern limits of the Lowan Mallee (the Big Desert and the southern parts of the Sunset Country). At latitude about 34°40’S the region extends westerly, from Victoria to just north of Nildottie on the Murray River in South Australia. It then includes the area between the eastern edge of the Mt Lofty Ranges escarpment and the Murray River as far south as Langhorne Creek in the Bleasdale environmental association of the south-east mallee environmental heathlands region in South Australia of Laut et al. (1977a, 1977b) and as far north as a latitude of about 34°S. There are several outliers, particularly in New South Wales. This suggests that the mallee communities have expanded and contracted with changes in climate (Beadle 1981). In Victoria outliers occur north of Bendigo in the ‘Whipstick Mallee’, and near Melton (Myers 1986).
 
@@ -58,7 +87,7 @@ This community is common to the west of the Raak Plain and to the northern Sunse
 
 Anon. (1987) and Cheal and Parkes (in Noble & Bradstock 1989) recognize a ‘shallow-sand mallee’ community which is intermediate between the Chenopod mallee of the swales and the east/west dune mallee and deep-sand mallee of the dunes.
 
-<markdown-figure-component :src="'https://data.rbg.vic.gov.au/images/P/Library/69676?b=512'" :caption="'<b>Murray Mallee; east-west dune mallee. <i>Eucalyptus socialis</i> and <i>E. leptophylla</i> with <i>Callitris verrucosa</i>, <i>Cryptandra amara</i>, <i>Melaleuca lanceolata</i>, <i>Phebalium bullatum</i>. Werrimull South, Sunset Country.</b>'"></markdown-figure-component>
+<markdown-figure-component :src="images[0].src" :caption="images[0].caption"></markdown-figure-component>
 
 #### Red-swale mallee
 
@@ -74,7 +103,7 @@ _Casuarina pauper_ (Belah) and, less commonly, _Callitris preissii,_ often form 
 
 Unlike the mallee eucalypts, _Callitris_ species are killed by fire and regenerate solely from seed. Extensive grazing of _Callitris_ seedlings by rabbits and the deaths by fire have severely reduced the amount of regeneration of these species.
 
-<markdown-figure-component :src="'https://data.rbg.vic.gov.au/images/P/Library/69678?b=512'" :caption="'<b>Murray Mallee; Belah woodland. <i>Casuarina pauper</i> woodland with <i>Myoporum platycarpum</i>, and understorey species <i>Hakea leucoptera</i>, <i>Olearia muelleri</i>, <i>Senna artemisioides</i>, <i>Scaevola spinescens</i>. Yarrara, Sunset Country</b>'"></markdown-figure-component>
+<markdown-figure-component :src="images[1].src" :caption="images[1].caption"></markdown-figure-component>
 
 #### Pine–Buloke woodland
 
@@ -128,7 +157,7 @@ Large copi deposits occur near Cowangie (north-east of Murrayville), on the Sout
 
 The type and density of vegetation on saline playas is determined by the salt concentrations, which, in part, is determined by the season. When crystalline salt is visible on the surface, the vegetation is retricted to the surrounding higher land. The most salt-tolerant species belong to the Chenopodiaceae, particularly the samphires or glassworts (namely _Halosarcia, Pachycornia_ and _Sclerostegia_), but also _Atriplex_, _Maireana_ and _Sclerolaena._ Other salt-tolerant plants include _Frankenia_, _Disphyma crassifolium_ subsp. _clavellatum_ and _Zygophyllum_ (Plate 6C). Several annual Asteraceae are also common.
 
-<markdown-figure-component :src="'http://data.rbg.vic.gov.au/images/P/Library/69677?encoding=UTF-8&b=512'" :caption="'<b>Murray Mallee; halophytic shrubland, <i>Melaleuca halmaturorum</i> (Salt Paperbark) with low succulent shrubs and herbs, including <i>Disphyma</i>, <i>Frankenia</i>, <i>Halosarcia</i>, <i>Sarcocornia</i>. Dune mallee upslope from halophytic shrubland margin. Pink Lakes.</b>'"></markdown-figure-component>
+<markdown-figure-component :src="images[2].src" :caption="images[2].caption"></markdown-figure-component>
 
 ### Alluvial-plain shrubland
 

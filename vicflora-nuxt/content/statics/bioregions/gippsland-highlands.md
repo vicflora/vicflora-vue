@@ -1,14 +1,35 @@
 ---
-layout: bioregions
 title: Gippsland Highlands
-permalink: /bioregions/gippsland-highlands
+warning:
+  type: warning
+  content: >
+    Gippsland Highlands in the Flora of Victoria system of natural regions 
+    (Conn 1993) corresponds to <b>Strzelecki Ranges</b> in the current system of 
+    bioregions in Victoria.
+regions:
+  - Strzelecki Ranges
+images:
+  - src: https://data.rbg.vic.gov.au/images/P/Library/69702?b=512
+    caption: >
+      <b>Gippsland Highlands; cool temparate rainforest. <i>Atherosperma 
+      moschatum</i> and <i>Nothofagus cunninghamii</i> canopy, with tree-ferns 
+      <i>Dicksonia antarctica</i>, and epiphytes <i>ieldia australis</i> and 
+      <i>Microsorum pustulatum</i>. Near Macks Creek, Tarra–Bulga National 
+      Park.</b>
+  - src: https://data.rbg.vic.gov.au/images/P/Library/69705?b=512
+    caption: >
+      <b>Gippsland Highlands; wet sclerophyll forest. <i>Eucalyptus regnans</i> 
+      tall open-forest, with <i>Bedfordia arborescens</i>, <i>Cassinia 
+      trinervia</i>, <i>Cyathea australis</i>, <i>Olearia argophylla</i> and 
+      <i>Tetrarrhena juncea</i>. Tarra River valley, Tarra–Bulga National 
+      Park.</b>
 ---
 
-<div class="alert alert-warning">Gippsland Highlands in the Flora of Victoria system of natural regions (Conn 1993) corresponds to <b>Strzelecki Ranges</b> in the current system of bioregions in Victoria.</div>
+<markdown-alert-component :srtypec="warning.type" :caption="warning.content"></markdown-alert-component>
 
 ## Location
 
-![map](http://data.rbg.vic.gov.au/geoserver/vicflora/wms?service=WMS&version=1.1.0&request=GetMap&layers=vicflora:vic_boundaries,vicflora:vicflora_bioregion&styles=polygon,red_polygon&bbox=140.96179,-39.19847,149.97651,-33.98057&width=480&height=278&srs=EPSG:4326&format=image%2Fsvg&cql_filter=INCLUDE;sub_name_7%20IN%20(%27Strzelecki+Ranges%27))
+<bioregion-map-component :regions="regions"></bioregion-map-component>
 
 The boundary of this region approximates the 150–200 metre elevation contour interval and so includes the Strzelecki Ranges. These ranges are an example of block mountains and, as such, are largely defined by the various geological faults (refer Hills 1940). This region is completely surrounded by the Gippsland Plain.
 
@@ -30,34 +51,34 @@ Most of the native vegetation of this region has been cleared for settlement. In
 
 #### Cool temperate rainforest
 
-A closed-forest dominated by *Nothofagus cunninghamii* occurs in deep, protected gullies within the high rainfall areas of the region (Howard & Ashton 1973; Gullan et al. 1984; Seddon & Cameron 1985a, 1985b). *Atherosperma moschatum* occurs as a sub-dominant or understorey species, together with *Acacia dealbata* and *A. melanoxylon*. *Dicksonia antarctica* is the most common tree-fern, but *Cyathea australis* and *C. cunninghamii* are also common. The trees and shrubs of the understorey include *Bedfordia arborescens*, *Coprosma quadrifida*, *Hedycarya angustifolia*, *Lomatia fraseri*, *Olearia argophylla*, *O. lirata*, *Pittosporum bicolor*, *Pomaderris aspera*, *Polyscias sambucifolia*, *Rapanea howittiana* and *Tasmannia lanceolata*. Common lianas include *Billardiera longiflora*, *Clematis aristata*, *C. glycinoides* and *Parsonsia brownii*. The ground-layer is generally sparse under the closed canopy. It is dominated by *Fieldia australis* (often an epiphyte), with *Australina pusilla*, *Sambucus gaudichaudiana*, *Tetrarrhena juncea* and *Viola hederacea* being common. The diverse fern flora includes terrestrial and epiphytic species. The common ferns include *Asplenium bulbiferum*, *Blechnum fluviatile*, *B. nudum*, *B. wattsii*, *Grammitis billardieri*, *Microsorum pustulatum*, *Polystichum proliferum* and *Pteridium esculentum* (particularly in disturbed areas) (Gullan et al. 1984). Rainforest remnants occur in the Tarra–Bulga National Park (Plate 6b). An ecotonal closed-forest that has elements of wet sclerophyll forest and cool temperate rainforest occurs in environments that are intermediate between the two communities.
+A closed-forest dominated by _Nothofagus cunninghamii_ occurs in deep, protected gullies within the high rainfall areas of the region (Howard & Ashton 1973; Gullan et al. 1984; Seddon & Cameron 1985a, 1985b). _Atherosperma moschatum_ occurs as a sub-dominant or understorey species, together with _Acacia dealbata_ and _A. melanoxylon_. _Dicksonia antarctica_ is the most common tree-fern, but _Cyathea australis_ and _C. cunninghamii_ are also common. The trees and shrubs of the understorey include _Bedfordia arborescens_, _Coprosma quadrifida_, _Hedycarya angustifolia_, _Lomatia fraseri_, _Olearia argophylla_, _O. lirata_, _Pittosporum bicolor_, _Pomaderris aspera_, _Polyscias sambucifolia_, _Rapanea howittiana_ and _Tasmannia lanceolata_. Common lianas include _Billardiera longiflora_, _Clematis aristata_, _C. glycinoides_ and _Parsonsia brownii_. The ground-layer is generally sparse under the closed canopy. It is dominated by _Fieldia australis_ (often an epiphyte), with _Australina pusilla_, _Sambucus gaudichaudiana_, _Tetrarrhena juncea_ and _Viola hederacea_ being common. The diverse fern flora includes terrestrial and epiphytic species. The common ferns include _Asplenium bulbiferum_, _Blechnum fluviatile_, _B. nudum_, _B. wattsii_, _Grammitis billardieri_, _Microsorum pustulatum_, _Polystichum proliferum_ and _Pteridium esculentum_ (particularly in disturbed areas) (Gullan et al. 1984). Rainforest remnants occur in the Tarra–Bulga National Park (Plate 6b). An ecotonal closed-forest that has elements of wet sclerophyll forest and cool temperate rainforest occurs in environments that are intermediate between the two communities.
 
-<img src="https://data.rbg.vic.gov.au/images/P/Library/69702?encoding=UTF-8&b=512"><b>Gippsland Highlands; cool temparate rainforest. <i>Atherosperma moschatum</i> and <i>Nothofagus cunninghamii</i> canopy, with tree-ferns <i>Dicksonia antarctica</i>, and epiphytes <i>ieldia australis</i> and <i>Microsorum pustulatum</i>. Near Macks Creek, Tarra–Bulga National Park.</b>
+<markdown-figure-component :src="images[0].src" :caption="images[0].caption"></markdown-figure-component>
 
 #### Wet sclerophyll forest/damp sclerophyll forest
 
-*Eucalyptus regnans* dominates a tall open-forest on deep, loamy kraznozem soils, on wet highland slopes. This community is much less common in the region than it used to be. Extensive clearing by the early settlers, timber utilization and the devastating bushfires of 1898 and 1939 have resulted in few mature stands remaining (Gullan et al. 1984, 1985). *E. obliqua* and *E. cypellocarpa* are often co-dominants or associated species of this community. The understorey and ground layer species include *Acacia dealbata*, *A. melanoxylon*, *Australina pusilla*, *Bedfordia arborescens*, *Cassinia trinerva*, *Clematis aristata*, *Coprosma quadrifida*, *Hedycarya angustifolia*, *Olearia argophylla*, *O. lirata*, *O. phlogopappa*, *Pandorea pandorana*, *Parsonsia brownii*, *Phebalium bilobum*, *Poa labillardieri*, *P. sieberiana*, *Pomaderris aspera*, *Prostanthera lasianthos* and *Tetrarrhena juncea* (Plate 6c). The understorey tree-ferns include *Cyathea australis* and *Dicksonia antarctica*, with *Blechnum nudum*, *B. wattsii*, *Calochlaena dubia*, *Histiopteris incisa*, *Polystichum proliferum* and *Pteridium esculentum* forming the ground-layer ferns.
+_Eucalyptus regnans_ dominates a tall open-forest on deep, loamy kraznozem soils, on wet highland slopes. This community is much less common in the region than it used to be. Extensive clearing by the early settlers, timber utilization and the devastating bushfires of 1898 and 1939 have resulted in few mature stands remaining (Gullan et al. 1984, 1985). _E. obliqua_ and _E. cypellocarpa_ are often co-dominants or associated species of this community. The understorey and ground layer species include _Acacia dealbata_, _A. melanoxylon_, _Australina pusilla_, _Bedfordia arborescens_, _Cassinia trinerva_, _Clematis aristata_, _Coprosma quadrifida_, _Hedycarya angustifolia_, _Olearia argophylla_, _O. lirata_, _O. phlogopappa_, _Pandorea pandorana_, _Parsonsia brownii_, _Phebalium bilobum_, _Poa labillardieri_, _P. sieberiana_, _Pomaderris aspera_, _Prostanthera lasianthos_ and _Tetrarrhena juncea_ (Plate 6c). The understorey tree-ferns include _Cyathea australis_ and _Dicksonia antarctica_, with _Blechnum nudum_, _B. wattsii_, _Calochlaena dubia_, _Histiopteris incisa_, _Polystichum proliferum_ and _Pteridium esculentum_ forming the ground-layer ferns.
 
-An open- to tall open-forest (damp sclerophyll forest) commonly occurs on well-drained, sandy loam soils in flat to undulating country of this region, and extends into the neighbouring Gippsland Plain to the south. This community is extremely variable, both floristically and structurally. The dominant eucalypts include *Eucalyptus consideniana*, *E. cypellocarpa*, *E. obliqua* and *E. radiata.* The understorey is commonly dominated by *Acacia dealbata*, *A. mucronata*, *A. verticillata*, *Billardiera scandens*, *Cassinia aculeata*, *Epacris impressa*, *Gahnia radula*, *Gonocarpus tetragynus*, *G. teucrioides*, *Goodenia ovata*, *Lomandra filiformis*, *L. longifolia*, *Platylobium formosum*, *Pomaderris aspera*, *Pteridium esculentum*, *Pultenaea juniperina* and *Tetrarrhena juncea*. Examples of this community occur between Boolarra ([Gippsland Plain]({{ '/bioregions/gippsland-plain' | relative_url }}) region) and Mirboo North.
+An open- to tall open-forest (damp sclerophyll forest) commonly occurs on well-drained, sandy loam soils in flat to undulating country of this region, and extends into the neighbouring Gippsland Plain to the south. This community is extremely variable, both floristically and structurally. The dominant eucalypts include _Eucalyptus consideniana_, _E. cypellocarpa_, _E. obliqua_ and _E. radiata._ The understorey is commonly dominated by _Acacia dealbata_, _A. mucronata_, _A. verticillata_, _Billardiera scandens_, _Cassinia aculeata_, _Epacris impressa_, _Gahnia radula_, _Gonocarpus tetragynus_, _G. teucrioides_, _Goodenia ovata_, _Lomandra filiformis_, _L. longifolia_, _Platylobium formosum_, _Pomaderris aspera_, _Pteridium esculentum_, _Pultenaea juniperina_ and _Tetrarrhena juncea_. Examples of this community occur between Boolarra ([Gippsland Plain](./gippsland-plain) region) and Mirboo North.
 
-<img src="https://data.rbg.vic.gov.au/images/P/Library/69705?encoding=UTF-8&b=512"><b>Gippsland Highlands; wet sclerophyll forest. <i>Eucalyptus regnans</i> tall open-forest, with <i>Bedfordia arborescens</i>, <i>Cassinia trinervia</i>, <i>Cyathea australis</i>, <i>Olearia argophylla</i> and <i>Tetrarrhena juncea</i>. Tarra River valley, Tarra–Bulga National Park.</b>
+<markdown-figure-component :src="images[1].src" :caption="images[1].caption"></markdown-figure-component>
 
 ### Woodlands
 
 #### Leptospermum myrsinoides heathy woodland
 
-This community is more common in the neighbouring Gippsland Plain, but occurs in this region in areas with sandy soils and mean annual rainfall 700–900 mm. The shrub-layer of this community is always dominated by the dense shrub *Leptospermum myrsinoides*. The tree-layer is usually well-developed and results in a woodland with a heathy understorey. *Eucalyptus consideniana*, *E. pryoriana* and *E. radiata* are the commonest tree species. The shrub-layer is typically dominated by sclerophyllous shrubs, such as *Aotus ericoides*, *Dillwynia glaberrima*, *Epacris impressa*, *Hibbertia acicularis*, *Leptospermum continentale* and *Monotoca scoparia*.
+This community is more common in the neighbouring Gippsland Plain, but occurs in this region in areas with sandy soils and mean annual rainfall 700–900 mm. The shrub-layer of this community is always dominated by the dense shrub _Leptospermum myrsinoides_. The tree-layer is usually well-developed and results in a woodland with a heathy understorey. _Eucalyptus consideniana_, _E. pryoriana_ and _E. radiata_ are the commonest tree species. The shrub-layer is typically dominated by sclerophyllous shrubs, such as _Aotus ericoides_, _Dillwynia glaberrima_, _Epacris impressa_, _Hibbertia acicularis_, _Leptospermum continentale_ and _Monotoca scoparia_.
 
 ## Land use
 
 Since the destruction of most of the wet sclerophyll forest, damp sclerophyll forest has become the most heavily utilized community for timber production and allied forest products (e.g wood-chips) (Gullan et al. 1984, 1985).
 
-Hardwood and softwood plantations are now being established on previously cleared areas. *Eucalyptus regnans* and *Pinus radiata* are the two most commonly planted species. The region is important for recreation. Much of the region has proved to have low potential for agricultural development; however, dairying and beef production are important primary industries.
+Hardwood and softwood plantations are now being established on previously cleared areas. _Eucalyptus regnans_ and _Pinus radiata_ are the two most commonly planted species. The region is important for recreation. Much of the region has proved to have low potential for agricultural development; however, dairying and beef production are important primary industries.
 
 ## National Park
 
-* Tarra–Bulga—1520 ha.
+- Tarra–Bulga—1520 ha.
 
 ## State Park
 
-* Mt Worth—1040 ha.
+- Mt Worth—1040 ha.
