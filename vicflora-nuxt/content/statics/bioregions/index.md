@@ -1,7 +1,5 @@
 ---
-layout: page
 title: Bioregions of Victoria
-permalink: /bioregions/
 ---
 
 <div class="row">
