@@ -1,26 +1,28 @@
-query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
+query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
   taxonConcept(id: $id) {
     id
-    mapLinks{
+    mapLinks {
       profileMap
-			distributionMap
+      distributionMap
       mapSource
     }
-    bioregions{
+    bioregions {
       id
-      occurrenceStatus{
+      occurrenceStatus {
         name
       }
-      establishmentMeans{name}
-      bioregion{
+      establishmentMeans {
+        name
+      }
+      bioregion {
         type
-        properties{
-          # region
-          subregion
+        properties {
+          name
+          code
         }
       }
     }
-    preferredVernacularName{
+    preferredVernacularName {
       id
       name
     }
@@ -37,7 +39,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
       thumbnailUrl
       previewUrl
     }
-    images(page:$imagesPage,first:24){
+    images(page: $imagesPage, first: 24) {
       data {
         id
         previewUrl
@@ -48,22 +50,22 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
         license
         rights
         subtype
-			}
-      paginatorInfo{
+      }
+      paginatorInfo {
         count
         currentPage
         hasMorePages
         total
       }
     }
-    specimenImages(page:$specimenImagesPage,first:24){
-       data {
+    specimenImages(page: $specimenImagesPage, first: 24) {
+      data {
         id
         thumbnailUrl
         alaImageUuid
         caption
-			}
-      paginatorInfo{
+      }
+      paginatorInfo {
         count
         currentPage
         hasMorePages
@@ -78,13 +80,12 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
       id
       fullName
       authorship
-      protologue{
+      protologue {
         id
         title
         publicationYear
         volume
         pages
-        
       }
     }
     taxonTreeDefItem {
@@ -94,7 +95,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
     }
     parent {
       id
-      
+
       taxonName {
         id
         fullName
@@ -103,7 +104,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
     }
     children {
       id
-      
+
       taxonName {
         id
         fullName
@@ -117,7 +118,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
     }
     siblings {
       id
-      
+
       taxonName {
         id
         fullName
@@ -129,7 +130,7 @@ query taxonConceptQuery($id: ID!,$imagesPage:Int,$specimenImagesPage:Int) {
       depth
       taxonConcept {
         id
-        
+
         taxonName {
           id
           fullName

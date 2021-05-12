@@ -70,9 +70,7 @@
                 "
               ></div>
             </td>
-            <td>
-              {{ bioregionItem.bioregion.properties.subregion }}
-            </td>
+            <td>{{ bioregionItem.bioregion.properties.name }}</td>
             <td>{{ bioregionItem.occurrenceStatus.name }}</td>
             <td>{{ bioregionItem.establishmentMeans.name }}</td>
           </tr>
@@ -89,9 +87,6 @@
 <script>
 export default {
   name: "TaxonTabDistribution",
-  props: ["data"],
-  data() {
-    return {};
-  }
+  props: ["data"]
 };
 </script>
