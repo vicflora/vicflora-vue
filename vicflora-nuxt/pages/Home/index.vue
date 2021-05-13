@@ -32,9 +32,9 @@
             >
 
             <b-button block class="m-btn" size="lg" variant="primary"
-              ><nuxt-link
-                to="/flora/key/1903"
-                >Keys</nuxt-link
+              ><a
+                href="https://keybase.rbg.vic.gov.au/keys/show/1903"
+                >Keys</a
               ></b-button
             >
           </b-row>
