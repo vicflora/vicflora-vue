@@ -40,14 +40,16 @@
           </div>
           <div
             class="m-row"
-            v-if="data.taxonConcept.taxonTreeDefItem.name !== 'species'"
+            v-if="data.taxonConcept.identificationKeys.length !== 0"
           >
-            <b-button variant="primary"
-              >Key to the
-              {{ getBtnText(data.taxonConcept.taxonTreeDefItem.name) }}
-              of
-              {{ data.taxonConcept.taxonName.fullName }}</b-button
+            <div
+              v-for="item in data.taxonConcept.identificationKeys"
+              :key="item.id"
             >
+              <NuxtLink  :to="`/flora/key/${item.id}`" >
+                <b-button variant="primary" class="mb-2">{{ item.title }}</b-button>
+              </NuxtLink>
+            </div>
           </div>
         </b-col>
 
@@ -123,12 +125,12 @@ export default {
     },
     clickMap: function() {
       if (this.data.taxonConcept.images.data.length > 0) {
-        if(this.data.taxonConcept.specimenImages.data.length > 0){
+        if (this.data.taxonConcept.specimenImages.data.length > 0) {
           this.$emit("update:tabIndex", 3);
-        }else{
+        } else {
           this.$emit("update:tabIndex", 2);
-        }    
-      }else{
+        }
+      } else {
         this.$emit("update:tabIndex", 1);
       }
     },
