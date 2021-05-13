@@ -14,10 +14,11 @@
       img-width="530"
       img-height="690"
       style="text-shadow: 1px 1px 2px #333;"
+      class="m-carousel-container"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <b-carousel-slide v-for="slide in slides" :key="slide.index" :img-src="slide.imgSrc" :text="slide.caption"></b-carousel-slide>
+      <b-carousel-slide v-for="slide in slides" :key="slide.index" :img-src="slide.imgSource" :text="slide.caption"></b-carousel-slide>
     </b-carousel>
   </div>
 </template>
@@ -50,12 +51,12 @@
           },
           {
             index: 4,
-            imgSrc: "https://data.rbg.vic.gov.au/cip/preview/image/public/2?maxsize=600",
+            imgSource: "https://data.rbg.vic.gov.au/cip/preview/image/public/2?maxsize=600",
             caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
           },
           {
             index: 5,
-            imgSrc: "https://data.rbg.vic.gov.au/cip/preview/image/public/6?maxsize=600",
+            imgSource: "https://data.rbg.vic.gov.au/cip/preview/image/public/6?maxsize=600",
             caption: "Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0."
           }
         ],

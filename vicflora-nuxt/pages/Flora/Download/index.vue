@@ -67,6 +67,18 @@
                 Selected: <strong>{{ fieldsSelected }}</strong>
               </div>
             </b-col>
+
+            <b-col>
+              <p>Classification</p>
+              <b-form-checkbox-group
+                v-model="classificationSelected"
+                :options="classificationOptions"
+                stacked
+              ></b-form-checkbox-group>
+              <div class="mt-3">
+                Selected: <strong>{{ classificationSelected }}</strong>
+              </div>
+            </b-col>
           </b-row>
         </div>
         <div v-else class="no-result apollo">
@@ -86,6 +98,7 @@ export default {
         q: "**"
       },
       fieldsSelected: [
+        "id",
         "scientific_name",
         "scientific_name_authorship",
         "taxon_rank",
@@ -95,8 +108,8 @@ export default {
         "establishment_means"
       ],
       fieldsOptions: [
-        { item: "id", name: "id", notEnabled: true },
-        "taxon_rank",
+        { text: 'taxonID', value: 'id', disabled: true },
+        { text: 'taxon_rank', value: 'taxon_rank', disabled: true },
         "scientific_name",
         "scientific_name_authorship",
         "taxonomic_status",
@@ -112,7 +125,10 @@ export default {
         "threat_status",
         "profile",
         "vernacular_name"
-      ]
+      ],
+      classificationSelected:[],
+      classificationOptions:[],
+
     };
   },
   computed: {
