@@ -17,10 +17,6 @@
             Download
           </h2>
         </div>
-
-        <!-- <b-btn class="text-right">
-                Back to search result
-              </b-btn> -->
       </b-col>
     </b-row>
     <!-- query -->
@@ -29,6 +25,11 @@
         <span class="m-subtitle">
           Query string
         </span>
+      </b-col>
+      <b-col class="text-right">
+         <b-btn class="text-right" size="sm" variant="info" @click="backToSearch">
+                Back to search result
+        </b-btn>
       </b-col>
     </b-row>
     <b-row>
@@ -65,30 +66,6 @@
         ></b-form-checkbox-group>
       </b-col>
     </b-row>
-
-    <!-- <b-row>
-            <b-col class="text-left">
-              <span class="m-subtitle mt-3 mb-2">
-                Delimiter
-              </span>
-              <b-form-group>
-                <b-form-radio
-                  v-model="delimiterSelected"
-                
-                  name="Tab (TXT)"
-                  value="Tab (TXT)"
-                  >Tab (TXT)</b-form-radio
-                >
-                <b-form-radio
-                  v-model="delimiterSelected"
-                  
-                  name="Comma (CSV)"
-                  value="Comma (CSV)"
-                  >Comma (CSV)</b-form-radio
-                >
-              </b-form-group>
-            </b-col>
-          </b-row> -->
 
     <b-row>
       <b-col class="text-left">
@@ -140,8 +117,8 @@ export default {
       ],
       fieldsOptions: [
         { text: "taxon_id", value: "id", disabled: true },
-        { text: "taxon_rank", value: "taxon_rank", disabled: true },
-        "scientific_name",
+        { text: "taxon_rank", value: "taxon_rank", disabled: false },
+        { text: "scientific_name", value: "scientific_name", disabled: true },
         "scientific_name_authorship",
         "taxonomic_status",
         "occurrence_status",
@@ -187,6 +164,7 @@ export default {
     }
   },
   methods: {
+    // getch file data
     getData(input, filename) {
       console.log(filename);
       this.$apollo.addSmartQuery("download", {
@@ -210,11 +188,19 @@ export default {
         }
       });
     },
+    // hundle the file attributes and fetch the file
     handleDownload() {
       this.input.fl = [...this.fieldsSelected, ...this.classificationSelected];
       this.input.q = this.q
+      this.input.fq = this.fq
       this.getData(this.input, this.filenameSelected);
-    }
+    },
+    backToSearch(){
+      this.$router.push({
+        path: "/flora/Search",
+        query: this.$route.query
+      });
+    },
   }
 };
 </script>

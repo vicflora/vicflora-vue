@@ -152,7 +152,7 @@
                   </div>
                 </b-col>
                 <b-col cols="3" align-self="baseline" class="text-right">
-                  <b-btn size="sm" @click="toDownloadPage">Download</b-btn>
+                  <b-btn size="sm" variant="info" @click="toDownloadPage">Download</b-btn>
                 </b-col>
               </b-row>
 
