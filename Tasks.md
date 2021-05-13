@@ -120,16 +120,16 @@
 - matrix-keys
 
 
-> ## 5/14
+> ## 5/12 - 5/14
 > ### Done
 - fix search box
 - fix search style
-- 
+- fix keys button
+
 > ### To do
 - other static pages - https://vicflora.rbg.vic.gov.au/matrix-keys/eucalypts/
 - keys
-- download page
+- download page 
 - bioregion index
 - matrix-keys
-- fix keys button
 

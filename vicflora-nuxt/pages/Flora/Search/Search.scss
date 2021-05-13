@@ -69,9 +69,17 @@
     }
     .m-item-familyname{
         font-size: small;
+        text-align: right;
     }
 }
 .filter-queries-key {
     font-weight: bold;
 }
+
+@media screen and (max-width:768px){
+    .m-responsive-disappear {
+        display: none;
+    }
+}
+
 

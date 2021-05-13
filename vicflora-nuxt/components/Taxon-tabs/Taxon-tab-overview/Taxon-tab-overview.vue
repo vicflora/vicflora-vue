@@ -46,9 +46,9 @@
               v-for="item in data.taxonConcept.identificationKeys"
               :key="item.id"
             >
-              <NuxtLink  :to="`/flora/key/${item.id}`" >
+              <a :href="`https://keybase.rbg.vic.gov.au/keys/show/${item.id}`" >
                 <b-button variant="primary" class="mb-2">{{ item.title }}</b-button>
-              </NuxtLink>
+              </a>
             </div>
           </div>
         </b-col>

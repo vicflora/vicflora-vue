@@ -57,7 +57,7 @@
                         <span class="m-facet-title">Query term:</span>
                         <span>
                           <!-- {{ q }} -->
-                          {{data.search.meta.params.q}}
+                          {{ data.search.meta.params.q }}
                           <b-icon
                             v-if="q"
                             icon="x"
@@ -154,54 +154,61 @@
                   <b-btn size="sm" @click="toDownloadPage">Download</b-btn>
                 </b-col>
               </b-row>
-                  <b-row
-                    v-for="item in data.search.docs"
-                    :key="item.id"
-                    class="m-item text-left"
-                  >
-                    <b-col v-if="item.taxonomicStatus && item.taxonomicStatus === 'accepted'">
-                      <n-link
-                        :to="
-                          `/flora/taxon/${item.acceptedNameUsageId}`
-                        "
-                        class="m-item-name-accepted"
-                        :style="
-                          rankClass[item.taxonRank] > 140
-                            ? 'font-style: italic;'
-                            : ''
-                        "
-                        >{{ item.acceptedNameUsage }}</n-link
-                      >
-                      <span class="m-item-author">{{
-                        item.acceptedNameUsageAuthorship
-                      }}</span>
-                      <span class="m-item-vernacularname">{{
-                        item.vernacularName
-                      }}</span>
-                    </b-col>
 
-                    <b-col v-else>
-                      <div :style="item.acceptedNameUsageId?'':'margin-bottom: 10px;'">
-                        <n-link
-                          :to="`/flora/taxon/${item.id}`"
-                          class="m-item-name"
-                          :style="
-                            rankClass[item.taxonRank] > 140
-                              ? 'font-style: italic;'
-                              : ''
-                          "
-                          >{{ item.scientificName }}</n-link
-                        >
-                        <span class="m-item-author">{{
-                          item.scientificNameAuthorship
-                        }}</span>
-                      </div>
-                      <div v-if="item.acceptedNameUsageId">
-                      <span >{{ `= `}}</span>
+              <b-row
+                v-for="item in data.search.docs"
+                :key="item.id"
+                class="m-item text-left"
+              >
+                <b-col class="text-left mr-auto" cols="auto">
+                  <div
+                    v-if="
+                      item.taxonomicStatus &&
+                        item.taxonomicStatus === 'accepted'
+                    "
+                  >
+                    <n-link
+                      :to="`/flora/taxon/${item.acceptedNameUsageId}`"
+                      class="m-item-name-accepted"
+                      :style="
+                        rankClass[item.taxonRank] > 140
+                          ? 'font-style: italic;'
+                          : ''
+                      "
+                      >{{ item.acceptedNameUsage }}</n-link
+                    >
+                    <span class="m-item-author">{{
+                      item.acceptedNameUsageAuthorship
+                    }}</span>
+                    <span class="m-item-vernacularname">{{
+                      item.vernacularName
+                    }}</span>
+                  </div>
+
+                  <div v-else>
+                    <div
+                      :style="
+                        item.acceptedNameUsageId ? '' : 'margin-bottom: 10px;'
+                      "
+                    >
                       <n-link
-                        :to="
-                          `/flora/taxon/${item.acceptedNameUsageId}`
+                        :to="`/flora/taxon/${item.id}`"
+                        class="m-item-name"
+                        :style="
+                          rankClass[item.taxonRank] > 140
+                            ? 'font-style: italic;'
+                            : ''
                         "
+                        >{{ item.scientificName }}</n-link
+                      >
+                      <span class="m-item-author">{{
+                        item.scientificNameAuthorship
+                      }}</span>
+                    </div>
+                    <div v-if="item.acceptedNameUsageId">
+                      <span>{{ `= ` }}</span>
+                      <n-link
+                        :to="`/flora/taxon/${item.acceptedNameUsageId}`"
                         class="m-item-name-accepted"
                         :style="
                           rankClass[item.taxonRank] > 140
@@ -216,12 +223,13 @@
                       <span class="m-item-vernacularname">{{
                         item.vernacularName
                       }}</span>
-                      </div>
-                    </b-col>
-                    <b-col cols="2" class="text-right">
-                      <span class="m-item-familyname">{{ item.family }}</span>
-                    </b-col>
-                  </b-row>
+                    </div>
+                  </div>
+                </b-col>
+                <b-col cols="auto" class="m-responsive-disappear">
+                  <span class="m-item-familyname">{{ item.family }}</span>
+                </b-col>
+              </b-row>
 
               <b-row align-v="baseline" class="mb-4">
                 <b-col class="text-left" cols="3" align-self="baseline">
@@ -247,8 +255,7 @@
         </div>
         <!-- No result -->
         <div v-else class="no-result apollo">
-          <div class="spinner-border mt-5 mb-1" role="status">
-          </div>
+          <div class="spinner-border mt-5 mb-1" role="status"></div>
           <h5>Loading...</h5>
         </div>
       </template>
@@ -263,7 +270,7 @@ export default {
   name: "Search",
   components: {
     FacetField,
-    SearchInput,
+    SearchInput
   },
   data() {
     return {
@@ -277,7 +284,7 @@ export default {
         q: "**",
         rows: 50,
         page: 1,
-        fq: this.$route.query.fq,
+        fq: this.$route.query.fq
       },
       inputText: "",
       search: "",
@@ -291,7 +298,7 @@ export default {
         family: 140,
         genus: 180,
         species: 220,
-        subspecies: 230,
+        subspecies: 230
       },
       filtersFacet: true,
       queryFacet: true,
@@ -309,32 +316,32 @@ export default {
         family: "Family",
         ibra_7_subregion: "Subregion",
         nrm_region: "Bioregion",
-        media: "Media",
-      },
+        media: "Media"
+      }
     };
   },
   methods: {
     checkText: function() {
       this.$router.push({
         query: {
-          q: `*${this.inputText}*`,
-        },
+          q: `*${this.inputText}*`
+        }
       });
       this.input = {
         ...this.input,
-        q: `*${this.inputText}*`,
+        q: `*${this.inputText}*`
       };
     },
     removeq: function() {
       this.inputText = "";
       this.$router.push({
         query: {
-          q: `**`,
-        },
+          q: `**`
+        }
       });
       this.input = {
         ...this.input,
-        q: `**`,
+        q: `**`
       };
     },
     removefqList: function(val) {
@@ -342,18 +349,18 @@ export default {
         this.$router.push({
           query: {
             q: this.q,
-            fq: this.fq.filter((word) => word !== val),
-          },
+            fq: this.fq.filter(word => word !== val)
+          }
         });
       }
       this.removeFilterVal = val;
     },
-    toDownloadPage: function(){
+    toDownloadPage: function() {
       this.$router.push({
         path: "/flora/Download",
-        query: this.$route.query,
-        });
-    },
+        query: this.$route.query
+      });
+    }
   },
   computed: {
     q: function() {
@@ -370,13 +377,13 @@ export default {
       } else {
         return "";
       }
-    },
+    }
   },
   watch: {
     currentPage: function(newVal) {
       this.input = {
         ...this.input,
-        page: newVal,
+        page: newVal
       };
     },
     fq: {
@@ -384,44 +391,44 @@ export default {
       handler: function() {
         this.input = {
           ...this.input,
-          fq: this.$route.query.fq,
+          fq: this.$route.query.fq
         };
-      },
+      }
     },
     q: {
       immediate: true,
       handler: function() {
-        this.input= {
+        this.input = {
           ...this.input,
-          q:this.q,
-          }
-      },
+          q: this.q
+        };
+      }
     },
     exclusionCheckbox: function(newVal, oldVal) {
       if (newVal === true && oldVal === false) {
         this.$router.push({
           query: {
             q: this.q,
-            fq: [...this.fq, "end_or_higher_taxon:end"],
-          },
+            fq: [...this.fq, "end_or_higher_taxon:end"]
+          }
         });
       }
       if (newVal === false && oldVal === true) {
         this.$router.push({
           query: {
             q: this.q,
-            fq: this.fq.filter((word) => word !== "end_or_higher_taxon:end"),
-          },
+            fq: this.fq.filter(word => word !== "end_or_higher_taxon:end")
+          }
         });
       }
-    },
+    }
   },
   mounted() {
     this.exclusionCheckbox = this.fq.includes("end_or_higher_taxon:end");
     // change the status of collapse
-    if(window.innerWidth < 992){
-      this.filtersFacet = false
+    if (window.innerWidth < 992) {
+      this.filtersFacet = false;
     }
-  },
+  }
 };
 </script>
