@@ -241,7 +241,11 @@
                       style="align-items:center;"
                       size="sm"
                       v-model="currentPage"
-                      :number-of-pages="data.search.meta.pagination.lastPage"
+                      :number-of-pages="
+                        data.search.meta.pagination.lastPage === 0
+                          ? 1
+                          : data.search.meta.pagination.lastPage
+                      "
                       base-url="#"
                       first-number
                       last-number

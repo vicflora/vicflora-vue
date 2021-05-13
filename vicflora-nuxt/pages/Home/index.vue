@@ -32,7 +32,10 @@
             >
 
             <b-button block class="m-btn" size="lg" variant="primary"
-              >Keys</b-button
+              ><nuxt-link
+                to="/flora/key/1903"
+                >Keys</nuxt-link
+              ></b-button
             >
           </b-row>
 

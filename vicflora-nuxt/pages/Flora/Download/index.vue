@@ -68,7 +68,7 @@
               </div>
             </b-col>
 
-            <b-col>
+            <b-col class="text-left">
               <p>Classification</p>
               <b-form-checkbox-group
                 v-model="classificationSelected"
@@ -108,7 +108,7 @@ export default {
         "establishment_means"
       ],
       fieldsOptions: [
-        { text: 'taxonID', value: 'id', disabled: true },
+        { text: 'taxon_id', value: 'id', disabled: true },
         { text: 'taxon_rank', value: 'taxon_rank', disabled: true },
         "scientific_name",
         "scientific_name_authorship",
