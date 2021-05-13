@@ -151,17 +151,15 @@
                   </div>
                 </b-col>
                 <b-col cols="3" align-self="baseline" class="text-right">
-                  <b-btn size="sm">Download</b-btn>
+                  <b-btn size="sm" @click="toDownloadPage">Download</b-btn>
                 </b-col>
               </b-row>
-              <b-row>
-                <b-col class="text-left mb-4" cols="12">
                   <b-row
                     v-for="item in data.search.docs"
                     :key="item.id"
-                    class="m-item"
+                    class="m-item text-left"
                   >
-                    <b-col cols="9" v-if="item.taxonomicStatus === 'accepted'">
+                    <b-col v-if="item.taxonomicStatus && item.taxonomicStatus === 'accepted'">
                       <n-link
                         :to="
                           `/flora/taxon/${item.acceptedNameUsageId}`
@@ -181,8 +179,9 @@
                         item.vernacularName
                       }}</span>
                     </b-col>
-                    <b-col cols="9" v-else>
-                      <div>
+
+                    <b-col v-else>
+                      <div :style="item.acceptedNameUsageId?'':'margin-bottom: 10px;'">
                         <n-link
                           :to="`/flora/taxon/${item.id}`"
                           class="m-item-name"
@@ -191,14 +190,15 @@
                               ? 'font-style: italic;'
                               : ''
                           "
-                          >{{ item.acceptedNameUsage }}</n-link
+                          >{{ item.scientificName }}</n-link
                         >
                         <span class="m-item-author">{{
                           item.scientificNameAuthorship
                         }}</span>
                       </div>
-                      {{ `= `
-                      }}<n-link
+                      <div v-if="item.acceptedNameUsageId">
+                      <span >{{ `= `}}</span>
+                      <n-link
                         :to="
                           `/flora/taxon/${item.acceptedNameUsageId}`
                         "
@@ -216,13 +216,12 @@
                       <span class="m-item-vernacularname">{{
                         item.vernacularName
                       }}</span>
+                      </div>
                     </b-col>
-                    <b-col class="text-right">
+                    <b-col cols="2" class="text-right">
                       <span class="m-item-familyname">{{ item.family }}</span>
                     </b-col>
                   </b-row>
-                </b-col>
-              </b-row>
 
               <b-row align-v="baseline" class="mb-4">
                 <b-col class="text-left" cols="3" align-self="baseline">
@@ -348,6 +347,12 @@ export default {
         });
       }
       this.removeFilterVal = val;
+    },
+    toDownloadPage: function(){
+      this.$router.push({
+        path: "/flora/Download",
+        query: this.$route.query,
+        });
     },
   },
   computed: {

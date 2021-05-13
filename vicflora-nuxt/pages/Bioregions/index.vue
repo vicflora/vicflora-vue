@@ -394,8 +394,11 @@
 </template>
 
 <script>
+import BioregionsMapConfig from '@/components/Bioregions-map-config/Bioregions-map-config'
 export default {
   name: "Bioregions",
-  component: {}
+  component: {
+    BioregionsMapConfig
+  }
 };
 </script>
