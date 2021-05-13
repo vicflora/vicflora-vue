@@ -117,6 +117,7 @@
                         :key="facetField.fieldName"
                       >
                         <FacetField
+                          v-if="facetField.facets.length>0"
                           :facetFields="{ ...facetField }"
                           :removeFilterVal="removeFilterVal"
                           :key="key"

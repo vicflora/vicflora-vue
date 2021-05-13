@@ -11,10 +11,9 @@
       controls
       indicators
       background="#ababab"
-      img-width="530"
-      img-height="690"
+      img-width="515"
+      img-height="670"
       style="text-shadow: 1px 1px 2px #333;"
-      class="m-carousel-container"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >

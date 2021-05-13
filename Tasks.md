@@ -125,6 +125,8 @@
 - fix search box
 - fix search style
 - fix keys button
+- fix carousel
+- 
 
 > ### To do
 - other static pages - https://vicflora.rbg.vic.gov.au/matrix-keys/eucalypts/

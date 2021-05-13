@@ -38,7 +38,7 @@
 
           <Highlights></Highlights>
         </b-col>
-        <b-col cols="12" lg="6">
+        <b-col cols="12" lg="6" align-self="center">
           <Carousel class="m-carousel"></Carousel>
         </b-col>
       </b-row>
