@@ -144,7 +144,6 @@ export default {
         "scientific_name",
         "scientific_name_authorship",
         "taxonomic_status",
-        "family",
         "occurrence_status",
         "establishment_means",
         "accepted_name_usage_id",
@@ -213,6 +212,7 @@ export default {
     },
     handleDownload() {
       this.input.fl = [...this.fieldsSelected, ...this.classificationSelected];
+      this.input.q = this.q
       this.getData(this.input, this.filenameSelected);
     }
   }
