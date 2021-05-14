@@ -15,19 +15,23 @@
           <div v-html="definition.definition"></div>
         </b-col>
       </b-row>
-      <!-- <b-row v-if="definition.relationships.length > 0">
+      <b-row v-if="definition.relationships.length > 0">
         <b-col>
-          <h5>Relationships</h5>
+          <b-row>
+            <b-col>
+              <h5>Relationships</h5>
+            </b-col>
+          </b-row>
+          <b-row v-for="item in definition.relationships" :key="item.id">
+            <b-col>
+              <span class="m-relationship-type-name">{{item.relationshipType.name}}</span>
+            </b-col>
+            <b-col>
+              <a :href="`?name=${item.relatedTerm.name}`">{{item.relatedTerm.name}}</a>
+            </b-col>
+          </b-row>
         </b-col>
-        <b-row>
-          <b-col>
-            Is related to:
-          </b-col>
-          <b-col>
-            Is related to:
-          </b-col>
-        </b-row>
-      </b-row> -->
+      </b-row>
     </b-col>
     <!-- {{ definition }} -->
   </b-row>
@@ -39,24 +43,11 @@ export default {
   props: ["definition"],
   data() {
     return {
-      name: ""
     };
   },
   computed: {
-    letter: function() {
-      return this.$route.query.letter;
-    },
-    taxonName: function() {
-      return this.$route.query.name;
-    }
   },
   watch: {
-    letter: {
-      immediate: true,
-      handler: function() {
-        this.name = this.letter;
-      }
-    }
   }
 };
 </script>

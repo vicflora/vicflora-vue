@@ -30,17 +30,17 @@
             <b-col sm="3" class="text-left">
               <div class="m-border-right">
                 <div class="m-letters-container" >
-                  <b-link
-                    :to="`/flora/glossary?letter=${item}`"    
+                  <nuxt-link
+                    :to="`/flora/glossary?name=${item}`"    
                     v-for="item in data.glossaryTermFirstLetters"
                     :key="item"
-                    ><span class="m-letter" :class="letter === item?'m-active-letter':''">{{ item }}</span></b-link
+                    ><span class="m-letter" :class="letter.toLowerCase() === item.toLowerCase()?'m-active-letter':''">{{ item }}</span></nuxt-link
                   >
                 </div>
                 <div class="m-names-list">
                   <li v-for="item in data.glossaryTermsByName" :key="item.id">
-                    <b-icon icon="caret-right-fill" variant="dark"></b-icon>
-                    <nuxt-link :to="`/flora/glossary?letter=${letter}&name=${item.name}`" :style="taxonName===item.name?'font-weight: bolder;':''">{{
+                    <b-icon icon="caret-right-fill" variant="dark" ></b-icon>
+                    <nuxt-link :to="`/flora/glossary?name=${item.name}`" :style="taxonName===item.name?'font-weight: bolder;':''" :id="item.name">{{
                       item.name
                     }}</nuxt-link>
                   </li>
@@ -48,7 +48,7 @@
               </div>
             </b-col>
             <b-col class="text-left">
-                <GlossaryDefinition :definition="taxonName?data.glossaryTermsByName.filter((ele => ele.name === taxonName))[0]:data.glossaryTermsByName[0]"></GlossaryDefinition>
+                <GlossaryDefinition :definition="taxonName.length>1?data.glossaryTermsByName.filter((ele => ele.name === taxonName))[0]:data.glossaryTermsByName[0]"></GlossaryDefinition>
             </b-col>
           </b-row>
         </div>
@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     letter: function() {
-      return this.$route.query.letter;
+        return this.$route.query.name[0]
     },
     taxonName: function() {
       return this.$route.query.name;
@@ -91,8 +91,6 @@ export default {
             this.name = this.letter;
         }
       },
-
-
   }
 };
 </script>
