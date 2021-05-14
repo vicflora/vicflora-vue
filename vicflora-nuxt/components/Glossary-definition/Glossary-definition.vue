@@ -48,7 +48,7 @@
               <div v-viewer="viewerOptions">
                 <div v-for="image in definition.images" :key="image.id">
                   <b-img
-                   class="mt-3"
+                   class="mt-3 m-img"
                     thumbnail
                     fluid
                     v-show="showImage"

@@ -127,11 +127,12 @@
 - fix keys button
 - fix carousel
 - download page 
+- glossary page
 
 > ### To do
 - other static pages - https://vicflora.rbg.vic.gov.au/matrix-keys/eucalypts/
 - keys page
 - bioregion index
 - matrix-keys
-- glossary -image
+
 
