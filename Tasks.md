@@ -133,4 +133,5 @@
 - keys page
 - bioregion index
 - matrix-keys
+- glossary -image
 

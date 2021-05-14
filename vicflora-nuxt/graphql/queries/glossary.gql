@@ -19,6 +19,8 @@ query glossaryTermByNameQuery($name: String!) {
     images {
       id
       imageUrl
+      rights
+      caption
     }
   }
 }

@@ -27,7 +27,7 @@
             </b-col>
           </b-row>
           <b-row>
-            <b-col sm="3" class="text-left">
+            <b-col md="3" class="text-left">
               <div class="m-border-right">
                 <div class="m-letters-container" >
                   <nuxt-link
