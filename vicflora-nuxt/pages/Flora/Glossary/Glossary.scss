@@ -1,0 +1,41 @@
+@import "@/assets/scss/custom_variables.scss";
+.m-main-title {
+    display: inline-block;
+      h2 {
+        font-family: "goodsans-medium";
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    }
+.m-border-right {
+    border-right: 2px solid grey;
+}
+.m-letters-container {
+    display: flexbox;
+    padding-right: 3px;
+    margin-bottom: 20px;
+    .m-letter {
+        width:25px;
+        height:25px;
+        text-align: center;
+        border-radius: 4px;
+        padding-top: 1px;
+        margin: 1px;
+        display: inline-block;
+        border: 1px solid $primary;
+    }
+    .m-active-letter{
+        background-color: $primary;
+        color: white;
+        font-weight: bold;
+    }
+    
+}
+
+.m-names-list {
+    height: 50vh;
+    overflow-y: scroll;
+    li {
+        list-style: none;
+    }
+}

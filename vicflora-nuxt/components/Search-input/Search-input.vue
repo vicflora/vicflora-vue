@@ -18,7 +18,7 @@
       :maxMatches="100"
     >
       <template slot="append">
-        <b-button size="sm" variant="info">
+        <b-button size="sm">
           <b-icon font-scale="1" icon="search" @click="search" />
         </b-button>
       </template>

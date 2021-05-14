@@ -1,0 +1,24 @@
+query glossaryTermByNameQuery($name: String!) {
+  glossaryTermFirstLetters
+  glossaryTermsByName(name: $name) {
+    id
+    name
+    definition
+    relationships {
+      id
+      relationshipType {
+        id
+        name
+      }
+      relatedTerm {
+        id
+        name
+        definition
+      }
+    }
+    images {
+      id
+      imageUrl
+    }
+  }
+}
