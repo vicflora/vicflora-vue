@@ -15,7 +15,7 @@
           <div v-html="definition.definition"></div>
         </b-col>
       </b-row>
-      <b-row v-if="definition.relationships.length > 0">
+      <b-row v-if="definition.relationships.length > 0" class="mb-3">
         <b-col>
           <b-row>
             <b-col>
