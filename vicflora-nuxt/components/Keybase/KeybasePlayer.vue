@@ -23,6 +23,7 @@ import RemainingItems from './RemainingItems'
 import DiscardedItems from './DiscardedItems'
 
 export default {
+  name:"KeyBase",
   components: {
     CurrentNode,
     "kb-path": Path,

@@ -164,8 +164,14 @@ try {
             $.ajax({
                 url: settings.baseUrl,
                 data: {key_id: settings.key},
-                dataType: settings.ajaxDataType,
+                dataType: 'jsonp',
                 contentType: contentType,
+                crossDomain: true,
+                processData: true,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "origin, content-type, accept"
+                },
                 beforeSend: function() {
                     settings.beforeSend();
                 },

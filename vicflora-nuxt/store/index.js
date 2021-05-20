@@ -6,7 +6,7 @@ export const state = () => ({
     key: null
   });
   
-  export const mutations = {
+export const mutations = {
       storeAuthenticationInfo(state, data) {
           if (data.serverData.auth) {
               state.auth = data.serverData.auth;
@@ -45,11 +45,11 @@ export const state = () => ({
   };
   
   export const actions = {
-      addImages (context, data) {
-          context.commit('addImages', data)
-        },
-      storeKey (context, data) {
-          context.commit('storeKey', data)
-      }
+    //   addImages (context, data) {
+    //       context.commit('addImages', data)
+    //     },
+    //   storeKey (context, data) {
+    //       context.commit('storeKey', data)
+    //   }
   }
   
