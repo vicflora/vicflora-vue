@@ -61,10 +61,11 @@ limitations under the License.
 .keybase-player-window h3 {
     margin: 0;
     padding: 8px 5px 10px 10px;
-    background-color: $gray-dark;
-    color: $brand-primary;
+    background-color: white;
+    color: $primary;
     font-size: 18px;
     font-weight: bold;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.76);
 }
 
 .keybase-player-menu {
@@ -290,4 +291,8 @@ limitations under the License.
   padding: 0;
   margin-top: 20px;
   font-weight: bold;
+}
+
+.m-keybase-key-source {
+  padding: 15px;
 }

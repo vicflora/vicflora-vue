@@ -6,7 +6,7 @@
           <span class="keybase-from-node">{{ lead.fromNode  }}</span>
           <span class="keybase-lead-text">{{ lead.title }}
             <span v-if="lead.toNode !== undefined" class="keybase-to-node">
-              <a :href="`#l_${ lead.lead_id }`" @click="event =>event.preventDefault()">{{ lead.toNode }}</a>
+              <a :href="`#l_${ lead.lead_id }`">{{ lead.toNode }}</a>
             </span>
             <span v-else class="keybase-to-item">
               <item :item="getItem(lead.children[0].children[0].item_id)"></item>
@@ -19,22 +19,22 @@
 </template>
 
 <script>
-import Item from './Item'
+import Item from "./Item";
 
 export default {
-  name:"BracketedKey",
+  name: "BracketedKey",
   components: {
     Item
   },
-  props: ['bracketedKey', 'items'],
+  props: ["items", "leads", "bracketedKey"],
   methods: {
     getItem(id) {
       if (this.items.length) {
         return this.items.filter(item => {
-          return item.item_id === id
-        })[0]
+          return item.item_id === id;
+        })[0];
       }
-    }
-  },
-}
+    },
+  }
+};
 </script>

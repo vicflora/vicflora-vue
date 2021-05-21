@@ -1,10 +1,16 @@
+<style lang="scss" scoped>
+.m-children-li {
+  margin-left: 20px;
+  list-style: circle;
+}
+</style>
 <template>
   <div class="keybase-player-remainingitems">
     <h3>{{ header }}</h3>
-    <div>
-      <ul v-if="remainingItems">
-        <li v-for="item in remainingItems" :key="item.id">
-          <item :item="item"></item>
+    <div v-if="remainingItems">
+      <ul>
+        <li v-for="item in remainingItems" :key="item.id" :class="item.parent_id?'m-children-li':''">
+          <item :item="item" ></item>
         </li>
       </ul>
     </div>

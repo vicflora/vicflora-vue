@@ -29,29 +29,26 @@
           <!-- Tab panes -->
 
           <b-tabs content-class="mt-3">
-              <b-tab title="Interactive key" active
-
-                >
-                  <keybase-player
-                    :currentNode="currentNode"
-                    :kbPath="kbPath"
-                    :remainingItems="remainingItems"
-                    :discardedItems="discardedItems"
-                  ></keybase-player></b-tab>
-              <b-tab title="Bracketed key"
-                >
-                  <bracketed-key
-                    :bracketedKey="bracketedKey"
-                    :items="items"
-                  ></bracketed-key></b-tab>
+            <b-tab title="Interactive key" active>
+              <keybase-player
+                :currentNode="currentNode"
+                :kbPath="kbPath"
+                :remainingItems="remainingItems"
+                :discardedItems="discardedItems"
+              ></keybase-player
+            ></b-tab>
+            <b-tab title="Bracketed key">
+              <bracketed-key
+                :bracketedKey="bracketedKey"
+                :items="items"
+                :leads="leads"
+              ></bracketed-key>
+            </b-tab>
           </b-tabs>
-
-
-
         </div>
 
         <!-- /role:tabpanel -->
-        <div class="keybase-key-source"></div>
+        <div class="keybase-key-source mt-2 m-keybase-key-source"></div>
         <div class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link">
           <a href="" target="_blank"
             >Open key in KeyBase <b-icon icon="link45deg"></b-icon
@@ -68,6 +65,7 @@ import KeybasePlayer from "@/components/Keybase/KeybasePlayer";
 import BracketedKey from "@/components/Keybase/BracketedKey";
 
 require("./keybase");
+// require("./jquery.keybase.key");
 
 export default {
   components: {
@@ -84,7 +82,8 @@ export default {
       kbPath: false,
       remainingItems: false,
       discardedItems: false,
-      bracketedKey: false
+      bracketedKey: false,
+      bracketedKeyDisplay: false,
     };
   },
   computed: {
@@ -137,7 +136,7 @@ export default {
         pathDisplay: function() {},
         remainingItemsDisplay: function() {},
         discardedItemsDisplay: function() {},
-        bracketedKeyDisplay: null,
+        bracketedKeyDisplay: function() {},
         onJson: this.onJson,
         onLoad: this.getBracketedKey,
         onNextCouplet: this.onNextCouplet,
@@ -166,17 +165,19 @@ export default {
       this.root = json.first_step.root_node_id;
     },
     getBracketedKey() {
-      console.log("key");
-      console.log($.prototype.keybase.getters.bracketedKey());
       $.prototype.keybase("bracketedKey", {
         bracketedKeyDiv: "#keybase-bracketed",
         onBracketedKey: this.onBracketedKey,
-        bracketedKeyDisplay: function() {},
+        bracketedKeyDisplay: this.displayBracketedKey,
         reset: false
       });
     },
     onBracketedKey() {
       this.bracketedKey = $.prototype.keybase.getters.bracketedKey()[0];
+      // 
+    },
+    displayBracketedKey(){
+      $.prototype.keybase.defaults.bracketedKeyDisplay(this.key)
     }
   },
   watch: {

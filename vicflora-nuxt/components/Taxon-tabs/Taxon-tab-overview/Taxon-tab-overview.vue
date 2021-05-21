@@ -20,18 +20,18 @@
           <!-- Created time -->
           <div class="m-row">
             <!-- Created info -->
-            <div>
+            <div v-if="data.taxonConcept.createdBy && data.taxonConcept.createdAt">
               <span class="m-description-title">Created by: </span>
-              <span>{{
+              <span >{{
                 `${
                   data.taxonConcept.createdBy.name
                 }, ${data.taxonConcept.createdAt.slice(0, 10)}`
               }}</span>
             </div>
             <!-- Updated info -->
-            <div>
+            <div v-if="data.taxonConcept.modifiedBy && data.taxonConcept.updatedAt">
               <span class="m-description-title">Updated by: </span>
-              <span>{{
+              <span >{{
                 `${
                   data.taxonConcept.modifiedBy.name
                 }, ${data.taxonConcept.updatedAt.slice(0, 10)}`
@@ -46,9 +46,9 @@
               v-for="item in data.taxonConcept.identificationKeys"
               :key="item.id"
             >
-              <a :href="`https://keybase.rbg.vic.gov.au/keys/show/${item.id}`" >
+              <nuxt-link :to="`/flora/key/${item.id}`" >
                 <b-button variant="primary" class="mb-2">{{ item.title }}</b-button>
-              </a>
+              </nuxt-link>
             </div>
           </div>
         </b-col>

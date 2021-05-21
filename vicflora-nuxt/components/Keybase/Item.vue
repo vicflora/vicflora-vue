@@ -5,6 +5,7 @@
     </nuxt-link>
 
     <span v-else>{{ item.item_name }}</span>
+    
     <nuxt-link
       v-if="item.to_key && !item.url"
       :to="`/flora/key/${item.to_key}`"
@@ -26,14 +27,14 @@
         {{ item.link_to_item_name }}
       </nuxt-link>
       <span v-else>{{ item.link_to_item_name }}</span>
-      <nuxt-link
+      <a
         v-if="typeof item.link_to_key !== 'undefined' && !linkToTaxon"
-        :to="{ name: 'keys', params: { key: item.link_to_key } }"
+        :href="`#l_${item.link_to_item_name}`"
       >
         <span class="keybase-player-tokey"
           ><b-icon icon="arrow-right-square"></b-icon
         ></span>
-      </nuxt-link>
+      </a>
     </span>
   </span>
 </template>
