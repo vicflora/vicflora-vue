@@ -134,13 +134,14 @@
 > ### Done
 - markdown edit problem (only in development)
 - other static pages - https://vicflora.rbg.vic.gov.au/matrix-keys/eucalypts/
+- keys page
 
 
 > ### To do
-- keys page
-- bioregion index - markdown
+- bioregion index - markdown ? 
 - matrix-keys
 - glossary img size
 - toc style - sticky
 - map (leaflet)
+- header style
 

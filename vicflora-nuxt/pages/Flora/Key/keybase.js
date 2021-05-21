@@ -901,7 +901,7 @@ try {
       link +=
         '<a href="' +
         item.to_key +
-        '"><span class="keybase-player-tokey"></span></a>';
+        '"> →</a>';
     }
 
     if (item.link_to_item_id) {
@@ -920,7 +920,7 @@ try {
         link +=
           '<a href="' +
           item.link_to_key +
-          '"><span class="keybase-player-tokey"></span></a>';
+          '"> →</a>';
       }
     }
     return link;
