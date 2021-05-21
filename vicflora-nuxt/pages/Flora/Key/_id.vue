@@ -8,7 +8,13 @@
 <template>
   <div class="container m-keybase">
     <div class="keybase-container" data-key-id="8099">
-      <div class="row">
+      <div class="row" v-show="!key">
+        <div class="row text-center mt-5"  style="display:block">
+          <div class="spinner-border" role="status"></div>
+          <h5>Loading...</h5>
+        </div>
+      </div>
+      <div class="row" v-show="key">
         <div class="col-md-12">
           <ol class="breadcrumb">
             <li v-if="taxonomicScope && taxonomicScope.id">

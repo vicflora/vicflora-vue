@@ -24,7 +24,7 @@
             <b-nav-item class="m-menu-item"
                href="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f">Browse classification</b-nav-item
             >
-            <b-nav-item href="flora/key/1903" class="m-menu-item">Keys</b-nav-item>
+            <b-nav-item href="/flora/key/1903" class="m-menu-item">Keys</b-nav-item>
             <b-nav-item href="/" class="m-menu-item">CheckLists</b-nav-item>
             <b-nav-item href="/flora/Glossary?name=abaxial" class="m-menu-item">Glossary</b-nav-item>
             <b-nav-item href="/bioregions" class="m-menu-item"

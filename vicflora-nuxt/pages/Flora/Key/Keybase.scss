@@ -80,17 +80,14 @@ limitations under the License.
 .keybase-player-menu .keybase-player-startover,
 .keybase-player-menu .keybase-player-stepback,
 .keybase-player-filter, .keybase-player-filter-remove {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
+    display: none;
+    // display: inline-block;
     position: relative;
 }
 
 .keybase-player-menu .keybase-player-startover a,
 .keybase-player-menu .keybase-player-stepback a,
 .keybase-player-filter a, .keybase-player-filter-remove a {
-    width: 24px;
-    height: 24px;
     display: inline-block;
     background-repeat: no-repeat;
 }
