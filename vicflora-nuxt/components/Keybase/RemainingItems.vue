@@ -8,7 +8,7 @@
   <div class="keybase-player-remainingitems">
     <h3>{{ header }}</h3>
     <div v-if="remainingItems">
-      <div v-for="item in remainingItems" :key="item.id">
+      <div v-for="item in remainingItems" :key="item.id" class="ml-2">
         <li v-if="!item.parent_id">
           <item :item="item"></item>
           <div v-if="getChild(item.item_id).length>0">

@@ -37,7 +37,8 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
-    "@nuxt/content"
+    "@nuxt/content",
+    'nuxt-leaflet',
   ],
   bootstrapVue: {
     // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
