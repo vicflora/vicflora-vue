@@ -37,18 +37,35 @@
         </b-col>
       </b-row>
       <b-row class="mb-2">
-        <b-col class="text-left">
-          <div id="map-wrap" style="height: 100vh">
+        <b-col class="text-left" md="6">
+          <div id="map-wrap">
             <client-only>
-              <l-map :zoom="13" :center="[55.9464418, 8.1277591]">
+              <l-map :zoom="6" :center="[-36.155, 144.81]" class="m-map" @click="getCoordinate">
+                <l-control-layers
+                  position="topright"
+                ></l-control-layers>
                 <l-tile-layer
-                  url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                  url="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
                 ></l-tile-layer>
-                <l-marker :lat-lng="[55.9464418, 8.1277591]"></l-marker>
+
+                <l-lwms-tile-layer
+                  v-for="layer in layers"
+                  :key="layer.name"
+                  :base-url="layer.baseUrl"
+                  :visible="layer.visible"
+                  :name="layer.name"
+                  :layers="layer.layers"
+                  :transparent="layer.transparent"
+                  :format="layer.format"
+                  layer-type="base"
+                  @update:visible="test()"
+                >
+                </l-lwms-tile-layer>
               </l-map>
             </client-only>
           </div>
         </b-col>
+        <b-col> </b-col>
       </b-row>
       <b-row>
         <b-col class="text-left m-source">
@@ -84,6 +101,50 @@
 </template>
 <script>
 export default {
-  name: "CheckList"
+  name: "CheckList",
+  data() {
+    return {
+      layers: [
+        {
+          name: "Parks and Reserves",
+          baseUrl:
+            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
+          visible: true,
+          layers: "CROWNLAND_PARKRES",
+          format: "image/png",
+          transparent: true
+        },
+        {
+          name: "Local Government Areas",
+          baseUrl:
+            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
+          visible: false,
+          layers: "VMLITE_LGA",
+          format: "image/png",
+          transparent: true
+        },
+        {
+          name: "Bioregions",
+          baseUrl:
+            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
+          visible: false,
+          layers: "FLORAFAUNA1_VBIOREG100",
+          format: "image/png",
+          transparent: true
+        }
+      ]
+    };
+  },
+  watch: {
+  },
+  methods:{
+      getCoordinate:function(event){
+        //   console.log(event.latlng)
+          console.log(event)
+      },
+      test(){
+          console.log("event")
+      }
+  }
 };
 </script>
