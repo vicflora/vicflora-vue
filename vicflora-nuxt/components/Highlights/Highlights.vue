@@ -4,14 +4,11 @@
 
 <template>
   <div class="highlights">
-    <b-row>
-      <div class="m-highlight-title">
-        <p>HIGHLIGHTS</p>
-      </div>
-    </b-row>
+    <div class="m-highlight-title">
+      <p>HIGHLIGHTS</p>
+    </div>
 
-    <div v-for="item in highlights" :key="item.index">
-    <b-row class="m-highlight">
+    <b-row v-for="item in highlights" :key="item.index" class="m-highlight">
       <b-col cols="3" class="m-highlight-col">
         <div>
           <img :src="item.img" class="m-highlight-image" alt=""/>
@@ -21,9 +18,7 @@
         <div class="m-hightlight-1" v-html="item.text"></div>   
       </b-col>
     </b-row>
-    </div>
   </div>
-
 </template>
 
 <script>

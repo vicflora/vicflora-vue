@@ -1,10 +1,12 @@
 @import "~/assets/scss/custom_variables.scss";
 
 .m-banner {
-  background-color: $primary;
+  background-color: $white; 
   padding: 10px 0;
+  border-bottom: solid 1px $primary;
+
   span {
-    color: white;
+    color: $primary;
   }
   .m-logo-title {
     width: 100%;
@@ -24,13 +26,14 @@
       min-width: 70px;
     }
     .m-title {
-      color: white;
+      color: $primary;
       display: inline-block;
       vertical-align: baseline;
       font-family: goodsans-regular;
       font-size: 2vw;
       letter-spacing: 1px;
       margin-left: 1vw;
+      padding-bottom: 6px;
     }
     .m-sub-title {
       font-family: goodsans-thin;

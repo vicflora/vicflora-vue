@@ -14,14 +14,16 @@
   padding: 0 !important;
   border: 1px solid $light !important;
   border-radius: 10px;
-  text-align: left;
+  // text-align: left;
   margin-top: 10px;
   margin-bottom: 10px;
-  .m-highlight-col{
-    display: flex;
-    justify-items: center;
-    align-items: center;
-  }
+  margin-left: 0px;
+  margin-right: 0px;
+  // .m-highlight-col{
+  //   display: flex;
+  //   justify-items: center;
+  //   align-items: center;
+  // }
   .m-highlight-image {
     margin: 5px 0;
     width: 100px;
@@ -29,18 +31,18 @@
   }
 }
 
-.m-hightlight-1 {
-  line-height: 17px;
-  margin: 2% 0;
-  p {
-    margin: 0px !important;
-    text-align: justify;
-    text-justify: auto;
-  }
-  b {
-    font-family: "goodsans-bold";
-  }
-}
+// .m-hightlight-1 {
+//   line-height: 17px;
+//   margin: 2% 0;
+//   p {
+//     margin: 0px !important;
+//     text-align: justify;
+//     text-justify: auto;
+//   }
+//   b {
+//     font-family: "goodsans-bold";
+//   }
+// }
 
 .m-hightlight-new {
   color: red;

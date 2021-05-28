@@ -1,6 +1,8 @@
+@import "~/assets/scss/custom_variables.scss";
+
 .m-footer {
     padding: 15px;   
-    background-color: #ee3f75;
+    background-color: $light;
     span {
         color: white;
         font-size: small;  
@@ -8,30 +10,9 @@
     .m-sponsor-image {
         margin: 8px 10px;
     }
-    .m-copyright{
-        color: white;
-        font-size: small; 
-        font-family: "goodsans-regular";
-    }
 }
 
-.m-text {
-    color: white;
-    font-size: small; 
-    margin: 0px;
-}
-.m-sponsor {
-    padding-top: 2px;
-}
-.m-media {
-    color: white !important;
-}
-
-.m-footer-logo {
-    width: 45px;
-    height: 45px;
-}
 
 .container {
     min-height: auto;
-  }
+}

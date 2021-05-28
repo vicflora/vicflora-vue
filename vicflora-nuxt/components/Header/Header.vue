@@ -6,8 +6,8 @@
 
 <template>
   <div class="header">
-    <b-navbar toggleable="lg" type="light" variant="info" class="m-navbar">
-      <b-container>
+    <b-container>
+      <b-navbar toggleable="lg" type="light" variant="info" class="m-navbar">
         <b-navbar-nav>
           <b-nav-item href="/Home">
               <b-icon
@@ -36,9 +36,7 @@
               </template>
               <b-dropdown-item href="/Help">Help</b-dropdown-item>
               <b-dropdown-item href="/About">About</b-dropdown-item>
-              <b-dropdown-item href="/Acknowledgements"
-                >Acknowledgements</b-dropdown-item
-              >
+              <b-dropdown-item href="/Acknowledgements">Acknowledgements</b-dropdown-item>
             </b-nav-item-dropdown>
             
             
@@ -49,13 +47,13 @@
             <b-nav-item>
               <SearchInput class="m-search-input"></SearchInput>
             </b-nav-item>
-            <b-nav-item>
+            <!--b-nav-item>
               <img id="m-avatar" src="@/assets/images/Tree.jpg" />
-            </b-nav-item>
+            </!--b-nav-item-->
           </b-navbar-nav>
         </b-collapse>
-      </b-container>
-    </b-navbar>
+      </b-navbar>
+    </b-container>
   </div>
 </template>
 

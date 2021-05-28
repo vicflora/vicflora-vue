@@ -8,7 +8,7 @@
                 <div class="m-logo-title">
                     <div class="m-logo-container">
                         <a href="https://www.rbg.vic.gov.au/">
-                            <img class="m-logo" src="@/assets/images/logo–white.png" alt="Logo">
+                            <img class="m-logo" src="@/assets/images/rbgv-logo-pink-badge.png" alt="Logo">
                         </a>
                     </div>
                     <div>
