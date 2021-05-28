@@ -36,37 +36,9 @@
           </div>
         </b-col>
       </b-row>
-      <b-row class="mb-2">
-        <b-col class="text-left" md="6">
-          <div id="map-wrap">
-            <client-only>
-              <l-map :zoom="6" :center="[-36.155, 144.81]" class="m-map" @click="getCoordinate">
-                <l-control-layers
-                  position="topright"
-                ></l-control-layers>
-                <l-tile-layer
-                  url="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
-                ></l-tile-layer>
 
-                <l-lwms-tile-layer
-                  v-for="layer in layers"
-                  :key="layer.name"
-                  :base-url="layer.baseUrl"
-                  :visible="layer.visible"
-                  :name="layer.name"
-                  :layers="layer.layers"
-                  :transparent="layer.transparent"
-                  :format="layer.format"
-                  layer-type="base"
-                  @update:visible="test()"
-                >
-                </l-lwms-tile-layer>
-              </l-map>
-            </client-only>
-          </div>
-        </b-col>
-        <b-col> </b-col>
-      </b-row>
+      <ChecklistMap></ChecklistMap>
+
       <b-row>
         <b-col class="text-left m-source">
           <h4>Source</h4>
@@ -100,51 +72,11 @@
   </div>
 </template>
 <script>
+import ChecklistMap from "@/components/Checklist-map/Checklist-map"
 export default {
   name: "CheckList",
-  data() {
-    return {
-      layers: [
-        {
-          name: "Parks and Reserves",
-          baseUrl:
-            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
-          visible: true,
-          layers: "CROWNLAND_PARKRES",
-          format: "image/png",
-          transparent: true
-        },
-        {
-          name: "Local Government Areas",
-          baseUrl:
-            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
-          visible: false,
-          layers: "VMLITE_LGA",
-          format: "image/png",
-          transparent: true
-        },
-        {
-          name: "Bioregions",
-          baseUrl:
-            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
-          visible: false,
-          layers: "FLORAFAUNA1_VBIOREG100",
-          format: "image/png",
-          transparent: true
-        }
-      ]
-    };
-  },
-  watch: {
-  },
-  methods:{
-      getCoordinate:function(event){
-        //   console.log(event.latlng)
-          console.log(event)
-      },
-      test(){
-          console.log("event")
-      }
+  components: {
+    ChecklistMap
   }
 };
 </script>

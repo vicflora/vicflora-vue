@@ -24,7 +24,8 @@
     "vue-bootstrap-typeahead": "^0.2.6",
     "vue-lodash": "^2.1.2",
     "vue-pull-to": "^0.1.8",
-    "vue-scrollactive": "^0.9.3"
+    "vue-scrollactive": "^0.9.3",
+    "vue2-leaflet-fullscreen": "^1.0.1"
   },
   "devDependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",
