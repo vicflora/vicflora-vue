@@ -45,7 +45,7 @@
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
+          <b-navbar-nav class="ml-auto m-search-and-avatar">
             <b-nav-item>
               <SearchInput class="m-search-input"></SearchInput>
             </b-nav-item>

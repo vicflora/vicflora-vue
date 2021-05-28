@@ -138,13 +138,13 @@
 
 > ## 5/26 - 5/28
 > ### Done
-
+- map (leaflet)
+- header style - completed by Niels(fix search box layout)
 
 > ### To do
 - bioregion index - markdown ? 
 - matrix-keys
 - glossary img size
 - toc style - sticky
-- map (leaflet)
-- header style
+
 
