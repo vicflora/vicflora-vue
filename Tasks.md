@@ -85,7 +85,7 @@
 > ## 4/30
 > ### Done
 - search page migration 
-- v-viwer swith the images
+- v-viwer switch the images
 - add spinner in images container
 > ### To do
 - accepted name link
@@ -128,11 +128,23 @@
 - fix carousel
 - download page 
 - glossary page
+- demo meeting
 
-> ### To do
+> ## 5/20 - 5/21
+> ### Done
+- markdown edit problem (only in development)
 - other static pages - https://vicflora.rbg.vic.gov.au/matrix-keys/eucalypts/
 - keys page
-- bioregion index
-- matrix-keys
 
+> ## 5/26 - 5/28
+> ### Done
+
+
+> ### To do
+- bioregion index - markdown ? 
+- matrix-keys
+- glossary img size
+- toc style - sticky
+- map (leaflet)
+- header style
 

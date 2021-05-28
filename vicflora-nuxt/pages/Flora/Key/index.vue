@@ -2,7 +2,7 @@
 export default {
   middleware: [
         function({ redirect }) {
-            redirect('/home');
+            redirect('/flora/key/1903');
         },
     ],
 }
