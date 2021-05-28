@@ -26,4 +26,11 @@
   .container {
     min-height: auto;
   }
+
+  .btn-primary {
+    background-color: $light;
+    border-color: $light;
+    color: $primary;
+    font-weight: bold;
+  }
 }
