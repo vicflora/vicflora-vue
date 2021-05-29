@@ -81,11 +81,6 @@ html, body {
   min-height: 100vh;
   flex-direction: column;
 }
-.row {
-  width: 100%;
-}
-
-
 
 #content {
   width: 100%;
