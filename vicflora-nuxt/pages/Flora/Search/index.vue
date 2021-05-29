@@ -40,58 +40,53 @@
               </div>
               <!-- Query -->
               <div>
-                <div>
-                  <span
-                    aria-controls="collapse-query"
-                    @click="queryFacet = !queryFacet"
-                    class="m-subtitle"
-                  >
-                    Query
-                    <b-icon icon="caret-down-fill" v-if="queryFacet"></b-icon>
-                    <b-icon icon="caret-right-fill" v-else></b-icon>
+                <span
+                  aria-controls="collapse-query"
+                  @click="queryFacet = !queryFacet"
+                  class="m-subtitle"
+                >
+                  Query
+                  <b-icon icon="caret-down-fill" v-if="queryFacet"></b-icon>
+                  <b-icon icon="caret-right-fill" v-else></b-icon>
+                </span>
+
+                <b-collapse visible id="collapse-query" v-model="queryFacet">
+                  <span class="m-facet-title">Query term:</span>
+                  <span>
+                    <!-- {{ q }} -->
+                    {{ data.search.meta.params.q }}
+                    <b-icon
+                      v-if="q"
+                      icon="x"
+                      font-scale="1.1"
+                      variant="danger"
+                      @click="removeq"
+                    ></b-icon>
                   </span>
 
-                  <b-collapse visible id="collapse-query" v-model="queryFacet">
-                    <b-card>
-                      <div>
-                        <span class="m-facet-title">Query term:</span>
-                        <span>
-                          <!-- {{ q }} -->
-                          {{ data.search.meta.params.q }}
-                          <b-icon
-                            v-if="q"
-                            icon="x"
-                            font-scale="1.1"
-                            variant="danger"
-                            @click="removeq"
-                          ></b-icon>
-                        </span>
-                      </div>
-                      <div v-if="fq.length > 0">
-                        <span class="m-facet-title">Filter queries:</span>
-                        <li
-                          style="margin-left:10px;"
-                          v-for="item in fq"
-                          :key="item"
-                        >
-                          <span class="filter-queries-key">{{
-                            facetName[item.split(":")[0]]
-                              ? facetName[item.split(":")[0]]
-                              : item.split(":")[0]
-                          }}</span
-                          >{{ `: ${item.split(":")[1]}` }}
-                          <b-icon
-                            v-if="item.split(':')[0] !== 'end_or_higher_taxon'"
-                            icon="x"
-                            font-scale="1.1"
-                            variant="danger"
-                            @click="removefqList(item)"
-                          ></b-icon>
-                        </li>
-                      </div>
-                    </b-card>
-                  </b-collapse>
-                </div>
+                  <div v-if="fq.length > 0">
+                    <span class="m-facet-title">Filter queries:</span>
+                    <li
+                      style="margin-left:10px;"
+                      v-for="item in fq"
+                      :key="item"
+                    >
+                      <span class="filter-queries-key">{{
+                        facetName[item.split(":")[0]]
+                          ? facetName[item.split(":")[0]]
+                          : item.split(":")[0]
+                      }}</span
+                      >{{ `: ${item.split(":")[1]}` }}
+                      <b-icon
+                        v-if="item.split(':')[0] !== 'end_or_higher_taxon'"
+                        icon="x"
+                        font-scale="1.1"
+                        variant="danger"
+                        @click="removefqList(item)"
+                      ></b-icon>
+                    </li>
+                  </div>
+                </b-collapse>
               </div>
               <!-- Filters -->
               <div>
@@ -111,19 +106,17 @@
                     id="collapse-filter"
                     v-model="filtersFacet"
                   >
-                    <b-card>
-                      <div
-                        v-for="facetField in data.search.facetFields"
-                        :key="facetField.fieldName"
-                      >
-                        <FacetField
-                          v-if="facetField.facets.length>0"
-                          :facetFields="{ ...facetField }"
-                          :removeFilterVal="removeFilterVal"
-                          :key="key"
-                        ></FacetField>
-                      </div>
-                    </b-card>
+                    <div
+                      v-for="facetField in data.search.facetFields"
+                      :key="facetField.fieldName"
+                    >
+                      <FacetField
+                        v-if="facetField.facets.length>0"
+                        :facetFields="{ ...facetField }"
+                        :removeFilterVal="removeFilterVal"
+                        :key="key"
+                      ></FacetField>
+                    </div>
                   </b-collapse>
                 </div>
               </div>

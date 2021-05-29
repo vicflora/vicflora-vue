@@ -6,7 +6,6 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _3c58f590 = () => interopDefault(import('..\\pages\\Bioregions\\index.vue' /* webpackChunkName: "pages/Bioregions/index" */))
 const _fc2fd066 = () => interopDefault(import('..\\pages\\Flora\\index.vue' /* webpackChunkName: "pages/Flora/index" */))
-const _025c5de0 = () => interopDefault(import('..\\pages\\Home\\index.vue' /* webpackChunkName: "pages/Home/index" */))
 const _3145d265 = () => interopDefault(import('..\\pages\\Matrix-keys\\index.vue' /* webpackChunkName: "pages/Matrix-keys/index" */))
 const _54abe461 = () => interopDefault(import('..\\pages\\Flora\\Checklist\\index.vue' /* webpackChunkName: "pages/Flora/Checklist/index" */))
 const _e7c692f2 = () => interopDefault(import('..\\pages\\Flora\\Classification\\index.vue' /* webpackChunkName: "pages/Flora/Classification/index" */))
@@ -21,6 +20,7 @@ const _8631cfa0 = () => interopDefault(import('..\\pages\\Flora\\Key\\_id.vue' /
 const _3ef02636 = () => interopDefault(import('..\\pages\\Flora\\Taxon\\_id.vue' /* webpackChunkName: "pages/Flora/Taxon/_id" */))
 const _087175a0 = () => interopDefault(import('..\\pages\\Bioregions\\_id.vue' /* webpackChunkName: "pages/Bioregions/_id" */))
 const _247f2a0d = () => interopDefault(import('..\\pages\\Matrix-keys\\_id.vue' /* webpackChunkName: "pages/Matrix-keys/_id" */))
+const _1b8ea2af = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
 const _8b18f652 = () => interopDefault(import('..\\pages\\_id.vue' /* webpackChunkName: "pages/_id" */))
 
 const emptyFn = () => {}
@@ -35,10 +35,6 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
-    path: "/",
-    component: _025c5de0,
-    name: "Home"
-  }, {
     path: "/Bioregions",
     component: _3c58f590,
     name: "Bioregions"
@@ -102,6 +98,10 @@ export const routerOptions = {
     path: "/Matrix-keys/:id?",
     component: _247f2a0d,
     name: "Matrix-keys-id"
+  }, {
+    path: "/",
+    component: _1b8ea2af,
+    name: "index"
   }, {
     path: "/:id",
     component: _8b18f652,
