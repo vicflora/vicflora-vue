@@ -2,7 +2,8 @@
 
 .m-navbar {
   margin-left: -15px;
-  margin-right: 15px;
+  margin-right: -15px;
+  padding: 0.5rem 15px;
   background-color: $white !important;
   
   .m-icon {

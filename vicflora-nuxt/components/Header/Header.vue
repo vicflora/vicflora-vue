@@ -9,7 +9,7 @@
     <b-container>
       <b-navbar toggleable="lg" type="light" variant="info" class="m-navbar">
         <b-navbar-nav>
-          <b-nav-item href="/Home">
+          <b-nav-item href="/">
               <b-icon
                 icon="house-door-fill"
                 font-scale="1.5"
@@ -20,7 +20,7 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item class="m-menu-item" href="/flora/search?q=**">Search</b-nav-item>
+            <b-nav-item class="m-menu-item" href="/flora/search?q=*">Search</b-nav-item>
             <b-nav-item class="m-menu-item"
                href="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f">Browse classification</b-nav-item
             >
@@ -44,12 +44,9 @@
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item>
+            <li class="nav-item">
               <SearchInput class="m-search-input"></SearchInput>
-            </b-nav-item>
-            <!--b-nav-item>
-              <img id="m-avatar" src="@/assets/images/Tree.jpg" />
-            </!--b-nav-item-->
+            </li>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
