@@ -12,8 +12,7 @@
   .nav-item {
     margin-top: 4px;
     a {
-      color: $primary !important;
-      font-size: small;
+      color: $primary;
     }
     a:hover {
       text-decoration: none;
@@ -26,32 +25,8 @@
 
 }
 
-#m-avatar {
-  height: 30px !important;
-  width: 30px !important;
-  border-radius: 50px;
-}
-
-.m-menu-item-more {
-  color: primary !important;
-  font-size: small !important;
-  margin-right: 3px;
-  text-align: center !important;
-  align-items: center;
-}
-.show {
-  color: $primary !important;
-}
-
-.dropdown-item {
-  background-color: $white !important;
-  color: $primary;
-  font-family: "goodsans-thin";
-  font-size: small;
-}
-
 .dropdown-menu {
-  background-color: $white;
+  font-size: small;
 }
 
 .navbar-toggler {
