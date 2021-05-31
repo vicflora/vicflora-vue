@@ -1,13 +1,7 @@
-<style lang="scss" scoped>
-.m-search-input::v-deep {
-  @import "./Search-input.scss";
-}
-</style>
-
 <template>
   <div class=".m-search-input">
     <VueTypeaheadBootstrap
-      class="mb-4"
+      class="mb-4 search-input-type-ahead"
       size="sm"
       v-model="query"
       :data="[query, ...nameTypeAhead]"
@@ -18,9 +12,16 @@
       :maxMatches="100"
     >
       <template slot="append">
-        <b-button size="sm">
-          <b-icon font-scale="1" icon="search" @click="search" />
-        </b-button>
+        <BButton 
+          size="sm" 
+          variant="primary"
+        >
+          <BIcon 
+            icon="search" 
+            font-scale="1" 
+            @click="search"
+          />
+        </BButton>
       </template>
     </VueTypeaheadBootstrap>
   </div>
@@ -39,18 +40,26 @@ var nameTypeAheadGql = gql`
 `;
 
 export default {
-  components: {
-    VueTypeaheadBootstrap
-  },
+  name: "SearchInput",
+  components: { VueTypeaheadBootstrap },
   data() {
     return {
       nameTypeAhead: [],
-      query: "",
-      userRepositories: {},
-      users: []
-    };
+      query: ""
+    }
   },
-
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function() {
+        if (typeof this.$route.query.q === "string") {
+          this.query = this.$route.query.q
+            .replace(/[*]/g, "")
+            .replace(/ AND /g, " ")
+        }
+      }
+    }
+  },
   methods: {
     search: function() {
       this.$router.push({
@@ -58,7 +67,7 @@ export default {
         query: {
           q: `*${this.query}*`.replace(/ /g, " AND ")
         }
-      });
+      })
     },
     searchWords: debounce(function() {
       this.$apollo.addSmartQuery("nameTypeAhead", {
@@ -70,22 +79,16 @@ export default {
           return data;
         },
         error(error) {
-          console.error("We've got an error!", error);
+          console.error("We've got an error!", error)
         }
-      });
+      })
     }, 1000)
-  },
-  watch: {
-    $route: {
-      immediate: true,
-      handler: function() {
-        if (typeof this.$route.query.q === "string") {
-          this.query = this.$route.query.q
-            .replace(/[*]/g, "")
-            .replace(/ AND /g, " ");
-        }
-      }
-    }
   }
-};
+}
 </script>
+
+<style lang="scss" scoped>
+.mb-4.search-input-type-ahead {
+  margin-bottom: 0 !important;
+}
+</style>
