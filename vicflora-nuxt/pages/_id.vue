@@ -8,10 +8,12 @@
     </BRow>
     <!-- content -->
     <BRow>
-      <BCol align-self="start" cols="9">
-        <markdown class="text-left">
-          <nuxt-content :document="markdown" class="m-content" id="scrollspy-nested" />
-        </markdown>
+      <BCol align-self="start" cols="9" class="text-left">
+        <nuxt-content
+          id="scrollspy-nested"
+          :document="markdown" 
+          class="m-content"
+        />
       </BCol>
       <!-- table of content -->
       <BCol align-self="start" cols="3">
