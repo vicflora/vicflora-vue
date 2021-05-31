@@ -48,7 +48,7 @@ slides:
       Illustration: Barley, Anita. ©2021 Royal Botanic Gardens Victoria. CC BY-NC-SA 4.0.
 ---
 
-<b>VICFLORA</b> is a comprehensive and current guide to the wild plants of
+**VICFLORA** is a comprehensive and current guide to the wild plants of
 Victoria. With plant profiles, identification tools and richly illustrated, the
 Royal Botanic Gardens Victoria provides this resource free-of-charge for land
 managers, scientists, students and indeed anyone with an interest in Victorian
