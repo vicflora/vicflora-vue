@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import SearchInput from "@/components/Search/SearchInput/SearchInput"
+import SearchInput from "@/components/Search/SearchInput"
 
 export default {
   name: "TheNavigationBar",
@@ -90,6 +90,60 @@ export default {
 
 <style lang="scss" scoped>
 .container::v-deep {
-  @import "./TheNavigationBar.scss";
+  @import "~/assets/scss/custom_variables.scss";
+
+  .m-navbar {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 0.5rem 15px;
+    background-color: $white !important;
+    
+    .m-icon {
+      color: $primary;
+    }
+    .nav-item {
+      margin-top: 4px;
+      a {
+        color: $primary;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
+
+    .m-menu-item-more {
+      color: $primary;
+    }
+
+  }
+
+  .dropdown-menu {
+    font-size: small;
+  }
+
+  .navbar-toggler {
+    border-color: $white !important
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !important;
+  }
+
+  .m-search-input{
+    height: 30px;
+    
+    input {
+      border-color: $primary;
+    }
+
+    button {
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+
+  .container {
+    min-height: auto;
+  }
 }
 </style>

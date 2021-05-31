@@ -29,7 +29,6 @@
 
 <script>
 import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
-// import 'bootstrap/scss/bootstrap.scss';
 import { debounce } from "lodash";
 
 import gql from "graphql-tag";

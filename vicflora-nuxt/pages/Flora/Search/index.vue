@@ -70,11 +70,11 @@
 </template>
 
 <script>
-import SearchInput from "@/components/Search/SearchInput/SearchInput"
-import SearchExcludeHigherTaxa from "@/components/Search/SearchExcludeHigherTaxa/SearchExcludeHigherTaxa"
-import SearchApplied from "@/components/Search/SearchApplied/SearchApplied"
-import SearchFilters from "@/components/Search/SearchFilters/SearchFilters"
-import SearchResult from "@/components/Search/SearchResult/SearchResult" 
+import SearchInput from "@/components/Search/SearchInput"
+import SearchExcludeHigherTaxa from "@/components/Search/SearchExcludeHigherTaxa"
+import SearchApplied from "@/components/Search/SearchApplied"
+import SearchFilters from "@/components/Search/SearchFilters"
+import SearchResult from "@/components/Search/SearchResult" 
 
 import { searchMixin } from "@/mixins/searchMixins"
 

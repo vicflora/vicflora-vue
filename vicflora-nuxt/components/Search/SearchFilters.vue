@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import SearchFiltersFacetField from "@/components/Search/SearchFiltersFacetField/SearchFiltersFacetField"
+import SearchFiltersFacetField from "@/components/Search/SearchFiltersFacetField"
 
 export default {
   name: "SearchFilters",

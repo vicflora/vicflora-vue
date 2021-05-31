@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import TheHeader from "@/components/TheHeader/TheHeader"
-import TheFooter from "@/components/TheFooter/TheFooter"
+import TheHeader from "@/components/App/TheHeader"
+import TheFooter from "@/components/App/TheFooter"
 
 export default {
   name: "default",

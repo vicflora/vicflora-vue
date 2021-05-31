@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import SearchAppliedFilter from "@/components/Search/SearchAppliedFilter/SearchAppliedFilter"
+import SearchAppliedFilter from "@/components/Search/SearchAppliedFilter"
 import { searchMixin } from "@/mixins/searchMixins"
 
 export default {

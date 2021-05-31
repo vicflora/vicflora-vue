@@ -1,7 +1,3 @@
-<style lang="scss" scoped>
-@import "./Home.scss";
-</style>
-
 <template>
   <div class="m-homepage">
     <b-container>
@@ -33,8 +29,8 @@
 </template>
 
 <script>
-import Carousel from "@/components/Carousel/Carousel";
-import Highlights from "@/components/Highlights/Highlights";
+import Carousel from "@/components/App/TheCarousel"
+import Highlights from "@/components/App/TheHighlights"
 
 export default {
   name: "Home",
@@ -71,3 +67,42 @@ export default {
 
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/custom_variables.scss";
+
+.m-homepage {
+  background-color: white;
+  .m-introduction {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: justify;
+    text-justify: auto;
+  }
+  .m-btn {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    a {
+      color: white;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .m-carousel {
+    margin: 15px 5px;
+    border-radius: 10px;
+  }
+  .container {
+    min-height: auto;
+  }
+
+  .btn-primary {
+    background-color: $light;
+    border-color: $light;
+    color: $primary;
+    font-weight: bold;
+  }
+}
+</style>

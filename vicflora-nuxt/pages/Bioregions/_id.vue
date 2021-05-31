@@ -8,10 +8,8 @@
     </BRow>
     <!-- content -->
     <BRow>
-      <BCol align-self="start" cols="9">
-        <Markdown class="text-left">
-          <NuxtContent :document="markdown" class="m-content" id="scrollspy-nested" />
-        </Markdown>
+      <BCol align-self="start" cols="9" class="text-left">
+        <NuxtContent :document="markdown" class="m-content" id="scrollspy-nested"></NuxtContent>
       </BCol>
       <!-- table of content -->
       <BCol align-self="start" cols="3">
@@ -22,8 +20,7 @@
 </template>
 
 <script>
-import TableOfContent from "@/components/AppTableOfContent/AppTableOfContent";
-
+import TableOfContent from "@/components/App/AppTableOfContent";
 export default {
   name:"Bioregions",
   components: {
@@ -53,7 +50,7 @@ export default {
     }
     this.title = list.join(" ");
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -59,12 +59,12 @@
 </template>
 
 <script>
-import SearchResultNumberOfMatches from "@/components/Search/SearchResultNumberOfMatches/SearchResultNumberOfMatches"
-import SearchResultNav from "@/components/Search/SearchResultNav/SearchResultNav"
-import SearchResultItem from "@/components/Search/SearchResultItem/SearchResultItem"
-import SearchResultDownloadButton from "@/components/Search/SearchResultDownloadButton/SearchResultDownloadButton"
-import SearchResultHeader from "@/components/Search/SearchResultHeader/SearchResultHeader"
-import SearchResultFooter from "@/components/Search/SearchResultFooter/SearchResultFooter"
+import SearchResultNumberOfMatches from "@/components/Search/SearchResultNumberOfMatches"
+import SearchResultNav from "@/components/Search/SearchResultNav"
+import SearchResultItem from "@/components/Search/SearchResultItem"
+import SearchResultDownloadButton from "@/components/Search/SearchResultDownloadButton"
+import SearchResultHeader from "@/components/Search/SearchResultHeader"
+import SearchResultFooter from "@/components/Search/SearchResultFooter"
 
 export default {
   name: "SearchResult",

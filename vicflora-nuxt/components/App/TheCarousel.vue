@@ -1,10 +1,6 @@
-<style lang="scss" scoped>
-@import "./Carousel.scss";
-</style>
-
 <template>
   <div>
-    <b-carousel
+    <BCarousel
       id="carousel-1"
       v-model="currentSlide"
       :interval="4000"
@@ -17,14 +13,19 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <b-carousel-slide v-for="slide in slides" :key="slide.index" :img-src="slide.imgSource" :text="slide.caption"></b-carousel-slide>
-    </b-carousel>
+      <BCarouselSlide 
+        v-for="slide in slides" 
+        :key="slide.index" 
+        :img-src="slide.imgSource" 
+        :text="slide.caption"
+      />
+    </BCarousel>
   </div>
 </template>
 
 <script>
   export default {
-    name: "Carousel",
+    name: "TheCarousel",
     data() {
       return {
         slides: [

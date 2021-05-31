@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import TheNavigationBar from "@/components/TheNavigationBar/TheNavigationBar"
-import TheBanner from "@/components/TheBanner/TheBanner"
+import TheNavigationBar from "@/components/App/TheNavigationBar"
+import TheBanner from "@/components/App/TheBanner"
 
 export default {
   name: "TheHeader",

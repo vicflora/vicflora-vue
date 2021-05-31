@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import SearchResultNav from "@/components/Search/SearchResultNav/SearchResultNav"
+import SearchResultNav from "@/components/Search/SearchResultNav"
 
 import { searchResultPaginationMixin } from "@/mixins/searchMixins"
 

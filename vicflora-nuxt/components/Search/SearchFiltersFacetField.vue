@@ -82,22 +82,8 @@
 </template>
 
 <script>
-import SearchFiltersFacet from "@/components/Search/SearchFiltersFacet/SearchFiltersFacet"
-import SearchFiltersFacetFieldModal from "@/components/Search/SearchFiltersFacetFieldModal/SearchFiltersFacetFieldModal"
-// import gql from "graphql-tag"
-
-// var SearchResultFacetFieldGql = gql`
-//   query facetField($input: FieldFacetInput) {
-//     facetField(input: $input) {
-//       fieldName
-//       facets {
-//         value
-//         count
-//         fq
-//       }
-//     }
-//   }
-// `
+import SearchFiltersFacet from "@/components/Search/SearchFiltersFacet"
+import SearchFiltersFacetFieldModal from "@/components/Search/SearchFiltersFacetFieldModal"
 
 export default {
   name: "SearchFiltersFacetField",
@@ -133,21 +119,6 @@ export default {
       }
     },
   },
-  // apollo: {
-  //   facetField() {
-  //     return {
-  //       query: SearchResultFacetFieldGql,
-  //       variables: {
-  //         input: {
-  //           field: this.facetField.facets[0].fq.split(":")[0].replace("-",""),
-  //           q: this.q,
-  //           limit:50,
-  //           offset:0
-  //         },
-  //       },
-  //     }
-  //   },
-  // },
   watch: {
     selected: function() {
       this.modalSelected = this.selected
@@ -160,9 +131,6 @@ export default {
     }
   },
   mounted: function() {
-
-    // this.getSelectedFacets()
-
     // change the status of collapse
     if(window.innerWidth < 992){
       this.visible = false
@@ -236,6 +204,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./SearchFiltersFacetField.scss"
+@import "~/assets/scss/custom_variables.scss";
+
+.m-facetvalue {
+  display: block;
+  color: $primary;
+  text-transform: capitalize;
+}
+
+.card-body {
+  padding-bottom: 0 !important;
+  padding-top: 3px !important;
+}
+
+.btn-sm {
+  padding: 2px 6px;
+}
+.m-more {
+  color: $primary;
+  cursor: pointer;
+  margin-bottom: 0;
+  font-size: small;
+}
+
+.m-more:hover {
+  text-decoration: underline;
+}
 </style>
 

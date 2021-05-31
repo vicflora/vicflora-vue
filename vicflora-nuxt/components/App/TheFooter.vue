@@ -40,5 +40,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./TheFooter.scss";
+@import "~/assets/scss/custom_variables.scss";
+
+.m-footer {
+    padding: 15px;   
+    background-color: $light;
+    span {
+        color: white;
+        font-size: small;  
+    }
+    .m-sponsor-image {
+        margin: 8px 10px;
+    }
+}
+
+
+.container {
+    min-height: auto;
+}
 </style>
