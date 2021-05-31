@@ -26,7 +26,7 @@
   </b-container>
 </template>
 <script>
-import TableOfContent from "@/components/Table-of-content/Table-of-content";
+import TableOfContent from "@/components/AppTableOfContent/AppTableOfContent"
 export default {
   name:"Help",
   components: {
