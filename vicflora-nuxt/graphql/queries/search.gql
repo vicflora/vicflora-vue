@@ -1,12 +1,12 @@
 query searchQuery($input: SearchInput!) {
   search(input: $input) {
-    docs{
+    docs {
       id
       taxonRank
       acceptedNameUsage
       acceptedNameUsageId
       acceptedNameUsageAuthorship
-    	vernacularName
+      vernacularName
       scientificName
       scientificNameAuthorship
       family
@@ -18,17 +18,18 @@ query searchQuery($input: SearchInput!) {
         q
         fq
         fl
-        rows 
+        rows
       }
-      pagination{
+      pagination {
         lastPage
         total
         currentPage
       }
     }
-    facetFields{
+    facetFields {
       fieldName
-      facets{
+      fieldLabel
+      facets {
         value
         count
         fq

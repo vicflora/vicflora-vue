@@ -41,6 +41,8 @@ export default {
     'nuxt-leaflet',
   ],
   bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false,
     // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
     icons: true
   },
@@ -49,7 +51,6 @@ export default {
       default: {
         // httpEndpoint: 'http://vicflora-api-test.rbg.vic.gov.au/graphql',
         httpEndpoint: 'https://vicflora-api.rbg.vic.gov.au/graphql',
-      }
     }
   },
   content: {

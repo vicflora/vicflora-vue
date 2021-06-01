@@ -1,19 +1,27 @@
 <template>
   <div id="app">
     <div id="content">
-      <div id="header">
-        <Header></Header>
-      </div>
-      <div id="banner">
-        <Banner></Banner>
-      </div>
+      <TheHeader />
       <Nuxt />
     </div> 
     <div id="footer">
-      <Footer></Footer>
+      <TheFooter/>
     </div>
   </div>
 </template>
+
+<script>
+import TheHeader from "@/components/App/TheHeader"
+import TheFooter from "@/components/App/TheFooter"
+
+export default {
+  name: "default",
+  components: { 
+    TheHeader, 
+    TheFooter 
+  }
+}
+</script>
 
 <style>
 @font-face {
@@ -69,6 +77,10 @@ html, body {
   flex-direction: column;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 #app {
   font-family: goodsans-thin, Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -81,11 +93,6 @@ html, body {
   min-height: 100vh;
   flex-direction: column;
 }
-.row {
-  width: 100%;
-}
-
-
 
 #content {
   width: 100%;
@@ -94,15 +101,5 @@ html, body {
 #footer {
   height: auto;
 }
-
-
 </style>
 
-<script>
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import Banner from "@/components/Banner/Banner";
-export default {
-  components: { Header, Footer, Banner }
-};
-</script>

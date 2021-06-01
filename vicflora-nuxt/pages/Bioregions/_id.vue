@@ -1,32 +1,26 @@
-<style lang="scss" scoped>
-.m-static::v-deep {
-  @import "bioregions-static.scss";
-}
-</style>
 <template>
-  <b-container class="m-static">
+  <BContainer class="m-static">
     <!-- title -->
-    <b-row>
-      <b-col class="mt-4 mb-2 m-title">
+    <BRow>
+      <BCol class="mt-4 mb-2 m-title">
         <h2>{{ markdown.title }}</h2>
-      </b-col>
-    </b-row>
+      </BCol>
+    </BRow>
     <!-- content -->
-    <b-row>
-      <b-col align-self="start" cols="9">
-        <markdown class="text-left">
-          <nuxt-content :document="markdown" class="m-content" id="scrollspy-nested" />
-        </markdown>
-      </b-col>
+    <BRow>
+      <BCol align-self="start" cols="9" class="text-left">
+        <NuxtContent :document="markdown" class="m-content" id="scrollspy-nested"></NuxtContent>
+      </BCol>
       <!-- table of content -->
-      <b-col align-self="start" cols="3">
+      <BCol align-self="start" cols="3">
         <TableOfContent :toc="markdown.toc"></TableOfContent>
-      </b-col>
-    </b-row>
-  </b-container>
+      </BCol>
+    </BRow>
+  </BContainer>
 </template>
+
 <script>
-import TableOfContent from "@/components/Table-of-content/Table-of-content";
+import TableOfContent from "@/components/App/AppTableOfContent";
 export default {
   name:"Bioregions",
   components: {
@@ -56,5 +50,11 @@ export default {
     }
     this.title = list.join(" ");
   }
-};
+}
 </script>
+
+<style lang="scss" scoped>
+.m-static::v-deep {
+  @import "bioregions-static.scss";
+}
+</style>

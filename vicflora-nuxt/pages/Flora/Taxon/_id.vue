@@ -23,19 +23,19 @@
             <!-- Breadcrumb -->
             <b-row>
               <b-col>
-                <Breadcrumb :data="data"></Breadcrumb>
+                <Breadcrumbs :data="data"/>
               </b-col>
             </b-row>
             <!-- Name -->
             <b-row>
               <b-col class="text-left">
-                <TaxonName :data="data"></TaxonName>
+                <TaxonName :data="data"/>
               </b-col>
             </b-row>
             <!-- Status -->
             <b-row class="m-row">
               <b-col class="text-left">
-                <TaxonStatus :data="data"></TaxonStatus>
+                <TaxonStatus :data="data"/>
               </b-col>
             </b-row>
             <!-- classification -->
@@ -47,7 +47,7 @@
             >
               <b-col class="text-left">
                 <p class="m-status-class">Classification</p>
-                <TaxonClassificationComponent></TaxonClassificationComponent>
+                <TaxonClassification/>
               </b-col>
             </b-row>
             <!-- Tabs -->
@@ -83,20 +83,20 @@
 </template>
 
 <script>
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import TaxonName from "@/components/Taxon-name/Taxon-name";
-import TaxonStatus from "@/components/Taxon-status/Taxon-status";
-import TaxonTabs from "@/components/Taxon-tabs/Taxon-tabs";
-import TaxonClassificationComponent from "@/components/Taxon-classification-component/Taxon-classification-component";
+import Breadcrumbs from "@/components/Taxon/TaxonBreadcrumbs"
+import TaxonName from "@/components/Taxon/TaxonName"
+import TaxonStatus from "@/components/Taxon/TaxonStatus"
+import TaxonTabs from "@/components/Taxon/TaxonTabs"
+import TaxonClassification from "@/components/Taxon/TaxonClassification"
 
 export default {
   name: "Taxon",
   components: {
-    Breadcrumb,
+    Breadcrumbs,
     TaxonName,
     TaxonStatus,
     TaxonTabs,
-    TaxonClassificationComponent
+    TaxonClassification
   },
   data() {
     return {
@@ -120,9 +120,8 @@ export default {
         species: 220,
         subspecies: 230
       }
-    };
+    }
   },
-
   computed: {
     urlId: {
       get: function() {
@@ -131,7 +130,7 @@ export default {
       set: function(newVal) {
         this.$router.push({
           path: "/flora/taxon/" + newVal
-        });
+        })
       }
     }
   },
@@ -139,9 +138,9 @@ export default {
     urlId: {
       immediate: true,
       handler: function(val) {
-        this.id = val;
+        this.id = val
       }
     }
   }
-};
+}
 </script>

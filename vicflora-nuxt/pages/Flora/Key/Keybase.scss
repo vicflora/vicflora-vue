@@ -32,7 +32,7 @@ limitations under the License.
 
 .keybase-player-currentnode, .keybase-player-path,
 .keybase-player-remainingitems, .keybase-player-discardeditems {
-    border: solid 1px #cccccc;
+    border: solid 1px $primary;
 }
 
 .keybase-player-currentnode:after, .keybase-player-currentnode:before,
@@ -61,11 +61,9 @@ limitations under the License.
 .keybase-player-window h3 {
     margin: 0;
     padding: 8px 5px 10px 10px;
-    background-color: white;
-    color: $primary;
+    background-color: $primary;
+    color: $white;
     font-size: 18px;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.76);
 }
 
 .keybase-player-menu {
@@ -138,7 +136,7 @@ limitations under the License.
 }
 
 .keybase-bracketed-key .keybase-from-node {
-    display: inline-block;
+    // display: inline-block;
     float: left;
     margin-left: -35px;
     font-weight: bold;
@@ -158,13 +156,13 @@ limitations under the License.
 }
 
 .keybase-bracketed-key .keybase-to-node {
-    display: inline-block;
+    // display: inline-block;
     float: right;
     font-weight: bold;
 }
 
 .keybase-bracketed-key .keybase-to-item {
-    display: inline-block;
+    // display: inline-block;
     float: right;
 }
 
@@ -260,7 +258,7 @@ limitations under the License.
 }
 
 .keybase-indented-key .keybase-to-node, .keybase-indented-key .keybase-to-item {
-  display: inline-block;
+  // display: inline-block;
   float: right;
   margin-left: 308px;
 }
