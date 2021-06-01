@@ -4,14 +4,14 @@
       <div class="m-logo-title">
         <div class="m-logo-container">
           <a href="/">
-            <img class="m-logo" src="@/assets/images/rbgv-logo-pink-badge.png" alt="Logo">
+            <img class="m-logo img-fluid" src="@/assets/images/rbgv-logo-pink-badge.png" alt="Logo" />
           </a>
         </div>
         <div>
           <a href="/">
             <div class="m-title">
               VICFLORA
-              <span class="m-sub-title">Flora of Victoria</span>  
+              <span class="m-subtitle">Flora of Victoria</span>  
             </div>
           </a>  
         </div>                
@@ -44,48 +44,50 @@ export default {
     align-items: flex-end;
     justify-items: left;
     justify-content: left;
+    
     a {
       display: inline-block;
     }
-    .m-logo-container{
-      max-width: 6vw;
-      min-width: 70px;
-    }
+
+    // .m-logo-container{
+    //   max-width: 6vw;
+    //   min-width: 70px;
+    // }
+
     .m-logo{
       max-width: 6vw;
       min-width: 70px;
     }
+
     .m-title {
       color: $primary;
       display: inline-block;
       vertical-align: baseline;
       font-family: goodsans-regular;
-      font-size: 2vw;
+      font-size: 3vw;
       letter-spacing: 1px;
       margin-left: 1vw;
-      padding-bottom: 6px;
+      padding-bottom: 3px;
     }
-    .m-sub-title {
+
+    .m-subtitle {
       font-family: goodsans-thin;
       font-size: 20px;
       letter-spacing: -1px;
       color: $black;
+      padding-bottom: 3px;
     }
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .m-sub-title {
-    display: none;
-  }
-  .m-title {
-    font-size: 3vw !important;
-  }
-}
-
-.container {
-  min-height: auto;
-}
+// @media screen and (max-width: 1200px) {
+//   .m-subtitle {
+//     display: none;
+//   }
+//   .m-title {
+//     font-size: 3vw !important;
+//   }
+// }
 </style>
 
 

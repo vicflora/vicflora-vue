@@ -13,9 +13,12 @@
         cols="3" 
         class="m-highlight-col"
       >
-        <div>
-          <img :src="item.img" class="m-highlight-image" alt=""/>
-        </div>
+        <BImg 
+          :src="item.img" 
+          fluid 
+          class="m-highlight-image" 
+          alt=""
+        />
       </BCol>
       <BCol 
         cols="9" 
@@ -48,11 +51,6 @@ export default {
 .m-highlight-title {
   margin-top: 15px;
   margin-bottom: -15px;
-  p {
-    color: $grey;
-    font-family: "goodsans-black";
-    font-size: larger;
-  }
 }
 
 .m-highlight {
@@ -66,14 +64,11 @@ export default {
 
   .m-highlight-image {
     margin: 5px 0;
-    width: 100px;
-    height: 100px;
   }
 }
 
 .m-hightlight-new {
   color: red;
-  font-family: "goodsans-black";
 }
 </style>
 
