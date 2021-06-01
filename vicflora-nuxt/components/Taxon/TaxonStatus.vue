@@ -1,6 +1,3 @@
-<style lang="scss" scoped>
-@import "./Taxon-status.scss";
-</style>
 <template>
   <div>
     <b-row v-if="data.taxonConcept.taxonomicStatus">
@@ -35,10 +32,30 @@
 <script>
 export default {
   name: "TaxonName",
-  props: ["data"],
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
     };
   }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~/assets/scss/custom_variables.scss";
+
+.m-status-class {
+  font-family: "goodsans-black";
+  width: 180px;
+  display: inline-flex;
+  margin-bottom: 5px;
+}
+
+.m-status-content {
+  text-transform: capitalize;
+}
+</style>

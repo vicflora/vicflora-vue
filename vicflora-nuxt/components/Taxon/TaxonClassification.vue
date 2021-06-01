@@ -1,7 +1,3 @@
-<style lang="scss" scoped>
-@import "./Taxon-classification-component.scss";
-</style>
-
 <template>
   <div>
     <ApolloQuery
@@ -161,8 +157,9 @@
 
 <script>
 import gql from "graphql-tag";
+
 export default {
-  name: "TaxonClassificationComponent",
+  name: "TaxonClassification",
   data() {
     return {
       taxonConcept: "",
@@ -210,3 +207,49 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~/assets/scss/custom_variables.scss";
+.m-container {
+    height: 72vh;
+}
+.m-row {
+    margin-bottom: 8px !important;
+}
+.m-title {
+  h2 {
+    font-family: "goodsans-medium";
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+}
+.m-taxon-treedefitem-name {
+    color: $grey;
+}
+.m-taxon-name{
+    font-family: "goodsans-black";
+}
+.m-indent {
+    width: 15px;
+}
+.m-hr-top {
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+.m-hr-bottom {
+    margin-top: 12px;
+    margin-bottom: 2px;
+}
+.m-author{
+    font-family: "goodsans-regular";
+    color: $grey;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 600px) {
+    .m-indent {
+        display: none;
+    }
+}
+</style>
+

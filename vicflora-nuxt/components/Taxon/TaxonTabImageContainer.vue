@@ -1,14 +1,9 @@
-<style lang="scss" scoped>
-@import "Taxon-tab-image-container.scss";
-</style>
-
 <template>
-<div>
+  <div>
     <b-img
       thumbnail
       fluid
       v-show="showImage === true"
-      @load="loadImage"
       :src="image.thumbnailUrl"
       :data-src="image.previewUrl"
       :alt="
@@ -21,16 +16,26 @@
                             ${image.rights ? image.rights : ''}
                             `
       "
+      @load="loadImage"
     >
     </b-img>
     <b-spinner label="Spinning" v-show="showImage === false" variant="primary"></b-spinner>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "TaxonTabImageContainer",
-  props: ["data","image"],
+  props: {
+    data: {
+      type: Object,
+      required: true
+    },
+    image: {
+      type: Object,
+      required: true
+    }
+  },
   data(){
       return{
           showImage: false,
@@ -43,3 +48,16 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+div {
+  img {
+    max-width: 170px !important; 
+    max-height: 175px !important;
+    padding: 0;
+    background-color: none;
+    border: none;
+    border-radius: none;
+  }
+}
+</style>

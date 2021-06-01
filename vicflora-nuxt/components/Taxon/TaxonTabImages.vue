@@ -1,7 +1,3 @@
-<style lang="scss" scoped>
-@import "./Taxon-tab-images.scss";
-</style>
-
 <template>
   <ApolloQuery
     :query="require('@/graphql/queries/taxonImages.gql')"
@@ -52,19 +48,18 @@
 </template>
 
 <script>
-import "viewerjs/dist/viewer.css";
-import Viewer from "v-viewer";
-import Vue from "vue";
-import TaxonTabImageContainer from "@/components/Taxon-tabs/Taxon-tab-image-container/Taxon-tab-image-container";
+import "viewerjs/dist/viewer.css"
+import Viewer from "v-viewer"
+import Vue from "vue"
+import TaxonTabImageContainer from "@/components/Taxon/TaxonTabImageContainer"
 
-Vue.use(Viewer);
+Vue.use(Viewer)
 
 export default {
   name: "TaxonTabImages",
   components: {
     TaxonTabImageContainer
   },
-
   data() {
     return {
       imagesPage: 1,
@@ -76,9 +71,37 @@ export default {
   },
   computed: {
     id: function() {
-      return this.$route.params.id;
+      return this.$route.params.id
     }
   },
   
 };
 </script>
+
+<style lang="scss" scoped>
+.m-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  
+  .m-map-container {
+    width: 480px;
+    height: 290px;
+  }
+
+  .m-image-container {
+    width: 175px;
+    height: 180px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 2px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+</style>

@@ -1,8 +1,3 @@
-<style lang="scss" scoped>
-// the style file in the Taxon-tabs.scss
-@import "./Taxon-tab-overview.scss";
-</style>
-
 <template>
   <b-row>
     <b-col>
@@ -102,7 +97,16 @@
 <script>
 export default {
   name: "TaxonTabOverview",
-  props: ["data", "tabIndex"],
+  props: {
+    data: {
+      type: Object,
+      required: true
+    },
+    tabIndex: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       showHeroImage: false,
@@ -143,3 +147,33 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~/assets/scss/custom_variables.scss";
+
+.m-heroimage-container:hover {
+  cursor: pointer;
+}
+
+.m-heroimage-container {
+  border-radius: 4px;
+  border: $light solid 1px;
+  background-color: white;
+  height: 205px;
+  width: 340px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  
+  img {
+    max-height: 95%;
+    max-width: 95%;
+  }
+}
+
+.m-dictribution-map {
+  margin-top: 8px;
+}
+</style>

@@ -1,6 +1,3 @@
-<style lang="scss" scoped>
-@import "./Taxon-name.scss";
-</style>
 <template>
   <div>
     <div class="m-title">
@@ -34,7 +31,12 @@
 <script>
 export default {
   name: "TaxonName",
-  props: ["data"],
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       rankClass: {
@@ -53,3 +55,33 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~/assets/scss/custom_variables.scss";
+
+.m-title {
+  display: inline-block;
+
+  .m-name {
+    font-family: "goodsans-bold";
+    margin: 20px 15px 20px 0;
+    color: $primary;
+    display: inline-block;
+  }
+
+  .m-authorship {
+    margin-right: 15px;
+  }
+  
+  .m-vernacular-names {
+    font-size: xx-large;
+  }
+}
+
+.m-protologue {
+  margin-bottom: 15px;
+  i {
+    margin-right: 10px;
+  }
+}
+</style>

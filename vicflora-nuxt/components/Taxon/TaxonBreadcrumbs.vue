@@ -1,7 +1,3 @@
-<style lang="scss" scoped>
-@import "./Breadcrumb.scss";
-</style>
-
 <template>
   <b-breadcrumb>
     <!-- higherClassification -->
@@ -56,8 +52,13 @@
 <script>
 
 export default {
-  name: "Breadcrumb",
-  props: ["data"],
+  name: "TaxonBreadcrumbs",
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  },
   data(){
       return {
           childrenSelected: null,
@@ -97,3 +98,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.m-breadcrumb-selector-item {
+  margin-top: -10px;
+  display: inline-block;
+  .custom-select-sm {
+    font-size: 11px;
+  }
+}
+</style>
