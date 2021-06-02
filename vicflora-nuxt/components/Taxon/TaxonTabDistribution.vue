@@ -12,9 +12,9 @@
           <figure>
             <div class="m-map-container">
               <img
-                :src="data.taxonConcept.mapLinks.distributionMap"
+                :src="concept.mapLinks.distributionMap"
                 usemap="#vicflora_bioregion"
-                :alt="'Distribution of ' + data.taxonConcept.taxonName.fullName"
+                :alt="'Distribution of ' + concept.taxonName.fullName"
               />
               <DistributionMapConfig></DistributionMapConfig>
             </div>
@@ -37,7 +37,7 @@
         <b-row>
           <b-col class="text-left">
             <b>Source:</b>
-            <p v-html="data.taxonConcept.mapLinks.mapSource"></p>
+            <p v-html="concept.mapLinks.mapSource"></p>
           </b-col>
         </b-row>
       </b-col>
@@ -51,7 +51,7 @@
             <th>Establishment means</th>
           </tr>
           <tr
-            v-for="bioregionItem in data.taxonConcept.bioregions"
+            v-for="bioregionItem in concept.bioregions"
             :key="bioregionItem.id"
           >
             <td>
@@ -84,7 +84,7 @@
 export default {
   name: "TaxonTabDistribution",
   props: {
-    data: {
+    concept: {
       type: Object,
       required: true
     }

@@ -1,7 +1,7 @@
 <template>
   <b-breadcrumb>
     <!-- higherClassification -->
-    <b-breadcrumb-item
+    <!-- <b-breadcrumb-item
       v-for="higherItem in data.taxonConcept.higherClassification
         .slice()
         .sort((a, b) => a.depth - b.depth)
@@ -9,28 +9,20 @@
       :key="higherItem.id"
       :href="'/flora/taxon/' + higherItem.taxonConcept.id"
       >{{ higherItem.taxonConcept.taxonName.fullName }}
-    </b-breadcrumb-item>
+    </b-breadcrumb-item> -->
+    <Crumb 
+      v-for="crumb in breadcrumbs"
+      :key="crumb.id"
+      :crumb="crumb"/>
+
     <!-- Siblings -->
     <b-breadcrumb-item>
-      <div class="m-breadcrumb-selector-item">
-        <b-form-select v-model="urlId" size="sm">
-          <template #first>
-            <b-form-select-option :value="null" disabled
-              >Select sibling...</b-form-select-option
-            >
-          </template>
-          <b-form-select-option
-            v-for="siblingItem in data.taxonConcept.siblings"
-            :key="siblingItem.id"
-            :value="siblingItem.id"
-            >{{ siblingItem.taxonName.fullName }}</b-form-select-option
-          >
-        </b-form-select>
-      </div>
+      <Siblings :siblings="data.taxonConcept.siblings"/>
     </b-breadcrumb-item>
+
     <!-- Children -->
     <b-breadcrumb-item v-if="data.taxonConcept.children.length !== 0">
-      <div class="m-breadcrumb-selector-item">
+      <!-- <div class="m-breadcrumb-selector-item">
         <b-form-select v-model="childrenSelected" size="sm">
           <template #first>
             <b-form-select-option :value="null" disabled
@@ -44,25 +36,29 @@
             >{{ childItem.taxonName.fullName }}</b-form-select-option
           >
         </b-form-select>
-      </div>
+      </div> -->
+      <Children :children="data.taxonConcept.children"/>
     </b-breadcrumb-item>
   </b-breadcrumb>
 </template>
 
 <script>
+import Crumb from "@/components/Taxon/TaxonBreadcrumbsCrumb"
+import Siblings from "@/components/Taxon/TaxonBreadcrumbsSiblings"
+import Children from "@/components/Taxon/TaxonBreadcrumbsChildren"
 
 export default {
   name: "TaxonBreadcrumbs",
+  components: {
+    Crumb,
+    Siblings,
+    Children
+  },
   props: {
     data: {
       type: Object,
       required: true
     }
-  },
-  data(){
-      return {
-          childrenSelected: null,
-      }
   },
   computed: {
     urlId: {
@@ -75,6 +71,12 @@ export default {
         });
       },
     },
+    breadcrumbs() {
+      return this.data.taxonConcept.higherClassification
+        .slice()
+        .sort((a, b) => a.depth - b.depth)
+        .slice(3)
+    }
   },
   watch: {
     urlId: {
