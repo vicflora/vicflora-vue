@@ -68,7 +68,7 @@
           <b-pagination-nav
             class="mt-3 mb-5"
             v-if="data.taxonConcept.specimenImages.paginatorInfo.total > 24"
-            v-model="imagesPage"
+            v-model="specimenImagesPage"
             :number-of-pages="
               data.taxonConcept.specimenImages.paginatorInfo.total % 24 === 0
                 ? data.taxonConcept.specimenImages.paginatorInfo.total / 24

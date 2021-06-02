@@ -141,6 +141,10 @@
 - map (leaflet)
 - header style - completed by Niels(fix search box layout)
 
+> ## 6/02 - 6/04
+> ### Done
+- fix the bug on specimen page
+- 
 > ### To do
 - bioregion index - markdown ? 
 - matrix-keys
