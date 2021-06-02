@@ -7,14 +7,14 @@
           :tabIndex.sync="tabIndex"
         />
       </b-tab>
-      <b-tab title="Images" v-if="data.taxonConcept.images.data.length > 0">
+      <b-tab title="Images" v-if="concept.images.data.length > 0">
         <TaxonTabImages/>
       </b-tab>
 
       <!-- Specimen images -->
       <b-tab
         title="Specimen Images"
-        v-if="data.taxonConcept.specimenImages.data.length > 0"
+        v-if="concept.specimenImages.data.length > 0"
       >
         <TaxonTabSpecimenImages/>
       </b-tab>
@@ -22,9 +22,9 @@
       <!-- Distribution -->
       <b-tab
         title="Distribution"
-        v-if="data.taxonConcept.bioregions.length !== 0"
+        v-if="concept.bioregions.length !== 0"
       >
-        <TaxonTabDistribution :data="data"/>
+        <TaxonTabDistribution :concept="concept"/>
       </b-tab>
 
       <!-- Classification -->
@@ -52,7 +52,7 @@ export default {
     TaxonClassification
   },
   props: {
-    data: {
+    concept: {
       type: Object,
       required: true
     }

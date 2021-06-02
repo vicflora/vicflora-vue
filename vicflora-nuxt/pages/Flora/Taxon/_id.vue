@@ -29,13 +29,13 @@
             <!-- Name -->
             <b-row>
               <b-col class="text-left">
-                <TaxonName :data="data"/>
+                <TaxonName :concept="data.taxonConcept"/>
               </b-col>
             </b-row>
             <!-- Status -->
             <b-row class="m-row">
               <b-col class="text-left">
-                <TaxonStatus :data="data"/>
+                <TaxonStatus :concept="data.taxonConcept"/>
               </b-col>
             </b-row>
             <!-- classification -->
@@ -54,7 +54,7 @@
             <b-row class="m-row" v-else>
               <b-col>
                 <TaxonTabs
-                  :data="data"
+                  :concept="data.taxonConcept"
                   class="w-100"
                   @imagesPage="
                     $event => {

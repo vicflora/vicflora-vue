@@ -1,59 +1,50 @@
 <template>
   <div>
     <div class="m-title">
-      <h2
-        class="m-name"
-        :style="
-          data.taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus
-            ? 'font-style:italic;'
-            : 'font-style:normal;'
-        "
-      >
-        {{ data.taxonConcept.taxonName.fullName }}
-      </h2>
-      <span class="m-authorship">{{
-        data.taxonConcept.taxonName.authorship
-      }}</span>
-      <span
-        v-if="data.taxonConcept.preferredVernacularName"
-        class="m-vernacular-names"
-        >{{ data.taxonConcept.preferredVernacularName.name }}</span
-      >
+      <NameString 
+        :full-name="concept.taxonName.fullName"
+        :rank-id="concept.taxonTreeDefItem.rankId"/>
+
+      <Authorship 
+        v-if="concept.taxonName.authorship"
+        :authorship="concept.taxonName.authorship"
+      />
+
+      <VernacularName 
+        v-if="concept.preferredVernacularName"
+        :vernacular-name="concept.preferredVernacularName.name"
+      />
     </div>
-    <div class="m-protologue" v-if="data.taxonConcept.taxonName.protologue">
-      <i>{{ data.taxonConcept.taxonName.protologue.title }}</i>
-      <b>{{ data.taxonConcept.taxonName.protologue.volume + ": " }}</b>
-      <span>{{ data.taxonConcept.taxonName.protologue.pages }}</span>
-    </div>
+
+    <Protologue  
+      v-if="concept.taxonName.protologue" 
+      :protologue="concept.taxonName.protologue"
+    />
   </div>
 </template>
 
 <script>
+
+import NameString from "@/components/Taxon/TaxonNameString"
+import Authorship from "@/components/Taxon/TaxonNameAuthorship"
+import Protologue from "@/components/Taxon/TaxonNameProtologue"
+import VernacularName from "@/components/Taxon/TaxonNameVernacularName"
+
 export default {
   name: "TaxonName",
+  components: { 
+    NameString,
+    Authorship,
+    Protologue,
+    VernacularName 
+  },
   props: {
-    data: {
+    concept: {
       type: Object,
       required: true
     }
   },
-  data() {
-    return {
-      rankClass: {
-        life: -9999,
-        kingdom: 10,
-        phylum: 30,
-        class: 60,
-        superorder: 90,
-        order: 100,
-        family: 140,
-        genus: 180,
-        species: 220,
-        subspecies: 230
-      }
-    };
-  }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -67,6 +58,10 @@ export default {
     margin: 20px 15px 20px 0;
     color: $primary;
     display: inline-block;
+
+    &.italic {
+      font-style: italic;
+    }
   }
 
   .m-authorship {
