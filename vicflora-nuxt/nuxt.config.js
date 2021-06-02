@@ -51,6 +51,7 @@ export default {
       default: {
         // httpEndpoint: 'http://vicflora-api-test.rbg.vic.gov.au/graphql',
         httpEndpoint: 'https://vicflora-api.rbg.vic.gov.au/graphql',
+      }
     }
   },
   content: {
