@@ -144,6 +144,7 @@
 > ## 6/02 - 6/04
 > ### Done
 - fix the bug on specimen page
+- fix Taxon overview bug
 - 
 > ### To do
 - bioregion index - markdown ? 

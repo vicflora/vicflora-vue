@@ -72,7 +72,7 @@
   </div>
 </template>
 <script>
-import ChecklistMap from "@/components/Checklist-map/Checklist-map"
+import ChecklistMap from "@/components/Checklists/Checklist-map/Checklist-map"
 export default {
   name: "CheckList",
   components: {
