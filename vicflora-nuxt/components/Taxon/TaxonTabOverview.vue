@@ -5,8 +5,8 @@
       <b-row class="m-row">
         <!-- text -->
         <!-- use .replaceAll() to replace the tags in HTML -->
-        <b-col class="text-left" v-if="data.taxonConcept.currentProfile" lg="8">
-          <div v-html="data.taxonConcept.currentProfile.profile"></div>
+        <b-col class="text-left" v-if="concept.currentProfile" lg="8">
+          <div v-html="concept.currentProfile.profile"></div>
           <!-- Source -->
           <div class="m-row">
             <span class="m-description-title">Source: </span>
@@ -15,30 +15,30 @@
           <!-- Created time -->
           <div class="m-row">
             <!-- Created info -->
-            <div v-if="data.taxonConcept.createdBy && data.taxonConcept.createdAt">
+            <div v-if="concept.createdBy && concept.createdAt">
               <span class="m-description-title">Created by: </span>
               <span >{{
                 `${
-                  data.taxonConcept.createdBy.name
-                }, ${data.taxonConcept.createdAt.slice(0, 10)}`
+                  concept.createdBy.name
+                }, ${concept.createdAt.slice(0, 10)}`
               }}</span>
             </div>
             <!-- Updated info -->
-            <div v-if="data.taxonConcept.modifiedBy && data.taxonConcept.updatedAt">
+            <div v-if="concept.modifiedBy && concept.updatedAt">
               <span class="m-description-title">Updated by: </span>
               <span >{{
                 `${
-                  data.taxonConcept.modifiedBy.name
-                }, ${data.taxonConcept.updatedAt.slice(0, 10)}`
+                  concept.modifiedBy.name
+                }, ${concept.updatedAt.slice(0, 10)}`
               }}</span>
             </div>
           </div>
           <div
             class="m-row"
-            v-if="data.taxonConcept.identificationKeys.length !== 0"
+            v-if="concept.identificationKeys.length !== 0"
           >
             <div
-              v-for="item in data.taxonConcept.identificationKeys"
+              v-for="item in concept.identificationKeys"
               :key="item.id"
             >
               <nuxt-link :to="`/flora/key/${item.id}`" >
@@ -52,11 +52,11 @@
           <!-- Hero img -->
           <div
             class="m-heroimage-container"
-            v-if="data.taxonConcept.heroImage"
+            v-if="concept.heroImage"
             @click="clickImage()"
           >
             <img
-              :src="data.taxonConcept.heroImage.thumbnailUrl"
+              :src="concept.heroImage.thumbnailUrl"
               alt="Hero Image"
               @load="loadHeroImage"
               v-show="showHeroImage === true"
@@ -72,12 +72,12 @@
           <div
             href="#"
             class="m-heroimage-container"
-            v-if="data.taxonConcept.bioregions.length !== 0"
+            v-if="concept.bioregions.length !== 0"
             @click="clickMap()"
           >
             <img
               class="m-dictribution-map"
-              :src="data.taxonConcept.mapLinks.profileMap"
+              :src="concept.mapLinks.profileMap"
               alt="Map"
               @load="loadMapImage"
               v-show="showMapImage === true"
@@ -98,7 +98,7 @@
 export default {
   name: "TaxonTabOverview",
   props: {
-    data: {
+    concept: {
       type: Object,
       required: true
     },
@@ -123,13 +123,13 @@ export default {
       }
     },
     clickImage: function() {
-      if (this.data.taxonConcept.images.data.length > 0) {
+      if (this.concept.images.data.length > 0) {
         this.$emit("update:tabIndex", 1);
       }
     },
     clickMap: function() {
-      if (this.data.taxonConcept.images.data.length > 0) {
-        if (this.data.taxonConcept.specimenImages.data.length > 0) {
+      if (this.concept.images.data.length > 0) {
+        if (this.concept.specimenImages.data.length > 0) {
           this.$emit("update:tabIndex", 3);
         } else {
           this.$emit("update:tabIndex", 2);

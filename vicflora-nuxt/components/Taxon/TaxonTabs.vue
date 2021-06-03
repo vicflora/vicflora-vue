@@ -3,10 +3,11 @@
     <b-tabs v-model="tabIndex" content-class="mt-4 mb-3 m-row w-100">
       <b-tab title="Overview">
         <TaxonTabOverview
-          :data="data"
+          :concept="concept"
           :tabIndex.sync="tabIndex"
         />
       </b-tab>
+
       <b-tab title="Images" v-if="concept.images.data.length > 0">
         <TaxonTabImages/>
       </b-tab>
