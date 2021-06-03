@@ -9,7 +9,7 @@
       <!-- Map -->
       <b-col lg="6" cols="12">
         <div class="m-images">
-          <figure>
+          <!-- <figure>
             <div class="m-map-container">
               <img
                 :src="concept.mapLinks.distributionMap"
@@ -18,7 +18,8 @@
               />
               <DistributionMapConfig></DistributionMapConfig>
             </div>
-          </figure>
+          </figure> -->
+          
           <div class="m-legend">
             <b-dropdown
               id="dropdown-left"

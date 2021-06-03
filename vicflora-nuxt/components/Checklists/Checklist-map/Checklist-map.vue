@@ -16,7 +16,7 @@
       <!-- Result -->
       <div v-else-if="data" class="result apollo">
         <b-row class="mb-2 text-left">
-          <b-col class="text-left" md="6">
+          <b-col class="text-left" md="7">
             <div id="map-wrap" @click="getLayer">
               <client-only>
                 <l-map
@@ -28,7 +28,10 @@
                   <l-control-layers position="topright"></l-control-layers>
                   <l-marker v-if="markerLatLng" :lat-lng="markerLatLng">
                     <l-popup>
-                      <ChecklistTable :data="data" :layer="layer"></ChecklistTable>
+                      <ChecklistTable
+                        :data="data"
+                        :layer="layer"
+                      ></ChecklistTable>
                     </l-popup>
                   </l-marker>
                   <l-tile-layer
@@ -43,6 +46,11 @@
                     :name="layer.name"
                     :layers="layer.layers"
                     :transparent="layer.transparent"
+                    :service="layer.service"
+                    :version="layer.version"
+                    :request="layer.request"
+                    :bbox="layer.bbox"
+                    :srs="layer.srs"
                     :format="layer.format"
                     layer-type="base"
                   >
@@ -66,44 +74,71 @@
   </ApolloQuery>
 </template>
 <script>
-import ChecklistTable from "@/components/Checklists/Checklist-table/Checklist-table"
+import ChecklistTable from "@/components/Checklists/Checklist-table/Checklist-table";
 export default {
   name: "CheckListMap",
-  components:{
+  components: {
     ChecklistTable
   },
   data() {
     return {
-      layer:"Park Reserves",
+      layer: "Parks and Reserves",
       ChecklistMapInfoQuery: null,
       latitude: 0,
       longitude: 0,
       layers: [
         {
           name: "Parks and Reserves",
-          baseUrl:
-            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
+          baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
+          service: "WMS",
+          version: "1.1.0",
+          request: "GetMap",
           visible: true,
-          layers: "CROWNLAND_PARKRES",
-          format: "image/png",
+          layers: "vicflora-mapper:park_reserves",
+          bbox: [
+            140.962408733333,
+            -39.2359698999998,
+            149.975009666667,
+            -33.981389858333
+          ],
+          srs: "EPSG:4326",
+          format: "image/svg",
           transparent: true
         },
         {
           name: "Local Government Areas",
-          baseUrl:
-            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
+          baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
+          service: "WMS",
+          version: "1.1.0",
+          request: "GetMap",
           visible: false,
-          layers: "VMLITE_LGA",
-          format: "image/png",
+          layers: "vicflora-mapper:local_government_areas",
+          bbox: [
+            140.962408733333,
+            -39.2359698999998,
+            149.975009666667,
+            -33.981389858333
+          ],
+          srs: "EPSG:4326",
+          format: "image/svg",
           transparent: true
         },
         {
           name: "Bioregions",
-          baseUrl:
-            "https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms",
+          baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
+          service: "WMS",
+          version: "1.1.0",
+          request: "GetMap",
           visible: false,
-          layers: "FLORAFAUNA1_VBIOREG100",
-          format: "image/png",
+          layers: "vicflora-mapper:bioregions",
+          bbox: [
+            140.962408733333,
+            -39.2359698999998,
+            149.975009666667,
+            -33.981389858333
+          ],
+          srs: "EPSG:4326",
+          format: "image/svg",
           transparent: true
         }
       ],
@@ -121,9 +156,10 @@ export default {
     addmarker: function({ lat, lng }) {
       this.markerLatLng = [lat, lng];
     },
-    getLayer(event){
-      if(event.target.labels){
-        this.layer = event.target.labels[0].innerText.trim()
+    getLayer(event) {
+      if (event.target.labels) {
+        // console.log(event.target.labels[0].innerText.trim());
+        this.layer = event.target.labels[0].innerText.trim();
       }
     }
   }

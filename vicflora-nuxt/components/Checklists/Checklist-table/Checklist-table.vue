@@ -3,7 +3,7 @@
 <template>
   <div>
     <!-- Park Reserves -->
-    <div v-if="layer === 'Park Reserves'">
+    <div v-if="layer === 'Parks and Reserves'">
       <h5 class="m-topic">Park Reserves:</h5>
       <table class="table table-sm">
         <thead>
@@ -66,8 +66,12 @@
 <script>
 export default {
   name: "ChecklistTable",
-  props: ["data", "layer"],
-    
-
+  props: { 
+    data: {
+      type:Object,
+      required: true,
+      }, 
+    layer: String 
+    }
 };
 </script>
