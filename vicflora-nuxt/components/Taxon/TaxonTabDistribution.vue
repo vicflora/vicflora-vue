@@ -8,8 +8,11 @@
     <b-row>
       <!-- Map -->
       <b-col lg="6" cols="12">
-        <div class="m-images">
-          <!-- <figure>
+        <distribution-map></distribution-map>
+        <!-- <ChecklistMap></ChecklistMap> -->
+
+        <!-- <div class="m-images">
+          <figure>
             <div class="m-map-container">
               <img
                 :src="concept.mapLinks.distributionMap"
@@ -18,8 +21,8 @@
               />
               <DistributionMapConfig></DistributionMapConfig>
             </div>
-          </figure> -->
-          
+          </figure>
+
           <div class="m-legend">
             <b-dropdown
               id="dropdown-left"
@@ -33,10 +36,11 @@
                 />
               </b-dropdown-item>
             </b-dropdown>
-          </div>
-        </div>
+          </div> 
+        </div> -->
         <b-row>
           <b-col class="text-left">
+      
             <b>Source:</b>
             <p v-html="concept.mapLinks.mapSource"></p>
           </b-col>
@@ -82,7 +86,12 @@
 </template>
 
 <script>
+import DistributionMapConfig from '../Distribution-map-config/Distribution-map-config.vue';
+import DistributionMap from '@/components/Taxon/TaxonTabDistributionMap.vue';
+
+import ChecklistMap from "@/components/Checklists/Checklist-map/Checklist-map"
 export default {
+  components: { DistributionMapConfig, DistributionMap, ChecklistMap },
   name: "TaxonTabDistribution",
   props: {
     concept: {

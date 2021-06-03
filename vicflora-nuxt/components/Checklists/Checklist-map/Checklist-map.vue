@@ -103,7 +103,7 @@ export default {
           ],
           srs: "EPSG:4326",
           format: "image/svg",
-          transparent: true
+          transparent: true,
         },
         {
           name: "Local Government Areas",
