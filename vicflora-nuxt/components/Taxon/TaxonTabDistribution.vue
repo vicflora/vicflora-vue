@@ -9,7 +9,6 @@
       <!-- Map -->
       <b-col lg="6" cols="12">
         <distribution-map></distribution-map>
-        <!-- <ChecklistMap></ChecklistMap> -->
 
         <!-- <div class="m-images">
           <figure>

@@ -30,7 +30,7 @@
           :srs="layer.srs"
           :format="layer.format"
           :bbox="layer.bbox"
-          :CQL_FILTER="layer.CQL_FILTER"
+          CQL_FILTER="taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')"
           layer-type="base"
         >
         </l-lwms-tile-layer>

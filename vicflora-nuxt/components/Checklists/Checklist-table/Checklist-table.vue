@@ -1,9 +1,10 @@
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
 @import "./Checklist-table.scss";
+</style>
 <template>
   <div>
     <!-- Park Reserves -->
-    <div v-if="layer === 'Parks and Reserves'">
+    <div v-if="layer === 'Parks and Reserves'" class="m-table">
       <h5 class="m-topic">Park Reserves:</h5>
       <table class="table table-sm">
         <thead>
@@ -14,9 +15,9 @@
         </thead>
         <tbody class="m-table-fontsize">
           <tr v-for="item in data.parkReservesByPoint" :key="item.id">
-            <th scope="row">
+            <td scope="row">
               <a href="#">{{ item.properties.nameShort }}</a>
-            </th>
+            </td>
             <td scope="row">{{ item.properties.areaType }}</td>
           </tr>
         </tbody>
@@ -27,11 +28,11 @@
       <h5 class="m-topic">Bioregions:</h5>
       <table class="table table-sm">
         <thead>
-          <tr class="table-active">
+          <td class="table-active">
             <th scope="col">No.</th>
             <th scope="col">Name</th>
             <th scope="col">Region Code</th>
-          </tr>
+          </td>
         </thead>
         <tbody class="m-table-fontsize">
           <tr v-for="item in data.bioregionsByPoint" :key="item.id">
@@ -47,10 +48,10 @@
       <h5 class="m-topic">Local Government Areas:</h5>
       <table class="table table-sm">
         <thead>
-          <tr class="table-active">
+          <td class="table-active">
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-          </tr>
+          </td>
         </thead>
         <tbody class="m-table-fontsize">
           <tr v-for="item in data.localGovernmentAreasByPoint" :key="item.id">
