@@ -7,46 +7,11 @@
     </b-row>
     <b-row>
       <!-- Map -->
-      <b-col lg="6" cols="12">
+      <b-col cols="12">
         <distribution-map></distribution-map>
-
-        <!-- <div class="m-images">
-          <figure>
-            <div class="m-map-container">
-              <img
-                :src="concept.mapLinks.distributionMap"
-                usemap="#vicflora_bioregion"
-                :alt="'Distribution of ' + concept.taxonName.fullName"
-              />
-              <DistributionMapConfig></DistributionMapConfig>
-            </div>
-          </figure>
-
-          <div class="m-legend">
-            <b-dropdown
-              id="dropdown-left"
-              text="Legend"
-              variant="primary"
-              size="sm"
-            >
-              <b-dropdown-item>
-                <img
-                  src="https://vicflora.rbg.vic.gov.au/images/vicflora-map-legend.png"
-                />
-              </b-dropdown-item>
-            </b-dropdown>
-          </div> 
-        </div> -->
-        <b-row>
-          <b-col class="text-left">
-      
-            <b>Source:</b>
-            <p v-html="concept.mapLinks.mapSource"></p>
-          </b-col>
-        </b-row>
       </b-col>
       <!-- Map table -->
-      <b-col lg="6" cols="12" class="m-table">
+      <b-col cols="12" class="m-table">
         <table>
           <tr>
             <th></th>
@@ -81,16 +46,21 @@
         </div>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col class="text-left">
+        <b>Source:</b>
+        <p v-html="concept.mapLinks.mapSource"></p>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
-import DistributionMapConfig from '../Distribution-map-config/Distribution-map-config.vue';
-import DistributionMap from '@/components/Taxon/TaxonTabDistributionMap.vue';
+import DistributionMapConfig from "../Distribution-map-config/Distribution-map-config.vue";
+import DistributionMap from "@/components/Taxon/TaxonTabDistributionMap.vue";
 
-import ChecklistMap from "@/components/Checklists/Checklist-map/Checklist-map"
 export default {
-  components: { DistributionMapConfig, DistributionMap, ChecklistMap },
+  components: { DistributionMapConfig, DistributionMap },
   name: "TaxonTabDistribution",
   props: {
     concept: {

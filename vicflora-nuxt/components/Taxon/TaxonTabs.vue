@@ -8,7 +8,7 @@
         />
       </b-tab>
 
-      <b-tab title="Images" v-if="concept.images.data.length > 0">
+      <b-tab title="Images" v-if="concept.images.data.length > 0" lazy>
         <TaxonTabImages/>
       </b-tab>
 
@@ -16,6 +16,7 @@
       <b-tab
         title="Specimen Images"
         v-if="concept.specimenImages.data.length > 0"
+        lazy
       >
         <TaxonTabSpecimenImages/>
       </b-tab>
@@ -24,6 +25,7 @@
       <b-tab
         title="Distribution"
         v-if="concept.bioregions.length !== 0"
+        lazy
       >
         <TaxonTabDistribution :concept="concept"/>
       </b-tab>

@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <client-only>
-      <l-map
-        :zoom="6"
-        :center="[-36.155, 144.81]"
-        class="m-map"
-      >
-        <l-control-layers position="topright" style="text-align: start;"></l-control-layers>
+  <div class="m-map">
+    <client-only class="m-map">
+      <l-map :zoom="7" :center="[-36.155, 144.81]">
+        <l-control-layers
+          position="topright"
+        ></l-control-layers>
         <!-- <l-marker v-if="markerLatLng" :lat-lng="markerLatLng">
           <l-popup>
             <ChecklistTable :data="data" :layer="layer"></ChecklistTable>
@@ -19,7 +17,7 @@
         <l-lwms-tile-layer
           v-for="layer in layers"
           :key="layer.name"
-          :base-url="layer.baseUrl"
+          :base-url="baseUrl"
           :visible="layer.visible"
           :name="layer.name"
           :layers="layer.layers"
@@ -29,13 +27,9 @@
           :request="layer.request"
           :srs="layer.srs"
           :format="layer.format"
-          :bbox="layer.bbox"
-          CQL_FILTER="taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')"
           layer-type="base"
         >
         </l-lwms-tile-layer>
-
-
       </l-map>
     </client-only>
   </div>
@@ -52,73 +46,55 @@ export default {
       layers: [
         {
           name: "Parks and Reserves",
-          baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
+          // baseUrl: `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')`,
           service: "WMS",
           version: "1.1.0",
           request: "GetMap",
           visible: true,
           layers: "vicflora-mapper:taxon_distribution_park_reserves",
-          bbox: [
-            140.962408733333,
-            -39.2359698999998,
-            149.975009666667,
-            -33.981389858333
-          ],
           srs: "EPSG:4326",
           format: "image/svg",
-          transparent: true,
-          CQL_FILTER:`taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')`
-          
+          transparent: true
         },
         {
           name: "Local Government Areas",
-          baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
+          // baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
           service: "WMS",
           version: "1.1.0",
           request: "GetMap",
           visible: false,
           layers: "vicflora-mapper:taxon_distribution_local_government_areas",
-          bbox: [
-            140.962408733333,
-            -39.2359698999998,
-            149.975009666667,
-            -33.981389858333
-          ],
           srs: "EPSG:4326",
           format: "image/svg",
-          transparent: true,
-          CQL_FILTER: `taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')`
+          transparent: true
         },
         {
           name: "Bioregions",
-          baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
+          // baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
           service: "WMS",
           version: "1.1.0",
           request: "GetMap",
           visible: false,
           layers: " vicflora-mapper:taxon_distribution_bioregions",
-          bbox: [
-            140.962408733333,
-            -39.2359698999998,
-            149.975009666667,
-            -33.981389858333
-          ],
           srs: "EPSG:4326",
           format: "image/svg",
-          transparent: true,
-          CQL_FILTER: `taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')`,
+          transparent: true
         }
       ],
       markerLatLng: [0, 0]
     };
   },
+  computed: {
+    baseUrl: function() {
+        return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=taxon_id='${this.$route.params.id}' AND occurrence_status NOT IN ('doubtful', 'absent')`;
+      }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .m-map {
-  height: 363px;
-  width:500px;
-  margin-bottom:10px;
+  height: 500px;
+  margin-bottom:20px;
 }
 </style>
