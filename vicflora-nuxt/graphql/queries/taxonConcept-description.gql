@@ -19,6 +19,9 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
         properties {
           name
           code
+          id
+          number
+          regionCode
         }
       }
     }

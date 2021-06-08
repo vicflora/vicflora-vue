@@ -151,5 +151,8 @@
 - matrix-keys
 - glossary img size
 - toc style - sticky
+- occurrences layer of map 
+- responsive map
+- 
 
 

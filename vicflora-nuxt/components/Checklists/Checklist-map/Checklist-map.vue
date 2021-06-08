@@ -26,6 +26,7 @@
                   @click="getCoordinate"
                 >
                   <l-control-layers position="topright"></l-control-layers>
+                  <!-- <l-control-fullscreen position="topleft"></l-control-fullscreen> -->
                   <l-marker v-if="markerLatLng" :lat-lng="markerLatLng">
                     <l-popup>
                       <ChecklistTable
@@ -78,7 +79,7 @@ import ChecklistTable from "@/components/Checklists/Checklist-table/Checklist-ta
 export default {
   name: "CheckListMap",
   components: {
-    ChecklistTable
+    ChecklistTable,
   },
   data() {
     return {

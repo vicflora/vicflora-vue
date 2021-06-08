@@ -24,7 +24,7 @@ export default {
   css: ["@/assets/scss/main.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~/plugins/vue-scrollactive.client.js"],
+  plugins: ["~/plugins/vue-scrollactive.client.js", "~/plugins/vue2-leaflet-fullscreen.client.js"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -60,11 +60,13 @@ export default {
     }
   },
 
-  plugins: [],
+  plugins: [
+    '~/plugins/vue2-leaflet-fullscreen.client.js'
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [({ isServer }) => "vue-typeahead-bootstrap"],
+    transpile: [({ isServer }) => "vue-typeahead-bootstrap", 'vue2-leaflet-fullscreen'],
     plugins: [
         new webpack.ProvidePlugin({
             '$' : 'jquery'

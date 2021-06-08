@@ -97,4 +97,7 @@ export default {
   height: 500px;
   margin-bottom:20px;
 }
+.leaflet-control-layers-base:v-deep{
+  text-align: start !important;
+}
 </style>
