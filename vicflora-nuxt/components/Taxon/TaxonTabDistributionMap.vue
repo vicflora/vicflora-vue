@@ -1,7 +1,7 @@
 <template>
   <div class="m-map">
     <client-only class="m-map">
-      <l-map :zoom="7" :center="[-36.155, 144.81]">
+      <l-map :zoom="zoom" :center="center">
         <l-control-layers
           position="topright"
         ></l-control-layers>
@@ -27,9 +27,9 @@
           :request="layer.request"
           :srs="layer.srs"
           :format="layer.format"
+          :styles="layer.styles"
           layer-type="base"
-        >
-        </l-lwms-tile-layer>
+        />
       </l-map>
     </client-only>
   </div>
@@ -39,21 +39,24 @@ export default {
   name: "DistributionMap",
   data() {
     return {
-      layer: "Parks and Reserves",
-      ChecklistMapInfoQuery: null,
-      latitude: 0,
-      longitude: 0,
+      // layer: "Parks and Reserves",
+      // ChecklistMapInfoQuery: null,
+      zoom: 7,
+      center: [-36.55, 145.20],
+      // latitude: 0,
+      // longitude: 0,
       layers: [
         {
-          name: "Parks and Reserves",
-          // baseUrl: `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')`,
+          name: "Bioregions",
+          // baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
           service: "WMS",
           version: "1.1.0",
           request: "GetMap",
           visible: true,
-          layers: "vicflora-mapper:taxon_distribution_park_reserves",
+          layers: "vicflora-mapper:taxon_bioregions,vicflora-mapper:bioregions",
           srs: "EPSG:4326",
           format: "image/svg",
+          styles: "polygon-establishment-means-transparent,",
           transparent: true
         },
         {
@@ -63,38 +66,43 @@ export default {
           version: "1.1.0",
           request: "GetMap",
           visible: false,
-          layers: "vicflora-mapper:taxon_distribution_local_government_areas",
+          layers: "vicflora-mapper:taxon_local_government_areas,vicflora-mapper:local_government_areas",
           srs: "EPSG:4326",
           format: "image/svg",
+          styles: "polygon-establishment-means-transparent,",
           transparent: true
         },
         {
-          name: "Bioregions",
-          // baseUrl: "https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms",
+          name: "Parks and Reserves",
+          // baseUrl: `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' AND occurrence_status NOT IN ('doubtful', 'absent')`,
           service: "WMS",
           version: "1.1.0",
           request: "GetMap",
           visible: false,
-          layers: " vicflora-mapper:taxon_distribution_bioregions",
+          layers: "vicflora-mapper:taxon_park_reserves,vicflora-mapper:park_reserves",
           srs: "EPSG:4326",
           format: "image/svg",
+          styles: "polygon-establishment-means-transparent,",
           transparent: true
         }
       ],
-      markerLatLng: [0, 0]
-    };
+      // markerLatLng: [0, 0]
+    }
   },
   computed: {
+    cqlFilter: function() {
+      return `taxon_concept_id='${this.$route.params.id}' AND occurrence_status NOT IN ('doubtful', 'absent');INCLUDE`
+    },
     baseUrl: function() {
-        return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=taxon_id='${this.$route.params.id}' AND occurrence_status NOT IN ('doubtful', 'absent')`;
-      }
+      return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=${this.cqlFilter}`
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .m-map {
-  height: 500px;
+  height: 650px;
   margin-bottom:20px;
 }
 </style>
