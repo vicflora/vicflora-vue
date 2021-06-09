@@ -145,14 +145,16 @@
 > ### Done
 - fix the bug on specimen page
 - fix Taxon overview bug
-- 
+
+> ## 6/09 - 6/11
+- responsive map
 > ### To do
 - bioregion index - markdown ? 
 - matrix-keys
 - glossary img size
 - toc style - sticky
 - occurrences layer of map 
-- responsive map
+
 - 
 
 

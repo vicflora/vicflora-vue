@@ -8,7 +8,7 @@
   <div class="taxon">
     <b-container>
       <ApolloQuery
-        :query="require('../../graphql/queries/taxonConcept-description.gql')"
+        :query="require('../../graphql/queries/taxonConceptDescription.gql')"
         :variables="{ id, imagesPage, specimenImagesPage }"
       >
         <template v-slot="{ result: { loading, error, data } }">

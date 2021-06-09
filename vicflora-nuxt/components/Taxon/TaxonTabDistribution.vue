@@ -8,7 +8,7 @@
     <b-row>
       <!-- Map -->
       <b-col cols="12">
-        <distribution-map></distribution-map>
+        <distribution-map :id="concept.id"></distribution-map>
       </b-col>
       <!-- Map table -->
       <b-col cols="12" class="m-table">
