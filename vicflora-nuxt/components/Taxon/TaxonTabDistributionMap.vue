@@ -23,20 +23,7 @@
 
               <!-- <l-polygon :lat-lngs="data.taxonConcept.bioregions.geometry.coordinates" color="green"></l-polygon> -->
 
-              <!-- occurences layers -->
-              <!-- <l-lwms-tile-layer
-                      :base-url="occurrencesUrl"
-                      :visible="occurrencesLayer.visible"
-                      :name="occurrencesLayer.name"
-                      :layers="occurrencesLayer.layers"
-                      :transparent="occurrencesLayer.transparent"
-                      :service="occurrencesLayer.service"
-                      :version="occurrencesLayer.version"
-                      :request="occurrencesLayer.request"
-                      :srs="occurrencesLayer.srs"
-                      :format="occurrencesLayer.format"
-                      :styles="occurrencesLayer.styles"
-              ></l-lwms-tile-layer> -->
+              
 
               <l-lwms-tile-layer
                 v-for="layer in layers"
@@ -54,6 +41,20 @@
                 :styles="layer.styles"
                 layer-type="base"
               />
+
+              <!-- occurences layers -->
+              <l-lwms-tile-layer
+                :base-url="occurrencesUrl"
+                :visible="occurrencesLayer.visible"
+                :name="occurrencesLayer.name"
+                :layers="occurrencesLayer.layers"
+                :transparent="occurrencesLayer.transparent"
+                :service="occurrencesLayer.service"
+                :version="occurrencesLayer.version"
+                :request="occurrencesLayer.request"
+                :srs="occurrencesLayer.srs"
+                :format="occurrencesLayer.format"
+              ></l-lwms-tile-layer>
             </l-map>
           </client-only>
         </div>
@@ -128,7 +129,7 @@ export default {
         layers: "vicflora-mapper:taxon_occurrences",
         srs: "EPSG:4326",
         format: "image/svg",
-        styles: "polygon-establishment-means-transparent,",
+        // styles: "polygon-establishment-means-transparent,",
         transparent: false
       }
     };
@@ -155,8 +156,9 @@ export default {
   height: 650px;
   max-height: 70vh;
   margin-bottom: 20px;
+  text-align: left !important;
 }
 .leaflet-control-layers-base:v-deep {
-  text-align: start !important;
+  text-align: left !important;
 }
 </style>
