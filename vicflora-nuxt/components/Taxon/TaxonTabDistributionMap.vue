@@ -24,6 +24,10 @@
               <!-- <l-polygon :lat-lngs="data.taxonConcept.bioregions.geometry.coordinates" color="green"></l-polygon> -->
 
               
+              <l-lwms-tile-layer 
+                name="None" 
+                base-url="" 
+                layer-type="base"/>
 
               <l-lwms-tile-layer
                 v-for="layer in layers"
@@ -54,6 +58,7 @@
                 :request="occurrencesLayer.request"
                 :srs="occurrencesLayer.srs"
                 :format="occurrencesLayer.format"
+                layer-type="overlay"
               ></l-lwms-tile-layer>
             </l-map>
           </client-only>
