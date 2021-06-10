@@ -148,13 +148,14 @@
 
 > ## 6/09 - 6/11
 - responsive map
+- occurrences layer of map 
+- fix the style (left align) of search box and layers controller and breadcrumb
 > ### To do
 - bioregion index - markdown ? 
 - matrix-keys
 - glossary img size
 - toc style - sticky
-- occurrences layer of map 
 
-- 
+
 
 

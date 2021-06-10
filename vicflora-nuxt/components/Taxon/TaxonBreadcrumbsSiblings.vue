@@ -1,6 +1,6 @@
 <template>
-  <div class="m-breadcrumb-selector-item">
-    <b-form-select v-model="taxonId" size="sm">
+  <div>
+    <b-form-select v-model="taxonId" size="sm" class="m-breadcrumb-selector-item">
       <template #first>
         <b-form-select-option :value="null" disabled
           >Select sibling...</b-form-select-option
@@ -40,3 +40,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.m-breadcrumb-selector-item {
+  max-width: 200px;
+  margin-left: 18px;
+  margin-top:-40px;
+}
+</style>

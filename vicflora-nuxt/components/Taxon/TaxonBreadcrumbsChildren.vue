@@ -40,3 +40,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.m-breadcrumb-selector-item {
+  max-width: 200px;
+  margin-left: 18px;
+  margin-top:-40px;
+}
+</style>
