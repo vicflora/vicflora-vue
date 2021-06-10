@@ -33,7 +33,7 @@
               <div class="m-row">
                 <SearchInput/>
               </div>
-              <div class="m-row">
+              <div class="m-row mt-3">
                 <SearchExcludeHigherTaxa/>
               </div>
 
