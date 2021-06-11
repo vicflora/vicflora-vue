@@ -8,43 +8,9 @@
     <b-row>
       <!-- Map -->
       <b-col cols="12">
-        <distribution-map :id="concept.id"></distribution-map>
+        <distribution-map :id="concept.id" @layer="switchLayer($event)"></distribution-map>
       </b-col>
-      <!-- Map table -->
-      <b-col cols="12" class="m-table">
-        <table>
-          <tr>
-            <th></th>
-            <th>Bioregion</th>
-            <th>Occurrence status</th>
-            <th>Establishment means</th>
-          </tr>
-          <tr
-            v-for="bioregionItem in concept.bioregions"
-            :key="bioregionItem.id"
-          >
-            <td>
-              <div
-                class="m-table-color-box"
-                :style="
-                  `background-color: ${
-                    bioregionItem.occurrenceStatus.name === 'extinct'
-                      ? '#e9aaff'
-                      : '#a4f27d'
-                  };`
-                "
-              ></div>
-            </td>
-            <td>{{ bioregionItem.bioregion.properties.name }}</td>
-            <td>{{ bioregionItem.occurrenceStatus.name }}</td>
-            <td>{{ bioregionItem.establishmentMeans.name }}</td>
-          </tr>
-        </table>
-
-        <div class="text-right mt-4">
-          <b-link>Bioregions of Victoria</b-link>
-        </div>
-      </b-col>
+      <distribution-table :concept="concept" :layer="layer"></distribution-table>
     </b-row>
     <b-row>
       <b-col class="text-left">
@@ -58,14 +24,25 @@
 <script>
 import DistributionMapConfig from "../Distribution-map-config/Distribution-map-config.vue";
 import DistributionMap from "@/components/Taxon/TaxonTabDistributionMap.vue";
+import DistributionTable from "@/components/Taxon/TaxonTabDistributionTable.vue";
 
 export default {
-  components: { DistributionMapConfig, DistributionMap },
+  components: { DistributionMapConfig, DistributionMap, DistributionTable},
   name: "TaxonTabDistribution",
   props: {
     concept: {
       type: Object,
       required: true
+    }
+  },
+  data(){
+    return {
+      layer:"Bioregions",
+    }
+  },
+  methods:{
+    switchLayer:function(newLayer){
+      this.layer = newLayer
     }
   }
 };
@@ -118,28 +95,5 @@ export default {
   }
 }
 
-.m-table {
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  .m-table-color-box {
-    height: 15px;
-    width: 30px;
-    background-color: yellowgreen;
-    border: 1px solid $grey;
-  }
 
-  td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 6px;
-  }
-  th {
-    font-family: "goodsans-thin";
-    color: white;
-    background-color: $grey;
-  }
-}
 </style>

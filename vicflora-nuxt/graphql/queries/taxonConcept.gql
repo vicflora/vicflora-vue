@@ -14,7 +14,7 @@ query taxonConceptQuery($id: ID!) {
     }
     parent {
       id
-      
+    
       taxonName {
         id
         fullName

@@ -25,6 +25,43 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
         }
       }
     }
+    parkReserves {
+      id
+      parkReserve {
+        properties {
+          name
+            nameShort 
+        }
+      }
+      occurrenceStatus {
+        name
+        label
+      }
+      establishmentMeans {
+        name
+        label
+      }
+    }
+    localGovernmentAreas {
+      id
+      localGovernmentArea {
+        properties {
+          name
+          nameAbbr
+        }
+      }
+      occurrenceStatus {
+        name
+        label
+      }
+      establishmentMeans {
+        name
+        label
+      }
+    }
+
+
+
     preferredVernacularName {
       id
       name

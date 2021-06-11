@@ -150,11 +150,14 @@
 - responsive map
 - occurrences layer of map 
 - fix the style (left align) of search box and layers controller and breadcrumb
+- table on distribution page
+- popup window on the map of distribution
 > ### To do
 - bioregion index - markdown ? 
 - matrix-keys
 - glossary img size
 - toc style - sticky
+
 
 
 

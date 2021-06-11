@@ -12,7 +12,7 @@
       <div v-else-if="data" class="result apollo"> -->
 
 
-        <div class="m-map">
+        <div class="m-map" @click="getLayer">
           <client-only class="m-map">
             <l-map :zoom="zoom" :center="center">
               <l-control-layers position="topright"></l-control-layers>
@@ -79,6 +79,7 @@ export default {
   props: ["id"],
   data() {
     return {
+      layer: "Bioregions",
       zoom: 7,
       center: [-36.55, 145.2],
       layers: [
@@ -152,7 +153,18 @@ export default {
     occurrencesUrl: function() {
       return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=${this.occurrencesCql}`;
     }
-  }
+  },
+  methods:{
+    getLayer(event) {
+      if (event.target.labels) {
+        // console.log(event.target.labels[0].innerText.trim());
+        if(event.target.labels[0].innerText.trim()!=="Occurrences"){
+          this.layer = event.target.labels[0].innerText.trim()
+          this.$emit('layer', this.layer)
+        }
+      }
+    }
+  },
 };
 </script>
 
