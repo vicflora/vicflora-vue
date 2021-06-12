@@ -66,7 +66,7 @@
                       this.specimenImagesPage = $event;
                     }
                   "
-                ></TaxonTabs>
+                />
               </b-col>
             </b-row>
           </div>

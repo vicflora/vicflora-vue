@@ -1,35 +1,28 @@
 <template>
-  <!-- Map table -->
-  <b-col cols="12" class="m-table">
-    <table v-if="layer!=='None'">
-      <tr>
-        <th></th>
-        <th>{{layer}}</th>
-        <th>Occurrence status</th>
-        <th>Establishment means</th>
-      </tr>
-      <tr v-for="item in concept[layerName]" :key="item.id">
-        <td>
-          <div
-            class="m-table-color-box"
-            :style="
-              `background-color: ${
-                statusColors[item.establishmentMeans.name]
-              };`
-            "
-          ></div>
-        </td>
-        <!-- <td>{{ item.id }}</td> -->
-        <td>{{ item[layerName.substr(0, layerName.length - 1)].properties.name }}</td>
-        <td>{{ item.occurrenceStatus.name }}</td>
-        <td>{{ item.establishmentMeans.name }}</td>
-      </tr>
-    </table>
-
-    <div class="text-right mt-4">
-      <b-link>Bioregions of Victoria</b-link>
-    </div>
-  </b-col>
+  <table v-if="layer!=='None'">
+    <tr>
+      <th></th>
+      <th>{{layer}}</th>
+      <th>Occurrence status</th>
+      <th>Establishment means</th>
+    </tr>
+    <tr v-for="item in concept[layerName]" :key="item.id">
+      <td>
+        <div
+          class="m-table-color-box"
+          :style="
+            `background-color: ${
+              statusColors[item.establishmentMeans.name]
+            };`
+          "
+        ></div>
+      </td>
+      <!-- <td>{{ item.id }}</td> -->
+      <td>{{ item[layerName.substr(0, layerName.length - 1)].properties.name }}</td>
+      <td>{{ item.occurrenceStatus.name }}</td>
+      <td>{{ item.establishmentMeans.name }}</td>
+    </tr>
+  </table>
 </template>
 
 <script>

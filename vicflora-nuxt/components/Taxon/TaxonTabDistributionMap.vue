@@ -27,7 +27,9 @@
               <l-lwms-tile-layer 
                 name="None" 
                 base-url="" 
-                layer-type="base"/>
+                layer-type="base"
+                :visible="true"
+              />
 
               <l-lwms-tile-layer
                 v-for="layer in layers"
@@ -59,7 +61,7 @@
                 :srs="occurrencesLayer.srs"
                 :format="occurrencesLayer.format"
                 layer-type="overlay"
-              ></l-lwms-tile-layer>
+              />
             </l-map>
           </client-only>
         </div>
@@ -89,7 +91,7 @@ export default {
           service: "WMS",
           version: "1.1.0",
           request: "GetMap",
-          visible: true,
+          visible: false,
           layers: "vicflora-mapper:taxon_bioregions,vicflora-mapper:bioregions",
           srs: "EPSG:4326",
           format: "image/svg",
