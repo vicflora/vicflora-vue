@@ -14,7 +14,11 @@
 
         <div class="m-map" @click="getLayer">
           <client-only class="m-map">
-            <l-map :zoom="zoom" :center="center">
+            <l-map 
+              :zoom="zoom" 
+              :center="center"
+              :options="mapOptions"
+            >
               <l-control-layers position="topright"></l-control-layers>
 
               <l-tile-layer
@@ -139,6 +143,9 @@ export default {
         format: "image/svg",
         // styles: "polygon-establishment-means-transparent,",
         transparent: false
+      },
+      mapOptions: {
+        name: "Victoria map"
       }
     };
   },

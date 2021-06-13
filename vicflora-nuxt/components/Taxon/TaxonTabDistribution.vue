@@ -1,25 +1,13 @@
 <template>
   <div>
     <b-row>
-      <b-col class="text-left">
-        <h4 class="m-distribution-title">Distribution</h4>
-      </b-col>
-    </b-row>
-    <b-row>
       <!-- Map -->
       <b-col cols="12" class="text-left">
-        <b-tabs v-model="tabIndex" pills>
-          <b-tab title="Victoria">
-            <distribution-map :id="concept.id" @layer="switchLayer($event)"></distribution-map>
-            <distribution-table :concept="concept" :layer="layer"></distribution-table>
-            <p>&nbsp;</p>
-            <p><b>Source:</b></p>
-            <p v-html="concept.mapLinks.mapSource"></p>
-          </b-tab>
-          <b-tab title="AVH">
-            <DistributionAvhMap />
-          </b-tab>
-        </b-tabs>
+        <distribution-map :id="concept.id" @layer="switchLayer($event)"></distribution-map>
+        <distribution-table :concept="concept" :layer="layer"></distribution-table>
+        <p>&nbsp;</p>
+        <p><b>Source:</b></p>
+        <p v-html="concept.mapLinks.mapSource"></p>
       </b-col>
     </b-row>
     <b-row>
@@ -32,14 +20,12 @@
 <script>
 import DistributionMapConfig from "../Distribution-map-config/Distribution-map-config.vue"
 import DistributionMap from "@/components/Taxon/TaxonTabDistributionMap.vue"
-import DistributionAvhMap from "@/components/Taxon/TaxonTabDistributionAvhMap.vue"
 import DistributionTable from "@/components/Taxon/TaxonTabDistributionTable.vue"
 
 export default {
   components: { 
     DistributionMapConfig, 
     DistributionMap, 
-    DistributionAvhMap, 
     DistributionTable
   },
   name: "TaxonTabDistribution",
