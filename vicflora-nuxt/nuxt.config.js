@@ -40,8 +40,7 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
-    "@nuxt/content",
-    'nuxt-leaflet',
+    "@nuxt/content"
   ],
   bootstrapVue: {
     bootstrapCSS: false,
@@ -64,6 +63,7 @@ export default {
   },
 
   plugins: [
+    { src: '~plugins/leaflet.js', ssr: false },
     '~/plugins/vue2-leaflet-fullscreen.client.js'
   ],
 
