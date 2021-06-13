@@ -28,15 +28,15 @@
               <!-- <l-polygon :lat-lngs="data.taxonConcept.bioregions.geometry.coordinates" color="green"></l-polygon> -->
 
               
-              <l-lwms-tile-layer 
+              <l-wms-tile-layer 
                 name="None" 
                 base-url="" 
                 layer-type="base"
                 :visible="true"
               />
 
-              <l-lwms-tile-layer
-                v-for="layer in layers"
+              <l-wms-tile-layer
+                v-for="layer in baseLayers"
                 :key="layer.name"
                 :base-url="baseUrl"
                 :visible="layer.visible"
@@ -49,11 +49,12 @@
                 :srs="layer.srs"
                 :format="layer.format"
                 :styles="layer.styles"
+                :attribution="layer.attribution"
                 layer-type="base"
               />
 
               <!-- occurences layers -->
-              <l-lwms-tile-layer
+              <l-wms-tile-layer
                 :base-url="occurrencesUrl"
                 :visible="occurrencesLayer.visible"
                 :name="occurrencesLayer.name"
@@ -79,13 +80,23 @@
     </template> 
   </ApolloQuery> -->
 </template>
+
 <script>
+import { baseLayersMixin } from "@/mixins/mapMixins"
+import 'leaflet/dist/leaflet.css'
+
 export default {
   name: "DistributionMap",
-  props: ["id"],
+  mixins: [baseLayersMixin],
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      layer: "Bioregions",
+      layer: "None",
       zoom: 7,
       center: [-36.55, 145.2],
       layers: [
@@ -183,6 +194,10 @@ export default {
   max-height: 70vh;
   margin-bottom: 20px;
   text-align: left !important;
+  
+  .leaflet-grab {
+    cursor: auto;
+  }
 }
 .leaflet-control-layers-base:v-deep {
   text-align: left !important;

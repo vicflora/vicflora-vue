@@ -1,6 +1,21 @@
 <template>
   <div>
     <b-row>
+      <b-col cols="12">
+        <b-nav pills>
+          <b-nav-item 
+            :active="showMap === 'Victoria'" 
+            @click="toggleMap('Victoria')"
+          >Victoria</b-nav-item>
+          
+          <b-nav-item 
+            :active="showMap === 'Australia'" 
+            @click="toggleMap('Australia')"
+          >Australia</b-nav-item>
+        </b-nav>
+      </b-col>
+    </b-row>
+    <b-row v-if="showMap==='Victoria'">
       <!-- Map -->
       <b-col cols="12" class="text-left">
         <distribution-map :id="concept.id" @layer="switchLayer($event)"></distribution-map>
@@ -8,10 +23,15 @@
         <p>&nbsp;</p>
         <p><b>Source:</b></p>
         <p v-html="concept.mapLinks.mapSource"></p>
+        <p>&nbsp;</p>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col class="text-left">
+    <b-row v-if="showMap==='Australia'">
+      <b-col cols="12" class="text-left">
+        <distribution-avh-map 
+          :name="concept.taxonName.fullName"
+          :rankId="concept.taxonTreeDefItem.rankId"
+        />
       </b-col>
     </b-row>
   </div>
@@ -20,12 +40,14 @@
 <script>
 import DistributionMapConfig from "../Distribution-map-config/Distribution-map-config.vue"
 import DistributionMap from "@/components/Taxon/TaxonTabDistributionMap.vue"
+import DistributionAvhMap from "@/components/Taxon/TaxonTabDistributionAvhMap.vue"
 import DistributionTable from "@/components/Taxon/TaxonTabDistributionTable.vue"
 
 export default {
   components: { 
     DistributionMapConfig, 
     DistributionMap, 
+    DistributionAvhMap, 
     DistributionTable
   },
   name: "TaxonTabDistribution",
@@ -39,12 +61,17 @@ export default {
     return {
       tabIndex: 0,
       layer: "None",
+      showMap: "Victoria"
     }
   },
   methods:{
     switchLayer: function(newLayer){
       this.layer = newLayer
+    },
+    toggleMap: function(map) {
+      this.showMap = map
     }
+
   }
 }
 </script>
