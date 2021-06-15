@@ -43,6 +43,7 @@
                 :name="layer.name"
                 :layers="layer.layers"
                 :transparent="layer.transparent"
+                :opacity="layer.opacity"
                 :service="layer.service"
                 :version="layer.version"
                 :request="layer.request"
@@ -96,52 +97,9 @@ export default {
   },
   data() {
     return {
-      layer: "None",
+      visibleLayer: "None",
       zoom: 7,
       center: [-36.55, 145.2],
-      layers: [
-        {
-          name: "Bioregions",
-          // baseUrl: this.baseUrl,
-          service: "WMS",
-          version: "1.1.0",
-          request: "GetMap",
-          visible: false,
-          layers: "vicflora-mapper:taxon_bioregions,vicflora-mapper:bioregions",
-          srs: "EPSG:4326",
-          format: "image/svg",
-          styles: "polygon-establishment-means-transparent,",
-          transparent: true
-        },
-        {
-          name: "Local Government Areas",
-          // baseUrl: this.baseUrl,
-          service: "WMS",
-          version: "1.1.0",
-          request: "GetMap",
-          visible: false,
-          layers:
-            "vicflora-mapper:taxon_local_government_areas,vicflora-mapper:local_government_areas",
-          srs: "EPSG:4326",
-          format: "image/svg",
-          styles: "polygon-establishment-means-transparent,",
-          transparent: true
-        },
-        {
-          name: "Parks and Reserves",
-          // baseUrl: this.baseUrl,
-          service: "WMS",
-          version: "1.1.0",
-          request: "GetMap",
-          visible: false,
-          layers:
-            "vicflora-mapper:taxon_park_reserves,vicflora-mapper:park_reserves",
-          srs: "EPSG:4326",
-          format: "image/svg",
-          styles: "polygon-establishment-means-transparent,",
-          transparent: true
-        }
-      ],
       occurrencesLayer: {
         name: "Occurrences",
         // baseUrl: this.occurrencesUrl,
@@ -162,25 +120,28 @@ export default {
   },
   computed: {
     cqlFilter: function() {
-      return `taxon_concept_id='${this.id}' AND occurrence_status NOT IN ('doubtful', 'absent');INCLUDE`;
+      return `taxon_concept_id='${this.id}' AND occurrence_status NOT IN ('doubtful', 'absent') AND establishment_means NOT IN ('cultivated');INCLUDE`;
     },
     baseUrl: function() {
       return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=${this.cqlFilter}`;
     },
     occurrencesCql: function() {
-      return `taxon_concept_id='${this.id}' AND occurrence_status NOT IN ('doubtful', 'absent')`;
+      return `taxon_concept_id='${this.id}' AND occurrence_status NOT IN ('doubtful', 'absent') AND establishment_means NOT IN ('cultivated')`;
     },
     occurrencesUrl: function() {
       return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=${this.occurrencesCql}`;
     }
+  },
+  mounted() {
+    this.$emit('layer', this.visibleLayer)
   },
   methods:{
     getLayer(event) {
       if (event.target.labels) {
         // console.log(event.target.labels[0].innerText.trim());
         if(event.target.labels[0].innerText.trim()!=="Occurrences"){
-          this.layer = event.target.labels[0].innerText.trim()
-          this.$emit('layer', this.layer)
+          this.visibleLayer = event.target.labels[0].innerText.trim()
+          this.$emit('layer', this.visibleLayer)
         }
       }
     }
@@ -194,7 +155,7 @@ export default {
   max-height: 70vh;
   margin-bottom: 20px;
   text-align: left !important;
-  
+
   .leaflet-grab {
     cursor: auto;
   }

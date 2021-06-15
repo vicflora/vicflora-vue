@@ -40,6 +40,7 @@ export const baseLayersMixin = {
           format: "image/svg",
           styles: "polygon-establishment-means-transparent,",
           transparent: true,
+          opacity: 0.8,
           attribution: "DataVic"
         },
         {
@@ -54,6 +55,7 @@ export const baseLayersMixin = {
           format: "image/svg",
           styles: "polygon-establishment-means-transparent,",
           transparent: true,
+          opacity: 0.8,
           attribution: "DataVic"
         },
         {
@@ -68,6 +70,7 @@ export const baseLayersMixin = {
           format: "image/svg",
           styles: "polygon-establishment-means-transparent,",
           transparent: true,
+          opacity: 0.8,
           attribution: "DataVic"
         }
       ]
