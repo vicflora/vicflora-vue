@@ -1,6 +1,5 @@
 <template>
-  <!-- Map table -->
-  <b-col cols="12" class="m-table">
+  <div class="m-table">
     <table v-if="layer!=='None'">
       <tr>
         <th></th>
@@ -25,11 +24,7 @@
         <td>{{ item.establishmentMeans.name }}</td>
       </tr>
     </table>
-
-    <div class="text-right mt-4">
-      <b-link>Bioregions of Victoria</b-link>
-    </div>
-  </b-col>
+  </div>
 </template>
 
 <script>

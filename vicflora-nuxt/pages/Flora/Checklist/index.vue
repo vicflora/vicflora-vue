@@ -71,8 +71,11 @@
     </b-container>
   </div>
 </template>
+
 <script>
 import ChecklistMap from "@/components/Checklists/Checklist-map/Checklist-map"
+import 'leaflet/dist/leaflet.css'
+
 export default {
   name: "CheckList",
   components: {

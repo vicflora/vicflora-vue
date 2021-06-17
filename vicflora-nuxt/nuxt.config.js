@@ -24,7 +24,10 @@ export default {
   css: ["@/assets/scss/main.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~/plugins/vue-scrollactive.client.js", "~/plugins/vue2-leaflet-fullscreen.client.js"],
+  plugins: [
+    "~/plugins/vue-scrollactive.client.js",
+    "~/plugins/vue2-leaflet-fullscreen.client.js"
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -37,8 +40,7 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
-    "@nuxt/content",
-    'nuxt-leaflet',
+    "@nuxt/content"
   ],
   bootstrapVue: {
     bootstrapCSS: false,
@@ -61,6 +63,7 @@ export default {
   },
 
   plugins: [
+    { src: '~plugins/leaflet.js', ssr: false },
     '~/plugins/vue2-leaflet-fullscreen.client.js'
   ],
 
