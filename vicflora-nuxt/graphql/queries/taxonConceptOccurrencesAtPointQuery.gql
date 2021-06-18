@@ -1,0 +1,27 @@
+query taxonConceptOccurrencesAtPointQuery(
+  $taxonConceptId: ID!
+  $latitude: Float!
+  $longitude: Float!
+) {
+  taxonOccurrencesAtPoint(
+    taxonConceptId: $taxonConceptId
+    latitude: $latitude
+    longitude: $longitude
+  ) {
+    paginatorInfo {
+      total
+      perPage
+      currentPage
+    }
+    data {
+      properties {
+        uuid
+        scientificName
+        catalogNumber
+        speciesName
+        occurrenceStatus
+        establishmentMeans
+      }
+    }
+  }
+}

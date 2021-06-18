@@ -1,88 +1,79 @@
 <template>
-  <!-- <ApolloQuery
-    :query="require('@/graphql/queries/taxonConceptDistributionMap.gql')"
-    :variables="{ id }"
-  >
-    <template v-slot="{ result: { loading, error, data } }">
-      <div v-if="loading" class="loading apollo">Loading...</div>
-
-      <div v-else-if="error" class="error apollo">
-        An error occurred: {{ error }}
-      </div>
-      <div v-else-if="data" class="result apollo"> -->
-
   <div class="m-map" @click="getLayer">
     <client-only class="m-map">
-      <l-map :zoom="zoom" :center="center" @click="getCoordinate" :options="mapOptions">
+      <l-map
+        :zoom="zoom"
+        :center="center"
+        @click="getCoordinate"
+        :options="mapOptions"
+      >
+        <l-marker :lat-lng="markerLatLng">
+          <l-popup>
+            <!-- <popup-detail :layer="visibleLayer" :taxonConceptId="id" :latitude="-38.0833" :longitude="144.2833"></popup-detail> -->
+            <popup-detail :layer="visibleLayer" :taxonConceptId="id" :latitude="markerLatLng[0]" :longitude="markerLatLng[1]" class="m-popup-detail"></popup-detail>
+          </l-popup>
+        </l-marker>
         <l-control-layers position="topright"></l-control-layers>
 
-        
 
-        <!-- <l-polygon :lat-lngs="data.taxonConcept.bioregions.geometry.coordinates" color="green"></l-polygon> -->
+        <l-tile-layer
+          url="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
+        ></l-tile-layer>
 
-        <l-lwms-tile-layer name="None" base-url="" layer-type="base" />
+        <l-wms-tile-layer
+          name="None"
+          base-url=""
+          layer-type="base"
+          :visible="true"
+        />
 
-              
-              <l-wms-tile-layer 
-                name="None" 
-                base-url="" 
-                layer-type="base"
-                :visible="true"
-              />
+        <l-wms-tile-layer
+          v-for="layer in baseLayers"
+          :key="layer.name"
+          :base-url="baseUrl"
+          :visible="layer.visible"
+          :name="layer.name"
+          :layers="layer.layers"
+          :transparent="layer.transparent"
+          :opacity="layer.opacity"
+          :service="layer.service"
+          :version="layer.version"
+          :request="layer.request"
+          :srs="layer.srs"
+          :format="layer.format"
+          :styles="layer.styles"
+          :attribution="layer.attribution"
+          layer-type="base"
+        />
 
-              <l-wms-tile-layer
-                v-for="layer in baseLayers"
-                :key="layer.name"
-                :base-url="baseUrl"
-                :visible="layer.visible"
-                :name="layer.name"
-                :layers="layer.layers"
-                :transparent="layer.transparent"
-                :opacity="layer.opacity"
-                :service="layer.service"
-                :version="layer.version"
-                :request="layer.request"
-                :srs="layer.srs"
-                :format="layer.format"
-                :styles="layer.styles"
-                :attribution="layer.attribution"
-                layer-type="base"
-              />
-
-              <!-- occurences layers -->
-              <l-wms-tile-layer
-                :base-url="occurrencesUrl"
-                :visible="occurrencesLayer.visible"
-                :name="occurrencesLayer.name"
-                :layers="occurrencesLayer.layers"
-                :transparent="occurrencesLayer.transparent"
-                :service="occurrencesLayer.service"
-                :version="occurrencesLayer.version"
-                :request="occurrencesLayer.request"
-                :srs="occurrencesLayer.srs"
-                :format="occurrencesLayer.format"
-                layer-type="overlay"
-              />
-            </l-map>
-          </client-only>
-        </div>
-
-  <!-- </div>
-      <div v-else class="no-result apollo">
-        <div class="spinner-border mt-5 mb-1" role="status"></div>
-        <h5>Loading...</h5>
-      </div>
-    </template> 
-  </ApolloQuery> -->
+        <!-- occurences layers -->
+        <l-wms-tile-layer
+          :base-url="occurrencesUrl"
+          :visible="occurrencesLayer.visible"
+          :name="occurrencesLayer.name"
+          :layers="occurrencesLayer.layers"
+          :transparent="occurrencesLayer.transparent"
+          :service="occurrencesLayer.service"
+          :version="occurrencesLayer.version"
+          :request="occurrencesLayer.request"
+          :srs="occurrencesLayer.srs"
+          :format="occurrencesLayer.format"
+          layer-type="overlay"
+        />
+      </l-map>
+    </client-only>
+  </div>
 </template>
 
 <script>
-import { baseLayersMixin } from "@/mixins/mapMixins"
-import 'leaflet/dist/leaflet.css'
+import { baseLayersMixin } from "@/mixins/mapMixins";
+import "leaflet/dist/leaflet.css";
+import popupDetail from "@/components/Taxon/TaxonTabDistributionMapPopupDetail"
 
 export default {
   name: "DistributionMap",
   mixins: [baseLayersMixin],
+  components:{popupDetail},
   props: {
     id: {
       type: String,
@@ -93,6 +84,7 @@ export default {
     return {
       visibleLayer: "None",
       zoom: 7,
+      markerLatLng:[0,0],
       center: [-36.55, 145.2],
       occurrencesLayer: {
         name: "Occurrences",
@@ -127,15 +119,15 @@ export default {
     }
   },
   mounted() {
-    this.$emit('layer', this.visibleLayer)
+    this.$emit("layer", this.visibleLayer);
   },
-  methods:{
+  methods: {
     getLayer(event) {
       if (event.target.labels) {
         // console.log(event.target.labels[0].innerText.trim());
-        if(event.target.labels[0].innerText.trim()!=="Occurrences"){
-          this.visibleLayer = event.target.labels[0].innerText.trim()
-          this.$emit('layer', this.visibleLayer)
+        if (event.target.labels[0].innerText.trim() !== "Occurrences") {
+          this.visibleLayer = event.target.labels[0].innerText.trim();
+          this.$emit("layer", this.visibleLayer);
         }
       }
     },
@@ -147,9 +139,8 @@ export default {
     },
     addmarker: function({ lat, lng }) {
       this.markerLatLng = [lat, lng];
-    },
-  },
-
+    }
+  }
 };
 </script>
 
@@ -166,5 +157,8 @@ export default {
 }
 .leaflet-control-layers-base:v-deep {
   text-align: left !important;
+}
+.m-popup-detail{
+  min-width:250px;
 }
 </style>
