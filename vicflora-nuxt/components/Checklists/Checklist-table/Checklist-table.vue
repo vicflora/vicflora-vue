@@ -28,16 +28,16 @@
       <h5 class="m-topic">Bioregions:</h5>
       <table class="table table-sm">
         <thead>
-          <td class="table-active">
-            <th scope="col">No.</th>
-            <th scope="col">Name</th>
-            <th scope="col">Region Code</th>
-          </td>
+          <tr class="table-active">
+            <td scope="col">No.</td>
+            <td scope="col">Name</td>
+            <td scope="col">Region Code</td>
+          </tr>
         </thead>
         <tbody class="m-table-fontsize">
           <tr v-for="item in data.bioregionsByPoint" :key="item.id">
-            <th scope="row">{{ item.properties.number }}</th>
-            <th scope="row">{{ item.properties.name }}</th>
+            <td scope="row">{{ item.properties.number }}</td>
+            <td scope="row">{{ item.properties.name }}</td>
             <td scope="row">{{ item.properties.regionCode }}</td>
           </tr>
         </tbody>
@@ -48,15 +48,15 @@
       <h5 class="m-topic">Local Government Areas:</h5>
       <table class="table table-sm">
         <thead>
-          <td class="table-active">
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-          </td>
+          <tr class="table-active">
+            <td scope="col">ID</td>
+            <td scope="col">Name</td>
+          </tr>
         </thead>
         <tbody class="m-table-fontsize">
           <tr v-for="item in data.localGovernmentAreasByPoint" :key="item.id">
-            <th scope="row">{{ item.properties.id }}</th>
-            <th scope="row">{{ item.properties.name }}</th>
+            <td scope="row">{{ item.properties.id }}</td>
+            <td scope="row">{{ item.properties.name }}</td>
           </tr>
         </tbody>
       </table>
