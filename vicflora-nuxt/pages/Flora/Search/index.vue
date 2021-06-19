@@ -94,7 +94,8 @@ export default {
         q: "*",
         rows: 50,
         fq: [],
-        page: 1
+        page: 1,
+        facetLimit: 20
       }
     }
   },
