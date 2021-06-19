@@ -1,4 +1,4 @@
-query taxonConceptOccurrencesAtPointQuery(
+query taxonOccurrencesAtPointQuery(
   $taxonConceptId: ID!
   $latitude: Float!
   $longitude: Float!

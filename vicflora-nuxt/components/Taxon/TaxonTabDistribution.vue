@@ -18,7 +18,7 @@
     <b-row v-if="showMap==='Victoria'">
       <!-- Map -->
       <b-col cols="12" class="text-left">
-        <distribution-map :id="concept.id" @layer="switchLayer($event)"></distribution-map>
+        <distribution-map :taxonConceptId="concept.id" @layer="switchLayer($event)"></distribution-map>
         <distribution-table :concept="concept" :layer="layer"></distribution-table>
         <p>&nbsp;</p>
         <p><b>Source:</b></p>

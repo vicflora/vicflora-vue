@@ -4,21 +4,30 @@
       <l-map
         :zoom="zoom"
         :center="center"
-        @click="getCoordinate"
+        @click="getOccurrences"
         :options="mapOptions"
       >
-        <l-marker :lat-lng="markerLatLng">
-          <l-popup>
-            <!-- <popup-detail :layer="visibleLayer" :taxonConceptId="id" :latitude="-38.0833" :longitude="144.2833"></popup-detail> -->
-            <popup-detail :layer="visibleLayer" :taxonConceptId="id" :latitude="markerLatLng[0]" :longitude="markerLatLng[1]" class="m-popup-detail"></popup-detail>
+        <l-marker v-if="marker" :lat-lng="marker" ref="marker">
+          <l-icon 
+            :icon-url="icon.url"
+            :icon-size="icon.size" 
+            :shadow-size="icon.size"
+          />
+          <l-popup 
+            ref="popup" 
+            :lat-lng="marker"
+            :options="popupOptions"
+          >
+            <taxon-tab-distribution-map-popup-content 
+              :occurrences="taxonOccurrencesAtPoint.data"/>
           </l-popup>
         </l-marker>
-        <l-control-layers position="topright"></l-control-layers>
-
+        
+        <l-control-layers position="topright"/>
 
         <l-tile-layer
           url="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
-        ></l-tile-layer>
+        />
 
         <l-wms-tile-layer
           name="None"
@@ -30,7 +39,7 @@
         <l-wms-tile-layer
           v-for="layer in baseLayers"
           :key="layer.name"
-          :base-url="baseUrl"
+          :base-url="baseLayerUrl"
           :visible="layer.visible"
           :name="layer.name"
           :layers="layer.layers"
@@ -46,18 +55,17 @@
           layer-type="base"
         />
 
-        <!-- occurences layers -->
         <l-wms-tile-layer
-          :base-url="occurrencesUrl"
-          :visible="occurrencesLayer.visible"
-          :name="occurrencesLayer.name"
-          :layers="occurrencesLayer.layers"
-          :transparent="occurrencesLayer.transparent"
-          :service="occurrencesLayer.service"
-          :version="occurrencesLayer.version"
-          :request="occurrencesLayer.request"
-          :srs="occurrencesLayer.srs"
-          :format="occurrencesLayer.format"
+          :base-url="occurrenceLayerUrl"
+          :visible="occurrenceLayer.visible"
+          :name="occurrenceLayer.name"
+          :layers="occurrenceLayer.layers"
+          :transparent="occurrenceLayer.transparent"
+          :service="occurrenceLayer.service"
+          :version="occurrenceLayer.version"
+          :request="occurrenceLayer.request"
+          :srs="occurrenceLayer.srs"
+          :format="occurrenceLayer.format"
           layer-type="overlay"
         />
       </l-map>
@@ -66,16 +74,21 @@
 </template>
 
 <script>
-import { baseLayersMixin } from "@/mixins/mapMixins";
-import "leaflet/dist/leaflet.css";
-import popupDetail from "@/components/Taxon/TaxonTabDistributionMapPopupDetail"
+import { baseLayersMixin } from "@/mixins/mapMixins"
+import "leaflet/dist/leaflet.css"
+import TaxonTabDistributionMapPopupContent 
+    from "@/components/Taxon/TaxonTabDistributionMapPopupContent"
+import { taxonOccurrencesAtPointQuery } 
+    from "@/graphql/queries/taxonOccurrencesAtPointQuery.gql"
 
 export default {
   name: "DistributionMap",
   mixins: [baseLayersMixin],
-  components:{popupDetail},
+  components: {
+    TaxonTabDistributionMapPopupContent
+  },
   props: {
-    id: {
+    taxonConceptId: {
       type: String,
       required: true
     }
@@ -84,11 +97,10 @@ export default {
     return {
       visibleLayer: "None",
       zoom: 7,
-      markerLatLng:[0,0],
+      marker: null,
       center: [-36.55, 145.2],
-      occurrencesLayer: {
+      occurrenceLayer: {
         name: "Occurrences",
-        // baseUrl: this.occurrencesUrl,
         service: "WMS",
         version: "1.1.0",
         request: "GetMap",
@@ -96,52 +108,83 @@ export default {
         layers: "vicflora-mapper:taxon_occurrences",
         srs: "EPSG:4326",
         format: "image/svg",
-        // styles: "polygon-establishment-means-transparent,",
         transparent: false
       },
       mapOptions: {
         name: "Victoria map"
+      },
+      icon: {
+        url: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers' +
+            '/master/img/marker-icon-blue.png',
+        size: [1, 1]
+      },
+      taxonOccurrencesAtPoint: [],
+      popupOptions: {
+        offset: [0, 40],
+        maxWidth: 450,
+        minWidth: 300
       }
     };
   },
   computed: {
     cqlFilter: function() {
-      return `taxon_concept_id='${this.id}' AND occurrence_status NOT IN ('doubtful', 'absent') AND establishment_means NOT IN ('cultivated');INCLUDE`;
+      return `taxon_concept_id='${this.taxonConceptId}' ` + 
+          `AND occurrence_status NOT IN ('doubtful', 'absent') ` +
+          `AND establishment_means NOT IN ('cultivated')`
     },
-    baseUrl: function() {
-      return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=${this.cqlFilter}`;
+    occurrenceLayerUrl: function() {
+      return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?` +
+          `cql_filter=${this.cqlFilter}`
     },
-    occurrencesCql: function() {
-      return `taxon_concept_id='${this.id}' AND occurrence_status NOT IN ('doubtful', 'absent') AND establishment_means NOT IN ('cultivated')`;
-    },
-    occurrencesUrl: function() {
-      return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?cql_filter=${this.occurrencesCql}`;
+    baseLayerUrl: function() {
+      return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?` +
+          `cql_filter=${this.cqlFilter};INCLUDE`
     }
   },
   mounted() {
-    this.$emit("layer", this.visibleLayer);
+    this.$emit("layer", this.visibleLayer)
   },
   methods: {
     getLayer(event) {
       if (event.target.labels) {
-        // console.log(event.target.labels[0].innerText.trim());
         if (event.target.labels[0].innerText.trim() !== "Occurrences") {
-          this.visibleLayer = event.target.labels[0].innerText.trim();
-          this.$emit("layer", this.visibleLayer);
+          this.visibleLayer = event.target.labels[0].innerText.trim()
+          this.$emit("layer", this.visibleLayer)
         }
       }
     },
-    getCoordinate: function(event) {
-      //{lat: -34.64620136014536, lng: 141.61376953125003}
-      this.addmarker(event.latlng);
-      this.latitude = event.latlng.lat;
-      this.longitude = event.latlng.lng;
+    getOccurrences(event) {
+      this.marker = null
+      let mapClick = event.latlng
+      this.$apollo.addSmartQuery('taxonOccurrencesAtPoint', {
+        query: taxonOccurrencesAtPointQuery,
+        variables: {
+          taxonConceptId: this.taxonConceptId,
+          latitude: mapClick.lat,
+          longitude: mapClick.lng
+        },
+        update(data) {
+          return data.taxonOccurrencesAtPoint
+        },
+        result({ data, loading }) {
+          if (!loading) {
+            if (data.taxonOccurrencesAtPoint.data.length > 0) {
+              this.marker = mapClick
+              this.openPopup()
+            }
+          }
+        }
+      })
     },
-    addmarker: function({ lat, lng }) {
-      this.markerLatLng = [lat, lng];
+    openPopup: function() {
+      this.$nextTick(() => {
+        if (this.$refs.marker !== undefined) {
+          this.$refs.marker.mapObject.openPopup()
+        }
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
