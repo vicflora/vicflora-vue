@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { baseLayersMixin } from "@/mixins/mapMixins"
+import { baseLayersMixin, iconMixin, popupMixin } from "@/mixins/mapMixins"
 import "leaflet/dist/leaflet.css"
 import TaxonTabDistributionMapPopupContent 
     from "@/components/Taxon/TaxonTabDistributionMapPopupContent"
@@ -83,10 +83,14 @@ import { taxonOccurrencesAtPointQuery }
 
 export default {
   name: "DistributionMap",
-  mixins: [baseLayersMixin],
   components: {
     TaxonTabDistributionMapPopupContent
   },
+  mixins: [
+    baseLayersMixin, 
+    iconMixin,
+    popupMixin
+  ],
   props: {
     taxonConceptId: {
       type: String,
@@ -113,18 +117,8 @@ export default {
       mapOptions: {
         name: "Victoria map"
       },
-      icon: {
-        url: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers' +
-            '/master/img/marker-icon-blue.png',
-        size: [1, 1]
-      },
-      taxonOccurrencesAtPoint: [],
-      popupOptions: {
-        offset: [0, 40],
-        maxWidth: 450,
-        minWidth: 300
-      }
-    };
+      taxonOccurrencesAtPoint: []
+    }
   },
   computed: {
     cqlFilter: function() {
@@ -173,13 +167,6 @@ export default {
               this.openPopup()
             }
           }
-        }
-      })
-    },
-    openPopup: function() {
-      this.$nextTick(() => {
-        if (this.$refs.marker !== undefined) {
-          this.$refs.marker.mapObject.openPopup()
         }
       })
     }

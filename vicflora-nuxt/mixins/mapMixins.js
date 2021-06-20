@@ -108,3 +108,57 @@ export const alaOccurrenceLayerMixin = {
     }
   }
 }
+
+export const iconMixin = {
+  data() {
+    return {
+      icon: {
+        url: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers' +
+            '/master/img/marker-icon-blue.png',
+        size: [1, 1]
+      }
+    }
+  }
+}
+
+export const popupMixin = {
+  data() {
+    return {
+      popupOptions: {
+        offset: [0, 40],
+        maxWidth: 450,
+        minWidth: 300
+      }
+    }
+  },
+  methods: {
+    openPopup: function() {
+      this.$nextTick(() => {
+        if (this.$refs.marker !== undefined) {
+          this.$refs.marker.mapObject.openPopup()
+        }
+      })
+    }
+  }
+}
+
+export const popupContentMixin = {
+  data() {
+    return {
+      page: 0
+    }
+  },
+  computed: {
+    count() {
+      return this.occurrences.length
+    }
+  },
+  methods: {
+    goPrev:function(){
+      this.page -= 1
+    },
+    goNext:function(){
+      this.page += 1
+    }
+  }
+}

@@ -1,13 +1,15 @@
 <template>
   <div class="m-popup">
-    <div v-if="occurrences[page].properties !== undefined">
-      <h5>{{occurrences[page].properties.scientificName}}</h5>
-      <p><b>Catalog Number: </b>{{occurrences[page].properties.catalogNumber}}</p>
-      <p><b>Occurrence Status: </b>{{occurrences[page].properties.occurrenceStatus}}</p>
-      <p><b>Establishment Means: </b>{{occurrences[page].properties.establishmentMeans}}</p>
+    <div>
+      <p><b>{{ occurrences[page].raw_catalogNumber }}</b></p>
+      <p>{{ occurrences[page].raw_scientificName }}</p>
+      <p v-if="occurrences[page].collector !== undefined">{{ occurrences[page].collector }}
+        <span v-if="occurrences[page].recordNumber !== undefined">{{ occurrences[page].recordNumber }}</span>
+      </p>
+      <p v-if="occurrences[page].eventDate !== undefined">{{ formatDate(occurrences[page].eventDate) }}</p>
       <p class="text-right">
         <a  
-          :href="`https://avh.ala.org.au/occurrences/${occurrences[page].properties.uuid}`"
+          :href="`https://avh.ala.org.au/occurrences/${occurrences[page].uuid}`"
           target="_blank"
         >AVH record</a>
       </p>
@@ -39,12 +41,20 @@
 import { popupContentMixin } from "@/mixins/mapMixins"
 
 export default {
-  name: 'TaxonTabDistributionMapPopupContent',
+  name: 'TaxonTabDistributionAvhMapPopupContent',
   mixins: [popupContentMixin],
   props: {
     occurrences: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    formatDate(timestamp) {
+      const date = new Date(timestamp)
+      return date.getFullYear() + 
+          '-' + date.getMonth().toString().padStart(2, '0') + 
+          '-' + date.getDay().toString().padStart(2, '0')
     }
   }
 }

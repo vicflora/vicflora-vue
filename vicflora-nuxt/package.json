@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/router": "^1.6.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",

@@ -5,7 +5,25 @@
         :zoom="zoom"
         :center="center"
         :options="mapOptions"
+        @click="onMapClick"
       >
+        <l-marker v-if="marker" :lat-lng="marker" ref="marker">
+          <l-icon 
+            :icon-url="icon.url"
+            :icon-size="icon.size" 
+            :shadow-size="icon.size"
+          />
+          <l-popup 
+            ref="popup" 
+            :lat-lng="marker"
+            :options="popupOptions"
+          >
+            <taxon-tab-distribution-avh-map-popup-content 
+              :occurrences="occurrences" 
+            />
+          </l-popup>
+        </l-marker>
+
         <l-tile-layer
           :url="tileLayer.url"
           :attribution="tileLayer.attribution"
@@ -34,11 +52,23 @@
 </template>
 
 <script>
-import { tileLayerMixin, alaOccurrenceLayerMixin } from "@/mixins/mapMixins"
+import axios from "axios"
+import TaxonTabDistributionAvhMapPopupContent 
+    from "@/components/Taxon/TaxonTabDistributionAvhMapPopupContent"
+import { tileLayerMixin, alaOccurrenceLayerMixin, iconMixin, popupMixin } 
+    from "@/mixins/mapMixins"
 
 export default {
   name: "TaxonTabDistributionAvhMap",
-  mixins: [tileLayerMixin, alaOccurrenceLayerMixin],
+  components: {
+    TaxonTabDistributionAvhMapPopupContent
+  },
+  mixins: [
+    tileLayerMixin, 
+    alaOccurrenceLayerMixin, 
+    iconMixin,
+    popupMixin 
+  ],
   props: {
     name: {
       type: String,
@@ -52,12 +82,24 @@ export default {
   data() {
     return {
       zoom: 4,
-      center: [-26.4, 144.8],
+      center: [-26.4, 136.0],
       mapOptions: {
         name: "AVH map"
       },
       tileLayerAttribution: 
-        'map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, imagery © <a href="https://cartodb.com/attributions">CartoDB</a>'
+        'map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, imagery © <a href="https://cartodb.com/attributions">CartoDB</a>',
+      searchUrl: 'https://biocache.ala.org.au/ws/occurrences/search',
+      mapClickLatLng: [],
+      occurrences: [],
+      marker: null,
+      fl: [
+        'id',
+        'catalogue_number',
+        'collector',
+        'record_number',
+        'occurrence_date',
+        'raw_taxon_name'
+      ]
 
     }
   },
@@ -65,6 +107,30 @@ export default {
     q() {
       let field = this.rankId === 220 ? 'species' : 'taxon_name'
       return `${field}:"${this.name}"`
+    }
+  },
+  methods: {
+    onMapClick(e) {
+      console.log(e.latlng)
+      this.marker = null
+      this.occurrences = []
+      this.mapClickLatLng = e.latlng
+      axios.get(this.searchUrl, {
+        params: {
+          q: this.q,
+          qc: this.qc,
+          lat: this.mapClickLatLng.lat,
+          lon: this.mapClickLatLng.lng,
+          radius: 25,
+          fl: this.fl.join(',')
+        }
+      }).then(({ data }) => {
+        if (data.occurrences !== undefined && data.occurrences.length > 0) {
+          this.occurrences = data.occurrences
+          this.marker = this.mapClickLatLng
+          this.openPopup()
+        }
+      }) 
     }
   }
 }
