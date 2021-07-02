@@ -1,3 +1,0 @@
-query nameTypeAhead($q: String!){
-  nameTypeAhead(q:$q)
-}
