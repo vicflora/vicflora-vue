@@ -1,0 +1,205 @@
+query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
+  taxonConcept(id: $id) {
+    id
+    mapLinks {
+      profileMap
+      distributionMap
+      mapSource
+    }
+    bioregions {
+      id
+      occurrenceStatus {
+        name
+      }
+      establishmentMeans {
+        name
+      }
+      bioregion {
+        type
+        properties {
+          name
+          code
+          id
+          number
+          regionCode
+        }
+      }
+    }
+    parkReserves {
+      id
+      parkReserve {
+        properties {
+          name
+            nameShort 
+        }
+      }
+      occurrenceStatus {
+        name
+        label
+      }
+      establishmentMeans {
+        name
+        label
+      }
+    }
+    localGovernmentAreas {
+      id
+      localGovernmentArea {
+        properties {
+          name
+          nameAbbr
+        }
+      }
+      occurrenceStatus {
+        name
+        label
+      }
+      establishmentMeans {
+        name
+        label
+      }
+    }
+
+
+
+    preferredVernacularName {
+      id
+      name
+    }
+    createdBy {
+      name
+    }
+    modifiedBy {
+      name
+    }
+    createdAt
+    updatedAt
+    version
+    heroImage {
+      thumbnailUrl
+      previewUrl
+    }
+    images(page: $imagesPage, first: 24) {
+      data {
+        id
+        previewUrl
+        thumbnailUrl
+        assetCreationDate
+        caption
+        creator
+        license
+        rights
+        subtype
+      }
+      paginatorInfo {
+        count
+        currentPage
+        hasMorePages
+        total
+      }
+    }
+    specimenImages(page: $specimenImagesPage, first: 24) {
+      data {
+        id
+        thumbnailUrl
+        alaImageUuid
+        caption
+      }
+      paginatorInfo {
+        count
+        currentPage
+        hasMorePages
+        total
+      }
+    }
+
+    currentProfile {
+      profile
+    }
+    taxonName {
+      id
+      fullName
+      authorship
+      protologue {
+        id
+        title
+        publicationYear
+        volume
+        pages
+      }
+    }
+    taxonTreeDefItem {
+      id
+      name
+      rankId
+    }
+    parent {
+      id
+
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    children {
+      id
+
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+      taxonTreeDefItem {
+        id
+        name
+        rankId
+      }
+    }
+    siblings {
+      id
+
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    higherClassification {
+      id
+      depth
+      taxonConcept {
+        id
+
+        taxonName {
+          id
+          fullName
+          authorship
+        }
+        taxonTreeDefItem {
+          id
+          name
+          rankId
+        }
+      }
+    }
+    taxonomicStatus {
+      id
+      name
+    }
+    occurrenceStatus {
+      id
+      name
+    }
+    establishmentMeans {
+      id
+      name
+    }
+    identificationKeys{
+      id
+      title
+      taxonomicScope
+      geographicScope
+    }
+  }
+}

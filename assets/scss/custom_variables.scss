@@ -1,0 +1,39 @@
+// theme color - master colors
+$primary: #ee3f75;
+$melbourne: #00accd;
+$cranbourne: #f58220;
+$grey: #6c6361;
+$black: #000000;
+$light: #dddddd;
+$white: #ffffff;
+
+
+$theme-colors: (
+  "melbourne": $melbourne,
+  "cranbourne": $cranbourne,
+  "grey": $grey,
+  "black": $black
+);
+// Seasonal colors
+$summer: #fff685;
+$autumn: #ffce7b;
+$winter: #bce4e5;
+$spring: #f9c0c7;
+//font family
+$font-family-sans-serif: "goodsans-thin";
+
+//keybase
+$font-family-sans-serif:  "Gotham A", "Gotham B", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$brand-primary: rgb(187, 157, 19);
+// $brand-dark-background: rgb(215, 187, 68);
+
+// $body-bg: rgb(241, 235, 208);
+// $text-color: rgb(65, 70, 63);
+// $link-color: #bb9d13;
+
+$gray-dark: rgb(65, 70, 63);
+// $gray-light: #999;
+// $gray-lighter: #bbb;
+// $border-color: $gray-lighter;
+// $table-border-color: $border-color;

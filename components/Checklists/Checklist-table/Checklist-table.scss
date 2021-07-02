@@ -1,0 +1,45 @@
+@import "~/assets/scss/custom_variables.scss";
+.m-map {
+  height: 363px;
+}
+
+.m-map:hover {
+  cursor: pointer;
+}
+
+.m-topic {
+  font-family: "goodsans-regular";
+  margin: 10px 0;
+  font-size: medium;
+}
+.m-table-fontsize {
+  font-size: small;
+}
+
+.m-popup-topic {
+  font-family: "goodsans-regular";
+  margin-bottom: 10px;
+  font-size: x-small;
+}
+
+.m-popup-table-fontsize {
+  font-size: xx-small;
+}
+.m-table {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 6px;
+  }
+  th {
+    font-family: "goodsans-thin";
+    color: white;
+    background-color: $grey;
+  }
+}

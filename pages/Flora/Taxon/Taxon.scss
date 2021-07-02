@@ -1,0 +1,77 @@
+@import "~/assets/scss/custom_variables.scss";
+
+.m-title {
+  display: inline-block;
+  .m-name {
+    font-family: "goodsans-bold";
+    margin: 20px 15px 20px 0;
+    color: $primary;
+    display: inline-block;
+  }
+  .m-authorship {
+    margin-right: 15px;
+  }
+  .m-vernacular-names {
+    font-size: xx-large;
+  }
+}
+
+.m-protologue {
+  margin-bottom: 15px;
+  i {
+    margin-right: 10px;
+  }
+}
+
+.m-row {
+  margin-bottom: 25px;
+}
+.m-overview-item {
+  font-family: "goodsans-bold";
+  margin-right: 40px;
+}
+.m-description-title {
+  font-family: "goodsans-black";
+  width: 100px;
+  display: inline-flex;
+  margin-bottom: 5px;
+}
+.m-description-text {
+  margin-left: 5px;
+}
+
+.scientific_name {
+  color: $primary;
+  font-style: italic;
+}
+
+
+
+
+
+
+
+.viewer-title {
+  line-height: 2 !important;
+}
+
+.breadcrumb {
+  background-color: white;
+  margin: 0;
+  padding-left: 0;
+  align-items: start;
+}
+
+
+.nav-link {
+  font-family: "goodsans-bold" !important;
+}
+
+.m-distribution-title {
+  font-family: "goodsans-medium";
+  margin-bottom: 20px;
+}
+
+
+
+
