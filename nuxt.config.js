@@ -51,8 +51,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        // httpEndpoint: 'http://vicflora-api-test.rbg.vic.gov.au/graphql',
-        httpEndpoint: 'https://vicflora-api.rbg.vic.gov.au/graphql',
+        httpEndpoint: 'http://vicflora.test/graphql',
       }
     }
   },

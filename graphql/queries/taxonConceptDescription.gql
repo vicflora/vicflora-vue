@@ -30,7 +30,7 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
       parkReserve {
         properties {
           name
-            nameShort 
+          nameShort
         }
       }
       occurrenceStatus {
@@ -59,8 +59,6 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
         label
       }
     }
-
-
 
     preferredVernacularName {
       id
@@ -183,19 +181,10 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
         }
       }
     }
-    taxonomicStatus {
-      id
-      name
-    }
-    occurrenceStatus {
-      id
-      name
-    }
-    establishmentMeans {
-      id
-      name
-    }
-    identificationKeys{
+    taxonomicStatus
+    occurrenceStatus
+    establishmentMeans
+    identificationKeys {
       id
       title
       taxonomicScope
