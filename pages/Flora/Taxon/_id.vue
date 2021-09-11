@@ -1,9 +1,3 @@
-<style lang="scss" scoped>
-.taxon::v-deep {
-  @import "./Taxon.scss";
-}
-</style>
-
 <template>
   <div class="taxon">
     <b-container>
@@ -144,3 +138,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.taxon::v-deep {
+  @import "./Taxon.scss";
+}
+</style>
