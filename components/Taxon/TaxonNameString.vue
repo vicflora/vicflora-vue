@@ -1,15 +1,15 @@
 <template>
-  <h2 :class="classes">
+  <h2 :class="getNameClasses(rankId, taxonomicStatus)">
     {{ fullName }}  
   </h2>
 </template>
 
 <script>
-import { rankMixin } from "@/mixins/taxonMixins"
+import { rankMixin, taxonNameClassesMixin } from "@/mixins/taxonMixins"
 
 export default {
   name: "TaxonNameString",
-  mixins: [rankMixin],
+  mixins: [rankMixin, taxonNameClassesMixin],
   props: {
     fullName: {
       type: String,
@@ -18,16 +18,10 @@ export default {
     rankId: {
       type: Number,
       required: true
-    }
-  },
-  computed: {
-    classes() {
-      let classes = []
-      classes.push('m-name')
-      if (this.rankId >= this.rankClass.genus) {
-        classes.push('italic')
-        return classes
-      }
+    },
+    taxonomicStatus: {
+      type: String,
+      default: "ACCEPTED"
     }
   }
 }

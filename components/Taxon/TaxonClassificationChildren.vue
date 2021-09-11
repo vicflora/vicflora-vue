@@ -7,44 +7,44 @@
         <span> Subordinate taxa</span>
       </b-col>
     </b-row>
-    <b-row
+    <TaxonClassificationItem
       v-for="child in childrenSorted"
       :key="child.id"
-      class="justify-content-md-left m-row"
+      :item="child"
+      :depth="depth"
+      :indent="indent"
+      :pageType="pageType"
     >
-      <b-col 
-        cols="2" 
-        class="text-left"
-      >
-        <span class="m-taxon-treedefitem-name">
-          {{ child.taxonTreeDefItem.name }}
+      <NuxtLink :to="`/flora/${pageType}/${child.id}`">
+        <span 
+          :class="getNameClasses(child.taxonTreeDefItem.rankId)"
+        >
+          {{ child.taxonName.fullName }}
         </span>
-      </b-col>
-      <div
-        :style="
-          `margin-left:${depth * indent}vw;`
-        "
-        class="text-left"
-      >
-        <NuxtLink :to="`/flora/${pageType}/${child.id}`">
-          <span :class="getNameClasses(child.taxonTreeDefItem.rankId)">{{ child.taxonName.fullName }}</span
-          >&nbsp;<span class="m-author">{{
-            child.taxonName.authorship
-          }}</span>
-        </NuxtLink>
-      </div>
-    </b-row>
+        <span 
+          v-if="child.taxonName.authorship" 
+          class="m-author"
+        >
+          {{child.taxonName.authorship}}
+        </span>
+      </NuxtLink>
+    </TaxonClassificationItem>
   </div>
 </template>
 
 <script>
+import TaxonClassificationItem from "~/components/Taxon/TaxonClassificationItem"
 import { classificationMixin } from "~/mixins/classificationMixin"
 import { taxonNameClassesMixin } from "~/mixins/taxonMixins"
 
+
 export default {
   name: "TaxonClassificationChildren",
+  components: {
+    TaxonClassificationItem
+  },
   mixins: [
-    classificationMixin, 
+    classificationMixin,
     taxonNameClassesMixin
   ],
   props: {

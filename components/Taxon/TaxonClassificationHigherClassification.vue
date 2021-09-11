@@ -1,27 +1,27 @@
 <template>
   <div class="higher-classification">
-    <b-row
+    <TaxonClassificationItem
       v-for="(higherItem, index) in higherTaxa"
-      :key="higherItem.id"
-      class="justify-content-md-left m-row"
+      :key="higherItem.taxonConcept.id"
+      :item="higherItem.taxonConcept"
+      :depth="index"
+      :indent="indent"
+      :pageType="pageType"
     >
-      <b-col cols="2" class="text-left">
-        <span class="m-taxon-treedefitem-name">
-          {{ higherItem.taxonConcept.taxonTreeDefItem.name }}
+      <NuxtLink :to="`/flora/${pageType}/${higherItem.taxonConcept.id}`">
+        <span 
+          :class="getNameClasses(higherItem.taxonConcept.taxonTreeDefItem.rankId)"
+        >
+          {{ higherItem.taxonConcept.taxonName.fullName }}
         </span>
-      </b-col>
-      <div :style="`margin-left:${index * indent}vw;`" class="text-left">
-        <NuxtLink :to="`/flora/${pageType}/${higherItem.taxonConcept.id}`">
-          <span
-            :class="getNameClasses(higherItem.taxonConcept.taxonTreeDefItem.rankId)"
-          >{{ higherItem.taxonConcept.taxonName.fullName }}</span
-          >&nbsp;
-          <span class="m-author">{{
-            higherItem.taxonConcept.taxonName.authorship
-          }}</span>
-        </NuxtLink>
-      </div>
-    </b-row>
+        <span 
+          v-if="higherItem.taxonConcept.taxonName.authorship"
+          class="m-author"
+        >
+          {{ higherItem.taxonConcept.taxonName.authorship }}
+        </span>
+      </NuxtLink>
+    </TaxonClassificationItem>
     <b-row>
       <b-col class="text-right">
         <b-icon icon="caret-up-fill"></b-icon>
@@ -33,11 +33,15 @@
 </template>
 
 <script>
+import TaxonClassificationItem from "~/components/Taxon/TaxonClassificationItem"
 import { classificationMixin } from "~/mixins/classificationMixin"
 import { taxonNameClassesMixin } from "~/mixins/taxonMixins"
 
 export default {
   name: "TaxonClassificationHigherClassification",
+  components: {
+    TaxonClassificationItem
+  },
   mixins: [
     classificationMixin,
     taxonNameClassesMixin

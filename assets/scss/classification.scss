@@ -14,6 +14,30 @@
  * limitations under the License.
  */
 
+h2.m-taxon-name {
+  display: inline-block;
+}
+
+.m-taxon-name {
+  &.m-taxon-name-italic {
+    font-style: italic;
+    &.m-taxon-name-accepted {
+      color: $primary;
+    }
+    &.m-taxon-name-not-accepted {
+      color: $grey;
+    }
+  }
+
+  &.m-taxon-name-accepted {
+    color: $primary;
+  }
+  &.m-taxon-name-not-accepted {
+    color: $grey;
+  }
+
+}
+
 #vf-taxon-classification, #vf-browse-classification {
   .m-row {
     margin-bottom: 8px !important;
@@ -21,14 +45,6 @@
 
   .m-taxon-treedefitem-name {
     color: $grey;
-  }
-
-  .m-taxon-name {
-    font-family: "goodsans-black";
-
-    &.m-taxon-name-italic {
-      font-style: italic;
-    }
   }
 
   .m-hr-top {

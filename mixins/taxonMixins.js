@@ -35,15 +35,13 @@ export const rankMixin = {
 
 export const taxonNameClassesMixin = {
   methods: {
-    getNameClasses(rankId) {
-      let classes = {
+    getNameClasses(rankId, taxonomicStatus=false) {
+      return {
         'm-taxon-name': true,
-        'm-taxon-name-italic': false
+        'm-taxon-name-italic': rankId >= this.rankClass.genus,
+        'm-taxon-name-accepted': taxonomicStatus === 'ACCEPTED',
+        'm-taxon-name-not-accepted': taxonomicStatus && taxonomicStatus != 'ACCEPTED'
       }
-      if (rankId >= this.rankClass.genus) {
-        classes['m-taxon-name-italic'] = true
-      }
-      return classes
     }
   }
 }

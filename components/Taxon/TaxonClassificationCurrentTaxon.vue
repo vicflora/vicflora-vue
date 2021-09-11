@@ -1,48 +1,49 @@
 <template>
-  <b-row class="justify-content-md-left">
-    <b-col cols="2" class="text-left">
-      <span class="m-taxon-treedefitem-name">
-        {{ taxonConcept.taxonTreeDefItem.name }}
+  <TaxonClassificationItem
+    :item="taxonConcept"
+    :depth="depth"
+    :indent="indent"
+    :pageType="pageType"
+  >
+    <NuxtLink v-if="pageType==='classification'" :to="'/flora/taxon/' + taxonConcept.id">
+      <span
+        :class="getNameClasses(taxonConcept.taxonTreeDefItem.rankId)"
+      >
+        {{ taxonConcept.taxonName.fullName }}
       </span>
-    </b-col>
-    <div
-      :style="
-        `margin-left:${(depth) * indent}vw;`
-      "
-      class="text-left"
-    >
-      <NuxtLink v-if="pageType==='classification'" :to="'/flora/taxon/' + taxonConcept.id">
-        <span
-          :class="getNameClasses(taxonConcept.taxonTreeDefItem.rankId)"
-        >{{ taxonConcept.taxonName.fullName }}</span
-        >&nbsp;<span class="m-author">{{
-          taxonConcept.taxonName.authorship
-        }}</span>
-      </NuxtLink>
-      <span v-else>
-        <span
-          class="m-taxon-name"
-          :style="
-            taxonConcept.taxonTreeDefItem.rankId >= rankClass.genus
-              ? 'font-style:italic;'
-              : 'font-style:normal;'
-          "
-          >{{ taxonConcept.taxonName.fullName }}</span
-        >&nbsp;<span class="m-author">{{
-          taxonConcept.taxonName.authorship
-        }}</span>
+      <span 
+        v-if="taxonConcept.taxonName.authorship"
+        class="m-author"
+      >
+        {{taxonConcept.taxonName.authorship}}
       </span>
-      
-    </div>
-  </b-row>
+    </NuxtLink>
+    <span v-else>
+      <span
+        :class="getNameClasses(taxonConcept.taxonTreeDefItem.rankId)"
+      >
+        {{ taxonConcept.taxonName.fullName }}
+      </span>
+      <span 
+        v-if="taxonConcept.taxonName.authorship" 
+        class="m-author"
+      >
+        {{taxonConcept.taxonName.authorship}}
+      </span>
+    </span>
+  </TaxonClassificationItem>
 </template>
 
 <script>
+import TaxonClassificationItem from "~/components/Taxon/TaxonClassificationItem"
 import { classificationMixin } from "~/mixins/classificationMixin"
 import { taxonNameClassesMixin } from "~/mixins/taxonMixins"
 
 export default {
   name: "TaxonClassificationCurrentTaxon",
+  components: {
+    TaxonClassificationItem
+  },
   mixins: [
     classificationMixin,
     taxonNameClassesMixin

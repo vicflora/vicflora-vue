@@ -3,7 +3,9 @@
     <div class="m-title">
       <NameString 
         :full-name="concept.taxonName.fullName"
-        :rank-id="concept.taxonTreeDefItem.rankId"/>
+        :rank-id="concept.taxonTreeDefItem.rankId"
+        :taxonomic-status="concept.taxonomicStatus"
+      />
 
       <Authorship 
         v-if="concept.taxonName.authorship"
