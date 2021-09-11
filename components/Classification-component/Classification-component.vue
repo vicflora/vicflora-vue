@@ -1,7 +1,11 @@
+<style lang="scss" scoped>
+@import "./Classification-component.scss";
+</style>
+
 <template>
   <div>
     <ApolloQuery
-      :query="require('@/graphql/queries/taxonConcept.gql')"
+      :query="require('../../graphql/queries/taxonConcept.gql')"
       :variables="{ id }"
     >
       <template v-slot="{ result: { loading, error, data } }">
@@ -28,11 +32,7 @@
               </span>
             </b-col>
             <div :style="`margin-left:${index * 3}vw;`" class="text-left">
-              <a
-                :href="
-                  '/flora/taxon/' + higherItem.taxonConcept.id
-                "
-              >
+              <n-link :to="'/flora/classification/' + higherItem.taxonConcept.id">
                 <span
                   class="m-taxon-name"
                   :style="
@@ -46,7 +46,7 @@
                 <span class="m-author">{{
                   higherItem.taxonConcept.taxonName.authorship
                 }}</span>
-              </a>
+              </n-link>
             </div>
           </b-row>
           <b-row>
@@ -72,7 +72,7 @@
               "
               class="text-left"
             >
-              <a :href="'/flora/taxon/' + data.taxonConcept.id">
+              <n-link :to="'/flora/taxon/' + data.taxonConcept.id">
                 <span
                   class="m-taxon-name"
                   :style="
@@ -85,7 +85,7 @@
                 <span class="m-author">{{
                   data.taxonConcept.taxonName.authorship
                 }}</span>
-              </a>
+              </n-link>
             </div>
           </b-row>
           <hr class="m-hr-bottom" />
@@ -127,7 +127,7 @@
               "
               class="text-left"
             >
-              <b-link :to="'/flora/taxon/' + childItem.id">
+              <n-link :to="'/flora/classification/' + childItem.id">
                 <span
                   class="m-taxon-name"
                   :style="
@@ -140,7 +140,7 @@
                 <span class="m-author">{{
                   childItem.taxonName.authorship
                 }}</span>
-              </b-link>
+              </n-link>
             </div>
           </b-row>
         </div>
@@ -157,9 +157,8 @@
 
 <script>
 import gql from "graphql-tag";
-
 export default {
-  name: "TaxonClassification",
+  name: "Classification",
   data() {
     return {
       taxonConcept: "",
@@ -207,49 +206,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "~/assets/scss/custom_variables.scss";
-.m-container {
-    height: 72vh;
-}
-.m-row {
-    margin-bottom: 8px !important;
-}
-.m-title {
-  h2 {
-    font-family: "goodsans-medium";
-    margin-top: 30px;
-    margin-bottom: 15px;
-  }
-}
-.m-taxon-treedefitem-name {
-    color: $grey;
-}
-.m-taxon-name{
-    font-family: "goodsans-black";
-}
-.m-indent {
-    width: 15px;
-}
-.m-hr-top {
-    margin-top: 2px;
-    margin-bottom: 10px;
-}
-.m-hr-bottom {
-    margin-top: 12px;
-    margin-bottom: 2px;
-}
-.m-author{
-    font-family: "goodsans-regular";
-    color: $grey;
-    font-size: 12px;
-}
-
-@media screen and (max-width: 600px) {
-    .m-indent {
-        display: none;
-    }
-}
-</style>
-

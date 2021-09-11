@@ -1,8 +1,0 @@
-fragment taxonConceptFields on TaxonConcept {
-  id
-  taxonName {
-    id
-    fullName
-    authorship
-  }
-}

@@ -32,18 +32,3 @@ export const rankMixin = {
     }
   }
 }
-
-export const taxonNameClassesMixin = {
-  methods: {
-    getNameClasses(rankId) {
-      let classes = {
-        'm-taxon-name': true,
-        'm-taxon-name-italic': false
-      }
-      if (rankId >= this.rankClass.genus) {
-        classes['m-taxon-name-italic'] = true
-      }
-      return classes
-    }
-  }
-}
