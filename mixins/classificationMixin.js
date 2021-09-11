@@ -14,36 +14,22 @@
  * limitations under the License.
  */
 
-export const rankMixin = {
-  data() {
-    return {
-      rankClass: {
-        life: -9999,
-        kingdom: 10,
-        phylum: 30,
-        class: 60,
-        superorder: 90,
-        order: 100,
-        family: 140,
-        genus: 180,
-        species: 220,
-        subspecies: 230
-      }
-    }
-  }
-}
+import { rankMixin } from "~/mixins/taxonMixins"
 
-export const taxonNameClassesMixin = {
-  methods: {
-    getNameClasses(rankId) {
-      let classes = {
-        'm-taxon-name': true,
-        'm-taxon-name-italic': false
-      }
-      if (rankId >= this.rankClass.genus) {
-        classes['m-taxon-name-italic'] = true
-      }
-      return classes
+export const classificationMixin = {
+  mixins: [rankMixin],
+  props: {
+    depth: {
+      type: Number,
+      default: 0
+    },
+    indent: {
+      type: Number,
+      default: 2
+    },
+    pageType: {
+      type: String,
+      default: "taxon"
     }
   }
 }

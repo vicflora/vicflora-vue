@@ -1,34 +1,18 @@
+#import "~/graphql/fragments/taxonConceptFields.gql"
+
 query taxonConceptQuery($id: ID!) {
   taxonConcept(id: $id) {
-    id
-
-    taxonName {
-      id
-      fullName
-      authorship
-    }
+    ...taxonConceptFields
     taxonTreeDefItem {
       rankId
       id
       name
     }
     parent {
-      id
-
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
     children {
-      id
-
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
       taxonTreeDefItem {
         id
         name
@@ -36,25 +20,13 @@ query taxonConceptQuery($id: ID!) {
       }
     }
     siblings {
-      id
-
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
     higherClassification {
       id
       depth
       taxonConcept {
-        id
-
-        taxonName {
-          id
-          fullName
-          authorship
-        }
+        ...taxonConceptFields
         taxonTreeDefItem {
           id
           name

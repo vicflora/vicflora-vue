@@ -14,36 +14,22 @@
  * limitations under the License.
  */
 
-export const rankMixin = {
+export const watchRouteIdMixin = {
   data() {
     return {
-      rankClass: {
-        life: -9999,
-        kingdom: 10,
-        phylum: 30,
-        class: 60,
-        superorder: 90,
-        order: 100,
-        family: 140,
-        genus: 180,
-        species: 220,
-        subspecies: 230
-      }
+      id: null
     }
-  }
-}
-
-export const taxonNameClassesMixin = {
-  methods: {
-    getNameClasses(rankId) {
-      let classes = {
-        'm-taxon-name': true,
-        'm-taxon-name-italic': false
-      }
-      if (rankId >= this.rankClass.genus) {
-        classes['m-taxon-name-italic'] = true
-      }
-      return classes
-    }
-  }
+  },
+  watch: {
+    '$route.params.id': {
+      deep: true,
+      immediate: true,
+      handler: function(val) {
+        this.id = val
+      },
+    },
+  },
+  mounted() {
+    this.id = this.$route.params.id
+  } 
 }

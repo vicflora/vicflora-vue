@@ -1,4 +1,6 @@
 const webpack = require("webpack");
+const axios = require("axios")
+const fs = require("fs-extra")
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -50,9 +52,7 @@ export default {
   },
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: 'http://vicflora.test/graphql',
-      }
+      default: '~/apollo/config.js'
     }
   },
   content: {
@@ -77,5 +77,33 @@ export default {
   },
   styleResources: {
     scss: ["@/assets/main.scss"]
-  }
+  },
+  hooks: {
+    build: {
+      before (builder) {
+        axios.post('http://vicflora.test/graphql', {
+          query: `
+            query schema{
+              __schema{
+                types{
+                  kind
+                  name
+                  possibleTypes {
+                    name
+                    description
+                  }
+                }
+              }
+            }`
+        }).then(({ data }) => {
+          fs.writeFile('apollo/fragmentTypes.json', JSON.stringify(data.data) + '\r\n', ((err) => {
+            if (err) {
+              /* eslint-disable-next-line */
+              console.log(err)
+            }
+          }))
+        })
+      }
+    }
+  },  
 };
