@@ -4,7 +4,7 @@
       <b-col>
         <p class="m-status-class">Taxonomic status:</p>
         <span class="m-status-content">{{
-          concept.taxonomicStatus.name
+          taxonomicStatusEnum[concept.taxonomicStatus]
         }}</span>
       </b-col>
     </b-row>
@@ -13,7 +13,7 @@
       <b-col>
         <p class="m-status-class">Occurrence status:</p>
         <span class="m-status-content">{{
-          concept.occurrenceStatus.name
+          occurrenceStatusEnum[concept.occurrenceStatus]
         }}</span>
       </b-col>
     </b-row>
@@ -22,7 +22,7 @@
       <b-col>
         <p class="m-status-class">Establishment means:</p>
         <span class="m-status-content">{{
-          concept.establishmentMeans.name
+          establishmentMeansEnum[concept.establishmentMeans]
         }}</span>
       </b-col>
     </b-row>
@@ -30,6 +30,10 @@
 </template>
 
 <script>
+import taxonomicStatusEnum from "~/graphql/enums/taxonomicStatusEnum"
+import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
+import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
+
 export default {
   name: "TaxonStatus",
   props: {
@@ -40,6 +44,9 @@ export default {
   },
   data() {
     return {
+      taxonomicStatusEnum,
+      occurrenceStatusEnum,
+      establishmentMeansEnum
     };
   }
 };
@@ -53,9 +60,5 @@ export default {
   width: 180px;
   display: inline-flex;
   margin-bottom: 5px;
-}
-
-.m-status-content {
-  text-transform: capitalize;
 }
 </style>
