@@ -55,17 +55,6 @@ export default {
 .m-title {
   display: inline-block;
 
-  .m-name {
-    font-family: "goodsans-bold";
-    margin: 20px 15px 20px 0;
-    color: $primary;
-    display: inline-block;
-
-    &.italic {
-      font-style: italic;
-    }
-  }
-
   .m-authorship {
     margin-right: 15px;
   }
