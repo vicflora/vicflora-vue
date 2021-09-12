@@ -8,19 +8,12 @@
       :indent="indent"
       :pageType="pageType"
     >
-      <NuxtLink :to="`/flora/${pageType}/${higherItem.taxonConcept.id}`">
-        <span 
-          :class="getNameClasses(higherItem.taxonConcept.taxonTreeDefItem.rankId)"
-        >
-          {{ higherItem.taxonConcept.taxonName.fullName }}
-        </span>
-        <span 
-          v-if="higherItem.taxonConcept.taxonName.authorship"
-          class="m-author"
-        >
-          {{ higherItem.taxonConcept.taxonName.authorship }}
-        </span>
-      </NuxtLink>
+      <TaxonClassificationNuxtLink
+        :to="`/flora/${pageType}/${higherItem.taxonConcept.id}`"
+        :classes="getNameClasses(higherItem.taxonConcept.taxonTreeDefItem.rankId)"
+        :full-name="higherItem.taxonConcept.taxonName.fullName"
+        :authorship="higherItem.taxonConcept.taxonName.authorship"
+      />
     </TaxonClassificationItem>
     <b-row>
       <b-col class="text-right">
@@ -34,13 +27,15 @@
 
 <script>
 import TaxonClassificationItem from "~/components/Taxon/TaxonClassificationItem"
+import TaxonClassificationNuxtLink from "~/components/Taxon/TaxonClassificationNuxtLink"
 import { classificationMixin } from "~/mixins/classificationMixin"
 import { taxonNameClassesMixin } from "~/mixins/taxonMixins"
 
 export default {
   name: "TaxonClassificationHigherClassification",
   components: {
-    TaxonClassificationItem
+    TaxonClassificationItem,
+    TaxonClassificationNuxtLink
   },
   mixins: [
     classificationMixin,
