@@ -1,6 +1,10 @@
 <template>
-  <div class="m-breadcrumb-selector-item">
-    <b-form-select v-model="taxonId" size="sm">
+  <div>
+    <b-form-select 
+      v-model="taxonId" 
+      size="sm" 
+      class="m-breadcrumb-selector-item"
+    >
       <template #first>
         <b-form-select-option :value="null" disabled
           >Select child...</b-form-select-option
