@@ -1,41 +1,36 @@
 <template>
   <div>
-    <b-row v-if="concept.taxonomicStatus">
-      <b-col>
-        <p class="m-status-class">Taxonomic status:</p>
-        <span class="m-status-content">{{
-          taxonomicStatusEnum[concept.taxonomicStatus]
-        }}</span>
-      </b-col>
-    </b-row>
+    <TaxonStatusItem
+      v-if="concept.taxonomicStatus"
+      :label="'Taxonomic status'"
+      :value="taxonomicStatusEnum[concept.taxonomicStatus]"
+    />
 
-    <b-row v-if="concept.occurrenceStatus">
-      <b-col>
-        <p class="m-status-class">Occurrence status:</p>
-        <span class="m-status-content">{{
-          occurrenceStatusEnum[concept.occurrenceStatus]
-        }}</span>
-      </b-col>
-    </b-row>
-
-    <b-row v-if="concept.establishmentMeans">
-      <b-col>
-        <p class="m-status-class">Establishment means:</p>
-        <span class="m-status-content">{{
-          establishmentMeansEnum[concept.establishmentMeans]
-        }}</span>
-      </b-col>
-    </b-row>
+    <TaxonStatusItem
+      v-if="concept.occurrenceStatus"
+      :label="'Occurrence status'"
+      :value="occurrenceStatusEnum[concept.occurrenceStatus]"
+    />
+    
+    <TaxonStatusItem
+      v-if="concept.establishmentMeans"
+      :label="'Establishment means'"
+      :value="establishmentMeansEnum[concept.establishmentMeans]"
+    />
   </div>
 </template>
 
 <script>
+import TaxonStatusItem from "~/components/Taxon/TaxonStatusItem"
 import taxonomicStatusEnum from "~/graphql/enums/taxonomicStatusEnum"
 import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
 import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
 
 export default {
   name: "TaxonStatus",
+  components: {
+    TaxonStatusItem
+  },
   props: {
     concept: {
       type: Object,
@@ -51,14 +46,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-@import "~/assets/scss/custom_variables.scss";
-
-.m-status-class {
-  width: 180px;
-  display: inline-flex;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-</style>
