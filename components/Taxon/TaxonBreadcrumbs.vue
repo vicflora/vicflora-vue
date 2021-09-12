@@ -1,42 +1,22 @@
 <template>
   <b-breadcrumb>
     <!-- higherClassification -->
-    <!-- <b-breadcrumb-item
-      v-for="higherItem in data.taxonConcept.higherClassification
-        .slice()
-        .sort((a, b) => a.depth - b.depth)
-        .slice(3)"
-      :key="higherItem.id"
-      :href="'/flora/taxon/' + higherItem.taxonConcept.id"
-      >{{ higherItem.taxonConcept.taxonName.fullName }}
-    </b-breadcrumb-item> -->
     <Crumb 
       v-for="crumb in breadcrumbs"
       :key="crumb.id"
-      :crumb="crumb"/>
+      :crumb="crumb"
+    />
 
     <!-- Siblings -->
-    <b-breadcrumb-item>
+    <b-breadcrumb-item class="vf-breadcrumb-item-siblings">
       <Siblings :siblings="data.taxonConcept.siblings"/>
     </b-breadcrumb-item>
 
     <!-- Children -->
-    <b-breadcrumb-item v-if="data.taxonConcept.children.length !== 0">
-      <!-- <div class="m-breadcrumb-selector-item">
-        <b-form-select v-model="childrenSelected" size="sm">
-          <template #first>
-            <b-form-select-option :value="null" disabled
-              >Select child...</b-form-select-option
-            >
-          </template>
-          <b-form-select-option
-            v-for="childItem in data.taxonConcept.children"
-            :key="childItem.id"
-            :value="childItem.id"
-            >{{ childItem.taxonName.fullName }}</b-form-select-option
-          >
-        </b-form-select>
-      </div> -->
+    <b-breadcrumb-item 
+      v-if="data.taxonConcept.children.length !== 0"
+      class="vf-breadcrumb-item-children"
+    >
       <Children :children="data.taxonConcept.children"/>
     </b-breadcrumb-item>
   </b-breadcrumb>
@@ -111,8 +91,16 @@ export default {
 
 .m-breadcrumb-selector-item {
   max-width: 200px;
-  margin-left: 18px;
+  margin-left: 20px;
   margin-top:-47px;
+}
+
+.vf-breadcrumb-item-children .m-breadcrumb-selector-item {
+  margin-left: 30px;
+}
+
+.breadcrumb-item + .vf-breadcrumb-item-children.breadcrumb-item::before {
+    padding-left: 1rem;
 }
 
 
