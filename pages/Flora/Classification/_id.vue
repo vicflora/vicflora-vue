@@ -80,14 +80,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-#vf-browse-classification .m-title {
-  h2 {
-    font-family: "goodsans-medium";
-    margin-top: 30px;
-    margin-bottom: 15px;
-  }
-}
-</style>
-
