@@ -1,13 +1,30 @@
 <template>
   <div class="vf-taxon-page-tabs">
     <b-tabs v-model="tabIndex" content-class="mt-4 mb-3 m-row w-100">
-      <b-tab title="Overview">
+
+      <!-- Overview tab — renamed to 'Treatment' -->
+      <b-tab title="Treatment">
         <TaxonTabOverview
           :concept="concept"
           :tabIndex.sync="tabIndex"
         />
       </b-tab>
 
+      <!-- Classification tab -->
+      <b-tab title="Classification" lazy>
+        <TaxonClassification/>
+      </b-tab>
+
+      <!-- Distribution tab -->
+      <b-tab
+        title="Distribution"
+        v-if="concept.bioregions.length !== 0"
+        lazy
+      >
+        <TaxonTabDistribution :concept="concept"/>
+      </b-tab>
+
+      <!-- Images tab -->
       <b-tab title="Images" v-if="concept.images.data.length > 0" lazy>
         <TaxonTabImages/>
       </b-tab>
@@ -19,20 +36,6 @@
         lazy
       >
         <TaxonTabSpecimenImages/>
-      </b-tab>
-
-      <!-- Distribution -->
-      <b-tab
-        title="Distribution"
-        v-if="concept.bioregions.length !== 0"
-        lazy
-      >
-        <TaxonTabDistribution :concept="concept"/>
-      </b-tab>
-
-      <!-- Classification -->
-      <b-tab title="Classification" lazy>
-        <TaxonClassification/>
       </b-tab>
     </b-tabs>
   </div>
