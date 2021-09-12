@@ -56,9 +56,9 @@ export default {
 @import "~/assets/scss/custom_variables.scss";
 
 .m-status-class {
-  font-family: "goodsans-black";
   width: 180px;
   display: inline-flex;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 </style>

@@ -110,10 +110,10 @@ export default {
 }
 
 .m-breadcrumb-selector-item {
-  margin-top: -10px;
-  display: inline-block;
-  .custom-select-sm {
-    font-size: 11px;
-  }
+  max-width: 200px;
+  margin-left: 18px;
+  margin-top:-47px;
 }
+
+
 </style>
