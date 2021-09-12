@@ -101,7 +101,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.breadcrumb {
+  background-color: white;
+  margin: 0;
+  padding-left: 0;
+  align-items: start;
+}
+
 .m-breadcrumb-selector-item {
   margin-top: -10px;
   display: inline-block;
