@@ -15,6 +15,17 @@
         <TaxonClassification/>
       </b-tab>
 
+      <!-- Synonymy  tab -->
+      <b-tab 
+        v-if="concept.synonymUsages.length > 0 || concept.misapplications.length > 0"
+        title="Synonymy"
+      >
+        <TaxonTabSynonymy 
+          :synonyms="concept.synonymUsages"
+          :misapplications="concept.misapplications"
+        />
+      </b-tab>
+
       <!-- Distribution tab -->
       <b-tab
         title="Distribution"
@@ -42,8 +53,9 @@
 </template>
 
 <script>
-import TaxonClassification from "@/components/Taxon/TaxonClassification"
 import TaxonTabOverview from "@/components/Taxon/TaxonTabOverview"
+import TaxonClassification from "@/components/Taxon/TaxonClassification"
+import TaxonTabSynonymy from "@/components/Taxon/TaxonTabSynonymy"
 import TaxonTabImages from "@/components/Taxon/TaxonTabImages"
 import TaxonTabSpecimenImages from "@/components/Taxon/TaxonTabSpecimenImages"
 import TaxonTabDistribution from "@/components/Taxon/TaxonTabDistribution"
@@ -55,7 +67,8 @@ export default {
     TaxonTabImages,
     TaxonTabSpecimenImages,
     TaxonTabDistribution,
-    TaxonClassification
+    TaxonClassification,
+    TaxonTabSynonymy
   },
   props: {
     concept: {

@@ -1,6 +1,51 @@
+#import "~/graphql/fragments/taxonConceptFields.gql"
+
 query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
   taxonConcept(id: $id) {
     id
+    taxonName {
+      id
+      fullName
+      authorship
+      protologue {
+        id
+        title
+        publicationYear
+        volume
+        pages
+      }
+    }
+    acceptedConcept {
+      ...taxonConceptFields
+    }
+    synonymUsages {
+      ...taxonConceptFields
+    }
+    misapplications {
+      ...taxonConceptFields
+      accordingTo {
+        id
+        title
+      }
+    }
+    taxonomicStatus
+    occurrenceStatus
+    establishmentMeans
+
+    createdBy {
+      name
+    }
+    createdAt
+    modifiedBy {
+      name
+    }
+    updatedAt
+    version
+    heroImage {
+      thumbnailUrl
+      previewUrl
+    }
+
     mapLinks {
       profileMap
       distributionMap
@@ -64,19 +109,6 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
       id
       name
     }
-    createdBy {
-      name
-    }
-    modifiedBy {
-      name
-    }
-    createdAt
-    updatedAt
-    version
-    heroImage {
-      thumbnailUrl
-      previewUrl
-    }
     images(page: $imagesPage, first: 24) {
       data {
         id
@@ -114,18 +146,6 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
     currentProfile {
       profile
     }
-    taxonName {
-      id
-      fullName
-      authorship
-      protologue {
-        id
-        title
-        publicationYear
-        volume
-        pages
-      }
-    }
     taxonTreeDefItem {
       id
       name
@@ -141,13 +161,7 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
       }
     }
     children {
-      id
-
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
       taxonTreeDefItem {
         id
         name
@@ -155,25 +169,13 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
       }
     }
     siblings {
-      id
-
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
     higherClassification {
       id
       depth
       taxonConcept {
-        id
-
-        taxonName {
-          id
-          fullName
-          authorship
-        }
+        ...taxonConceptFields
         taxonTreeDefItem {
           id
           name
@@ -181,9 +183,6 @@ query taxonConceptQuery($id: ID!, $imagesPage: Int, $specimenImagesPage: Int) {
         }
       }
     }
-    taxonomicStatus
-    occurrenceStatus
-    establishmentMeans
     identificationKeys {
       id
       title

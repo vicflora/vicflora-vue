@@ -1,8 +1,8 @@
+#import "~/graphql/fragments/taxonNameFields.gql"
+
 fragment taxonConceptFields on TaxonConcept {
   id
   taxonName {
-    id
-    fullName
-    authorship
+    ...taxonNameFields
   }
 }

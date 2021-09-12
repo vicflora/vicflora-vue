@@ -15,7 +15,7 @@
           <!-- Result -->
           <div v-else-if="data" class="result apollo">
             <!-- Breadcrumb -->
-            <b-row>
+            <b-row v-if="data.taxonConcept.taxonomicStatus === 'ACCEPTED'">
               <b-col>
                 <Breadcrumbs :data="data"/>
               </b-col>
@@ -32,20 +32,9 @@
                 <TaxonStatus :concept="data.taxonConcept"/>
               </b-col>
             </b-row>
-            <!-- classification -->
-            <b-row
-              class="m-row"
-              v-if="
-                data.taxonConcept.taxonTreeDefItem.rankId < rankClass.family
-              "
-            >
-              <b-col class="text-left">
-                <p class="m-status-class">Classification</p>
-                <TaxonClassification/>
-              </b-col>
-            </b-row>
-            <!-- Tabs -->
-            <b-row class="m-row" v-else>
+            <b-row 
+              v-if="data.taxonConcept.taxonomicStatus === 'ACCEPTED'"
+              class="m-row">
               <b-col>
                 <TaxonTabs
                   :concept="data.taxonConcept"
@@ -63,6 +52,11 @@
                 />
               </b-col>
             </b-row>
+            <TaxonAcceptedConceptLink
+              v-else-if="data.taxonConcept.acceptedConcept"
+              :concept="data.taxonConcept.acceptedConcept"
+            />
+
           </div>
 
           <!-- No result -->
@@ -82,6 +76,7 @@ import TaxonName from "@/components/Taxon/TaxonName"
 import TaxonStatus from "@/components/Taxon/TaxonStatus"
 import TaxonTabs from "@/components/Taxon/TaxonTabs"
 import TaxonClassification from "@/components/Taxon/TaxonClassification"
+import TaxonAcceptedConceptLink from "~/components/Taxon/TaxonAcceptedConceptLink"
 
 export default {
   name: "Taxon",
@@ -90,7 +85,8 @@ export default {
     TaxonName,
     TaxonStatus,
     TaxonTabs,
-    TaxonClassification
+    TaxonClassification,
+    TaxonAcceptedConceptLink
   },
   data() {
     return {

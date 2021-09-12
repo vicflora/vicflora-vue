@@ -7,13 +7,13 @@
     />
 
     <TaxonStatusItem
-      v-if="concept.occurrenceStatus"
+      v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.occurrenceStatus"
       :label="'Occurrence status'"
       :value="occurrenceStatusEnum[concept.occurrenceStatus]"
     />
     
     <TaxonStatusItem
-      v-if="concept.establishmentMeans"
+      v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.establishmentMeans"
       :label="'Establishment means'"
       :value="establishmentMeansEnum[concept.establishmentMeans]"
     />

@@ -49,7 +49,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~/assets/scss/custom_variables.scss";
 
 .m-title {
@@ -61,6 +61,10 @@ export default {
   
   .m-vernacular-names {
     font-size: xx-large;
+  }
+
+  h2.m-taxon-name-not-accepted {
+    margin-top: 30px;
   }
 }
 
