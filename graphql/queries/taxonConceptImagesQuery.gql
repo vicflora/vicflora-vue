@@ -1,11 +1,11 @@
-query taxonConceptQuery($id: ID!, $imagesPage: Int) {
+query taxonConceptImagesQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
   taxonConcept(id: $id) {
     id
     taxonName {
       id
       fullName
     }
-    images(page: $imagesPage, first: 24) {
+    images(first: $first, page: $page) {
       data {
         id
         previewUrl

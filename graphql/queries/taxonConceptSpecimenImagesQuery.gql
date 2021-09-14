@@ -1,11 +1,15 @@
-query taxonConceptQuery($id: ID!, $specimenImagesPage: Int) {
+query taxonConceptSpecimenImagesQuery(
+  $id: ID!
+  $first: Int = 24
+  $page: Int = 1
+) {
   taxonConcept(id: $id) {
     id
     taxonName {
       id
       fullName
     }
-    specimenImages(page: $specimenImagesPage, first: 24) {
+    specimenImages(first: $first, page: $page) {
       data {
         id
         thumbnailUrl

@@ -1,7 +1,7 @@
 <template>
   <ApolloQuery
-    :query="require('@/graphql/queries/taxonImages.gql')"
-    :variables="{ id, imagesPage }"
+    :query="TaxonConceptImagesQuery"
+    :variables="{ id: id, first: first, page: page }"
   >
     <template v-slot="{ result: { loading, error, data } }">
       <!-- Loading -->
@@ -28,15 +28,16 @@
 
         <div>
           <b-pagination-nav
-            v-if="data.taxonConcept.images.paginatorInfo.total > 24"
+            v-if="data.taxonConcept.images.paginatorInfo.total > first"
             class="mt-3 mb-5"
-            v-model="imagesPage"
+            v-model="page"
             :number-of-pages="
-              data.taxonConcept.images.paginatorInfo.total % 24 === 0
-                ? data.taxonConcept.images.paginatorInfo.total / 24
-                : data.taxonConcept.images.paginatorInfo.total / 24 + 1
+              data.taxonConcept.images.paginatorInfo.total % first === 0
+                ? data.taxonConcept.images.paginatorInfo.total / first
+                : data.taxonConcept.images.paginatorInfo.total / first + 1
             "
-            base-url="#"
+            use-router
+            base-url="?page="
             first-number
             last-number
             align="center"
@@ -52,6 +53,7 @@ import "viewerjs/dist/viewer.css"
 import Viewer from "v-viewer"
 import Vue from "vue"
 import TaxonTabImageContainer from "@/components/Taxon/TaxonTabImageContainer"
+import TaxonConceptImagesQuery from "~/graphql/queries/taxonConceptImagesQuery"
 
 Vue.use(Viewer)
 
@@ -62,8 +64,9 @@ export default {
   },
   data() {
     return {
-      imagesPage: 1,
-      
+      TaxonConceptImagesQuery,
+      first: 24,
+      page: 1,
       viewerOptions: {
         url: "data-src"
       }
