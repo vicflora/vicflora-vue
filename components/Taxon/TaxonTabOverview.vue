@@ -1,6 +1,5 @@
 <template>
-  <b-row>
-    <b-col>
+  <div>
       <!-- Description -->
       <b-row class="m-row">
         <!-- text -->
@@ -69,10 +68,10 @@
           </div>
 
           <!-- Map -->
-          <div
+          <!-- <div
+            v-if="concept.taxonTreeDefItem.rankId >= rankClass['species']"
             href="#"
             class="m-heroimage-container"
-            v-if="concept.bioregions.length !== 0"
             @click="clickMap()"
           >
             <img
@@ -87,23 +86,23 @@
               v-show="showMapImage === false"
               variant="primary"
             ></b-spinner>
-          </div>
+          </div> -->
         </b-col>
       </b-row>
-    </b-col>
-  </b-row>
+  </div>
 </template>
 
 <script>
+import { rankMixin } from "~/mixins/taxonMixins"
+
 export default {
   name: "TaxonTabOverview",
+  mixins: [
+    rankMixin
+  ],
   props: {
     concept: {
       type: Object,
-      required: true
-    },
-    tabIndex: {
-      type: Number,
       required: true
     }
   },
@@ -112,6 +111,16 @@ export default {
       showHeroImage: false,
       showMapImage: false
     };
+  },
+  created() {
+    if (!this.concept.currentProfile) {
+      this.$router.push({
+        name: "flora-taxon-id-classification",
+        params: {
+          id: this.$route.params.id
+        }
+      })
+    }
   },
   methods: {
     getBtnText: function(name) {

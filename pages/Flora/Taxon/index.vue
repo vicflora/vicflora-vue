@@ -1,9 +1,9 @@
 <script>
 export default {
   middleware: [
-        function({ redirect }) {
-            redirect('/');
-        },
-    ],
+    function({ redirect }) {
+      redirect('/');
+    },
+  ],
 }
 </script>

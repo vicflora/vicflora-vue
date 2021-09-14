@@ -1,55 +1,55 @@
 <template>
   <div class="vf-taxon-page-tabs">
-    <b-tabs v-model="tabIndex" content-class="mt-4 mb-3 m-row w-100">
+    <b-nav 
+      v-model="activeTab"
+      tabs
+    >
+      <!-- <b-nav-item>'s with child routes. Note the trailing slash on the first <b-nav-item> -->
+      <b-nav-item 
+        v-if="concept.currentProfile"
+        :to="`/flora/taxon/${concept.id}`"
+        exact 
+        exact-active-class="active"
+      >Treatment</b-nav-item>
 
-      <!-- Overview tab — renamed to 'Treatment' -->
-      <b-tab title="Treatment">
-        <TaxonTabOverview
-          :concept="concept"
-          :tabIndex.sync="tabIndex"
-        />
-      </b-tab>
+      <b-nav-item 
+        :to="`/flora/taxon/${concept.id}/classification`" 
+        exact 
+        exact-active-class="active"
+      >Classification</b-nav-item>
 
-      <!-- Classification tab -->
-      <b-tab title="Classification" lazy>
-        <TaxonClassification/>
-      </b-tab>
-
-      <!-- Synonymy  tab -->
-      <b-tab 
+      <b-nav-item 
         v-if="concept.synonymUsages.length > 0 || concept.misapplications.length > 0"
-        title="Synonymy"
-      >
-        <TaxonTabSynonymy 
-          :synonyms="concept.synonymUsages"
-          :misapplications="concept.misapplications"
-        />
-      </b-tab>
+        :to="`/flora/taxon/${concept.id}/synonymy`" 
+        exact exact-active-class="active"
+      >Synonymy</b-nav-item>
 
-      <!-- Distribution tab -->
-      <b-tab
-        title="Distribution"
-        v-if="concept.bioregions.length !== 0"
-        lazy
-      >
-        <TaxonTabDistribution :concept="concept"/>
-      </b-tab>
+      <b-nav-item 
+        v-if="concept.taxonTreeDefItem.rankId >= rankClass['species']"
+        :to="`/flora/taxon/${concept.id}/distribution`" 
+        exact exact-active-class="active"
+      >Distribution</b-nav-item>
 
-      <!-- Images tab -->
-      <b-tab title="Images" v-if="concept.images.data.length > 0" lazy>
-        <TaxonTabImages/>
-      </b-tab>
+      <b-nav-item 
+        v-if="concept.heroImage"
+        :to="`/flora/taxon/${concept.id}/images`" 
+        exact 
+        exact-active-class="active"
+      >Images</b-nav-item>
 
-      <!-- Specimen images -->
-      <b-tab
-        title="Specimen Images"
-        v-if="concept.specimenImages.data.length > 0"
-        lazy
-      >
-        <TaxonTabSpecimenImages/>
-      </b-tab>
-    </b-tabs>
+      <b-nav-item 
+        v-if="concept.hasSpecimenImages"
+        :to="`/flora/taxon/${concept.id}/specimen-images`" 
+        exact 
+        exact-active-class="active"
+      >Specimen images</b-nav-item>
+    </b-nav>
+
+    <div class="tab-content">
+      <nuxt-child :concept="concept"></nuxt-child>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -59,6 +59,8 @@ import TaxonTabSynonymy from "@/components/Taxon/TaxonTabSynonymy"
 import TaxonTabImages from "@/components/Taxon/TaxonTabImages"
 import TaxonTabSpecimenImages from "@/components/Taxon/TaxonTabSpecimenImages"
 import TaxonTabDistribution from "@/components/Taxon/TaxonTabDistribution"
+import { rankMixin } from "@/mixins/taxonMixins"
+import { watchRouteIdMixin } from "@/mixins/routeMixins"
 
 export default {
   name: "TaxonTabs",
@@ -70,6 +72,10 @@ export default {
     TaxonClassification,
     TaxonTabSynonymy
   },
+  mixins: [
+    rankMixin,
+    watchRouteIdMixin
+  ],
   props: {
     concept: {
       type: Object,
@@ -78,21 +84,19 @@ export default {
   },
   data() {
     return {
-      tabIndex: 0,
-
-      rankClass: {
-        life: -9999,
-        kingdom: 10,
-        phylum: 30,
-        class: 60,
-        superorder: 90,
-        order: 100,
-        family: 140,
-        genus: 180,
-        species: 220,
-        subspecies: 230
+      activeTab: ""
+    }
+  },
+  watch: {
+    '$route.fullPath': {
+      deep: true,
+      immediate: true,
+      handler(path) {
+        let id = this.$route.params.id
+        let hash = this.$route.hash
+        this.activeTab = path.substring(path.indexOf(id) + id.length)
       }
-    };
+    }
   }
 }
 </script>
@@ -106,5 +110,9 @@ export default {
 .m-distribution-title {
   font-family: "goodsans-medium";
   margin-bottom: 20px;
+}
+
+.tab-content>div {
+  padding-top: 15px;
 }
 </style>
