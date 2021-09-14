@@ -27,21 +27,12 @@
         </div>
 
         <div>
-          <b-pagination-nav
-            v-if="data.taxonConcept.images.paginatorInfo.total > first"
-            class="mt-3 mb-5"
-            v-model="page"
-            :number-of-pages="
-              data.taxonConcept.images.paginatorInfo.total % first === 0
-                ? data.taxonConcept.images.paginatorInfo.total / first
-                : data.taxonConcept.images.paginatorInfo.total / first + 1
-            "
-            use-router
-            base-url="?page="
-            first-number
-            last-number
-            align="center"
-          ></b-pagination-nav>
+          <TaxonTabImagesPaginator 
+            :images="data.taxonConcept.images"
+            :first="first"
+            :page="page"
+            @pageChanged="onPageChanged"
+          />
         </div>
       </div>
     </template>
@@ -53,6 +44,8 @@ import "viewerjs/dist/viewer.css"
 import Viewer from "v-viewer"
 import Vue from "vue"
 import TaxonTabImageContainer from "@/components/Taxon/TaxonTabImageContainer"
+import TaxonTabImagesPaginator from "@/components/Taxon/TaxonTabImagesPaginator"
+import { imagePaginatorMixin } from "~/mixins/imagePaginatorMixin"
 import TaxonConceptImagesQuery from "~/graphql/queries/taxonConceptImagesQuery"
 
 Vue.use(Viewer)
@@ -60,20 +53,22 @@ Vue.use(Viewer)
 export default {
   name: "TaxonTabImages",
   components: {
-    TaxonTabImageContainer
+    TaxonTabImageContainer,
+    TaxonTabImagesPaginator
   },
+  mixins: [
+    imagePaginatorMixin
+  ],
   data() {
     return {
       TaxonConceptImagesQuery,
-      first: 24,
-      page: 1,
       viewerOptions: {
         url: "data-src"
       }
     };
   },
   computed: {
-    id: function() {
+    id() {
       return this.$route.params.id
     }
   },
