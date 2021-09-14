@@ -69,7 +69,7 @@
             :images="data.taxonConcept.specimenImages"
             :first="first"
             :page="page"
-            @pageChanged="onPageChanged"
+            @page-changed="onPageChanged"
           />
         </div>
       </div>

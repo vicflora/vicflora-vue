@@ -1,3 +1,5 @@
+#import "~/graphql/fragments/paginatorInfoFields.gql"
+
 query taxonConceptSpecimenImagesQuery(
   $id: ID!
   $first: Int = 24
@@ -17,10 +19,7 @@ query taxonConceptSpecimenImagesQuery(
         caption
       }
       paginatorInfo {
-        count
-        currentPage
-        hasMorePages
-        total
+        ...paginatorInfoFields
       }
     }
   }

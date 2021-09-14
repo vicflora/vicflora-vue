@@ -31,7 +31,7 @@
             :images="data.taxonConcept.images"
             :first="first"
             :page="page"
-            @pageChanged="onPageChanged"
+            @page-changed="onPageChanged"
           />
         </div>
       </div>

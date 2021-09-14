@@ -1,19 +1,12 @@
 <template>
-  <b-pagination-nav
+  <b-pagination 
     class="mt-3 mb-5"
     v-if="images.paginatorInfo.total > first"
     v-model="currentPage"
-    :number-of-pages="
-      images.paginatorInfo.total % first === 0
-        ? images.paginatorInfo.total / first
-        : images.paginatorInfo.total / first + 1
-    "
-    use-router
-    base-url="?page="
-    first-number
-    last-number
-    align="center"
+    :total-rows="images.paginatorInfo.total "
+    :per-page="first"
     @change="onChange"
+    align="center"
   />
 </template>
 
@@ -47,13 +40,13 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.currentPage = this.page
   },
   methods: {
     onChange: function(pageNum) {
       this.currentPage = pageNum
-      this.$emit("pageChanged", pageNum)
+      this.$emit("page-changed", pageNum)
     }
   }
 }

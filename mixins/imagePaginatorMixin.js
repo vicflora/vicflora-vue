@@ -22,7 +22,7 @@ export const imagePaginatorMixin = {
       page: 1
     }
   },
-  mounted() {
+  created() {
     if ("page" in this.$route.query) {
       this.page = parseInt(this.$route.query.page)
     }
