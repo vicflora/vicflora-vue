@@ -92,7 +92,7 @@ export default {
 .m-breadcrumb-selector-item {
   max-width: 200px;
   margin-left: 20px;
-  margin-top:-47px;
+  margin-top: -47px;
 }
 
 .vf-breadcrumb-item-children .m-breadcrumb-selector-item {
@@ -100,7 +100,12 @@ export default {
 }
 
 .breadcrumb-item + .vf-breadcrumb-item-children.breadcrumb-item::before {
-    padding-left: 1rem;
+  padding-left: 1rem;
+}
+
+.breadcrumb-item:first-child .m-breadcrumb-selector-item {
+  margin-top: -5px;
+  margin-left: 0;
 }
 
 
