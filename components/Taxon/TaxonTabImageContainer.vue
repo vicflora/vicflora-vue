@@ -19,7 +19,11 @@
       @load="loadImage"
     >
     </b-img>
-    <b-spinner label="Spinning" v-show="showImage === false" variant="primary"></b-spinner>
+    <b-spinner 
+      v-show="showImage === false"
+      label="Spinning" 
+      variant="secondary"
+    />
   </div>
 </template>
 
