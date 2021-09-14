@@ -2,14 +2,78 @@
 
 query taxonConceptQuery($id: ID!) {
   taxonConcept(id: $id) {
-    ...taxonConceptFields
-    taxonTreeDefItem {
-      rankId
+    id
+    taxonName {
+      id
+      fullName
+      authorship
+      protologue {
+        id
+        title
+        publicationYear
+        volume
+        pages
+      }
+    }
+    acceptedConcept {
+      ...taxonConceptFields
+    }
+    synonymUsages {
+      ...taxonConceptFields
+    }
+    misapplications {
+      ...taxonConceptFields
+      accordingTo {
+        id
+        title
+      }
+    }
+    taxonomicStatus
+    occurrenceStatus
+    establishmentMeans
+
+    createdBy {
+      name
+    }
+    createdAt
+    modifiedBy {
+      name
+    }
+    updatedAt
+    version
+    heroImage {
+      thumbnailUrl
+      previewUrl
+    }
+    hasSpecimenImages
+
+    mapLinks {
+      profileMap
+      distributionMap
+      mapSource
+    }
+
+    preferredVernacularName {
       id
       name
     }
+
+    currentProfile {
+      profile
+    }
+    taxonTreeDefItem {
+      id
+      name
+      rankId
+    }
     parent {
-      ...taxonConceptFields
+      id
+
+      taxonName {
+        id
+        fullName
+        authorship
+      }
     }
     children {
       ...taxonConceptFields
@@ -33,6 +97,13 @@ query taxonConceptQuery($id: ID!) {
           rankId
         }
       }
+    }
+
+    identificationKeys {
+      id
+      title
+      taxonomicScope
+      geographicScope
     }
   }
 }

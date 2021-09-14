@@ -1,0 +1,38 @@
+#import "~/graphql/fragments/taxonConceptFields.gql"
+
+query taxonClassificationQuery($id: ID!) {
+  taxonConcept(id: $id) {
+    ...taxonConceptFields
+    taxonTreeDefItem {
+      rankId
+      id
+      name
+    }
+    parent {
+      ...taxonConceptFields
+    }
+    children {
+      ...taxonConceptFields
+      taxonTreeDefItem {
+        id
+        name
+        rankId
+      }
+    }
+    siblings {
+      ...taxonConceptFields
+    }
+    higherClassification {
+      id
+      depth
+      taxonConcept {
+        ...taxonConceptFields
+        taxonTreeDefItem {
+          id
+          name
+          rankId
+        }
+      }
+    }
+  }
+}

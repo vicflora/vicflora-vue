@@ -2,8 +2,8 @@
   <div class="taxon">
     <b-container>
       <ApolloQuery
-        :query="require('@/graphql/queries/taxonConceptDescription.gql')"
-        :variables="{ id, imagesPage, specimenImagesPage }"
+        :query="require('@/graphql/queries/taxonConceptQuery.gql')"
+        :variables="{ id }"
       >
         <template v-slot="{ result: { loading, error, data } }">
           <!-- Loading -->
@@ -90,47 +90,20 @@ export default {
   },
   data() {
     return {
-      id: "6abc498a-70de-11e6-a989-005056b0018f",
-
-      imagesPage: 1,
-      specimenImagesPage: 1,
-
-      viewerOptions: {
-        url: "data-src"
-      },
-      rankClass: {
-        life: -9999,
-        kingdom: 10,
-        phylum: 30,
-        class: 60,
-        superorder: 90,
-        order: 100,
-        family: 140,
-        genus: 180,
-        species: 220,
-        subspecies: 230
-      }
-    }
-  },
-  computed: {
-    urlId: {
-      get: function() {
-        return this.$route.params.id;
-      },
-      set: function(newVal) {
-        this.$router.push({
-          path: "/flora/taxon/" + newVal
-        })
-      }
+      id: null,
     }
   },
   watch: {
-    urlId: {
+    '$route.params.id': {
+      deep: true,
       immediate: true,
       handler: function(val) {
         this.id = val
       }
     }
+  },
+  mounted() {
+    this.id = this.$route.params.id
   }
 }
 </script>

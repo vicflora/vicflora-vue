@@ -13,7 +13,7 @@
       </b-row>
       <div>
         <ApolloQuery
-          :query="require('@/graphql/queries/taxonConceptQuery.gql')"
+          :query="taxonClassificationQuery"
           :variables="{ id }"
         >
           <template v-slot="{ result: { loading, error, data } }">
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import taxonConceptQuery from "@/graphql/queries/taxonConceptQuery"
+import taxonClassificationQuery from "@/graphql/queries/taxonClassificationQuery"
 import TaxonClassificationHigherClassification from "~/components/Taxon/TaxonClassificationHigherClassification"
 import TaxonClassificationCurrentTaxon from "~/components/Taxon/TaxonClassificationCurrentTaxon"
 import TaxonClassificationChildren from "~/components/Taxon/TaxonClassificationChildren"
@@ -75,7 +75,7 @@ export default {
   mixins: [watchRouteIdMixin],
   data(){
     return {
-      taxonConceptQuery
+      taxonCClassificationQuery
     }
   },
 }
