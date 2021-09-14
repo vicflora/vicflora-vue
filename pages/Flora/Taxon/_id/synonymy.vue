@@ -1,8 +1,5 @@
 <template>
-  <TaxonTabSynonymy 
-    :synonyms="concept.synonymUsages" 
-    :misapplications="concept.misapplications"
-  />
+  <TaxonTabSynonymy :concept="concept" />
 </template>
 
 <script>

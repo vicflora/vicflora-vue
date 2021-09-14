@@ -1,11 +1,11 @@
 <template>
   <BRow>
     <BCol class="text-left">
-      <div v-if="synonyms.length > 0">
+      <div v-if="concept.synonymUsages.length > 0">
         <h3>Synonyms</h3>
         <ul>
           <TaxonTabSynonymyItem
-            v-for="synonym in synonyms"
+            v-for="synonym in concept.synonymUsages"
             :key="synonym.id"
             :id="synonym.id"
             :full-name="synonym.taxonName.fullName"
@@ -13,11 +13,11 @@
           />
         </ul>
       </div>
-      <div v-if="misapplications.length > 0">
+      <div v-if="concept.misapplications.length > 0">
         <h3>Misapplications</h3>
         <ul>
           <TaxonTabSynonymyItem
-            v-for="misapplication in misapplications"
+            v-for="misapplication in concept.misapplications"
             :key="misapplication.id"
             :id="misapplication.id"
             :full-name="misapplication.taxonName.fullName"
@@ -39,13 +39,9 @@ export default {
     TaxonTabSynonymyItem
   },
   props: {
-    synonyms: {
-      type: Array,
-      required: false
-    },
-    misapplications: {
-      type: Array,
-      required: false
+    concept: {
+      type: Object,
+      required: true
     }
   }
 }
