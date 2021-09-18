@@ -153,7 +153,7 @@ export default {
     }
   },
   computed: {
-    pullTo:function(){
+    pullTo: function(){
       return () => {
           if (process.client) {
             return import("vue-pull-to")

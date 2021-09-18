@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="load">
     <b-row>
       <b-col cols="12">
         <b-nav pills>
@@ -38,19 +38,23 @@
 </template>
 
 <script>
-import DistributionMapConfig from "../Distribution-map-config/Distribution-map-config.vue"
-import DistributionMap from "@/components/Taxon/TaxonTabDistributionMap.vue"
-import DistributionAvhMap from "@/components/Taxon/TaxonTabDistributionAvhMap.vue"
-import DistributionTable from "@/components/Taxon/TaxonTabDistributionTable.vue"
+import DistributionMapConfig from "~/components/Distribution-map-config/Distribution-map-config"
+import DistributionMap from "~/components/Taxon/TaxonTabDistributionMap"
+import DistributionAvhMap from "~/components/Taxon/TaxonTabDistributionAvhMap"
+import DistributionTable from "~/components/Taxon/TaxonTabDistributionTable"
+import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"
 
 export default {
+  name: "TaxonTabDistribution",
   components: { 
     DistributionMapConfig, 
     DistributionMap, 
     DistributionAvhMap, 
     DistributionTable
   },
-  name: "TaxonTabDistribution",
+  mixins: [
+    waitTillActivatedMixin
+  ],
   props: {
     concept: {
       type: Object,

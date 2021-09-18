@@ -1,27 +1,20 @@
 #import "~/graphql/fragments/paginatorInfoFields.gql"
 
 query taxonConceptImagesQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
-  taxonConcept(id: $id) {
-    id
-    taxonName {
+  taxonConceptImages(taxonConceptId: $id, first: $first, page: $page) {
+    data {
       id
-      fullName
+      previewUrl
+      thumbnailUrl
+      assetCreationDate
+      caption
+      creator
+      license
+      rights
+      subtype
     }
-    images(first: $first, page: $page) {
-      data {
-        id
-        previewUrl
-        thumbnailUrl
-        assetCreationDate
-        caption
-        creator
-        license
-        rights
-        subtype
-      }
-      paginatorInfo {
-        ...paginatorInfoFields
-      }
+    paginatorInfo {
+      ...paginatorInfoFields
     }
   }
 }

@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-export const imagePaginatorMixin = {
-  name: "ImagePaginatorMixin",
-  data() {
-    return {
-      first: 12,
-      page: 1
+export const waitTillActivatedMixin = {
+  name: "waitTillActivatedMixin",
+  props: {
+    activated: false
+  },
+  computed: {
+    load() {
+      return this.activated
     }
   },
-  created() {
-    if ("page" in this.$route.query) {
-      this.page = parseInt(this.$route.query.page)
-    }
-  },
-  methods: {
-    onPageChanged(page) {
-      this.page = page
-    }
-  }
 }

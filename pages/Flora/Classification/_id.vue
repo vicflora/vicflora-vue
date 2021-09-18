@@ -75,7 +75,7 @@ export default {
   mixins: [watchRouteIdMixin],
   data(){
     return {
-      taxonCClassificationQuery
+      taxonClassificationQuery
     }
   },
 }

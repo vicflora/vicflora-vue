@@ -1,160 +1,130 @@
 <template>
-  <ApolloQuery
-    :query="TaxonConceptSpecimenImagesQuery"
-    :variables="{ id: id, first: 24, page: page }"
-  >
-    <template v-slot="{ result: { loading, error, data } }">
-      <!-- Loading -->
-      <div v-if="loading" class="loading apollo">Loading...</div>
-
-      <!-- Error -->
-      <div v-else-if="error" class="error apollo">An error occurred</div>
-
-      <!-- Result -->
-      <div v-else-if="data" class="result apollo">
-        <div class="m-images">
-          <p v-if="data.taxonConcept.specimenImages.data.length === 0">
-            No Images...
-          </p>
-          <div
-            v-else
-            v-for="image in data.taxonConcept.specimenImages.data"
+  <div>
+    <!-- Result -->
+    <div 
+      v-if="taxonConceptSpecimenImages"
+      class="result apollo"
+    >
+      <div class="m-images">
+        <div class="row text-center text-lg-start">
+          <TaxonTabImagesThumbnail 
+            v-for="(image, index) in taxonConceptSpecimenImages.data"
             :key="image.id"
-            class="m-image-container"
-            @click="
-              () => {
-                specimenImagesModal = image;
-              }
-            "
-          >
-            <TaxonTabImageContainer :data="data" :image="image"></TaxonTabImageContainer>
-          </div>
-          <div
-            class="modal m-modal-class"
-            :style="'display:' + `${specimenImagesModal ? 'flex' : 'none'}`"
-            v-if="specimenImagesModal"
-          >
-            <div class="modal-content">
-              <div class="modal-header">
-                <h6 class="modal-title">
-                  {{ specimenImagesModal.caption }}
-                </h6>
-                <button
-                  type="button"
-                  class="close"
-                  @click="
-                    () => {
-                      specimenImagesModal = null;
-                    }
-                  "
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <iframe
-                  class="m-modal-iframe"
-                  :src="
-                    'https://vicflora.rbg.vic.gov.au/flora/specimen_image_viewer/' +
-                      specimenImagesModal.alaImageUuid
-                  "
-                >
-                </iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <TaxonTabImagesPaginator 
-            :images="data.taxonConcept.specimenImages"
-            :first="first"
-            :page="page"
-            @page-changed="onPageChanged"
+            :taxonConcept="concept" 
+            :image="image"
+            @thumbnail-clicked="onThumbnailClicked(index)"
           />
         </div>
+        <div class="text-right">
+          <button 
+            v-if="taxonConceptSpecimenImages.paginatorInfo.hasMorePages"
+            class="btn btn-primary" 
+            @click="fetchMore"
+          >
+            Show more images
+            <b-spinner 
+              v-if="$apollo.loading"
+              small
+              label="loading..."
+            />
+          </button>
+        </div>
+        <TaxonTabSpecimenImagesModal 
+          :show="specimenImagesModal"
+          :current-thumbnail="currentThumbnail"
+          :images="taxonConceptSpecimenImages.data"
+          ref="specimenImagesModalThumbnail"
+        />
       </div>
-    </template>
-  </ApolloQuery>
+    </div>
+  </div>
 </template>
 
 <script>
-import TaxonTabImageContainer from "@/components/Taxon/TaxonTabImageContainer"
-import TaxonTabImagesPaginator from "@/components/Taxon/TaxonTabImagesPaginator"
+import TaxonTabImagesThumbnail from "@/components/Taxon/TaxonTabImagesThumbnail"
+import TaxonTabSpecimenImagesModal from "~/components/Taxon/TaxonTabSpecimenImagesModal"
 import TaxonConceptSpecimenImagesQuery from "~/graphql/queries/TaxonConceptSpecimenImagesQuery"
-import { imagePaginatorMixin } from "~/mixins/imagePaginatorMixin"
+import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"
+
+const pageSize = 12
 
 export default {
   name: "TaxonTabSpecimenImages",
   components: {
-    TaxonTabImageContainer,
-    TaxonTabImagesPaginator
+    TaxonTabImagesThumbnail,
+    TaxonTabSpecimenImagesModal
   },
   mixins: [
-    imagePaginatorMixin
+    waitTillActivatedMixin
   ],
+  props: {
+    concept: {
+      type: Object,
+      required: true
+    }
+  },
+  apollo: {
+    taxonConceptSpecimenImages: {
+      query: TaxonConceptSpecimenImagesQuery,
+      skip: true
+    }
+  },
   data() {
     return {
-      TaxonConceptSpecimenImagesQuery,
-      specimenImagesModal: null,
+      currentThumbnail: null,
+      specimenImagesModal: false,
+      page: 1,
     }
   },
   computed: {
-    id: function() {
-      return this.$route.params.id
+    variables() {
+      return {
+        id: this.concept.id,
+        first: pageSize,
+        page: this.page
+      }
     }
-  }
+  },
+  created() {
+    this.$apollo.queries.taxonConceptSpecimenImages.setVariables({ ...this.variables })
+    
+  },
+  watch: {
+    activated: {
+      immediate: true,
+      handler(activated) {
+        if (activated) {
+          this.$apollo.queries.taxonConceptSpecimenImages.skip = false
+        }
+      }
+    }
+  },
+  methods: {
+    incrementPage() {
+      this.page = this.page + 1
+    },
+    fetchMore() {
+      this.incrementPage()
+      this.$apollo.queries.taxonConceptSpecimenImages.fetchMore({
+        variables: this.variables,
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          const newImages = fetchMoreResult.taxonConceptSpecimenImages.data
+          const paginatorInfo = fetchMoreResult.taxonConceptSpecimenImages.paginatorInfo
+
+          return {
+            taxonConceptSpecimenImages: {
+              __typename: previousResult.taxonConceptSpecimenImages.__typename,
+              data: [...previousResult.taxonConceptSpecimenImages.data, ...newImages],
+              paginatorInfo: paginatorInfo,
+            },
+          }
+        }
+      })
+    },
+    onThumbnailClicked(image) {
+      this.currentThumbnail = image
+      this.$refs.specimenImagesModalThumbnail.showModal = true
+    },
+  },
 }
 </script>
-
-<style lang="scss" scoped>
-.m-images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  .m-map-container {
-    width: 480px;
-    height: 290px;
-  }
-
-  .m-image-container {
-    width: 175px;
-    height: 180px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    padding: 2px;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    img {
-      max-width: 170px;
-      max-height: 170px;
-      padding: 0;
-      background-color: none;
-      border: none;
-      border-radius: none;
-    }
-  }
-}
-
-.m-modal-class {
-  background-color: fade-in($color: #00000069, $amount: 0);
-  .modal-content {
-    margin: 5vh 10vw;
-    .modal-header {
-      .modal-title {
-        font-family: "goodsans-medium";
-      }
-    }
-    .modal-body {
-      .m-modal-iframe {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-}
-</style>

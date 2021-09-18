@@ -1,105 +1,125 @@
 <template>
-  <ApolloQuery
-    :query="TaxonConceptImagesQuery"
-    :variables="{ id: id, first: first, page: page }"
+  <div 
+    v-if="taxonConceptImages" 
+    class="result apollo"
   >
-    <template v-slot="{ result: { loading, error, data } }">
-      <!-- Loading -->
-      <div v-if="loading" class="loading apollo">Loading...</div>
-
-      <!-- Error -->
-      <div v-else-if="error" class="error apollo">An error occurred</div>
-
-      <!-- Result -->
-      <div v-else-if="data" class="result apollo">
-        <div class="m-images" v-viewer="viewerOptions">
-          <p v-if="data.taxonConcept.images.length === 0">
-            No Images...
-          </p>
-          <div
-            v-else
-            v-for="image in data.taxonConcept.images.data"
-            :key="image.id"
-            class="m-image-container"
-          >
-            <TaxonTabImageContainer :data="data" :image="image"></TaxonTabImageContainer>
-          </div>
-        </div>
-
-        <div>
-          <TaxonTabImagesPaginator 
-            :images="data.taxonConcept.images"
-            :first="first"
-            :page="page"
-            @page-changed="onPageChanged"
-          />
-        </div>
+    <div 
+      class="m-images" 
+      v-viewer="viewerOptions"
+    >
+      <div class="row text-center text-lg-start">
+        <TaxonTabImagesThumbnail 
+          v-for="image in taxonConceptImages.data"
+          :key="image.id"
+          :taxonConcept="concept" 
+          :image="image"
+        />
       </div>
-    </template>
-  </ApolloQuery>
+      <div class="text-right">
+        <button 
+          v-if="taxonConceptImages.paginatorInfo.hasMorePages"
+          class="btn btn-primary" 
+          @click="fetchMore"
+        >
+          Show more images
+          <b-spinner 
+            v-if="$apollo.loading"
+            small
+            label="loading..."
+          />
+        </button>
+      </div>
+    </div>
+
+  </div>
 </template>
 
 <script>
 import "viewerjs/dist/viewer.css"
 import Viewer from "v-viewer"
 import Vue from "vue"
-import TaxonTabImageContainer from "@/components/Taxon/TaxonTabImageContainer"
-import TaxonTabImagesPaginator from "@/components/Taxon/TaxonTabImagesPaginator"
+import TaxonTabImagesThumbnail from "@/components/Taxon/TaxonTabImagesThumbnail"
 import { imagePaginatorMixin } from "~/mixins/imagePaginatorMixin"
+import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"
 import TaxonConceptImagesQuery from "~/graphql/queries/taxonConceptImagesQuery"
 
 Vue.use(Viewer)
 
+const pageSize = 12
+
 export default {
   name: "TaxonTabImages",
   components: {
-    TaxonTabImageContainer,
-    TaxonTabImagesPaginator
+    TaxonTabImagesThumbnail,
   },
   mixins: [
-    imagePaginatorMixin
+    imagePaginatorMixin,
+    waitTillActivatedMixin
   ],
+  props: {
+    concept: {
+      type: Object,
+      required: true
+    }
+  },
+  apollo: {
+    taxonConceptImages: {
+      query: TaxonConceptImagesQuery,
+      skip: true
+    }
+  },
   data() {
     return {
-      TaxonConceptImagesQuery,
+      page: 1,
       viewerOptions: {
         url: "data-src"
       }
-    };
-  },
-  computed: {
-    id() {
-      return this.$route.params.id
     }
   },
-  
-};
-</script>
+  computed: {
+    variables() {
+      return {
+        id: this.concept.id,
+        first: pageSize,
+        page: this.page
+      }
+    }
+  },
+  created() {
+    this.$apollo.queries.taxonConceptImages.setVariables({ ...this.variables })
+  },
+  watch: {
+    activated: {
+      immediate: true,
+      handler(activated) {
+        if (activated) {
+          this.$apollo.queries.taxonConceptImages.skip = false
+        }
+      }
+    }
+  },
+  methods: {
+    incrementPage() {
+      this.page = this.page + 1
+    },
+    fetchMore() {
+      this.incrementPage()
+      this.$apollo.queries.taxonConceptImages.fetchMore({
+        variables: this.variables,
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          const newImages = fetchMoreResult.taxonConceptImages.data
+          const paginatorInfo = fetchMoreResult.taxonConceptImages.paginatorInfo
 
-<style lang="scss" scoped>
-.m-images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  
-  .m-map-container {
-    width: 480px;
-    height: 290px;
-  }
-
-  .m-image-container {
-    width: 175px;
-    height: 180px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    padding: 2px;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
+          return {
+            taxonConceptImages: {
+              __typename: previousResult.taxonConceptImages.__typename,
+              data: [...previousResult.taxonConceptImages.data, ...newImages],
+              paginatorInfo: paginatorInfo,
+            },
+          }
+        }
+      })
+    },
+  },
 }
-</style>
+</script>

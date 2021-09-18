@@ -5,22 +5,17 @@ query taxonConceptSpecimenImagesQuery(
   $first: Int = 24
   $page: Int = 1
 ) {
-  taxonConcept(id: $id) {
-    id
-    taxonName {
+  taxonConceptSpecimenImages(taxonConceptId: $id, first: $first, page: $page) {
+    data {
       id
-      fullName
+      alaImageUuid
+      thumbnailUrl
+      catalogNumber
+      title
+      caption
     }
-    specimenImages(first: $first, page: $page) {
-      data {
-        id
-        thumbnailUrl
-        alaImageUuid
-        caption
-      }
-      paginatorInfo {
-        ...paginatorInfoFields
-      }
+    paginatorInfo {
+      ...paginatorInfoFields
     }
   }
 }

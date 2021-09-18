@@ -1,55 +1,20 @@
 <template>
   <div class="vf-taxon-page-tabs">
-    <b-nav 
-      v-model="activeTab"
-      tabs
-    >
-      <!-- <b-nav-item>'s with child routes. Note the trailing slash on the first <b-nav-item> -->
-      <b-nav-item 
-        v-if="concept.currentProfile"
-        :to="`/flora/taxon/${concept.id}`"
-        exact 
-        exact-active-class="active"
-      >Treatment</b-nav-item>
-
-      <b-nav-item 
-        :to="`/flora/taxon/${concept.id}/classification`" 
-        exact 
-        exact-active-class="active"
-      >Classification</b-nav-item>
-
-      <b-nav-item 
-        v-if="concept.synonymUsages.length > 0 || concept.misapplications.length > 0"
-        :to="`/flora/taxon/${concept.id}/synonymy`" 
-        exact exact-active-class="active"
-      >Synonymy</b-nav-item>
-
-      <b-nav-item 
-        v-if="concept.taxonTreeDefItem.rankId >= rankClass['species']"
-        :to="`/flora/taxon/${concept.id}/distribution`" 
-        exact exact-active-class="active"
-      >Distribution</b-nav-item>
-
-      <b-nav-item 
-        v-if="concept.heroImage"
-        :to="`/flora/taxon/${concept.id}/images`" 
-        exact 
-        exact-active-class="active"
-      >Images</b-nav-item>
-
-      <b-nav-item 
-        v-if="concept.hasSpecimenImages"
-        :to="`/flora/taxon/${concept.id}/specimen-images`" 
-        exact 
-        exact-active-class="active"
-      >Specimen images</b-nav-item>
-    </b-nav>
-
-    <div class="tab-content">
-      <nuxt-child :concept="concept"></nuxt-child>
-    </div>
+    <b-tabs @activate-tab="onInput">
+      <b-tab 
+        v-for="(tab, index) in tabs" 
+        :key="index" 
+        :item="tab" 
+        :title="tab.title"
+      >
+        <component 
+          :is="tab.component" 
+          :concept="concept" 
+          :activated="index === activeTab"
+        />
+      </b-tab>
+    </b-tabs>
   </div>
-
 </template>
 
 <script>
@@ -84,17 +49,64 @@ export default {
   },
   data() {
     return {
-      activeTab: ""
+      activeTab: 0,
+      visitedTabs: []
     }
   },
-  watch: {
-    '$route.fullPath': {
-      deep: true,
-      immediate: true,
-      handler(path) {
-        let id = this.$route.params.id
-        let hash = this.$route.hash
-        this.activeTab = path.substring(path.indexOf(id) + id.length)
+  computed: {
+    tabs() {
+      const tabs = []
+
+      if (this.concept.currentProfile) {
+        tabs.push({
+          title: "Treatment",
+          component: TaxonTabOverview
+        })
+      }
+
+      tabs.push({
+        title: "Classification",
+        component: TaxonClassification
+      })
+
+      if (this.concept.synonymUsages.length || 
+          this.concept.misapplications.length) {
+        tabs.push({
+          title: "Synonymy",
+          component: TaxonTabSynonymy
+        })
+      }
+
+      if (this.concept.taxonTreeDefItem.rankId >= this.rankClass['species']) {
+        tabs.push({
+          title: "Distribution",
+          component: TaxonTabDistribution
+        })
+      }
+
+      if (this.concept.heroImage) {
+        tabs.push({
+          title: "Images",
+          component: TaxonTabImages
+        })
+      }
+
+      if (this.concept.hasSpecimenImages) {
+        tabs.push({
+          title: "Specimen images",
+          component: TaxonTabSpecimenImages
+        })
+      }
+
+      return tabs
+
+    }
+  },
+  methods: {
+    onInput(value) {
+      this.activeTab = value
+      if(!this.visitedTabs.includes(value)){
+        this.visitedTabs.push(value)
       }
     }
   }

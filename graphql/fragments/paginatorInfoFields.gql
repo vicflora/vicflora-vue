@@ -5,4 +5,5 @@ fragment paginatorInfoFields on PaginatorInfo {
   firstItem
   currentPage
   lastPage
+  hasMorePages
 }
