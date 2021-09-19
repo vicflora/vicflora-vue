@@ -27,17 +27,17 @@
       </iframe>
     </template>
     <template #modal-footer>
-      <button
-        class="btn btn-primary"
+      <b-button
+        variant="primary"
         :disabled="currentThumbnail === 0"
         @click="previousImage"
-      >&lt;</button>
-      <button
+      >&lt;</b-button>
+      <b-button
         v-if="currentThumbnail < images.length"
-        class="btn btn-primary"
+        variant="primary"
         :disabled="currentThumbnail === images.length - 1"
         @click="nextImage"
-      >&gt;</button>
+      >&gt;</b-button>
     </template>
   </b-modal>
 </template>

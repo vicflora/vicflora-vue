@@ -16,9 +16,9 @@
         />
       </div>
       <div class="text-right">
-        <button 
+        <b-button 
           v-if="taxonConceptImages.paginatorInfo.hasMorePages"
-          class="btn btn-primary" 
+          variant="primary" 
           @click="fetchMore"
         >
           Show more images
@@ -27,7 +27,7 @@
             small
             label="loading..."
           />
-        </button>
+        </b-button>
       </div>
     </div>
 
