@@ -1,6 +1,9 @@
 <template>
   <div class="vf-taxon-page-tabs">
-    <b-tabs @activate-tab="onInput">
+    <b-tabs 
+      v-model="activeTab"
+      @activate-tab="onInput"
+    >
       <b-tab 
         v-for="(tab, index) in tabs" 
         :key="index" 
@@ -102,13 +105,33 @@ export default {
 
     }
   },
+  created() {
+    this.$nuxt.$on('hero-image-clicked', () => {
+      this.onHeroImageClicked()
+    })
+
+    this.$nuxt.$on('profile-map-clicked', () => {
+      this.onProfileMapClicked()
+    })
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('hero-image-clicked')
+    this.$nuxt.$off('profile-map-clicked')
+  },
   methods: {
     onInput(value) {
       this.activeTab = value
       if(!this.visitedTabs.includes(value)){
         this.visitedTabs.push(value)
       }
-    }
+    },
+    onHeroImageClicked() {
+      console.log('Hero image clicked')
+      this.activeTab = this.tabs.map(item => item.title).indexOf('Images')
+    },
+    onProfileMapClicked() {
+      this.activeTab = this.tabs.map(item => item.title).indexOf('Distribution')
+    },
   }
 }
 </script>

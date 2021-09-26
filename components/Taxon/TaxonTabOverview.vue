@@ -4,7 +4,7 @@
       <b-row class="m-row">
         <!-- text -->
         <!-- use .replaceAll() to replace the tags in HTML -->
-        <b-col class="text-left" v-if="concept.currentProfile" lg="8">
+        <b-col class="text-left" v-if="concept.currentProfile" :lg="hasAside ? 8 : 12">
           <div v-html="concept.currentProfile.profile"></div>
           <!-- Source -->
           <div class="m-row">
@@ -47,56 +47,39 @@
           </div>
         </b-col>
 
-        <b-col lg="4">
+        <b-col 
+          v-if="hasAside"
+          lg="4"
+        >
           <!-- Hero img -->
-          <div
-            class="m-heroimage-container"
-            v-if="concept.heroImage"
-            @click="clickImage()"
-          >
-            <img
-              :src="concept.heroImage.thumbnailUrl"
-              alt="Hero Image"
-              @load="loadHeroImage"
-              v-show="showHeroImage === true"
-            />
-            <b-spinner
-              label="Spinning"
-              v-show="showHeroImage === false"
-              variant="primary"
-            ></b-spinner>
-          </div>
+          <TaxonTabOverviewImage 
+            v-if="hasHeroImage"
+            :src="concept.heroImage.previewUrl"
+            :alt="`${concept.taxonName.fullName} (hero image)`"
+            @image-clicked="onHeroImageClicked"
+          />
 
           <!-- Map -->
-          <!-- <div
-            v-if="concept.taxonTreeDefItem.rankId >= rankClass['species']"
-            href="#"
-            class="m-heroimage-container"
-            @click="clickMap()"
-          >
-            <img
-              class="m-dictribution-map"
-              :src="concept.mapLinks.profileMap"
-              alt="Map"
-              @load="loadMapImage"
-              v-show="showMapImage === true"
-            />
-            <b-spinner
-              label="Spinning"
-              v-show="showMapImage === false"
-              variant="primary"
-            ></b-spinner>
-          </div> -->
+          <TaxonTabOverviewImage 
+            v-if="hasProfileMap"
+            :src="concept.mapLinks.profileMap"
+            :alt="`${concept.taxonName.fullName} (distribution map)`"
+            @image-clicked="onProfileMapClicked"
+          />
         </b-col>
       </b-row>
   </div>
 </template>
 
 <script>
+import TaxonTabOverviewImage from "~/components/Taxon/TaxonTabOverviewImage"
 import { rankMixin } from "~/mixins/taxonMixins"
 
 export default {
   name: "TaxonTabOverview",
+  components: {
+    TaxonTabOverviewImage,
+  },
   mixins: [
     rankMixin
   ],
@@ -106,22 +89,27 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      showHeroImage: false,
-      showMapImage: false
-    };
-  },
-  created() {
-    if (!this.concept.currentProfile) {
-      this.$router.push({
-        name: "flora-taxon-id-classification",
-        params: {
-          id: this.$route.params.id
-        }
-      })
+  computed: {
+    hasHeroImage() {
+      return this.concept.heroImage ? true : false
+    },
+    hasProfileMap() {
+      return this.concept.taxonTreeDefItem.rankId >= this.rankClass['species']
+    },
+    hasAside() {
+      return this.hasHeroImage || this.hasProfileMap
     }
   },
+  // created() {
+  //   if (!this.concept.currentProfile) {
+  //     this.$router.push({
+  //       name: "flora-taxon-id-classification",
+  //       params: {
+  //         id: this.$route.params.id
+  //       }
+  //     })
+  //   }
+  // },
   methods: {
     getBtnText: function(name) {
       switch (name) {
@@ -131,58 +119,13 @@ export default {
           return "species";
       }
     },
-    clickImage: function() {
-      if (this.concept.images.data.length > 0) {
-        this.$emit("update:tabIndex", 1);
-      }
+    onHeroImageClicked() {
+      console.log('image clicked')
+      this.$nuxt.$emit('hero-image-clicked')
     },
-    clickMap: function() {
-      if (this.concept.images.data.length > 0) {
-        if (this.concept.specimenImages.data.length > 0) {
-          this.$emit("update:tabIndex", 3);
-        } else {
-          this.$emit("update:tabIndex", 2);
-        }
-      } else {
-        this.$emit("update:tabIndex", 1);
-      }
+    onProfileMapClicked() {
+      this.$nuxt.$emit('profile-map-clicked')
     },
-    loadHeroImage() {
-      this.showHeroImage = true;
-    },
-    loadMapImage() {
-      this.showMapImage = true;
-    }
-  }
-};
+  },
+}
 </script>
-
-<style lang="scss" scoped>
-@import "~/assets/scss/custom_variables.scss";
-
-.m-heroimage-container:hover {
-  cursor: pointer;
-}
-
-.m-heroimage-container {
-  border-radius: 4px;
-  border: $light solid 1px;
-  background-color: white;
-  height: 205px;
-  width: 340px;
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3px 5px;
-  
-  img {
-    max-height: 95%;
-    max-width: 95%;
-  }
-}
-
-.m-dictribution-map {
-  margin-top: 8px;
-}
-</style>
