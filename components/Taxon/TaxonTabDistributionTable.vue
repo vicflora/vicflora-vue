@@ -1,94 +1,183 @@
 <template>
-  <div class="m-table">
-    <table v-if="layer!=='None'">
-      <tr>
-        <th></th>
-        <th>{{layer}}</th>
-        <th>Occurrence status</th>
-        <th>Establishment means</th>
-      </tr>
-      <tr v-for="item in concept[layerName]" :key="item.id">
-        <td>
-          <div
-            class="m-table-color-box"
-            :style="
-              `background-color: ${
-                statusColors[item.establishmentMeans.name]
-              };`
-            "
-          ></div>
-        </td>
-        <!-- <td>{{ item.id }}</td> -->
-        <td>{{ item[layerName.substr(0, layerName.length - 1)].properties.name }}</td>
-        <td>{{ item.occurrenceStatus.name }}</td>
-        <td>{{ item.establishmentMeans.name }}</td>
-      </tr>
-    </table>
+  <div>
+    <b-button 
+      v-b-toggle.region-table 
+      variant="primary"
+      size="sm"
+    >
+      {{ layer }} {{ `(${items.length})` }}
+      <span class="when-open"><b-icon-caret-down-fill></b-icon-caret-down-fill></span>
+      <span class="when-closed"><b-icon-caret-right-fill></b-icon-caret-right-fill></span>
+    </b-button>
+    <b-collapse 
+      id="region-table"
+      visible
+    >
+      <b-table 
+        :items="items" 
+        :fields="fields" 
+        small
+        striped
+        table-variant="light"
+        head-variant="dark"
+      >
+        <template #cell(status)="data">
+          <div :class="`vf-status ${data.value}`">&nbsp;</div>
+        </template>
+      </b-table>
+    </b-collapse>
   </div>
 </template>
 
 <script>
+import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
+import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
+
 export default {
   name: "TaxonTabDistributionTable",
   props: {
-    concept: {
-      type: Object,
-      required: true
-    },
     layer:{
-        type: String
+        type: String,
+        required: true,
+    },
+    tableData: {
+      type: Array,
+      required: true,
     }
   },
   data() {
     return {
-        nameList:{
-            "Bioregions":'bioregions',
-            "Local Government Areas": "localGovernmentAreas",
-            "Parks and Reserves": "parkReserves"
-        },
-      statusColors: {
-        native: "#a4f27d",
-        introduced: "#ffcccc",
-        naturalised: "#ffcccc",
-        cultivated: "#3333ff",
-        uncertain: "#ffbb00",
-        extinct: "#e9aaff",
-        doubtful: "#fcfc99"
-      }
-    };
+      occurrenceStatusEnum,
+      establishmentMeansEnum,
+    }
   },
-  computed:{
-      layerName:function(){
-          return this.nameList[this.layer]
+  computed: {
+    areaNameProperty() {
+      let areaNameProperty = ''
+      switch(this.layer) {
+        case 'Bioregions':
+          areaNameProperty = 'bioregionName'
+          break
+        case 'Local Government Areas':
+          areaNameProperty = 'localGovernmentAreaName'
+          break
+        case 'Parks and Reserves':
+          areaNameProperty = 'parkReserveName'
+          break
       }
-  }
+      return areaNameProperty
+    },
+    areaLabel() {
+      let areaLabel = ''
+      switch(this.layer) {
+        case 'Bioregions':
+          areaLabel = 'Bioregion name'
+          break
+        case 'Local Government Areas':
+          areaLabel = 'Local Government Area name'
+          break
+        case 'Parks and Reserves':
+          areaLabel = 'Park or Reserve name'
+          break
+      }
+      return areaLabel
+    },
+    fields() {
+      return [
+        {
+          key: 'status',
+          label: '',
+        },
+        {
+          key: 'areaName',
+          label: 'Name',
+        },
+        {
+          key: 'occurrenceStatus',
+          label: 'Occurrence status',
+        },
+        {
+          key: 'establishmentMeans',
+          label: 'Establishment means',
+        },
+      ]
+    },
+    items() {
+      let items = this.tableData.map((rec, index) => {
+        return {
+          status: this.getStatusColour(rec.occurrenceStatus, rec.establishmentMeans),
+          areaName: rec[this.areaNameProperty],
+          occurrenceStatus: this.occurrenceStatusEnum[rec.occurrenceStatus],
+          establishmentMeans: this.establishmentMeansEnum[rec.establishmentMeans],
+        }
+      })
+      return items
+    }
+  },
+  methods: {
+    getStatusColour(occ, est) {
+      let statusClass = ''
+      if (occ === 'DOUBTFUL') {
+        statusClass = 'vf-status-doubtful'
+      }
+      if (occ === 'EXTINCT') {
+        statusClass = 'vf-status-extinct'
+      }
+      if (est === 'UNCERTAIN') {
+        statusClass = 'vf-status-uncertain'
+      }
+      if (est === 'CULTIVATED') {
+        statusClass = 'vf-status-cultivated'
+      }
+      if (est === 'NATURALISED') {
+        statusClass = 'vf-status-naturalised'
+      }
+      if (est === 'INTRODUCED') {
+        statusClass = 'vf-status-introduced'
+      }
+      if (est === 'NATIVE') {
+        statusClass = 'vf-status-native'
+      }
+      return statusClass
+    }
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-@import "~/assets/scss/custom_variables.scss";
-.m-table {
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  .m-table-color-box {
-    height: 15px;
-    width: 30px;
-    background-color: yellowgreen;
-    border: 1px solid $grey;
+<style lang="scss">
+#region-table {
+  margin: 10px 0;
+}
+
+.vf-status {
+  width: 2.5rem;
+
+  &.vf-status-native {
+    background-color: #a4f27d;
   }
 
-  td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 6px;
+  &.vf-status-introduced {
+    background-color: #ffcccc;
   }
-  th {
-    font-family: "goodsans-thin";
-    color: white;
-    background-color: $grey;
+  
+  &.vf-status-naturalised {
+    background-color: #ffcccc;
   }
+  
+  &.vf-status-cultivated {
+    background-color: #3333ff;
+  }
+  
+  &.vf-status-uncertain {
+    background-color: #ffbb00;
+  }
+  
+  &.vf-status-extinct {
+    background-color: #e9aaff;
+  }
+  
+  &.vf-status-doubtful {
+    background-color: #fcfc99;
+  }  
 }
 </style>

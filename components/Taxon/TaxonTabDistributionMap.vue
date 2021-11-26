@@ -66,6 +66,7 @@
           :request="occurrenceLayer.request"
           :srs="occurrenceLayer.srs"
           :format="occurrenceLayer.format"
+          :styles="occurrenceLayer.styles"
           layer-type="overlay"
         />
       </l-map>
@@ -111,8 +112,9 @@ export default {
         visible: true,
         layers: "vicflora-mapper:taxon_occurrences",
         srs: "EPSG:4326",
-        format: "image/svg",
-        transparent: false
+        format: "image/png",
+        transparent: true,
+        styles: "vicflora-mapper:vicflora_point",
       },
       mapOptions: {
         name: "Victoria map"
@@ -127,11 +129,11 @@ export default {
           `AND establishment_means NOT IN ('cultivated')`
     },
     occurrenceLayerUrl: function() {
-      return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?` +
+      return `http://vicflora.test:65000/geoserver/vicflora-mapper/wms?` +
           `cql_filter=${this.cqlFilter}`
     },
     baseLayerUrl: function() {
-      return `https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms?` +
+      return `http://vicflora.test:65000/geoserver/vicflora-mapper/wms?` +
           `cql_filter=${this.cqlFilter};INCLUDE`
     }
   },

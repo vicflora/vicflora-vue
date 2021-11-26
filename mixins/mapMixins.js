@@ -37,7 +37,7 @@ export const baseLayersMixin = {
           visible: false,
           layers: "vicflora-mapper:taxon_bioregions,vicflora-mapper:bioregions",
           srs: "EPSG:4326",
-          format: "image/svg",
+          format: "image/png",
           styles: "polygon-establishment-means-transparent,",
           transparent: true,
           opacity: 0.8,
@@ -52,7 +52,7 @@ export const baseLayersMixin = {
           layers:
             "vicflora-mapper:taxon_local_government_areas,vicflora-mapper:local_government_areas",
           srs: "EPSG:4326",
-          format: "image/svg",
+          format: "image/png",
           styles: "polygon-establishment-means-transparent,",
           transparent: true,
           opacity: 0.8,
@@ -67,7 +67,7 @@ export const baseLayersMixin = {
           layers:
             "vicflora-mapper:taxon_park_reserves,vicflora-mapper:park_reserves",
           srs: "EPSG:4326",
-          format: "image/svg",
+          format: "image/png",
           styles: "polygon-establishment-means-transparent,",
           transparent: true,
           opacity: 0.8,

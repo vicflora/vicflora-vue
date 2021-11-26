@@ -18,12 +18,25 @@
     <b-row v-if="showMap==='Victoria'">
       <!-- Map -->
       <b-col cols="12" class="text-left">
-        <distribution-map :taxonConceptId="concept.id" @layer="switchLayer($event)"></distribution-map>
-        <distribution-table :concept="concept" :layer="layer"></distribution-table>
-        <p>&nbsp;</p>
-        <p><b>Source:</b></p>
-        <p v-html="concept.mapLinks.mapSource"></p>
-        <p>&nbsp;</p>
+        <distribution-map 
+          :taxonConceptId="concept.id" 
+          @layer="switchLayer($event)"
+        />
+
+        <TaxonTabDistributionLegend class="vf-distribution-tab-section" />
+
+        <distribution-table 
+          v-if="layer != 'None'"
+          :tableData="tableData" 
+          :layer="layer"
+          class="vf-distribution-tab-section"
+        />
+
+        <TaxonTabDistributionSources 
+          :sources="concept.mapLinks.mapSource" 
+           class="vf-distribution-tab-section"
+        />
+
       </b-col>
     </b-row>
     <b-row v-if="showMap==='Australia'">
@@ -42,7 +55,12 @@ import DistributionMapConfig from "~/components/Distribution-map-config/Distribu
 import DistributionMap from "~/components/Taxon/TaxonTabDistributionMap"
 import DistributionAvhMap from "~/components/Taxon/TaxonTabDistributionAvhMap"
 import DistributionTable from "~/components/Taxon/TaxonTabDistributionTable"
+import TaxonTabDistributionLegend from "~/components/Taxon/TaxonTabDistributionLegend"
+import TaxonTabDistributionSources from "~/components/Taxon/TaxonTabDistributionSources"
 import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"
+import TaxonConceptBioregionsQuery from "~/graphql/queries/taxonConceptBioregionsQuery"
+import TaxonConceptLocalGovernmentAreasQuery from "~/graphql/queries/taxonConceptLocalGovernmentAreasQuery"
+import TaxonConceptParkReservesQuery from "~/graphql/queries/taxonConceptParkReservesQuery"
 
 export default {
   name: "TaxonTabDistribution",
@@ -50,7 +68,9 @@ export default {
     DistributionMapConfig, 
     DistributionMap, 
     DistributionAvhMap, 
-    DistributionTable
+    DistributionTable,
+    TaxonTabDistributionLegend,
+    TaxonTabDistributionSources,
   },
   mixins: [
     waitTillActivatedMixin
@@ -61,71 +81,97 @@ export default {
       required: true
     }
   },
+  apollo: {
+    taxonConceptBioregions: {
+      query: TaxonConceptBioregionsQuery,
+      result ({ data, loading }) {
+        if (!loading) {
+          this.tableData = data.taxonConceptBioregions
+        }
+      },
+      skip: true,
+    },
+    taxonConceptLocalGovernmentAreas: {
+      query: TaxonConceptLocalGovernmentAreasQuery,
+      result ({ data, loading }) {
+        if (!loading) {
+          this.tableData = data.taxonConceptLocalGovernmentAreas
+        }
+      },
+      skip: true,
+    },
+    taxonConceptParkReserves: {
+      query: TaxonConceptParkReservesQuery,
+      result ({ data, loading }) {
+        if (!loading) {
+          this.tableData = data.taxonConceptParkReserves
+        }
+      },
+      skip: true,
+    },
+  },
   data(){
     return {
       tabIndex: 0,
       layer: "None",
-      showMap: "Victoria"
+      showMap: "Victoria",
+      taxonConceptBioregions: [],
+      taxonConceptLocalGovernmentAreas: [],
+      taxonConceptParkReserves: [],
+      tableData: [],
     }
+  },
+  computed: {
+    variables() {
+      return {
+        taxonConceptId: this.concept.id,
+      }
+    }
+  },
+  created() {
+    this.$apollo.queries.taxonConceptBioregions.setVariables({ ...this.variables })
+    this.$apollo.queries.taxonConceptLocalGovernmentAreas.setVariables({ ...this.variables })
+    this.$apollo.queries.taxonConceptParkReserves.setVariables({ ...this.variables })
   },
   methods:{
     switchLayer: function(newLayer){
       this.layer = newLayer
+      switch(newLayer) {
+        case 'Bioregions':
+          if (this.taxonConceptBioregions.length) {
+            this.tableData = this.taxonConceptBioregions
+          }
+          else {
+            this.$apollo.queries.taxonConceptBioregions.skip = false
+          }
+          break
+        case 'Local Government Areas':
+          if (this.taxonConceptLocalGovernmentAreas.length) {
+            this.tableData = this.taxonConceptLocalGovernmentAreas
+          }
+          else {
+            this.$apollo.queries.taxonConceptLocalGovernmentAreas.skip = false
+          }
+          break
+        case 'Parks and Reserves':
+          if (this.taxonConceptParkReserves.length) {
+            this.tableData = this.taxonConceptParkReserves
+          }
+          else {
+            this.$apollo.queries.taxonConceptParkReserves.skip = false
+          }
+          break
+      }
     },
     toggleMap: function(map) {
       this.showMap = map
-    }
-
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss" scoped>
-@import "~/assets/scss/custom_variables.scss";
-
-.m-images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  .m-map-container {
-    width: 480px;
-    height: 290px;
-  }
-
-  .m-image-container {
-    width: 177px;
-    height: 177px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    padding: 2px;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    img {
-      max-width: 170px;
-      max-height: 170px;
-      padding: 0;
-      background-color: none;
-      border: none;
-      border-radius: none;
-    }
-  }
+<style lang="scss">
+.vf-distribution-tab-section {
+  margin-bottom: 1rem;
 }
-
-.m-legend {
-  margin-left: -60px;
-}
-
-@media screen and (max-width: 1200px) {
-  .m-legend {
-    margin-left: 0;
-    margin-bottom: 20px;
-  }
-}
-
-
 </style>
