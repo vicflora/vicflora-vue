@@ -1,0 +1,9 @@
+query taxonConceptLocalGovernmentAreasQuery($taxonConceptId: ID!) {
+  taxonConceptLocalGovernmentAreas(taxonConceptId: $taxonConceptId) {
+    id
+    localGovernmentAreaName
+    localGovernmentAreaAbbreviatedName
+    occurrenceStatus
+    establishmentMeans
+  }
+}

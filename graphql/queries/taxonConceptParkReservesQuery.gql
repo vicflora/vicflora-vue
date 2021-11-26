@@ -1,0 +1,9 @@
+query taxonConceptParkReservesQuery($taxonConceptId: ID!) {
+  taxonConceptParkReserves(taxonConceptId: $taxonConceptId) {
+    id
+    parkReserveName
+    parkReserveAreaType
+    occurrenceStatus
+    establishmentMeans
+  }
+}

@@ -1,0 +1,9 @@
+query taxonConceptBioregionsQuery($taxonConceptId: ID!) {
+  taxonConceptBioregions(taxonConceptId: $taxonConceptId) {
+    id
+    bioregionName
+    bioregionCode
+    occurrenceStatus
+    establishmentMeans
+  }
+}
