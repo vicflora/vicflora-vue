@@ -11,16 +11,16 @@
         "
       >
         <NLink
-          :to="`/flora/taxon/${item.acceptedNameUsageId}`"
+          :to="`/flora/taxon/${item.id}`"
           class="m-item-name-accepted"
           :style="
             rankClass[item.taxonRank] > 140
               ? 'font-style: italic;'
               : ''
           "
-        >{{ item.acceptedNameUsage }}</NLink>
-        <span class="m-item-author">{{ item.acceptedNameUsageAuthorship }}</span>
-        <span class="m-item-vernacularname">{{ item.vernacularName }}</span>
+        >{{ item.scientificName }}</NLink>
+        <span class="m-item-author">{{ item.scientificNameAuthorship }}</span>
+        <span class="m-item-vernacularname">{{ item.preferredVernacularName }}</span>
       </div>
 
       <div v-else>

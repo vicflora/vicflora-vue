@@ -54,7 +54,7 @@ export default {
         if (typeof this.$route.query.q === "string") {
           this.query = this.$route.query.q
             .replace(/[*]/g, "")
-            .replace(/ AND /g, " ")
+            .replace(/\\ /g, " ")
         }
       }
     }
@@ -64,7 +64,7 @@ export default {
       this.$router.push({
         path: "/flora/search",
         query: {
-          q: `*${this.query}*`.replace(/ /g, " AND ")
+          q: `*${this.query}*`.replace(/ /g, "\\ ")
         }
       })
     },

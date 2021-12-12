@@ -129,11 +129,11 @@ export default {
           `AND establishment_means NOT IN ('cultivated')`
     },
     occurrenceLayerUrl: function() {
-      return `http://vicflora.test:65000/geoserver/vicflora-mapper/wms?` +
+      return `http://vicflora.test:8084/geoserver/vicflora-mapper/wms?` +
           `cql_filter=${this.cqlFilter}`
     },
     baseLayerUrl: function() {
-      return `http://vicflora.test:65000/geoserver/vicflora-mapper/wms?` +
+      return `http://vicflora.test:8084/geoserver/vicflora-mapper/wms?` +
           `cql_filter=${this.cqlFilter};INCLUDE`
     }
   },
