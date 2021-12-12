@@ -27,8 +27,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    "~/plugins/vue-scrollactive.client.js",
-    "~/plugins/vue2-leaflet-fullscreen.client.js"
+    "~/plugins/vue-scrollactive.client.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -62,13 +61,12 @@ export default {
   },
 
   plugins: [
-    { src: '~plugins/leaflet.js', ssr: false },
-    '~/plugins/vue2-leaflet-fullscreen.client.js'
+    '~plugins/leaflet.client.js'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [({ isServer }) => "vue-typeahead-bootstrap", 'vue2-leaflet-fullscreen'],
+    transpile: [({ isServer }) => "vue-typeahead-bootstrap"],
     plugins: [
         new webpack.ProvidePlugin({
             '$' : 'jquery'
@@ -78,10 +76,13 @@ export default {
   styleResources: {
     scss: ["@/assets/main.scss"]
   },
+  server: {
+    host: "0"
+  },
   hooks: {
     build: {
       before (builder) {
-        axios.post('http://vicflora.test/graphql', {
+        axios.post('http://cygnus.rbg.vic.gov.au/graphql', {
           query: `
             query schema{
               __schema{
