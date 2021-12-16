@@ -92,8 +92,6 @@ export const facetMixin = {
     filterLabel() {
       if (this.filterKey && this.filterKey.length > 0) {
         const ucfirst = this.filterKey ? this.filterKey[0].toUpperCase() + this.filterKey.substring(1) : ''
-        console.log(ucfirst)
-        console.log(typeof ucfirst)
         return ucfirst.replace(/_/g, ' ')
       }
       return this.filterKey

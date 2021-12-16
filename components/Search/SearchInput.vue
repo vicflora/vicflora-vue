@@ -12,13 +12,13 @@
       :maxMatches="100"
     >
       <template slot="append">
-        <BButton 
-          size="sm" 
+        <BButton
+          size="sm"
           variant="primary"
         >
-          <BIcon 
-            icon="search" 
-            font-scale="1" 
+          <BIcon
+            icon="search"
+            font-scale="1"
             @click="search"
           />
         </BButton>
@@ -77,9 +77,6 @@ export default {
         result({ data }) {
           return data;
         },
-        error(error) {
-          console.error("We've got an error!", error)
-        }
       })
     }, 1000)
   }

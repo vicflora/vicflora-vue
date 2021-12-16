@@ -1,18 +1,18 @@
 <template>
   <div class="vf-taxon-page-tabs">
-    <b-tabs 
+    <b-tabs
       v-model="activeTab"
       @activate-tab="onInput"
     >
-      <b-tab 
-        v-for="(tab, index) in tabs" 
-        :key="index" 
-        :item="tab" 
+      <b-tab
+        v-for="(tab, index) in tabs"
+        :key="index"
+        :item="tab"
         :title="tab.title"
       >
-        <component 
-          :is="tab.component" 
-          :concept="concept" 
+        <component
+          :is="tab.component"
+          :concept="concept"
           :activated="index === activeTab"
         />
       </b-tab>
@@ -72,7 +72,7 @@ export default {
         component: TaxonClassification
       })
 
-      if (this.concept.synonymUsages.length || 
+      if (this.concept.synonymUsages.length ||
           this.concept.misapplications.length) {
         tabs.push({
           title: "Synonymy",
@@ -126,7 +126,6 @@ export default {
       }
     },
     onHeroImageClicked() {
-      console.log('Hero image clicked')
       this.activeTab = this.tabs.map(item => item.title).indexOf('Images')
     },
     onProfileMapClicked() {

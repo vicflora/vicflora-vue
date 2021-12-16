@@ -27,9 +27,7 @@ export default {
     TableOfContent
   },
   async asyncData({ $content, params }) {
-    // fetch our md here
     const markdown = await $content("statics/bioregions", params.id).fetch();
-    // console.log(markdown.toc)
     return { markdown };
   },
   data() {

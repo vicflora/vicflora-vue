@@ -47,12 +47,12 @@
           </div>
         </b-col>
 
-        <b-col 
+        <b-col
           v-if="hasAside"
           lg="4"
         >
           <!-- Hero img -->
-          <TaxonTabOverviewImage 
+          <TaxonTabOverviewImage
             v-if="hasHeroImage"
             :src="concept.heroImage.previewUrl"
             :alt="`${concept.taxonName.fullName} (hero image)`"
@@ -60,7 +60,7 @@
           />
 
           <!-- Map -->
-          <TaxonTabOverviewImage 
+          <TaxonTabOverviewImage
             v-if="hasProfileMap"
             :src="concept.mapLinks.profileMap"
             :alt="`${concept.taxonName.fullName} (distribution map)`"
@@ -120,7 +120,6 @@ export default {
       }
     },
     onHeroImageClicked() {
-      console.log('image clicked')
       this.$nuxt.$emit('hero-image-clicked')
     },
     onProfileMapClicked() {

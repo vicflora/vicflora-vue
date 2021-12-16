@@ -67,7 +67,6 @@ export default {
   methods: {
     setSearchTerm(field, value) {
       let q = `${field}:"${value}"`
-      console.log(q)
       $nuxt.$emit('search-term', q)
     }
   }

@@ -11,7 +11,7 @@
       <BCol align-self="start" cols="9" class="text-left">
         <nuxt-content
           id="scrollspy-nested"
-          :document="markdown" 
+          :document="markdown"
           class="m-content"
         />
       </BCol>
@@ -31,9 +31,7 @@ export default {
     TableOfContent
   },
   async asyncData({ $content, params }) {
-    // fetch our md here
     const markdown = await $content(`statics/${params.id.toLowerCase()}`).fetch()
-    // console.log(markdown.toc)
     return { markdown }
   },
   data() {

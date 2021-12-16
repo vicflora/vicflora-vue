@@ -166,7 +166,6 @@ export default {
   methods: {
     // getch file data
     getData(input, filename) {
-      console.log(filename);
       this.$apollo.addSmartQuery("download", {
         query: downloadGql,
         variables: {

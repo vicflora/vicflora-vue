@@ -1,25 +1,25 @@
 <template>
   <div class="m-map">
     <client-only>
-      <l-map 
+      <l-map
         :zoom="zoom"
         :center="center"
         :options="mapOptions"
         @click="onMapClick"
       >
         <l-marker v-if="marker" :lat-lng="marker" ref="marker">
-          <l-icon 
+          <l-icon
             :icon-url="icon.url"
-            :icon-size="icon.size" 
+            :icon-size="icon.size"
             :shadow-size="icon.size"
           />
-          <l-popup 
-            ref="popup" 
+          <l-popup
+            ref="popup"
             :lat-lng="marker"
             :options="popupOptions"
           >
-            <taxon-tab-distribution-avh-map-popup-content 
-              :occurrences="occurrences" 
+            <taxon-tab-distribution-avh-map-popup-content
+              :occurrences="occurrences"
             />
           </l-popup>
         </l-marker>
@@ -53,9 +53,9 @@
 
 <script>
 import axios from "axios"
-import TaxonTabDistributionAvhMapPopupContent 
+import TaxonTabDistributionAvhMapPopupContent
     from "@/components/Taxon/TaxonTabDistributionAvhMapPopupContent"
-import { tileLayerMixin, alaOccurrenceLayerMixin, iconMixin, popupMixin } 
+import { tileLayerMixin, alaOccurrenceLayerMixin, iconMixin, popupMixin }
     from "@/mixins/mapMixins"
 
 export default {
@@ -64,10 +64,10 @@ export default {
     TaxonTabDistributionAvhMapPopupContent
   },
   mixins: [
-    tileLayerMixin, 
-    alaOccurrenceLayerMixin, 
+    tileLayerMixin,
+    alaOccurrenceLayerMixin,
     iconMixin,
-    popupMixin 
+    popupMixin
   ],
   props: {
     name: {
@@ -86,7 +86,7 @@ export default {
       mapOptions: {
         name: "AVH map"
       },
-      tileLayerAttribution: 
+      tileLayerAttribution:
         'map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, imagery © <a href="https://cartodb.com/attributions">CartoDB</a>',
       searchUrl: 'https://biocache.ala.org.au/ws/occurrences/search',
       mapClickLatLng: [],
@@ -111,7 +111,6 @@ export default {
   },
   methods: {
     onMapClick(e) {
-      console.log(e.latlng)
       this.marker = null
       this.occurrences = []
       this.mapClickLatLng = e.latlng
@@ -130,7 +129,7 @@ export default {
           this.marker = this.mapClickLatLng
           this.openPopup()
         }
-      }) 
+      })
     }
   }
 }
