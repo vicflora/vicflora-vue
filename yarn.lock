@@ -14251,7 +14251,7 @@ vue-typeahead-bootstrap@^2.11.0:
 
 vue2-leaflet@nielsklazenga/vue2-leaflet-fix-uppercase:
   version "2.7.1"
-  resolved "https://codeload.github.com/nielsklazenga/vue2-leaflet-fix-uppercase/tar.gz/7068c4eb5a16f01adf971d63a34f0f14831ce284"
+  resolved "https://codeload.github.com/nielsklazenga/vue2-leaflet-fix-uppercase/tar.gz/24a67455dba563e3c475bd054da0686176f46d86"
 
 vue@^2.5.17, vue@^2.6.12:
   version "2.6.14"
