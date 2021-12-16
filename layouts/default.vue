@@ -3,7 +3,7 @@
     <div id="content">
       <TheHeader />
       <Nuxt />
-    </div> 
+    </div>
     <div id="footer">
       <TheFooter/>
     </div>
@@ -16,9 +16,9 @@ import TheFooter from "@/components/App/TheFooter"
 
 export default {
   name: "default",
-  components: { 
-    TheHeader, 
-    TheFooter 
+  components: {
+    TheHeader,
+    TheFooter
   }
 }
 </script>
@@ -86,7 +86,6 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   display: flex;
   width: 100vw;

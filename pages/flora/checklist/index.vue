@@ -1,39 +1,34 @@
-<style lang="scss" scoped>
-@import "./Checklist.scss";
-</style>
 <template>
   <div class="m-checklist">
     <b-container>
       <b-row class="mb-2">
         <b-col class="text-left">
-          <div class="m-main-title">
-            <h2>
-              Checklist
-            </h2>
-            <p>
-              Create your own checklist for any Victorian park or reserve in the
-              <a href="https://www.environment.gov.au/land/nrs/science/capad"
-                >Collaborative Australian Protected Area Database (CAPAD)
-                <b-icon icon="box-arrow-up-right"></b-icon> </a
-              >, based on occurrence data from
-              <a href="https://avh.chah.org.au/"
-                >Australia's Virtual Herbarium (AVH)
-                <b-icon icon="box-arrow-up-right"></b-icon
-              ></a>
-              and the
-              <a
-                href="https://www.environment.vic.gov.au/biodiversity/victorian-biodiversity-atlas"
-                >Victorian Biodiversity Atlas (VBA)
-                <b-icon icon="box-arrow-up-right"></b-icon
-              ></a>
-              and using the taxonomy of VicFlora.
-            </p>
-            <p>
-              Click on a point on the map below and a list of reserves will
-              appear. Select a reserve and a checklist of vascular plant taxa
-              will be generated below the map.
-            </p>
+          <div class="page-header">
+            <h2>Checklists</h2>
           </div>
+          <p>
+            Create your own checklist for any Victorian park or reserve in the
+            <a href="https://www.environment.gov.au/land/nrs/science/capad"
+              >Collaborative Australian Protected Area Database (CAPAD)
+              <b-icon icon="box-arrow-up-right"></b-icon> </a
+            >, based on occurrence data from
+            <a href="https://avh.chah.org.au/"
+              >Australia's Virtual Herbarium (AVH)
+              <b-icon icon="box-arrow-up-right"></b-icon
+            ></a>
+            and the
+            <a
+              href="https://www.environment.vic.gov.au/biodiversity/victorian-biodiversity-atlas"
+              >Victorian Biodiversity Atlas (VBA)
+              <b-icon icon="box-arrow-up-right"></b-icon
+            ></a>
+            and using the taxonomy of VicFlora.
+          </p>
+          <p>
+            Click on a point on the map below and a list of reserves will
+            appear. Select a reserve and a checklist of vascular plant taxa
+            will be generated below the map.
+          </p>
         </b-col>
       </b-row>
 
