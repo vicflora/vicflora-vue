@@ -1,4 +1,4 @@
-query searchQuery($input: SearchInput!) {
+query SearchQuery($input: SearchInput!) {
   search(input: $input) {
     docs {
       id

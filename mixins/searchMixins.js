@@ -1,12 +1,12 @@
 /**
  * Copyright 2021 Royal Botanic Gardens Victoria
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,6 +32,53 @@ export const searchMixin = {
       }
     }
   }
+}
+
+export const searchWatchMixin = {
+  watch: {
+    fq: {
+      immediate: true,
+      handler: function() {
+        this.input = {
+          ...this.input,
+          fq: this.$route.query.fq,
+          page: 1
+        }
+      }
+    },
+    q: {
+      immediate: true,
+      handler: function() {
+        this.input = {
+          ...this.input,
+          q: this.q,
+          fq: "",
+          page: 1
+        }
+      }
+    },
+    page: {
+      immediate: true,
+      handler: function() {
+        this.input = {
+          ...this.input,
+          page: parseInt(this.page)
+        }
+      }
+    },
+    input: {
+      deep: true,
+      handler: function() {
+        this.$apollo.queries.search.refetch({
+          input: this.input
+        })
+      }
+    }
+  },
+  created() {
+    this.$apollo.queries.search.setVariables({ input: this.input })
+    this.$apollo.queries.search.skip = false
+  },
 }
 
 export const facetMixin = {
@@ -61,8 +108,8 @@ export const searchResultPaginationMixin = {
     }
   },
   mounted() {
-    this.activePage = "page" in this.$route.query 
-        && this.$route.query.page !== undefined 
+    this.activePage = "page" in this.$route.query
+        && this.$route.query.page !== undefined
         ? parseInt(this.$route.query.page) : 1
   },
   methods: {

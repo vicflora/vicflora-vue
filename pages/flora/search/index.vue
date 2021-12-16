@@ -9,63 +9,36 @@
         </div>
       </BCol>
     </BRow>
-    
-    <ApolloQuery
-      :query="require('@/graphql/queries/search.gql')"
-      :variables="{ input }"
-    >
-      <template v-slot="{ result: { loading, error, data } }">
-        <!-- Loading -->
-        <div v-if="loading" class="loading apollo">Loading...</div>
 
-        <!-- Error -->
-        <div v-else-if="error" class="error apollo">An error occurred</div>
-
-        <!-- Result -->
-        <div v-else-if="data" class="result apollo">
-
-          <BRow>
-            <BCol 
-              lg="4" 
-              cols="12" 
-              class="text-left"
-            >
-              <div class="m-row">
-                <SearchInput/>
-              </div>
-              <div class="m-row mt-3">
-                <SearchExcludeHigherTaxa/>
-              </div>
-
-              <!-- Query -->
-              <SearchApplied :q="q" :fq="fq"/>
-              <!-- Filters -->
-              <SearchFilters :data="data"/>
-
-            </BCol>
-
-            <client-only>
-              <SearchResult 
-                :data="data"
-                @pageChanged="onPageChange"
-              />
-            </client-only>
-
-          </BRow>
+    <BRow v-if="search">
+      <BCol
+        lg="4"
+        cols="12"
+        class="text-left"
+      >
+        <div class="m-row">
+          <SearchInput/>
         </div>
-        <!-- No result -->
-        <div 
-          v-else 
-          class="no-result apollo"
-        >
-          <div 
-            class="spinner-border mt-5 mb-1" 
-            role="status"
-          />
-          <h5>Loading...</h5>
+        <div class="m-row mt-3">
+          <SearchExcludeHigherTaxa/>
         </div>
-      </template>
-    </ApolloQuery>
+
+        <!-- Query -->
+        <SearchApplied :q="q" :fq="fq"/>
+        <!-- Filters -->
+        <SearchFilters :data="data"/>
+
+      </BCol>
+
+      <client-only>
+        <SearchResult
+          :data="data"
+          @pageChanged="onPageChange"
+        />
+      </client-only>
+
+    </BRow>
+
   </BContainer>
 </template>
 
@@ -74,9 +47,11 @@ import SearchInput from "@/components/Search/SearchInput"
 import SearchExcludeHigherTaxa from "@/components/Search/SearchExcludeHigherTaxa"
 import SearchApplied from "@/components/Search/SearchApplied"
 import SearchFilters from "@/components/Search/SearchFilters"
-import SearchResult from "@/components/Search/SearchResult" 
+import SearchResult from "@/components/Search/SearchResult"
 
-import { searchMixin } from "@/mixins/searchMixins"
+import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
+
+import SearchQuery from "@/graphql/queries/search.gql"
 
 export default {
   name: "Search",
@@ -87,7 +62,7 @@ export default {
     SearchFilters,
     SearchResult
   },
-  mixins: [searchMixin],
+  mixins: [searchMixin, searchWatchMixin],
   data() {
     return {
       input: {
@@ -99,36 +74,15 @@ export default {
       }
     }
   },
-  watch: {
-    fq: {
-      immediate: true,
-      handler: function() {
-        this.input = {
-          ...this.input,
-          fq: this.$route.query.fq,
-          page: 1
+  apollo: {
+    search: {
+      query: SearchQuery,
+      result ({ data, loading }) {
+        if (!loading) {
+          this.data = data
         }
-      }
-    },
-    q: {
-      immediate: true,
-      handler: function() {
-        this.input = {
-          ...this.input,
-          q: this.q,
-          fq: "",
-          page: 1
-        }
-      }
-    },
-    page: {
-      immediate: true,
-      handler: function() {
-        this.input = {
-          ...this.input,
-          page: parseInt(this.page)
-        }
-      }
+      },
+      skip: true
     }
   },
   mounted() {
@@ -136,8 +90,8 @@ export default {
       this.filtersFacet = false
     }
     this.input.fq = this.fq
-    this.input.page = "page" in this.$route.query 
-        && this.$route.query.page !== undefined 
+    this.input.page = "page" in this.$route.query
+        && this.$route.query.page !== undefined
         ? parseInt(this.$route.query.page) : 1
   },
   methods: {
@@ -153,6 +107,40 @@ export default {
 
 <style lang="scss" scoped>
 .m-search::v-deep {
-  @import "./Search.scss";
+  @import "~/assets/scss/custom_variables.scss";
+  .m-main-title {
+      h2 {
+        font-family: "goodsans-medium";
+
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+  }
+
+  .m-subtitle{
+      font-family: "goodsans-regular";
+      font-size: x-large;
+      margin-top: 10px;
+      margin-bottom: 5px;
+  }
+  .m-facet-title{
+      font-family: "goodsans-regular";
+      font-size: large;
+  }
+
+  .filter-queries-key {
+      font-weight: bold;
+  }
+
+  @media screen and (max-width:768px){
+      .m-responsive-disappear {
+          display: none;
+      }
+  }
+
+  .search-exclude-higher-taxa {
+    margin-bottom: 12px;
+  }
+
 }
 </style>
