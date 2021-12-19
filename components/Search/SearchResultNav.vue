@@ -20,7 +20,7 @@ import { searchMixin } from "@/mixins/searchMixins"
 
 export default {
   name: "SearchResultNav",
-  mixins: [searchMixin], 
+  mixins: [searchMixin],
   props: {
     activePage: {
       type: Number,
@@ -73,7 +73,7 @@ export default {
   methods: {
     linkGen: function(pageNum) {
       return {
-        path: "/flora/search",
+        path: this.$route.path,
         query: {
           ...this.$route.query,
           page: pageNum
