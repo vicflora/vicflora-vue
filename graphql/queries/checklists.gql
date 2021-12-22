@@ -1,45 +1,20 @@
 query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
-  parkReservesByPoint(latitude: $latitude, longitude: $longitude) {
-    type
-    geometry {
-      type
-     # coordinates
-    }
+  parksOrReserves: parkReservesByPoint(latitude: $latitude, longitude: $longitude) {
     properties {
-      id
       name
-      nameShort
-      areaType
     }
   }
-  
-  bioregionsByPoint(latitude: $latitude, longitude: $longitude) {
-    type
-    geometry {
-      type
-      # coordinates
-    }
+
+  bioregions: bioregionsByPoint(latitude: $latitude, longitude: $longitude) {
     properties {
-      id
       name
-      number
       code
-      regionCode
     }
   }
 
-  localGovernmentAreasByPoint(latitude: $latitude, longitude: $longitude) {
-    type
-    geometry {
-      type
-      # coordinates
-    }
-
+  localGovernmentAreas: localGovernmentAreasByPoint(latitude: $latitude, longitude: $longitude) {
     properties {
-      id
       name
-      nameAbbr
-      gazetted
     }
   }
 }
