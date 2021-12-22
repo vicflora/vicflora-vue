@@ -20,13 +20,10 @@ export const searchMixin = {
       return this.$route.query.q;
     },
     fq: function() {
-      // more than 1 filter in fq
       if (typeof this.$route.query.fq === "object") {
         return this.$route.query.fq
-        //1 filter in fq
       } else if (typeof this.$route.query.fq === "string") {
         return [this.$route.query.fq]
-        // null in fq
       } else {
         return []
       }
@@ -74,10 +71,6 @@ export const searchWatchMixin = {
         })
       }
     }
-  },
-  created() {
-    this.$apollo.queries.search.setVariables({ input: this.input })
-    this.$apollo.queries.search.skip = false
   },
 }
 

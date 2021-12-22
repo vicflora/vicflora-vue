@@ -85,6 +85,10 @@ export default {
       skip: true
     }
   },
+  created() {
+    this.$apollo.queries.search.setVariables({ input: this.input })
+    this.$apollo.queries.search.skip = false
+  },
   mounted() {
     if (window.innerWidth < 992) {
       this.filtersFacet = false
