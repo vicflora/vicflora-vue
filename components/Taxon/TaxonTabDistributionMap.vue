@@ -8,21 +8,21 @@
         :options="mapOptions"
       >
         <l-marker v-if="marker" :lat-lng="marker" ref="marker">
-          <l-icon 
+          <l-icon
             :icon-url="icon.url"
-            :icon-size="icon.size" 
+            :icon-size="icon.size"
             :shadow-size="icon.size"
           />
-          <l-popup 
-            ref="popup" 
+          <l-popup
+            ref="popup"
             :lat-lng="marker"
             :options="popupOptions"
           >
-            <taxon-tab-distribution-map-popup-content 
+            <taxon-tab-distribution-map-popup-content
               :occurrences="taxonOccurrencesAtPoint.data"/>
           </l-popup>
         </l-marker>
-        
+
         <l-control-layers position="topright"/>
 
         <l-tile-layer
@@ -77,9 +77,9 @@
 <script>
 import { baseLayersMixin, iconMixin, popupMixin } from "@/mixins/mapMixins"
 import "leaflet/dist/leaflet.css"
-import TaxonTabDistributionMapPopupContent 
+import TaxonTabDistributionMapPopupContent
     from "@/components/Taxon/TaxonTabDistributionMapPopupContent"
-import { taxonOccurrencesAtPointQuery } 
+import { taxonOccurrencesAtPointQuery }
     from "@/graphql/queries/taxonOccurrencesAtPointQuery.gql"
 
 export default {
@@ -88,7 +88,7 @@ export default {
     TaxonTabDistributionMapPopupContent
   },
   mixins: [
-    baseLayersMixin, 
+    baseLayersMixin,
     iconMixin,
     popupMixin
   ],
@@ -124,17 +124,17 @@ export default {
   },
   computed: {
     cqlFilter: function() {
-      return `taxon_concept_id='${this.taxonConceptId}' ` + 
+      return `taxon_concept_id='${this.taxonConceptId}' ` +
           `AND occurrence_status NOT IN ('doubtful', 'absent') ` +
           `AND establishment_means NOT IN ('cultivated')`
     },
     occurrenceLayerUrl: function() {
-      return `http://vicflora.test:8084/geoserver/vicflora-mapper/wms?` +
-          `cql_filter=${this.cqlFilter}`
+      return process.env.vicfloraMapperBaseUrl +
+          `?cql_filter=${this.cqlFilter}`
     },
     baseLayerUrl: function() {
-      return `http://vicflora.test:8084/geoserver/vicflora-mapper/wms?` +
-          `cql_filter=${this.cqlFilter};INCLUDE`
+      return process.env.vicfloraMapperBaseUrl +
+          `?cql_filter=${this.cqlFilter};INCLUDE`
     }
   },
   mounted() {

@@ -3,13 +3,13 @@
     <b-row>
       <b-col cols="12">
         <b-nav pills>
-          <b-nav-item 
-            :active="showMap === 'Victoria'" 
+          <b-nav-item
+            :active="showMap === 'Victoria'"
             @click="toggleMap('Victoria')"
           >Victoria</b-nav-item>
-          
-          <b-nav-item 
-            :active="showMap === 'Australia'" 
+
+          <b-nav-item
+            :active="showMap === 'Australia'"
             @click="toggleMap('Australia')"
           >Australia</b-nav-item>
         </b-nav>
@@ -18,22 +18,22 @@
     <b-row v-if="showMap==='Victoria'">
       <!-- Map -->
       <b-col cols="12" class="text-left">
-        <distribution-map 
-          :taxonConceptId="concept.id" 
+        <distribution-map
+          :taxonConceptId="concept.id"
           @layer="switchLayer($event)"
         />
 
         <TaxonTabDistributionLegend class="vf-distribution-tab-section" />
 
-        <distribution-table 
+        <distribution-table
           v-if="layer != 'None'"
-          :tableData="tableData" 
+          :tableData="tableData"
           :layer="layer"
           class="vf-distribution-tab-section"
         />
 
-        <TaxonTabDistributionSources 
-          :sources="concept.mapLinks.mapSource" 
+        <TaxonTabDistributionSources
+          :sources="concept.mapLinks.mapSource"
            class="vf-distribution-tab-section"
         />
 
@@ -41,7 +41,7 @@
     </b-row>
     <b-row v-if="showMap==='Australia'">
       <b-col cols="12" class="text-left">
-        <distribution-avh-map 
+        <distribution-avh-map
           :name="concept.taxonName.fullName"
           :rankId="concept.taxonTreeDefItem.rankId"
         />
@@ -64,10 +64,10 @@ import TaxonConceptParkReservesQuery from "~/graphql/queries/taxonConceptParkRes
 
 export default {
   name: "TaxonTabDistribution",
-  components: { 
-    DistributionMapConfig, 
-    DistributionMap, 
-    DistributionAvhMap, 
+  components: {
+    DistributionMapConfig,
+    DistributionMap,
+    DistributionAvhMap,
     DistributionTable,
     TaxonTabDistributionLegend,
     TaxonTabDistributionSources,

@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const axios = require("axios")
 const fs = require("fs-extra")
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -78,6 +79,10 @@ export default {
   },
   server: {
     host: "0"
+  },
+  env: {
+    graphQlServer: process.env.GRAPHQL_SERVER,
+    vicfloraMapperBaseUrl: process.env.VICFLORA_MAPPER_BASE_URL
   },
   hooks: {
     build: {
