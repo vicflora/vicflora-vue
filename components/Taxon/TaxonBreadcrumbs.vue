@@ -1,7 +1,7 @@
 <template>
   <b-breadcrumb>
     <!-- higherClassification -->
-    <Crumb 
+    <Crumb
       v-for="crumb in breadcrumbs"
       :key="crumb.id"
       :crumb="crumb"
@@ -9,15 +9,15 @@
 
     <!-- Siblings -->
     <b-breadcrumb-item class="vf-breadcrumb-item-siblings">
-      <Siblings :siblings="data.taxonConcept.siblings"/>
+      <Siblings :siblings="concept.siblings"/>
     </b-breadcrumb-item>
 
     <!-- Children -->
-    <b-breadcrumb-item 
-      v-if="data.taxonConcept.children.length !== 0"
+    <b-breadcrumb-item
+      v-if="concept.children.length !== 0"
       class="vf-breadcrumb-item-children"
     >
-      <Children :children="data.taxonConcept.children"/>
+      <Children :children="concept.children"/>
     </b-breadcrumb-item>
   </b-breadcrumb>
 </template>
@@ -35,9 +35,14 @@ export default {
     Children
   },
   props: {
-    data: {
+    concept: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      childrenSelected: null
     }
   },
   computed: {
@@ -52,7 +57,7 @@ export default {
       },
     },
     breadcrumbs() {
-      return this.data.taxonConcept.higherClassification
+      return this.concept.higherClassification
         .slice()
         .sort((a, b) => a.depth - b.depth)
         .slice(3)

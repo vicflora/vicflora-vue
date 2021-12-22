@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-container 
-      id="vf-browse-classification" 
+    <b-container
+      id="vf-browse-classification"
       class="m-container"
     >
       <b-row>
@@ -9,61 +9,37 @@
           <div class="m-title">
             <h2>Classification</h2>
           </div>
-        </b-col>   
+        </b-col>
       </b-row>
-      <div>
-        <ApolloQuery
-          :query="taxonClassificationQuery"
-          :variables="{ id }"
-        >
-          <template v-slot="{ result: { loading, error, data } }">
-            <!-- Loading -->
-            <div v-if="loading" class="loading apollo">Loading...</div>
+      <div v-if="taxonConcept">
+        <TaxonClassificationHigherClassification
+          :higherClassification="taxonConcept.higherClassification"
+          :pageType="'classification'"
+        />
 
-            <!-- Error -->
-            <div v-else-if="error" class="error apollo">{{ error }}</div>
+        <!-- current taxon -->
+        <TaxonClassificationCurrentTaxon
+          :taxonConcept="taxonConcept"
+          :depth="taxonConcept.higherClassification.length"
+          :pageType="'classification'"
+        />
 
-            <!-- Result -->
-            <div v-else-if="data" class="result apollo">
-              <!-- higher classification -->
-              <TaxonClassificationHigherClassification 
-                :higherClassification="data.taxonConcept.higherClassification"
-                :pageType="'classification'" 
-              />
-
-              <!-- current taxon -->
-              <TaxonClassificationCurrentTaxon 
-                :taxonConcept="data.taxonConcept"
-                :depth="data.taxonConcept.higherClassification.length"
-                :pageType="'classification'" 
-              />
-
-              <!-- children -->
-              <TaxonClassificationChildren 
-                :children="data.taxonConcept.children"
-                :depth="data.taxonConcept.higherClassification.length + 1"
-                :pageType="'classification'" 
-              />
-            </div>
-
-            <!-- No result -->
-            <div v-else class="no-result apollo">
-              <div class="spinner-border mt-5 mb-1" role="status"></div>
-              <h5>Loading...</h5>
-            </div>
-          </template>
-        </ApolloQuery>
+        <!-- children -->
+        <TaxonClassificationChildren
+          :children="taxonConcept.children"
+          :depth="taxonConcept.higherClassification.length + 1"
+          :pageType="'classification'"
+        />
       </div>
     </b-container>
   </div>
 </template>
 
 <script>
-import taxonClassificationQuery from "@/graphql/queries/taxonClassificationQuery"
 import TaxonClassificationHigherClassification from "~/components/Taxon/TaxonClassificationHigherClassification"
 import TaxonClassificationCurrentTaxon from "~/components/Taxon/TaxonClassificationCurrentTaxon"
 import TaxonClassificationChildren from "~/components/Taxon/TaxonClassificationChildren"
-import { watchRouteIdMixin } from "~/mixins/routeMixins"
+import taxonClassificationQuery from "@/graphql/queries/taxonClassificationQuery"
 
 export default {
   name: "Classification",
@@ -72,11 +48,27 @@ export default {
     TaxonClassificationCurrentTaxon,
     TaxonClassificationChildren
   },
-  mixins: [watchRouteIdMixin],
   data(){
     return {
-      taxonClassificationQuery
+      taxonConcept: null,
     }
+  },
+  apollo: {
+    taxonConcept: {
+      query: taxonClassificationQuery,
+      result({ loading, data }) {
+        if (!loading) {
+          $nuxt.$emit('progress-bar-stop')
+          this.taxonConcept = data.taxonConcept
+        }
+      },
+      skip: true,
+    },
+  },
+  created() {
+    this.$nuxt.$emit('progress-bar-start')
+    this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
+    this.$apollo.queries.taxonConcept.skip = false
   },
 }
 </script>
