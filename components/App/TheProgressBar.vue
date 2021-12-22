@@ -13,7 +13,7 @@ export default {
     return {
       timer: 0,
       value: 0,
-      max: 100,
+      max: 50,
       timer: false,
       show: false
     };
