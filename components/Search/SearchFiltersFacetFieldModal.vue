@@ -122,11 +122,11 @@ export default {
     moreFacets: {
       type: Boolean,
       required: true
-    }, 
+    },
     facetName: {
       type: String,
       required: true
-    }, 
+    },
     data: {
       type: Object,
       required: true
@@ -242,7 +242,7 @@ export default {
         newFq = `-${this.facetData.facets[0].fq.split(":")[0]}:${this.modalSelected[0]}`
       }
       this.$router.push({
-        path: "/flora/search",
+        path: this.$route.path,
         query: {
           ...this.$route.query,
           fq: Array.from(new Set([...this.fq, newFq])),

@@ -8,20 +8,20 @@
         @click="visible = !visible"
       >
         {{ facetField.fieldLabel }}
-        <BIcon 
+        <BIcon
           v-if="visible"
-          icon="caret-down-fill" 
+          icon="caret-down-fill"
         />
-        <BIcon 
+        <BIcon
           v-else
-          icon="caret-right-fill" 
+          icon="caret-right-fill"
         />
       </div>
 
-      <BCollapse 
-        :id="facetField.fieldName" 
+      <BCollapse
+        :id="facetField.fieldName"
         v-model="visible"
-        visible 
+        visible
       >
         <BFormGroup v-slot="{ ariaDescribedby }">
           <BFormCheckboxGroup
@@ -29,23 +29,6 @@
             :aria-describedby="ariaDescribedby"
             @change="applySelected"
           >
-          <!-- <BFormCheckboxGroup
-            v-model="selected"
-            :aria-describedby="ariaDescribedby"
-          > -->
-
-          <!-- <div v-for="facet in facetField.facets.slice(0, 3)"
-            :key="facet.value">
-            <BFormCheckbox
-              :value="facet.fq.split(':')[1]"
-              :label="facet.value"
-              class="m-facetvalue"
-            >
-              <span class="m-facet-value">{{ facet.value }} ({{ facet.count }})</span>
-            </BFormCheckbox>
-          </div> -->
-
-
             <div v-for="facet in facetField.facets.slice(0, 3)"
               :key="facet.value">
               <SearchFiltersFacet :facet="facet"/>
@@ -151,7 +134,7 @@ export default {
           (item) => item.split(":")[0] !== key
         )
         this.$router.push({
-          path: "/flora/search",
+          path: this.$route.path,
           query: {
             ...this.$route.query,
             fq: Array.from(new Set([...newfq, ...facetQueryString])),
@@ -164,7 +147,7 @@ export default {
             ? this.selected
             : [this.$route.query.fq]
         this.$router.push({
-          path: "/flora/search",
+          path: this.$route.path,
           query: {
             ...this.$route.query,
             fq: Array.from(new Set([...newfq, ...facetQueryString])),
@@ -173,7 +156,7 @@ export default {
         })
       } else { // no fq
         this.$router.push({
-          path: "/flora/search",
+          path: this.$route.path,
           query: {
             ...this.$route.query,
             fq: facetQueryString,
