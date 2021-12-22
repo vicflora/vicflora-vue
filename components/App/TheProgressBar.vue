@@ -13,7 +13,7 @@ export default {
     return {
       timer: 0,
       value: 0,
-      max: 300,
+      max: 100,
       timer: false,
       show: false
     };
@@ -22,7 +22,7 @@ export default {
     this.$nuxt.$on('progress-bar-start', () => {
       this.show = true
       this.value = 0
-      this.startTimer()
+      setTimeout(this.startTimer, 200)
     })
     this.$nuxt.$on('progress-bar-stop', () => {
       this.stopTimer()
