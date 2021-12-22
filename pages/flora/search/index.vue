@@ -78,7 +78,11 @@ export default {
     search: {
       query: SearchQuery,
       result ({ data, loading }) {
-        if (!loading) {
+        if (loading) {
+          $nuxt.$emit('progress-bar-start')
+        }
+        else {
+          $nuxt.$emit('progress-bar-stop')
           this.data = data
         }
       },

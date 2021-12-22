@@ -8,12 +8,6 @@
 <template>
   <div class="container m-keybase">
     <div class="keybase-container" data-key-id="8099">
-      <div class="row" v-show="!key">
-        <div class="row text-center mt-5"  style="display:block">
-          <div class="spinner-border" role="status"></div>
-          <h5>Loading...</h5>
-        </div>
-      </div>
       <div class="row" v-show="key">
         <div class="col-md-12">
           <ol class="breadcrumb">
@@ -123,6 +117,34 @@ export default {
     }
     // })
   },
+  watch: {
+    "$route.params.id"() {
+      this.getKey(this.$route.params.id);
+    }
+  },
+  mounted() {
+    $nuxt.$emit('progress-bar-start')
+    this.getKey(this.$route.params.id);
+    // drag events from KeyBase
+    $(".keybase-player-window").on(
+      "mousedown",
+      ".keybase-player-drag-leftright",
+      $.prototype.keybase.dragLeftRight
+    );
+    $(".keybase-player-leftpane").on(
+      "mousedown",
+      ".keybase-player-drag-updown",
+      $.prototype.keybase.dragUpDownLeftPane
+    );
+    $(".keybase-player-rightpane").on(
+      "mousedown",
+      ".keybase-player-drag-updown",
+      $.prototype.keybase.dragUpDownRightPane
+    );
+    $(document).mouseup(function(e) {
+      $(document).unbind("mousemove");
+    });
+  },
   methods: {
     getKey(keyID) {
       $(".keybase-link a").attr(
@@ -156,6 +178,7 @@ export default {
       this.discardedItems = $.prototype.keybase.getters.discardedItems();
     },
     onJson() {
+      $nuxt.$emit('progress-bar-stop')
       let json = $.prototype.keybase.getters.jsonKey();
       let keyInStore = this.key;
       if (keyInStore && keyInStore.taxonomic_scope.url) {
@@ -180,38 +203,11 @@ export default {
     },
     onBracketedKey() {
       this.bracketedKey = $.prototype.keybase.getters.bracketedKey()[0];
-      // 
+      //
     },
     displayBracketedKey(){
       $.prototype.keybase.defaults.bracketedKeyDisplay(this.key)
     }
   },
-  watch: {
-    "$route.params.id"() {
-      this.getKey(this.$route.params.id);
-    }
-  },
-  mounted() {
-    this.getKey(this.$route.params.id);
-    // drag events from KeyBase
-    $(".keybase-player-window").on(
-      "mousedown",
-      ".keybase-player-drag-leftright",
-      $.prototype.keybase.dragLeftRight
-    );
-    $(".keybase-player-leftpane").on(
-      "mousedown",
-      ".keybase-player-drag-updown",
-      $.prototype.keybase.dragUpDownLeftPane
-    );
-    $(".keybase-player-rightpane").on(
-      "mousedown",
-      ".keybase-player-drag-updown",
-      $.prototype.keybase.dragUpDownRightPane
-    );
-    $(document).mouseup(function(e) {
-      $(document).unbind("mousemove");
-    });
-  }
-};
+}
 </script>
