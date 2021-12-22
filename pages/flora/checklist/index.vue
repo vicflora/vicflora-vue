@@ -113,7 +113,7 @@ import SearchResult from "@/components/Search/SearchResult"
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { selectedAreaMixin } from "@/mixins/checklistMixins"
 import ChecklistMapInfoQuery from "@/graphql/queries/checklists"
-import SearchQuery from "@/graphql/queries/search.gql"
+import SearchQuery from "@/graphql/queries/search"
 
 const facetFields = [
   "name_type",
