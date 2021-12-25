@@ -100,20 +100,7 @@
 <script>
 import gql from "graphql-tag"
 import { searchMixin } from "@/mixins/searchMixins"
-
-var SearchResultFacetFieldGql = gql`
-  query facetField($input: FieldFacetInput) {
-    facetField(input: $input) {
-      fieldName
-      fieldLabel
-      facets {
-        value
-        count
-        fq
-      }
-    }
-  }
-`
+import { FacetFieldQuery } from "@/graphql/queries/facetFieldQuery"
 
 export default {
   name: "FacetsCollapseModal",
@@ -173,7 +160,7 @@ export default {
   methods: {
     getData: function(input) {
       this.$apollo.addSmartQuery("facetField", {
-        query: SearchResultFacetFieldGql,
+        query: FacetFieldQuery,
         variables: {
           input,
         },

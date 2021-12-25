@@ -1,0 +1,10 @@
+query FacetFieldQuery($input: FieldFacetInput) {
+  facetField(input: $input) {
+    fieldName
+    facets {
+      value
+      count
+      fq
+    }
+  }
+}
