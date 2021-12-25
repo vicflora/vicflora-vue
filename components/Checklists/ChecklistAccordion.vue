@@ -129,7 +129,7 @@
 
 <script>
 export default {
-  name: "ChecklistPointData",
+  name: "ChecklistAccordion",
   props: {
     layer: {
       type: String,

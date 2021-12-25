@@ -34,7 +34,7 @@
       </b-row>
 
       <BRow>
-        <ChecklistPointData
+        <ChecklistAccordion
           :layer="layer"
           :pointData="pointData"
         />
@@ -106,7 +106,7 @@
 <script>
 import 'leaflet/dist/leaflet.css'
 import ChecklistMap from "@/components/Checklists/ChecklistMap"
-import ChecklistPointData from "@/components/Checklists/ChecklistPointData"
+import ChecklistAccordion from "@/components/Checklists/ChecklistAccordion"
 import SearchApplied from "@/components/Search/SearchApplied"
 import SearchFilters from "@/components/Search/SearchFilters"
 import SearchResult from "@/components/Search/SearchResult"
@@ -132,7 +132,7 @@ export default {
   name: "CheckList",
   components: {
     ChecklistMap,
-    ChecklistPointData,
+    ChecklistAccordion,
     SearchApplied,
     SearchFilters,
     SearchResult,
