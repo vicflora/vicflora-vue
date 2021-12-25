@@ -62,10 +62,9 @@
                   <td>
                     <BFormCheckbox
                       style="display:inline-block;"
-                      :value="facet.fq.split(':')[1]"
+                      :value="facet.fq"
                       :label="facet.value"
                     />
-
                     <span class="m-facet-value">{{ facet.value }}</span>
                   </td>
                   <td>
@@ -199,46 +198,58 @@ export default {
       this.modalSelected = []
     },
     includeSelected: function() {
-      let newFq
-      if (this.modalSelected.length == 0) {
-        alert('You need to select at least one facet.')
-        return
-      }
-      if (this.modalSelected.length > 1) {
-        newFq = `${this.facetData.facets[0].fq.split(":")[0]}:(${this.modalSelected.join(' OR ')})`
-      }
-      else {
-        newFq = `${this.facetData.facets[0].fq.split(":")[0]}:${this.modalSelected[0]}`
-      }
-      this.$router.push({
-        path: "/flora/search",
-        query: {
-          ...this.$route.query,
-          fq: Array.from(new Set([...this.fq, newFq])),
-        },
-      })
-      this.$bvModal.hide("facetModal")
+      this.runFacetSearch('include')
     },
     excludeSelected: function() {
-      let newFq
+      this.runFacetSearch('exclude')
+    },
+    runFacetSearch(which) {
       if (this.modalSelected.length == 0) {
         alert('You need to select at least one facet.')
-        return
+        return false
       }
+      else if (this.modalSelected.length > 1 && this.modalSelected.indexOf(`-${this.data.fieldName}:*`) > -1) {
+        alert("I am confused. Selection includes '(blanks)'.")
+        return false
+      }
+      let fq = this.fq.filter((item) => {
+        return item.substring(0, item.indexOf(':')) !== this.data.fieldName
+      })
+      let newFq
       if (this.modalSelected.length > 1) {
-        newFq = `-${this.facetData.facets[0].fq.split(":")[0]}:(${this.modalSelected.join(' OR ')})`
+        let values = this.modalSelected.map(item => {
+          return item.substring(item.indexOf(':')+1)
+        })
+        newFq = `${this.data.fieldName}:(${values.join(' OR ')})`
       }
       else {
-        newFq = `-${this.facetData.facets[0].fq.split(":")[0]}:${this.modalSelected[0]}`
+        newFq = this.modalSelected[0]
       }
-      this.$router.push({
-        path: this.$route.path,
-        query: {
-          ...this.$route.query,
-          fq: Array.from(new Set([...this.fq, newFq])),
-        },
-      })
-      this.$bvModal.hide("facetModal")
+
+      if (which === 'include') {
+        let include = newFq
+        fq = Array.from(new Set([...fq, include]))
+      }
+      else { // which ==='exclude'
+      let exclude
+        if (newFq.substring(0, 1) === '-') {
+          exclude = newFq.substring(1)
+        }
+        else {
+          exclude = `-${newFq}`
+        }
+        fq = Array.from(new Set([...fq, exclude]))
+      }
+      if (fq) {
+        this.$router.push({
+          path: this.$route.path,
+          query: {
+            ...this.$route.query,
+            fq: fq,
+          },
+        })
+        this.$bvModal.hide("facetModal")
+      }
     },
   }
 }

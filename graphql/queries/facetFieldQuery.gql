@@ -1,6 +1,7 @@
 query FacetFieldQuery($input: FieldFacetInput) {
   facetField(input: $input) {
     fieldName
+    fieldLabel
     facets {
       value
       count
