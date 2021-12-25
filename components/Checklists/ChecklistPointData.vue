@@ -30,19 +30,18 @@
         >
           <b-card-body>
             <b-card-text>
-              <table
-                v-if="pointData" class="table table-sm">
-                <tbody>
-                  <tr
-                    v-for="item in pointData.parksOrReserves"
+              <ul v-if="pointData">
+                <li
+                    v-for="(item, index) in pointData.parksOrReserves"
                     :key="item.id"
-                  >
-                    <td>
-                      <a href="#" @click.stop="setSearchTerm('park_or_reserve', item.properties.name)">{{ item.properties.name }}</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                >
+                  <a v-if="index" href="#" @click.stop="setSearchTerm('park_or_reserve', item.properties.name)">{{ item.properties.name }}</a>
+                  <span v-else>{{ item.properties.name }}</span>
+                </li>
+              </ul>
+              <ul v-else-if="visibleLayer=='Parks and Reserves' && areaFromRoute">
+                <li>{{ areaFromRoute }}</li>
+              </ul>
             </b-card-text>
           </b-card-body>
         </b-collapse>
@@ -74,19 +73,18 @@
         >
           <b-card-body>
             <b-card-text>
-              <table
-                v-if="pointData"
-                class="table table-sm"
-              >
-                <tbody>
-                  <tr
-                    v-for="item in pointData.bioregions"
-                    :key="item.id"
-                  >
-                    <td><a href="#" @click.stop="setSearchTerm('bioregion', item.properties.name)">{{ item.properties.name }} ({{ item.properties.code }})</a></td>
-                  </tr>
-                </tbody>
-              </table>
+              <ul v-if="pointData">
+                <li
+                  v-for="(item, index) in pointData.bioregions"
+                  :key="item.id"
+                >
+                  <a v-if="index" href="#" @click.stop="setSearchTerm('bioregion', item.properties.name)">{{ item.properties.name }} ({{ item.properties.code }})</a>
+                  <span v-else>{{ item.properties.name }} ({{ item.properties.code }}</span>
+                </li>
+              </ul>
+              <ul v-else-if="visibleLayer=='Bioregions' && areaFromRoute">
+                <li>{{ areaFromRoute }}</li>
+              </ul>
             </b-card-text>
           </b-card-body>
         </b-collapse>
@@ -109,13 +107,18 @@
         >
           <b-card-body>
             <b-card-text>
-              <table v-if="pointData" class="table table-sm">
-                <tbody>
-                  <tr v-for="item in pointData.localGovernmentAreas" :key="item.id">
-                    <td><a href="#" @click.stop="setSearchTerm('local_government_area', item.properties.name)">{{ item.properties.name }}</a></td>
-                  </tr>
-                </tbody>
-              </table>
+              <ul v-if="pointData">
+                <li
+                  v-for="(item, index) in pointData.localGovernmentAreas"
+                  :key="item.id"
+                >
+                  <a v-if="index" href="#" @click.stop="setSearchTerm('local_government_area', item.properties.name)">{{ item.properties.name }}</a>
+                  <span v-else>{{ item.properties.name }}</span>
+                </li>
+              </ul>
+              <ul v-else-if="visibleLayer=='Local Government Areas' && areaFromRoute">
+                <li>{{ areaFromRoute }}</li>
+              </ul>
             </b-card-text>
           </b-card-body>
         </b-collapse>
@@ -139,7 +142,16 @@ export default {
   },
   data() {
     return {
-      visibleLayer: "Parks and Reserves"
+      visibleLayer: "Parks and Reserves",
+    }
+  },
+  computed: {
+    areaFromRoute() {
+      if ('q' in this.$route.query && this.$route.query.q !== undefined && this.$route.query.q !== '-*:*') {
+        let q = this.$route.query.q
+        return q.substring(q.indexOf(':')+1).replace(/"/g, '')
+      }
+      return false
     }
   },
   mounted() {
