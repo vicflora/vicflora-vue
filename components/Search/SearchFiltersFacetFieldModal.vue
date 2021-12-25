@@ -137,7 +137,8 @@ export default {
       // infinite scroll
       input: {
         field: this.data.facets[0].fq.split(":")[0].replace("-", ""),
-        q: this.q,
+        q: null,
+        fq: null,
         limit: 50,
         offset: 0,
         sort: "count",
@@ -187,6 +188,8 @@ export default {
     // when the scroll is at the bottom, trigger to load more data
     loadMore: function() {
       this.input.limit = this.input.limit + 50
+      this.input.q = this.q
+      this.input.fq = this.fq
       if (this.order === "count") {
         this.input.sort = "count"
       } else {
