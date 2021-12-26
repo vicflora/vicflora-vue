@@ -1,139 +1,35 @@
 <template>
-  <BCol>
-    <div
-      class="accordion"
-      role="tablist"
-    >
-      <b-card
-        no-body
-        class="mb-1"
+  <ClientOnly>
+    <BCol>
+      <div
+        class="accordion"
+        role="tablist"
       >
-        <b-card-header
-          header-tag="header"
-          class="p-1"
-          role="tab"
-        >
-          <b-button
-            block
-            v-b-toggle.accordion-1
-            :variant="visibleLayer=='Parks and Reserves' ? 'primary' : 'light'"
-          >
-            Parks or reserves
-          </b-button>
-        </b-card-header>
-        <b-collapse
-          id="accordion-1"
-          :visible="visibleLayer=='Parks and Reserves'"
-          accordion="checklist-layer-accordion"
-          role="tabpanel"
-          @shown="setVisibleLayer('Parks and Reserves')"
-        >
-          <b-card-body>
-            <b-card-text>
-              <ul v-if="pointData">
-                <li
-                    v-for="(item, index) in pointData.parksOrReserves"
-                    :key="item.id"
-                >
-                  <a v-if="index" href="#" @click.stop="setSearchTerm('park_or_reserve', item.properties.name)">{{ item.properties.name }}</a>
-                  <span v-else>{{ item.properties.name }}</span>
-                </li>
-              </ul>
-              <ul v-else-if="visibleLayer=='Parks and Reserves' && areaFromRoute">
-                <li>{{ areaFromRoute }}</li>
-              </ul>
-            </b-card-text>
-          </b-card-body>
-        </b-collapse>
-      </b-card>
-
-      <b-card
-        no-body
-        class="mb-1"
-      >
-        <b-card-header
-          header-tag="header"
-          class="p-1"
-          role="tab"
-        >
-          <b-button
-            block
-            v-b-toggle.accordion-2
-            :variant="visibleLayer=='Bioregions' ? 'primary' : 'light'"
-          >
-            Bioregions
-          </b-button>
-        </b-card-header>
-        <b-collapse
-          id="accordion-2"
-          :visible="visibleLayer=='Bioregions'"
-          accordion="checklist-layer-accordion"
-          role="tabpanel"
-          @shown="setVisibleLayer('Bioregions')"
-        >
-          <b-card-body>
-            <b-card-text>
-              <ul v-if="pointData">
-                <li
-                  v-for="(item, index) in pointData.bioregions"
-                  :key="item.id"
-                >
-                  <a v-if="index" href="#" @click.stop="setSearchTerm('bioregion', item.properties.name)">{{ item.properties.name }} ({{ item.properties.code }})</a>
-                  <span v-else>{{ item.properties.name }} ({{ item.properties.code }}</span>
-                </li>
-              </ul>
-              <ul v-else-if="visibleLayer=='Bioregions' && areaFromRoute">
-                <li>{{ areaFromRoute }}</li>
-              </ul>
-            </b-card-text>
-          </b-card-body>
-        </b-collapse>
-      </b-card>
-
-      <b-card no-body class="mb-1">
-        <b-card-header header-tag="header" class="p-1" role="tab">
-          <b-button
-            block
-            v-b-toggle.accordion-3
-            :variant="visibleLayer=='Local Government Areas' ? 'primary' : 'light'"
-          >Local Government Areas</b-button>
-        </b-card-header>
-        <b-collapse
-          id="accordion-3"
-          :visible="visibleLayer=='Local Government Areas'"
-          accordion="checklist-layer-accordion"
-          role="tabpanel"
-          @shown="setVisibleLayer('Local Government Areas')"
-        >
-          <b-card-body>
-            <b-card-text>
-              <ul v-if="pointData">
-                <li
-                  v-for="(item, index) in pointData.localGovernmentAreas"
-                  :key="item.id"
-                >
-                  <a v-if="index" href="#" @click.stop="setSearchTerm('local_government_area', item.properties.name)">{{ item.properties.name }}</a>
-                  <span v-else>{{ item.properties.name }}</span>
-                </li>
-              </ul>
-              <ul v-else-if="visibleLayer=='Local Government Areas' && areaFromRoute">
-                <li>{{ areaFromRoute }}</li>
-              </ul>
-            </b-card-text>
-          </b-card-body>
-        </b-collapse>
-      </b-card>
-    </div>
-  </BCol>
+        <checklist-accordion-card
+          v-for="(item, index) in layers"
+          :key=index
+          :layer="item"
+          :index="index"
+          :visible="layer === item.name"
+          :areas="pointData ? pointData[item.dataField] : []"
+        />
+      </div>
+    </BCol>
+  </ClientOnly>
 </template>
 
 <script>
+import ChecklistAccordionCard from "@/components/Checklists/ChecklistAccordionCard"
+
 export default {
   name: "ChecklistAccordion",
+  components: {
+    ChecklistAccordionCard,
+  },
   props: {
     layer: {
       type: String,
-      default: 'Parks and Reserves'
+      default: 'Parks and Reserves',
     },
     pointData: {
       type: [Array, Object],
@@ -143,16 +39,32 @@ export default {
   data() {
     return {
       visibleLayer: "Parks and Reserves",
+      layers: [
+        {
+          name: 'Parks and Reserves',
+          dataField: 'parksOrReserves',
+          searchField: 'park_or_reserve',
+        },
+        {
+          name: 'Bioregions',
+          dataField: 'bioregions',
+          searchField: 'bioregion',
+        },
+        {
+          name: 'Local Government Areas',
+          dataField: 'localGovernmentAreas',
+          searchField: 'local_government_area',
+        },
+      ],
     }
   },
-  computed: {
-    areaFromRoute() {
-      if ('q' in this.$route.query && this.$route.query.q !== undefined && this.$route.query.q !== '-*:*') {
-        let q = this.$route.query.q
-        return q.substring(q.indexOf(':')+1).replace(/"/g, '')
-      }
-      return false
-    }
+  created() {
+    this.$nuxt.$on('accordion-collapse-shown', layer => {
+      this.setVisibleLayer(layer)
+    })
+    this.$nuxt.$on('accordion-area-clicked', (field, value) => {
+      this.setSearchTerm(field, value)
+    })
   },
   mounted() {
     if ('q' in this.$route.query
@@ -176,6 +88,10 @@ export default {
       this.visibleLayer = layer
     }
   },
+  beforeDestroy() {
+    this.$nuxt.$off('accordion-collapse-shown')
+    this.$nuxt.$off('accordion-area-clicked')
+  },
   methods: {
     setVisibleLayer(layer) {
       if (this.visibleLayer !== layer) {
@@ -188,7 +104,13 @@ export default {
         q: `${field}:"${value}"`,
         area: value
       })
-    }
-  }
+    },
+  },
 }
 </script>
+
+<style lang="scss">
+.m-checklist .accordion ul {
+  padding-left: 10px;
+}
+</style>
