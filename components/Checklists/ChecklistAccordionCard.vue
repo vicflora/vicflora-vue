@@ -30,8 +30,8 @@
                 v-for="(item, index) in areas"
                 :key="item.id"
             >
-              <a v-if="index" href="#" @click.stop="onAreaClicked(item.properties.name)">{{ item.properties.name }}</a>
-              <span v-else>{{ item.properties.name }}</span>
+              <a v-if="index" href="#" @click.stop="onAreaClicked(item.properties.name)">{{ item.properties.label }}</a>
+              <span v-else>{{ item.properties.label }}</span>
             </li>
           </ul>
           <ul v-else-if="visible && areaFromRoute">

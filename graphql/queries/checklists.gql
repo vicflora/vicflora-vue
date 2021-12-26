@@ -2,19 +2,21 @@ query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
   parksOrReserves: parkReservesByPoint(latitude: $latitude, longitude: $longitude) {
     properties {
       name
+      label
     }
   }
 
   bioregions: bioregionsByPoint(latitude: $latitude, longitude: $longitude) {
     properties {
       name
-      code
+      label
     }
   }
 
   localGovernmentAreas: localGovernmentAreasByPoint(latitude: $latitude, longitude: $longitude) {
     properties {
       name
+      label
     }
   }
 }
