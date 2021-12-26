@@ -11,19 +11,20 @@
           @click="onClick"
         >
         </b-img>
-        <b-spinner 
-          v-show="showImage === false"
-          label="Spinning" 
-          variant="secondary"
-        />
+        <LoadingSpinner v-show="showImage === false" />
       </div>
     </figure>
   </div>
 </template>
 
 <script>
+import LoadingSpinner from "@/components/App/AppLoadingSpinner"
+
 export default {
   name: "TaxonTabImagesThumbnail",
+  components: {
+    LoadingSpinner,
+  },
   props: {
     taxonConcept: {
       type: Object,

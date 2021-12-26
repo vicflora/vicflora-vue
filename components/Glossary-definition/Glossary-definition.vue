@@ -58,11 +58,7 @@
                     :alt="image.caption"
                   >
                   </b-img>
-                  <b-spinner
-                    label="Spinning"
-                    v-show="showImage === false"
-                    variant="primary"
-                  ></b-spinner>
+                  <LoadingSpinner v-show="showImage === false" />
                 </div>
               </div>
             </b-col>
@@ -75,12 +71,19 @@
 </template>
 
 <script>
-import "viewerjs/dist/viewer.css";
-import Viewer from "v-viewer";
-import Vue from "vue";
-Vue.use(Viewer);
+import "viewerjs/dist/viewer.css"
+import Viewer from "v-viewer"
+import Vue from "vue"
+import LoadingSpinner from "@/components/App/AppLoadingSpinner"
+
+Vue.use(Viewer)
+
+
 export default {
   name: "GlossaryDefinition",
+  components: {
+    LoadingSpinner,
+  },
   props: ["definition"],
   data() {
     return {
@@ -92,7 +95,7 @@ export default {
   },
   methods: {
     loadImage() {
-      this.showImage = true;
+      this.showImage = true
     }
   }
 };

@@ -9,17 +9,18 @@
       @load="loadImage"
       v-show="showImage === true"
     />
-    <b-spinner
-      label="Spinning"
-      v-show="showImage === false"
-      variant="secondary"
-    ></b-spinner>
+    <LoadingSpinner v-show="showImage === false" />
   </div>
 </template>
 
 <script>
+import LoadingSpinner from "@/components/App/AppLoadingSpinner"
+
 export default {
   name: "TaxonTabOverviewImage",
+  components: {
+    LoadingSpinner,
+  },
   props: {
     src: {
       type: String,
@@ -64,7 +65,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 3px 5px;
-  
+
   img {
     max-height: 95%;
     max-width: 95%;
