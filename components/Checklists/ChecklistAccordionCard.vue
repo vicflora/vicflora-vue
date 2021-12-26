@@ -1,30 +1,30 @@
 <template>
-  <b-card
+  <BCard
     no-body
     class="mb-1"
   >
-    <b-card-header
+    <BCardHeader
       header-tag="header"
       class="p-1"
       role="tab"
     >
-      <b-button
+      <BButton
         block
         v-b-toggle="`accordion-${index}`"
         :variant="visible ? 'primary' : 'light'"
       >
         {{ layer.name }}
-      </b-button>
-    </b-card-header>
-    <b-collapse
+      </BButton>
+    </BCardHeader>
+    <BCollapse
       :id="`accordion-${index}`"
       :visible="visible"
       accordion="checklist-layer-accordion"
       role="tabpanel"
       @shown="onShown"
     >
-      <b-card-body>
-        <b-card-text>
+      <BCardBody>
+        <BCardText>
           <ul v-if="areas">
             <li
                 v-for="(item, index) in areas"
@@ -37,10 +37,10 @@
           <ul v-else-if="visible && areaFromRoute">
             <li>{{ areaFromRoute }}</li>
           </ul>
-        </b-card-text>
-      </b-card-body>
-    </b-collapse>
-  </b-card>
+        </BCardText>
+      </BCardBody>
+    </BCollapse>
+  </BCard>
 </template>
 
 <script>
