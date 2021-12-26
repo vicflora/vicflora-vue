@@ -5,7 +5,7 @@
         class="accordion"
         role="tablist"
       >
-        <checklist-accordion-card
+        <ChecklistAccordionCard
           v-for="(item, index) in layers"
           :key=index
           :layer="item"
