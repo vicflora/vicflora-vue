@@ -1,28 +1,28 @@
 <template>
-  <div 
-    v-if="taxonConceptImages" 
+  <div
+    v-if="taxonConceptImages"
     class="result apollo"
   >
-    <div 
-      class="m-images" 
+    <div
+      class="m-images"
       v-viewer="viewerOptions"
     >
       <div class="row text-center text-lg-start">
-        <TaxonTabImagesThumbnail 
+        <TaxonTabImagesThumbnail
           v-for="image in taxonConceptImages.data"
           :key="image.id"
-          :taxonConcept="concept" 
+          :taxonConcept="concept"
           :image="image"
         />
       </div>
       <div class="text-right">
-        <b-button 
+        <b-button
           v-if="taxonConceptImages.paginatorInfo.hasMorePages"
-          variant="primary" 
+          variant="primary"
           @click="fetchMore"
         >
           Show more images
-          <b-spinner 
+          <b-spinner
             v-if="$apollo.loading"
             small
             label="loading..."
@@ -65,7 +65,16 @@ export default {
   apollo: {
     taxonConceptImages: {
       query: TaxonConceptImagesQuery,
-      skip: true
+      skip: true,
+      result({ loading, data }) {
+        if (loading) {
+          $nuxt.$emit('progress-bar-start')
+        }
+        else {
+          $nuxt.$emit('progress-bar-stop')
+          this.taxonConceptImages = data.taxonConceptImages
+        }
+      },
     }
   },
   data() {
