@@ -48,10 +48,9 @@ import SearchExcludeHigherTaxa from "@/components/Search/SearchExcludeHigherTaxa
 import SearchApplied from "@/components/Search/SearchApplied"
 import SearchFilters from "@/components/Search/SearchFilters"
 import SearchResult from "@/components/Search/SearchResult"
-
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
-
 import SearchQuery from "@/graphql/queries/search.gql"
+import { FACET_FIELDS } from "@/constants/facet-fields"
 
 export default {
   name: "Search",
@@ -70,7 +69,8 @@ export default {
         rows: 50,
         fq: [],
         page: 1,
-        facetLimit: 20
+        facetLimit: 20,
+        facetField: FACET_FIELDS,
       }
     }
   },
@@ -90,7 +90,9 @@ export default {
     }
   },
   created() {
-    this.$apollo.queries.search.setVariables({ input: this.input })
+    this.$apollo.queries.search.setVariables({
+      input: this.input
+    })
     this.$apollo.queries.search.skip = false
   },
   mounted() {

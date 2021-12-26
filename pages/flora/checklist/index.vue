@@ -114,19 +114,7 @@ import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { selectedAreaMixin } from "@/mixins/checklistMixins"
 import ChecklistMapInfoQuery from "@/graphql/queries/checklists"
 import SearchQuery from "@/graphql/queries/search"
-
-const facetFields = [
-  "name_type",
-  "taxonomic_status",
-  "taxon_rank",
-  "occurrence_status",
-  "establishment_means",
-  "threat_status",
-  "class",
-  "order",
-  "family",
-  "media"
-]
+import { FACET_FIELDS } from "@/constants/facet-fields"
 
 export default {
   name: "CheckList",
@@ -225,7 +213,7 @@ export default {
         this.$apollo.queries.search.refetch({
           input: {
             ...this.input,
-            facetField: facetFields
+            facetField: FACET_FIELDS
           }
         })
       }
@@ -235,7 +223,7 @@ export default {
     this.$apollo.queries.search.setVariables({
       input: {
         ...this.input,
-        facetField: facetFields
+        facetField: FACET_FIELDS
       }
     })
     this.$apollo.queries.search.skip = false
