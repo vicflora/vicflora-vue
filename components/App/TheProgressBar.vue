@@ -20,9 +20,11 @@ export default {
   },
   created() {
     this.$nuxt.$on('progress-bar-start', () => {
-      this.show = true
-      this.value = 0
-      setTimeout(this.startTimer, 200)
+      if (this.show === false) {
+        this.show = true
+        this.value = 0
+        setTimeout(this.startTimer, 200)
+      }
     })
     this.$nuxt.$on('progress-bar-stop', () => {
       this.show = false

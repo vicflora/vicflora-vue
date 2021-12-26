@@ -96,6 +96,8 @@ export default {
     this.$apollo.queries.search.skip = false
   },
   mounted() {
+    $nuxt.$emit('progress-bar-start')
+
     if (window.innerWidth < 992) {
       this.filtersFacet = false
     }
