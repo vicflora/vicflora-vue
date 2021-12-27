@@ -33,6 +33,10 @@ export default {
     image: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number,
+      default: 0,
     }
   },
   data(){
@@ -54,8 +58,9 @@ export default {
       caption += image.creator
       caption += image.rights ? ". " + image.rights : ''
     },
-    onClick() {
-      this.$emit('thumbnail-clicked')
+    onClick(e) {
+      e.preventDefault()
+      $nuxt.$emit('thumbnail-clicked', this.index)
     }
   }
 };

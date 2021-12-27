@@ -5,14 +5,14 @@
   >
     <div
       class="m-images"
-      v-viewer="viewerOptions"
     >
       <div class="row text-center text-lg-start">
         <TaxonTabImagesThumbnail
-          v-for="image in taxonConceptImages.data"
+          v-for="(image, index) in taxonConceptImages.data"
           :key="image.id"
           :taxonConcept="concept"
           :image="image"
+          :index="index"
         />
       </div>
       <div class="text-right">
@@ -30,20 +30,19 @@
         </b-button>
       </div>
     </div>
-
+    <PhotoSwipeElement
+      ref="photoswipe"
+      :items="photoSwipeItems"
+    />
   </div>
 </template>
 
 <script>
-import "viewerjs/dist/viewer.css"
-import Viewer from "v-viewer"
-import Vue from "vue"
 import TaxonTabImagesThumbnail from "@/components/Taxon/TaxonTabImagesThumbnail"
+import PhotoSwipeElement from "@/components/App/AppPhotoSwipeElement"
 import { imagePaginatorMixin } from "~/mixins/imagePaginatorMixin"
 import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"
 import TaxonConceptImagesQuery from "~/graphql/queries/taxonConceptImagesQuery"
-
-Vue.use(Viewer)
 
 const pageSize = 12
 
@@ -51,6 +50,7 @@ export default {
   name: "TaxonTabImages",
   components: {
     TaxonTabImagesThumbnail,
+    PhotoSwipeElement,
   },
   mixins: [
     imagePaginatorMixin,
@@ -73,6 +73,8 @@ export default {
         else {
           $nuxt.$emit('progress-bar-stop')
           this.taxonConceptImages = data.taxonConceptImages
+          this.thumbnails = data.taxonConceptImages.data
+          this.photoSwipeItems = data.taxonConceptImages.data.map(item => this.createPhotoSwipeItem(item))
         }
       },
     }
@@ -80,9 +82,8 @@ export default {
   data() {
     return {
       page: 1,
-      viewerOptions: {
-        url: "data-src"
-      }
+      thumbnails: [],
+      photoSwipeItems: []
     }
   },
   computed: {
@@ -94,9 +95,6 @@ export default {
       }
     }
   },
-  created() {
-    this.$apollo.queries.taxonConceptImages.setVariables({ ...this.variables })
-  },
   watch: {
     activated: {
       immediate: true,
@@ -106,6 +104,16 @@ export default {
         }
       }
     }
+  },
+  created() {
+    this.$apollo.queries.taxonConceptImages.setVariables({ ...this.variables })
+
+    this.$nuxt.$on('thumbnail-clicked', (index) => {
+      this.$refs.photoswipe.open(index)
+    })
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('thumbnail-clicked')
   },
   methods: {
     incrementPage() {
@@ -125,9 +133,26 @@ export default {
               data: [...previousResult.taxonConceptImages.data, ...newImages],
               paginatorInfo: paginatorInfo,
             },
+            thumbnails: [...this.thumbnails, ...newImages],
+            photoSwipeItems: [...this.photoSwipeItems, ...newImages.map(item => this.createPhotoSwipeItem(item))]
           }
         }
       })
+    },
+    createPhotoSwipeItem(image) {
+      let item = {}
+      item.preview1024 = {
+        src: image.previewUrl,
+        w: Math.floor(image.w/2),
+        h: Math.floor(image.h/2),
+      }
+      item.preview2048 = {
+        src: image.previewUrl.replace('maxsize=1024', 'maxsize=2048'),
+        w: image.w,
+        h: image.h,
+      }
+      item.title = image.caption
+      return item
     },
   },
 }
