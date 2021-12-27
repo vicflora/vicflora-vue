@@ -1,7 +1,3 @@
-<style lang="scss" scoped>
-@import "./Glossary-definition.scss";
-</style>
-
 <template>
   <b-row>
     <b-col>
@@ -45,7 +41,7 @@
           </b-row>
           <b-row>
             <b-col class="mb-5">
-              <div v-viewer="viewerOptions">
+              <div>
                 <div v-for="image in definition.images" :key="image.id">
                   <b-img
                    class="mt-3 m-img"
@@ -71,13 +67,7 @@
 </template>
 
 <script>
-import "viewerjs/dist/viewer.css"
-import Viewer from "v-viewer"
-import Vue from "vue"
 import LoadingSpinner from "@/components/App/AppLoadingSpinner"
-
-Vue.use(Viewer)
-
 
 export default {
   name: "GlossaryDefinition",
@@ -88,10 +78,7 @@ export default {
   data() {
     return {
       showImage: false,
-      viewerOptions: {
-        url: "data-src"
-      }
-    };
+    }
   },
   methods: {
     loadImage() {
@@ -100,3 +87,8 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "./Glossary-definition.scss";
+</style>
+
