@@ -87,7 +87,7 @@ export default {
   hooks: {
     build: {
       before (builder) {
-        axios.post('http://cygnus.rbg.vic.gov.au/graphql', {
+        axios.post('http://vicflora-int.rbg.vic.gov.au/graphql', {
           query: `
             query schema{
               __schema{
