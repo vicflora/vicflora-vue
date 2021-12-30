@@ -1,9 +1,9 @@
 <template>
     <BContainer>
-      <BNavbar 
-        toggleable="lg" 
-        type="light" 
-        variant="info" 
+      <BNavbar
+        toggleable="lg"
+        type="light"
+        variant="info"
         class="m-navbar"
       >
         <BNavbarNav>
@@ -17,42 +17,42 @@
         </BNavbarNav>
 
         <BNavbarToggle target="nav-collapse"></BNavbarToggle>
-        <BCollapse 
-          id="nav-collapse" 
+        <BCollapse
+          id="nav-collapse"
           is-nav>
           <BNavbarNav>
-            <BNavItem 
-              class="m-menu-item" 
+            <BNavItem
+              class="m-menu-item"
               href="/flora/search?q=*"
             >Search</BNavItem>
 
-            <BNavItem 
+            <BNavItem
               class="m-menu-item"
               href="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f"
             >Browse classification</BNavItem>
 
-            <BNavItem 
+            <BNavItem
               class="m-menu-item"
               href="/flora/key/1903"
             >Keys</BNavItem>
 
-            <BNavItem 
+            <BNavItem
               class="m-menu-item"
-              href="/flora/checklist" 
+              href="/flora/checklist"
             >CheckLists</BNavItem>
 
-            <BNavItem 
+            <BNavItem
               class="m-menu-item"
-              href="/flora/Glossary?name=abaxial"
+              href="/flora/glossary?name=abaxial"
             >Glossary</BNavItem>
 
-            <BNavItem 
+            <BNavItem
               class="m-menu-item"
-              href="/bioregions" 
+              href="/bioregions"
             >Bioregions &amp; Vegetation</BNavItem>
 
-            <BNavItemDropdown 
-              no-caret 
+            <BNavItemDropdown
+              no-caret
               class="m-more-item"
             >
               <template #button-content>
@@ -62,8 +62,8 @@
               <BDropdownItem href="/About">About</BDropdownItem>
               <BDropdownItem href="/Acknowledgements">Acknowledgements</BDropdownItem>
             </BNavItemDropdown>
-            
-            
+
+
           </BNavbarNav>
 
           <!-- Right aligned nav items -->
@@ -97,7 +97,7 @@ export default {
     margin-right: -15px;
     padding: 0.5rem 15px;
     background-color: $white !important;
-    
+
     .m-icon {
       color: $primary;
     }
@@ -127,7 +127,7 @@ export default {
 
   .m-search-input{
     height: 30px;
-    
+
     input {
       border-color: $primary;
     }
