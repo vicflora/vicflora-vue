@@ -1,3 +1,5 @@
+import { GRAPHQL_ENDPOINT } from './constants/graphql-endpoint'
+
 const webpack = require("webpack");
 const axios = require("axios")
 const fs = require("fs-extra")
@@ -81,13 +83,12 @@ export default {
     host: "0"
   },
   env: {
-    graphQlServer: process.env.GRAPHQL_SERVER,
     vicfloraMapperBaseUrl: process.env.VICFLORA_MAPPER_BASE_URL
   },
   hooks: {
     build: {
       before (builder) {
-        axios.post('http://vicflora-int.rbg.vic.gov.au/graphql', {
+        axios.post(GRAPHQL_ENDPOINT, {
           query: `
             query schema{
               __schema{

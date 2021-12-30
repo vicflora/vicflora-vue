@@ -1,10 +1,12 @@
 import cache from './cache'
+import { GRAPHQL_ENDPOINT } from '@/constants/graphql-endpoint'
 
 export default function(ctx) {
+  const endpoint = GRAPHQL_ENDPOINT
   const token = process.env.token
   return {
-    httpEndpoint: `http://vicflora-int.rbg.vic.gov.au/graphql`,
-    // getAuth: () => `Bearer ${token}`,npm run dev
+    httpEndpoint: endpoint,
+    // getAuth: () => `Bearer ${token}`,
     cache
   }
 }
