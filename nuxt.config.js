@@ -82,9 +82,6 @@ export default {
   server: {
     host: "0"
   },
-  env: {
-    vicfloraMapperBaseUrl: process.env.VICFLORA_MAPPER_BASE_URL
-  },
   hooks: {
     build: {
       before (builder) {

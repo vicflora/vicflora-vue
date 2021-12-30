@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { WMS_SERVICE } from '@/constants/wms-service'
 import { visibleLayerMixin, selectedAreaMixin } from "~/mixins/checklistMixins"
 
 export default {
@@ -108,7 +109,7 @@ export default {
         layers: "vicflora-mapper:park_reserves",
       },
       markerLatLng: [0, 0],
-      baseUrl: process.env.vicfloraMapperBaseUrl,
+      baseUrl: WMS_SERVICE,
       selectedArea: {
         baseUrl: null,
         layers: null,
