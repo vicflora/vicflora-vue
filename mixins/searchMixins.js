@@ -63,14 +63,6 @@ export const searchWatchMixin = {
         }
       }
     },
-    input: {
-      deep: true,
-      handler: function() {
-        this.$apollo.queries.search.refetch({
-          input: this.input
-        })
-      }
-    }
   },
 }
 

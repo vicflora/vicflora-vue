@@ -89,6 +89,16 @@ export default {
       skip: true
     }
   },
+  watch: {
+    input: {
+      deep: true,
+      handler: function() {
+        this.$apollo.queries.search.refetch({
+          input: this.input
+        })
+      }
+    },
+  },
   created() {
     this.$apollo.queries.search.setVariables({
       input: this.input
