@@ -75,7 +75,6 @@
 </template>
 
 <script>
-import { WMS_SERVICE } from '@/constants/wms-service'
 import { baseLayersMixin, iconMixin, popupMixin } from "@/mixins/mapMixins"
 import "leaflet/dist/leaflet.css"
 import TaxonTabDistributionMapPopupContent
@@ -130,11 +129,11 @@ export default {
           `AND establishment_means NOT IN ('cultivated')`
     },
     occurrenceLayerUrl: function() {
-      return WMS_SERVICE +
+      return process.env.geoserverWms +
           `?cql_filter=${this.cqlFilter}`
     },
     baseLayerUrl: function() {
-      return WMS_SERVICE +
+      return process.env.geoserverWms +
           `?cql_filter=${this.cqlFilter};INCLUDE`
     }
   },

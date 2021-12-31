@@ -1,5 +1,3 @@
-import { GRAPHQL_ENDPOINT } from './constants/graphql-endpoint'
-
 const webpack = require("webpack");
 const axios = require("axios")
 const fs = require("fs-extra")
@@ -82,10 +80,14 @@ export default {
   server: {
     host: "0"
   },
+  env: {
+    graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || 'http://localhost/graphql',
+    geoserverWms: process.env.GEOSERVER_WMS || 'http://localhost:8080/geoserver'
+  },
   hooks: {
     build: {
       before (builder) {
-        axios.post(GRAPHQL_ENDPOINT, {
+        axios.post(process.env.GRAPHQL_ENDPOINT, {
           query: `
             query schema{
               __schema{

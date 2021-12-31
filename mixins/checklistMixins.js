@@ -1,5 +1,3 @@
-import { WMS_SERVICE } from '@/constants/wms-service'
-
 export const visibleLayerMixin = {
   methods: {
     setVisibleLayer() {
@@ -32,7 +30,7 @@ export const selectedAreaMixin = {
         let arr = this.$route.query.q.split(':')
         let field = arr[0]
         let area = arr[1].replace(/"/g, '')
-        let baseUrl = WMS_SERVICE
+        let baseUrl = process.env.geoserverWms
         let layers = 'vicflora-mapper:'
 
         switch (field) {
