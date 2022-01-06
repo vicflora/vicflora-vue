@@ -5,20 +5,20 @@ highlights:
     img: https://vicflora.rbg.vic.gov.au/images/home/lucid-logo-icon-150.png
     text: >
       <h5><b><span class="m-hightlight-new">New</span> multi-access keys</b></h5>
-      New multi-access keys to <a href="/keys/fabaceae">Fabaceae</a> (excl. Acacia),
-      <a href="/keys/cyperaceae"/>Cyperaceae</a> and  
-      <a href="/keys/juncaceae"/>Juncaceae</a> in Victoria.
+      New multi-access keys to <a href="/matrix-keys/fabaceae">Fabaceae</a> (excl. Acacia),
+      <a href="/matrix-keys/cyperaceae"/>Cyperaceae</a> and  
+      <a href="/matrix-keys/juncaceae"/>Juncaceae</a> in Victoria.
   - index: 1
     img: https://vicflora.rbg.vic.gov.au/images/home/eucalcom.jpg
     text: >
-      <b><a href="/keys/eucalypts">Multi-access key to the Eucalypts</a></b>
+      <b><a href="/matrix-keys/eucalypts">Multi-access key to the Eucalypts</a></b>
       <p>Check out our new multi-access key to the 159 species and infraspecific 
       taxa of <i>Eucalyptus</i>, <i>Angophora</i> and <i>Corymbia</i> in 
       Victoria.</p>
   - index: 2
     img: https://vicflora.rbg.vic.gov.au/images/home/microwal.jpg
     text: >
-      <b><a href="/keys/asteraceae">Multi-access key to the Asteraceae</a></b> 
+      <b><a href="/matrix-keys/asteraceae">Multi-access key to the Asteraceae</a></b> 
       <p>Check out our new multi-access key to the 618 species and infraspecific 
       taxa of Asteraceae in Victoria.</p>
 slides:
