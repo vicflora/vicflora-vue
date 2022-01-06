@@ -108,12 +108,12 @@ export default {
   created() {
     this.$apollo.queries.taxonConceptImages.setVariables({ ...this.variables })
 
-    this.$nuxt.$on('thumbnail-clicked', (index) => {
+    this.$nuxt.$on('image-thumbnail-clicked', (index) => {
       this.$refs.photoswipe.open(index)
     })
   },
   beforeDestroy() {
-    this.$nuxt.$off('thumbnail-clicked')
+    this.$nuxt.$off('image-thumbnail-clicked')
   },
   methods: {
     incrementPage() {

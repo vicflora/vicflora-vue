@@ -37,6 +37,10 @@ export default {
     index: {
       type: Number,
       default: 0,
+    },
+    category: {
+      type: String,
+      default: 'image',
     }
   },
   data(){
@@ -60,7 +64,7 @@ export default {
     },
     onClick(e) {
       e.preventDefault()
-      $nuxt.$emit('thumbnail-clicked', this.index)
+      $nuxt.$emit(`${this.category}-thumbnail-clicked`, this.index)
     }
   }
 };

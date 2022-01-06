@@ -1,35 +1,36 @@
 <template>
   <div>
     <!-- Result -->
-    <div 
+    <div
       v-if="taxonConceptSpecimenImages"
       class="result apollo"
     >
       <div class="m-images">
         <div class="row text-center text-lg-start">
-          <TaxonTabImagesThumbnail 
+          <TaxonTabImagesThumbnail
             v-for="(image, index) in taxonConceptSpecimenImages.data"
             :key="image.id"
-            :taxonConcept="concept" 
+            :index=index
+            :taxonConcept="concept"
             :image="image"
-            @thumbnail-clicked="onThumbnailClicked(index)"
+            category="specimen-image"
           />
         </div>
         <div class="text-right">
-          <b-button 
+          <b-button
             v-if="taxonConceptSpecimenImages.paginatorInfo.hasMorePages"
             variant="primary"
             @click="fetchMore"
           >
             Show more images
-            <b-spinner 
+            <b-spinner
               v-if="$apollo.loading"
               small
               label="loading..."
             />
           </b-button>
         </div>
-        <TaxonTabSpecimenImagesModal 
+        <TaxonTabSpecimenImagesModal
           :show="specimenImagesModal"
           :current-thumbnail="currentThumbnail"
           :images="taxonConceptSpecimenImages.data"
@@ -87,7 +88,13 @@ export default {
   },
   created() {
     this.$apollo.queries.taxonConceptSpecimenImages.setVariables({ ...this.variables })
-    
+
+    this.$nuxt.$on('specimen-image-thumbnail-clicked', (index) => {
+      this.onThumbnailClicked(index)
+    })
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('specimen-image-thumbnail-clicked')
   },
   watch: {
     activated: {
