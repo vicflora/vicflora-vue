@@ -5,6 +5,7 @@ export const FACET_FIELDS = [
   "occurrence_status",
   "establishment_means",
   "threat_status",
+  "phylum",
   "class",
   "order",
   "family",
