@@ -22,7 +22,7 @@
             :id="misapplication.id"
             :full-name="misapplication.taxonName.fullName"
             :authorship="misapplication.taxonName.authorship"
-            :according-to="misapplication.accordingTo.title"
+            :according-to="misapplication.accordingTo ? misapplication.accordingTo.title : null"
           />
         </ul>
       </div>
