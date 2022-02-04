@@ -16,10 +16,15 @@ query taxonOccurrencesAtPointQuery(
     }
     data {
       properties {
-        dataSource
         uuid
-        scientificName
+        dataSource
+        collection
         catalogNumber
+        recordedBy
+        recordNumber
+        eventDate
+        scientificName
+        acceptedNameUsage
         speciesName
         occurrenceStatus
         establishmentMeans

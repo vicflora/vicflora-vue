@@ -1,11 +1,28 @@
 <template>
   <div class="m-popup">
     <div v-if="occurrences[page].properties !== undefined">
-      <h5>{{occurrences[page].properties.scientificName}}</h5>
-      <p v-if="occurrences[page].properties.dataSource === 'AVH'"><b>Catalog Number: </b>{{occurrences[page].properties.catalogNumber}}</p>
-      <p v-else><b>Catalog Number: </b>VBA {{occurrences[page].properties.catalogNumber}}</p>
-      <p><b>Occurrence Status: </b>{{occurrences[page].properties.occurrenceStatus}}</p>
-      <p><b>Establishment Means: </b>{{occurrences[page].properties.establishmentMeans}}</p>
+      <h5>{{occurrences[page].properties.acceptedNameUsage}}
+      <span
+        v-if="occurrences[page].properties.scientificName
+            != occurrences[page].properties.acceptedNameUsage"
+        style="display: block;"
+      >
+        <small>
+          ({{ occurrences[page].properties.scientificName }})
+        </small>
+      </span>
+      </h5>
+      <p v-if="occurrences[page].properties.dataSource === 'AVH'">
+        <b>Catalog number: </b>{{occurrences[page].properties.catalogNumber}}
+      </p>
+      <p v-else>
+        <b>Catalog number: </b>VBA {{occurrences[page].properties.catalogNumber}}
+      </p>
+      <p><b>Collection:</b> {{ occurrences[page].properties.collection }}</p>
+      <p><b>Recorded by:</b> {{ occurrences[page].properties.recordedBy }}</p>
+      <p><b>Record number:</b> {{ occurrences[page].properties.recordNumber }}</p>
+      <p><b>Event date:</b> {{ occurrences[page].properties.eventDate }}</p>
+
       <p
         v-if="occurrences[page].properties.dataSource === 'AVH'"
         class="text-right">
