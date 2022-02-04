@@ -124,7 +124,7 @@ export default {
   },
   computed: {
     cqlFilter: function() {
-      return `taxon_concept_id='${this.taxonConceptId}' ` +
+      return `accepted_name_usage_id='${this.taxonConceptId}' ` +
           `AND occurrence_status NOT IN ('doubtful', 'absent') ` +
           `AND establishment_means NOT IN ('cultivated')`
     },
