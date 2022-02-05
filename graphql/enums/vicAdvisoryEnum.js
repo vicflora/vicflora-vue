@@ -1,11 +1,11 @@
 // Copyright 2022 Royal Botanic Gardens Board
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,9 +13,9 @@
 // limitations under the License.
 
 export default {
-    "X": "Presumed Extinct in Victoria (x)",
-    "E": "Endangered in Victoria (e)",
-    "V": "Vulnerable in Victoria (v)",
-    "R": "Rare in Victoria (r)",
-    "K": "Poorly Known in Victoria (k)",
+    "X": "Presumed Extinct (x)",
+    "E": "Endangered (e)",
+    "V": "Vulnerable (v)",
+    "R": "Rare (r)",
+    "K": "Poorly Known (k)",
 }
