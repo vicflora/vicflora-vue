@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <span class="m-status-class">{{ label }}:</span>
-      <span class="m-status-content">{{ value }}</span>
+      <span class="m-status-content" v-html="value"/>
     </b-col>
   </b-row>
 </template>
@@ -29,5 +29,10 @@ export default {
   display: inline-flex;
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+.m-status-content {
+  display: inline-block;
+  vertical-align: top;
 }
 </style>

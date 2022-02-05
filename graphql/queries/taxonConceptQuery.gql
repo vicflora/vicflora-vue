@@ -31,6 +31,9 @@ query taxonConceptQuery($id: ID!) {
     taxonomicStatus
     occurrenceStatus
     establishmentMeans
+    epbc
+    ffg
+    vicAdvisory
 
     createdBy {
       name
