@@ -62,7 +62,23 @@ query taxonConceptQuery($id: ID!) {
     }
 
     currentProfile {
+      id
       profile
+      source {
+        id
+        citationHtml
+      }
+      creator {
+        lastName
+        firstName
+      }
+      created
+      updatedBy {
+        lastName
+        firstName
+      }
+      modified
+
     }
     taxonTreeDefItem {
       id

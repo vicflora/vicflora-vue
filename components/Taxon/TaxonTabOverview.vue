@@ -5,46 +5,17 @@
         <!-- text -->
         <!-- use .replaceAll() to replace the tags in HTML -->
         <b-col class="text-left" v-if="concept.currentProfile" :lg="hasAside ? 8 : 12">
-          <div v-html="concept.currentProfile.profile"></div>
-          <!-- Source -->
-          <div class="m-row">
-            <span class="m-description-title">Source: </span>
-            <span> </span>
-          </div>
-          <!-- Created time -->
-          <div class="m-row">
-            <!-- Created info -->
-            <div v-if="concept.createdBy && concept.createdAt">
-              <span class="m-description-title">Created by: </span>
-              <span >{{
-                `${
-                  concept.createdBy.name
-                }, ${concept.createdAt.slice(0, 10)}`
-              }}</span>
-            </div>
-            <!-- Updated info -->
-            <div v-if="concept.modifiedBy && concept.updatedAt">
-              <span class="m-description-title">Updated by: </span>
-              <span >{{
-                `${
-                  concept.modifiedBy.name
-                }, ${concept.updatedAt.slice(0, 10)}`
-              }}</span>
-            </div>
-          </div>
           <div
-            class="m-row"
+            class="current-profile"
+            v-html="concept.currentProfile.profile"
+          />
+
+          <TaxonTabOverviewAttribution :concept="concept" />
+
+          <TaxonTabOverviewKeyButtons
             v-if="concept.identificationKeys.length !== 0"
-          >
-            <div
-              v-for="item in concept.identificationKeys"
-              :key="item.id"
-            >
-              <nuxt-link :to="`/flora/key/${item.id}`" >
-                <b-button variant="primary" class="mb-2">{{ item.title }}</b-button>
-              </nuxt-link>
-            </div>
-          </div>
+            :identificationKeys="concept.identificationKeys"
+          />
         </b-col>
 
         <b-col
@@ -72,12 +43,16 @@
 </template>
 
 <script>
+import TaxonTabOverviewAttribution from "~/components/Taxon/TaxonTabOverviewAttribution"
+import TaxonTabOverviewKeyButtons from "~/components/Taxon/TaxonTabOverviewKeyButtons"
 import TaxonTabOverviewImage from "~/components/Taxon/TaxonTabOverviewImage"
 import { rankMixin } from "~/mixins/taxonMixins"
 
 export default {
   name: "TaxonTabOverview",
   components: {
+    TaxonTabOverviewAttribution,
+    TaxonTabOverviewKeyButtons,
     TaxonTabOverviewImage,
   },
   mixins: [
@@ -100,16 +75,21 @@ export default {
       return this.hasHeroImage || this.hasProfileMap
     }
   },
-  // created() {
-  //   if (!this.concept.currentProfile) {
-  //     this.$router.push({
-  //       name: "flora-taxon-id-classification",
-  //       params: {
-  //         id: this.$route.params.id
-  //       }
-  //     })
-  //   }
-  // },
+  mounted() {
+    let elements = document.getElementsByClassName('current-profile')[0]
+        .getElementsByClassName('scientific_name')
+
+    for (let i = 0, n = elements.length; i < n; i++) {
+      let sciname = elements[i].innerHTML
+      if (sciname.trim().indexOf(' ') > -1) {
+        sciname = `<em>${ sciname }</em>`
+        sciname = sciname.replace(' subsp. ', '</em> subsp. <em>')
+        sciname = sciname.replace(' var. ', '</em> var. <em>')
+        sciname = sciname.replace(' f. ', '</em> f. <em>')
+      }
+      elements[i].innerHTML = sciname
+    }
+  },
   methods: {
     getBtnText: function(name) {
       switch (name) {
