@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button 
-      v-b-toggle.region-table 
+    <b-button
+      v-b-toggle.region-table
       variant="primary"
       size="sm"
     >
@@ -9,13 +9,13 @@
       <span class="when-open"><b-icon-caret-down-fill></b-icon-caret-down-fill></span>
       <span class="when-closed"><b-icon-caret-right-fill></b-icon-caret-right-fill></span>
     </b-button>
-    <b-collapse 
+    <b-collapse
       id="region-table"
       visible
     >
-      <b-table 
-        :items="items" 
-        :fields="fields" 
+      <b-table
+        :items="items"
+        :fields="fields"
         small
         striped
         table-variant="light"
@@ -107,8 +107,8 @@ export default {
         return {
           status: this.getStatusColour(rec.occurrenceStatus, rec.establishmentMeans),
           areaName: rec[this.areaNameProperty],
-          occurrenceStatus: this.occurrenceStatusEnum[rec.occurrenceStatus],
-          establishmentMeans: this.establishmentMeansEnum[rec.establishmentMeans],
+          occurrenceStatus: this.occurrenceStatusEnum[rec.occurrenceStatus].label,
+          establishmentMeans: this.establishmentMeansEnum[rec.establishmentMeans].label,
         }
       })
       return items
@@ -159,25 +159,25 @@ export default {
   &.vf-status-introduced {
     background-color: #ffcccc;
   }
-  
+
   &.vf-status-naturalised {
     background-color: #ffcccc;
   }
-  
+
   &.vf-status-cultivated {
     background-color: #3333ff;
   }
-  
+
   &.vf-status-uncertain {
     background-color: #ffbb00;
   }
-  
+
   &.vf-status-extinct {
     background-color: #e9aaff;
   }
-  
+
   &.vf-status-doubtful {
     background-color: #fcfc99;
-  }  
+  }
 }
 </style>
