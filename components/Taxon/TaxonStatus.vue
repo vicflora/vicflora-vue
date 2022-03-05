@@ -19,10 +19,43 @@
     />
 
     <TaxonStatusItem
-      v-if="concept.taxonomicStatus === 'ACCEPTED' && threatStatus"
-      :label="'Threat status'"
-      :value="threatStatus"
+      v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.degreeOfEstablishment"
+      :label="'Degree of Establishment'"
+      :value="degreeOfEstablishmentEnum[concept.degreeOfEstablishment]"
     />
+
+    <div
+      v-if="concept.taxonomicStatus === 'ACCEPTED' && threatStatus"
+      class="tc-status-item-group"
+    >
+      <span class="tc-status-label tc-status-label-flex">Threat status</span>
+      <div
+        v-for="authority, index in authorities"
+        :key="authority"
+        class="tc-status-item-group-item"
+      >
+        <TaxonStatusItem
+          v-if="authority === 'ffg'"
+          :label="'FFG'"
+          :value="iucnThreatStatusEnum[concept.ffg]"
+          :inline="true"
+        />
+        <TaxonStatusItem
+          v-if="authority === 'epbc'"
+          :label="'EPBC'"
+          :value="iucnThreatStatusEnum[concept.epbc]"
+          :inline="true"
+        />
+        <TaxonStatusItem
+          v-if="authority === 'vicAdvisory'"
+          :label="'Vic. Advisory'"
+          :value="vicAdvisoryEnum[concept.vicAdvisory]"
+          :inline="true"
+        />
+        <span v-if="index < authorities.length - 1">&bull;&nbsp;</span>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -31,6 +64,7 @@ import TaxonStatusItem from "~/components/Taxon/TaxonStatusItem"
 import taxonomicStatusEnum from "~/graphql/enums/taxonomicStatusEnum"
 import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
 import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
+import degreeOfEstablishmentEnum from "~/graphql/enums/degreeOfEstablishmentEnum"
 import iucnThreatStatusEnum from "~/graphql/enums/iucnThreatStatusEnum"
 import vicAdvisoryEnum from "~/graphql/enums/vicAdvisoryEnum"
 
@@ -50,6 +84,10 @@ export default {
       taxonomicStatusEnum,
       occurrenceStatusEnum,
       establishmentMeansEnum,
+      degreeOfEstablishmentEnum,
+      iucnThreatStatusEnum,
+      vicAdvisoryEnum,
+      authorities: ['ffg', 'epbc', 'vicAdvisory'],
     }
   },
   computed: {
@@ -69,7 +107,18 @@ export default {
         return threatStatus.join('; ')
       }
       return null
-    }
+    },
   }
 }
 </script>
+
+<style lang="scss">
+.tc-status-item-group {
+  .tc-status-item-group-item {
+    display: inline-block;
+  }
+  .tc-status-item {
+    display: inline-block;
+  }
+}
+</style>

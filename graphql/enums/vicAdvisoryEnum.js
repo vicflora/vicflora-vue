@@ -13,9 +13,40 @@
 // limitations under the License.
 
 export default {
-    "X": "Presumed Extinct (x)",
-    "E": "Endangered (e)",
-    "V": "Vulnerable (v)",
-    "R": "Rare (r)",
-    "K": "Poorly Known (k)",
+    "X": {
+        'label': 'Presumed Extinct (x)',
+        'description': `Presumed Extinct in Victoria (x): not recorded from
+        Victoria during the past 50 years despite field searches specifically
+        for the plant, or, alternatively, intensive field searches (since 1950)
+        at all previously known sites have failed to record the plant.`
+    },
+    "E": {
+        'label': 'Endangered (e)',
+        'description': `Endangered in Victoria (e): at risk of disappearing
+            from the wild state if present land use and other causal factors
+            continue to operate.`
+    },
+    "V": {
+        'label': 'Vulnerable (v)',
+        'description': `Vulnerable in Victoria (v): not presently endangered
+            but likely to become so soon due to continued depletion; occurring
+            mainly on sites likely to experience changes in land-use which
+            would threaten the survival of the plant in the wild; or, taxa
+            whose total population is so small that the likelihood of recovery
+            from disturbance, including localised natural events such as
+            drought, fire or landslip, is doubtful.`
+    },
+    "R": {
+        'label': 'Rare (r)',
+        'description': `Rare in Victoria (r): rare but not considered otherwise
+            threatened - there are relatively few known populations or the taxon
+            is restricted to a relatively small area.`
+    },
+    "K": {
+        'label': 'Poorly Known (k)',
+        'description': `Poorly Known in Victoria (k): poorly known and
+            suspected, but not definitely known, to belong to one of the above
+            categories (x, e, v or r) within Victoria. At present, accurate
+            distribution information is inadequate.`
+    },
 }
