@@ -1,14 +1,4 @@
-<style lang="scss" scoped>
-@import "./Download.scss";
-</style>
-
 <template>
-  <!-- <b-row>
-        <b-col>
-            <div>DownLoad</div>
-            <b-btn size="sm">Back to search result</b-btn>
-        </b-col>
-    </b-row> -->
   <b-container class="m-search">
     <b-row>
       <b-col class="text-left">
@@ -27,8 +17,13 @@
         </span>
       </b-col>
       <b-col class="text-right">
-         <b-btn class="text-right" size="sm" variant="info" @click="backToSearch">
-                Back to search result
+         <b-btn
+          class="text-right"
+          size="sm"
+          variant="primary"
+          @click="backToSearch"
+        >
+          Back to search result
         </b-btn>
       </b-col>
     </b-row>
@@ -77,24 +72,30 @@
         <b-input-group prepend="Filename" class="mb-5" size="sm">
           <b-form-input size="sm" v-model="filenameSelected"></b-form-input>
           <b-input-group-append>
-            <b-button variant="info" @click="handleDownload()"
-              >Download</b-button
+            <b-btn
+              variant="primary"
+              @click="handleDownload()"
             >
+              Download
+            </b-btn>
           </b-input-group-append>
         </b-input-group>
       </b-col>
     </b-row>
   </b-container>
 </template>
+
 <script>
 import gql from "graphql-tag";
+
 var downloadGql = gql`
   query DownloadSearchResult($input: DownloadInput) {
     download(input: $input) {
       data
     }
   }
-`;
+`
+
 export default {
   name: "Dowload",
   data() {
@@ -103,7 +104,7 @@ export default {
       filenameSelected: `vicflora_download_${Date.now()}.csv`,
       delimiterSelected: [],
       input: {
-        q: "**"
+        q: "**",
       },
       fieldsSelected: [
         "id",
@@ -113,53 +114,57 @@ export default {
         "accepted_name_usage",
         "taxonomic_status",
         "occurrence_status",
-        "establishment_means"
+        "establishment_means",
+        "degree_of_establishment",
       ],
       fieldsOptions: [
-        { text: "taxon_id", value: "id", disabled: true },
-        { text: "taxon_rank", value: "taxon_rank", disabled: false },
-        { text: "scientific_name", value: "scientific_name", disabled: true },
-        "scientific_name_authorship",
-        "taxonomic_status",
-        "occurrence_status",
-        "establishment_means",
-        "accepted_name_usage_id",
-        "accepted_name_usage",
-        "accepted_name_usage_authorship",
-        "accepted_name_usage_taxon_rank",
-        "name_according_to",
-        "sensu",
-        "threat_status",
-        "profile",
-        "vernacular_name"
+        { text: "ID", value: "id", disabled: true },
+        { text: "Rank", value: "taxon_rank", disabled: false },
+        { text: "Scientific name", value: "scientific_name", disabled: true },
+        { text: "Scientific name authorship", value: "scientific_name_authorship" },
+        { text: "Taxonomic status", value: "taxonomic_status" },
+        { text: "Occurrence status", value: "occurrence_status" },
+        { text: "Endemic", value: "endemic" },
+        { text: "Establishment means", value: "establishment_means" },
+        { text: "Has introduced occurrences", value: "has_introduced_occurrences" },
+        { text: "Degree of establishment", value: "degree_of_establishment" },
+        { text: "Accepted name usage ID", value: "accepted_name_usage_id" },
+        { text: "Accepted name", value: "accepted_name_usage" },
+        { text: "Accepted name authorship", value: "accepted_name_usage_authorship" },
+        { text: "Accepted name usage rank", value: "accepted_name_usage_taxon_rank" },
+        { text: "Name according to", value: "name_according_to" },
+        { text: "Vernacular name", value: "vernacular_name" },
+        { text: "EPBC", value: "epbc" },
+        { text: "FFG", value: "ffg" },
+        { text: "Vic. Advisory", value: "vic_advisory" },
       ],
       classificationSelected: ["family"],
       classificationOptions: [
-        "kingdom",
-        "phylum",
-        "class",
-        "order",
-        "family",
-        "genus",
-        "specificEpithet",
-        "infraspecificEpithet"
-      ]
-    };
+        { text: "Kingdom", value: "kingdom" },
+        { text: "Phylum", value: "phylum" },
+        { text: "Class", value: "class" },
+        { text: "Order", value: "order" },
+        { text: "Family", value: "family" },
+        { text: "Genus", value: "genus" },
+        { text: "Specific epithet", value: "specificEpithet" },
+        { text: "Infraspecific epithet", value: "infraspecificEpithet" },
+      ],
+    }
   },
   computed: {
     q: function() {
-      return this.$route.query.q;
+      return this.$route.query.q
     },
     fq: function() {
       // more than 1 filter in fq
       if (typeof this.$route.query.fq === "object") {
-        return this.$route.query.fq;
+        return this.$route.query.fq
         //1 filter in fq
       } else if (typeof this.$route.query.fq === "string") {
-        return [this.$route.query.fq];
+        return [this.$route.query.fq]
         // null in fq
       } else {
-        return "";
+        return ""
       }
     }
   },
@@ -172,34 +177,33 @@ export default {
           input: input
         },
         result({ data }) {
-          var blob = new Blob([data.download.data], {type: '.csv'});
-          const url = window.URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.style.display = "none";
+          var blob = new Blob([data.download.data], {type: '.csv'})
+          const url = window.URL.createObjectURL(blob)
+          const link = document.createElement("a")
+          link.style.display = "none"
           link.href = url;
-          link.setAttribute("download", filename);
-          document.body.appendChild(link);
+          link.setAttribute("download", filename)
+          document.body.appendChild(link)
           link.click();
-          document.body.removeChild(link);
+          document.body.removeChild(link)
         },
         error(error) {
-          console.error("We've got an error!", error);
-        }
-      });
+          console.error("We've got an error!", error)
+        },
+      })
     },
-    // hundle the file attributes and fetch the file
     handleDownload() {
-      this.input.fl = [...this.fieldsSelected, ...this.classificationSelected];
+      this.input.fl = [...this.fieldsSelected, ...this.classificationSelected]
       this.input.q = this.q
       this.input.fq = this.fq
-      this.getData(this.input, this.filenameSelected);
+      this.getData(this.input, this.filenameSelected)
     },
     backToSearch(){
       this.$router.push({
         path: "/flora/Search",
-        query: this.$route.query
-      });
+        query: this.$route.query,
+      })
     },
-  }
-};
+  },
+}
 </script>
