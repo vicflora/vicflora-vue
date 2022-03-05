@@ -25,7 +25,7 @@
     />
 
     <div
-      v-if="concept.taxonomicStatus === 'ACCEPTED' && threatStatus"
+      v-if="concept.taxonomicStatus === 'ACCEPTED' && authorities.length"
       class="tc-status-item-group"
     >
       <span class="tc-status-label tc-status-label-flex">Threat status</span>
@@ -87,26 +87,23 @@ export default {
       degreeOfEstablishmentEnum,
       iucnThreatStatusEnum,
       vicAdvisoryEnum,
-      authorities: ['ffg', 'epbc', 'vicAdvisory'],
     }
   },
   computed: {
-    threatStatus() {
-      if (this.concept !== undefined && (this.concept.epbc || this.concept.ffg
-          || this.concept.vicAdvisory)) {
-        let threatStatus = []
+    authorities() {
+      const authorities = []
+      if (this.concept !== undefined) {
         if (this.concept.ffg) {
-          threatStatus.push("<strong>FFG:</strong> " + iucnThreatStatusEnum[this.concept.ffg])
+          authorities.push('ffg')
         }
-        if (this.concept.epbc) {
-          threatStatus.push("<strong>EPBC:</strong> " + iucnThreatStatusEnum[this.concept.epbc])
+         if (this.concept.epbc) {
+          authorities.push('epbc')
         }
         if (this.concept.vicAdvisory) {
-          threatStatus.push("<strong>Vic. Advisory List:</strong> " + vicAdvisoryEnum[this.concept.vicAdvisory])
+          authorities.push('vicAdvisory')
         }
-        return threatStatus.join('; ')
-      }
-      return null
+     }
+     return authorities
     },
   }
 }
