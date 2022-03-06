@@ -85,10 +85,12 @@ export default {
 
 #legend {
   margin: 10px 0;
-  border: solid 1px #cccccc;
 
   .table {
     margin-bottom: 0;
+    border: solid 1px #ccc;
+    border-left: 0;
+    border-right: 0;
 
     thead {
       border-bottom: solid 1px #ccc;
@@ -109,12 +111,12 @@ export default {
       }
     }
 
-    tr>th:first-child,
-    tr:first-child>th:nth-child(2),
-    tr:nth-child(2)>th:nth-child(4),
-    tr>td:nth-child(4) {
-      border-right: solid 1px #ccc;
-    }
+    // tr>th:first-child,
+    // tr:first-child>th:nth-child(2),
+    // tr:nth-child(2)>th:nth-child(4),
+    // tr>td:nth-child(4) {
+    //   border-right: solid 1px #ccc;
+    // }
 
     .vf-legend-item {
       vertical-align: middle;
