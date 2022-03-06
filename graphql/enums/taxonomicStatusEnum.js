@@ -17,7 +17,7 @@
 export default {
     "ACCEPTED": {
         'label': 'Accepted',
-        'description': `The taxon is currently accepted in VicFlora.`
+        'description': `The taxon is currently recognised in VicFlora.`
     },
     "SYNONYM": {
         'label': 'Synonym',
