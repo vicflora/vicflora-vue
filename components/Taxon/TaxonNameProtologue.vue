@@ -1,5 +1,5 @@
 <template>
-  <div class="m-protologue" v-html="protologueCitation"/>
+  <span v-html="protologueCitation"/>
 </template>
 
 <script>
@@ -30,5 +30,11 @@ export default {
 }
 </script>
 
-
+<style lang="scss">
+.m-protologue {
+  .b-icon.bi {
+    vertical-align: 0;
+  }
+}
 </style>
+

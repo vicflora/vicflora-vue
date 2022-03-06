@@ -1,27 +1,39 @@
 <template>
   <div>
     <div class="m-title">
-      <NameString 
+      <NameString
         :full-name="concept.taxonName.fullName"
         :rank-id="concept.taxonTreeDefItem.rankId"
         :taxonomic-status="concept.taxonomicStatus"
       />
 
-      <Authorship 
+      <Authorship
         v-if="concept.taxonName.authorship"
         :authorship="concept.taxonName.authorship"
       />
 
-      <VernacularName 
+      <VernacularName
         v-if="concept.preferredVernacularName"
         :vernacular-name="concept.preferredVernacularName.name"
       />
     </div>
 
-    <Protologue  
-      v-if="concept.taxonName.protologue" 
-      :protologue="concept.taxonName.protologue"
-    />
+    <div
+      v-if="concept.taxonName.protologue || concept.taxonName.apniName"
+      class="m-protologue"
+    >
+      <Protologue
+        v-if="concept.taxonName.protologue"
+        :protologue="concept.taxonName.protologue"
+      />
+
+      <TaxonNameApniLink
+        v-if="concept.taxonName.apniName"
+        :apni="concept.taxonName.apniName"
+      />
+    </div>
+
+
   </div>
 </template>
 
@@ -31,14 +43,16 @@ import NameString from "@/components/Taxon/TaxonNameString"
 import Authorship from "@/components/Taxon/TaxonNameAuthorship"
 import Protologue from "@/components/Taxon/TaxonNameProtologue"
 import VernacularName from "@/components/Taxon/TaxonNameVernacularName"
+import TaxonNameApniLink from "@/components/Taxon/TaxonNameApniLink"
 
 export default {
   name: "TaxonName",
-  components: { 
+  components: {
     NameString,
     Authorship,
     Protologue,
-    VernacularName 
+    VernacularName,
+    TaxonNameApniLink,
   },
   props: {
     concept: {
@@ -58,7 +72,7 @@ export default {
   .m-authorship {
     margin-right: 15px;
   }
-  
+
   .m-vernacular-names {
     font-size: xx-large;
   }
