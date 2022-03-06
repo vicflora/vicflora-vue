@@ -92,6 +92,21 @@ export default {
 
     thead {
       border-bottom: solid 1px #ccc;
+
+      &>tr:first-child>th {
+        padding-top: 0.75rem;
+        padding-bottom: 0.1rem;
+      }
+
+      &>tr:last-child>th {
+        padding-top: 0.1rem;
+        padding-bottom: 0.75rem;
+      }
+
+      th {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
     }
 
     tr>th:first-child,
@@ -135,8 +150,8 @@ export default {
 
       .vf-legend-item-point {
         display: inline-block;
-        height: 6px;
-        width: 6px;
+        height: 10px;
+        width: 10px;
 
         &.vf-legend-item-point-native {
           background-color: #2F8A26;
@@ -160,14 +175,14 @@ export default {
 
         &.vf-legend-item-point-vba-native {
           background-color: #b0d619;
-          height: 4px;
-          width: 4px;
+          height: 8px;
+          width: 8px;
         }
 
         &.vf-legend-item-point-vba-introduced {
           background-color: #ea98e9;
-          height: 4px;
-          width: 4px;
+          height: 8px;
+          width: 8px;
         }
       }
     }
