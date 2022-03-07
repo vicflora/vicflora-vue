@@ -20,7 +20,7 @@
 
     <TaxonStatusItem
       v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.degreeOfEstablishment"
-      :label="'Degree of Establishment'"
+      :label="'Degree of establishment'"
       :value="degreeOfEstablishmentEnum[concept.degreeOfEstablishment]"
     />
 

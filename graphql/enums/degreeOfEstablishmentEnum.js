@@ -16,7 +16,7 @@ export default {
     "NATIVE": {
         'label': 'Native',
         'description': `Not transported beyond limits of native range.
-            Considered native and naturally occurring`
+            Considered native and naturally occurring.`
     },
     "CULTIVATED": {
         'label': 'Cultivated',

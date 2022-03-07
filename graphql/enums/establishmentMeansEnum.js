@@ -17,7 +17,7 @@
 export default {
     "NATIVE": {
         'label': 'Native',
-        'description': 'Occurring within its natural range'
+        'description': 'Occurring within its natural range.'
     },
     "INTRODUCED": {
         'label': 'Introduced',
@@ -26,6 +26,6 @@ export default {
     },
     "UNCERTAIN": {
         'label': 'Uncertain',
-        'description': 'Origin in Victoria is uncertain'
+        'description': 'Origin in Victoria is uncertain.'
     },
 }
