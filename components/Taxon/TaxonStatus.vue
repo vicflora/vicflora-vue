@@ -99,7 +99,7 @@ export default {
          if (this.concept.epbc) {
           authorities.push('epbc')
         }
-        if (this.concept.vicAdvisory) {
+        if (!this.concept.ffg && this.concept.vicAdvisory) {
           authorities.push('vicAdvisory')
         }
      }
