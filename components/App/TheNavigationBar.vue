@@ -48,21 +48,8 @@
 
             <BNavItem
               class="m-menu-item"
-              href="/bioregions"
+              href="/pages/bioregions"
             >Bioregions &amp; Vegetation</BNavItem>
-
-            <BNavItemDropdown
-              no-caret
-              class="m-more-item"
-            >
-              <template #button-content>
-                <span class="m-menu-item-more">More</span>
-              </template>
-              <BDropdownItem href="/Help">Help</BDropdownItem>
-              <BDropdownItem href="/About">About</BDropdownItem>
-              <BDropdownItem href="/Acknowledgements">Acknowledgements</BDropdownItem>
-            </BNavItemDropdown>
-
 
           </BNavbarNav>
 

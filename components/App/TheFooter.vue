@@ -3,7 +3,10 @@
     <BContainer>
       <BRow>
         <BCol class="text-left">
-          <a class="m-copyright" href="https://www.rbg.vic.gov.au/copyright">Copyright</a>
+          <nuxt-link class="m-copyright" to='/pages/copyright'>Copyright and citation</nuxt-link> &bull;
+          <nuxt-link class="m-copyright" to='/pages/contact-us'>Contact us</nuxt-link> &bull;
+          <nuxt-link class="m-copyright" to='/pages/acknowledgements'>Acknowledgements</nuxt-link>
+
         </BCol>
 
         <BCol class="text-right">
