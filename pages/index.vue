@@ -7,9 +7,7 @@
           class="text-left" 
           lg="6"
         >
-          <div class="m-introduction">
-            <NuxtContent :document="page" />
-          </div>
+          <div class="m-introduction" v-html="homePage.intro"/>
 
           <NuxtLink 
             to="/flora/search?q=**" 
@@ -26,12 +24,12 @@
             class="btn btn-lg btn-block btn-primary"
           >Keys</a>
           
-          <highlights v-if="highlights" :highlights="highlights"></highlights>
+          <highlights :highlights="homePage.highlights"/>
         </BCol>
 
         
         <b-col cols="12" lg="6" align-self="center">
-          <Carousel v-if="slides" :slides="slides" class="m-carousel"></Carousel>
+          <Carousel :slides="homePage.slides" class="m-carousel"/>
         </b-col>
       </BRow>
     </BContainer>
@@ -49,29 +47,11 @@ export default {
     Highlights
   },
   async asyncData ({ $content }) {
-    const page = await $content('/').fetch()
+    const homePage = await $content('home-page/index').fetch()
     return {
-      page
+      homePage
     }
   },
-  computed: {
-    highlights() {
-      if (this.page[0].highlights !== undefined) {
-        return this.page[0].highlights
-      }
-      if (this.page[1].highlights !== undefined) {
-        return this.page[1].highlights
-      }
-    },
-    slides() {
-      if (this.page[0].slides !== undefined) {
-        return this.page[0].slides
-      }
-      if (this.page[1].slides !== undefined) {
-        return this.page[1].slides
-      }
-    },
-  }
 }
 </script>
 
