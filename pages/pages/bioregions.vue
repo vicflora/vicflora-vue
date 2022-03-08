@@ -1,7 +1,3 @@
-<style lang="scss" scoped>
-@import "./bioregions.scss";
-</style>
-
 <template>
   <div class="m-bioregions">
     <b-container>
@@ -15,8 +11,8 @@
         </b-col>
       </b-row>
 
-      <b-row class="mb-4">
-        <b-col md="8" class="text-left">
+      <b-row>
+        <b-col>
           <figure>
             <div class="m-map-container">
               <img
@@ -29,7 +25,10 @@
             </div>
           </figure>
         </b-col>
-        <b-col class="text-left">
+      </b-row>
+
+      <b-row>
+        <b-col md="4">
           <div class="m-legend-item">
             <span
               class="m-legend-symbol"
@@ -100,6 +99,8 @@
             ></span>
             <span class="m-legend-label">Northern Inland Slopes</span>
           </div>
+        </b-col>
+        <b-col md="4">
           <div class="m-legend-item">
             <span
               class="m-legend-symbol"
@@ -170,6 +171,8 @@
             ></span>
             <span class="m-legend-label">Highlands-Southern Fall</span>
           </div>
+        </b-col>
+        <b-col md="4">
           <div class="m-legend-item">
             <span
               class="m-legend-symbol"
@@ -243,7 +246,7 @@
         </b-col>
       </b-row>
 
-      <b-row class="mb-2">
+      <b-row>
         <b-col>
           <div id="staticcontent">
             <div class="table table-bordered table-responsive ">
@@ -263,7 +266,7 @@
                 </thead>
                 <tbody class="text-align-center">
                   <tr>
-                    <td colspan="1" rowspan="2"><nuxt-link to="/bioregions/riverina">Riverina</nuxt-link></td>
+                    <td colspan="1" rowspan="2"><nuxt-link to="/pages/riverina">Riverina</nuxt-link></td>
                     <td colspan="1" rowspan="4">Riverina</td>
                     <td colspan="2" rowspan="1">Victorian Riverina</td>
                   </tr>
@@ -271,7 +274,7 @@
                     <td colspan="2" rowspan="1">Murray Fans</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="3"><nuxt-link to="/bioregions/murray-mallee">Murray Mallee</nuxt-link></td>
+                    <td colspan="1" rowspan="3"><nuxt-link to="/pages/murray-mallee">Murray Mallee</nuxt-link></td>
                     <td colspan="2" rowspan="1">Robinvale Plains</td>
                   </tr>
                   <tr>
@@ -282,15 +285,15 @@
                     <td colspan="2" rowspan="1">Murray Mallee</td>
                   </tr>
                   <tr>
-                    <td colspan="1"><nuxt-link to="/bioregions/lowan-mallee">Lowan Mallee</nuxt-link></td>
+                    <td colspan="1"><nuxt-link to="/pages/lowan-mallee">Lowan Mallee</nuxt-link></td>
                     <td colspan="2" rowspan="1">Lowan Mallee</td>
                   </tr>
                   <tr>
-                    <td colspan="1"><nuxt-link to="/bioregions/wimmera">Wimmera</nuxt-link></td>
+                    <td colspan="1"><nuxt-link to="/pages/wimmera">Wimmera</nuxt-link></td>
                     <td colspan="2" rowspan="1">Wimmera</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="3"><nuxt-link to="/bioregions/wannon">Wannon</nuxt-link></td>
+                    <td colspan="1" rowspan="3"><nuxt-link to="/pages/wannon">Wannon</nuxt-link></td>
                     <td colspan="1" rowspan="2">Narracoorte Coastal Plain</td>
                     <td colspan="2" rowspan="1">Bridgewater</td>
                   </tr>
@@ -302,11 +305,11 @@
                     <td colspan="2" rowspan="1">Dundas Tablelands</td>
                   </tr>
                   <tr>
-                    <td colspan="1"><nuxt-link to="/bioregions/grampians">Grampians</nuxt-link></td>
+                    <td colspan="1"><nuxt-link to="/pages/grampians">Grampians</nuxt-link></td>
                     <td colspan="2" rowspan="1">Greater Grampians</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="3"><nuxt-link to="/bioregions/midlands">Midlands</nuxt-link></td>
+                    <td colspan="1" rowspan="3"><nuxt-link to="/pages/midlands">Midlands</nuxt-link></td>
                     <td colspan="2" rowspan="1">Goldfields</td>
                   </tr>
                   <tr>
@@ -317,12 +320,12 @@
                     <td colspan="2" rowspan="1">Northern Inland Slopes</td>
                   </tr>
                   <tr>
-                    <td colspan="1"><nuxt-link to="/bioregions/victorian-volcanic-plain">Victorian Volcanic Plain</nuxt-link></td>
+                    <td colspan="1"><nuxt-link to="/pages/victorian-volcanic-plain">Victorian Volcanic Plain</nuxt-link></td>
                     <td>Southern Volcanic Plain</td>
                     <td colspan="2" rowspan="1">Victorian Volcanic Plain</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="2"><nuxt-link to="/bioregions/otway-plain">Otway Plain</nuxt-link></td>
+                    <td colspan="1" rowspan="2"><nuxt-link to="/pages/otway-plain">Otway Plain</nuxt-link></td>
                     <td colspan="1" rowspan="3">South East Coastal Plain</td>
                     <td colspan="2" rowspan="1">Warrnambool Plain</td>
                   </tr>
@@ -330,27 +333,27 @@
                     <td colspan="2" rowspan="1">Otway Plain</td>
                   </tr>
                   <tr>
-                    <td colspan="1"><nuxt-link to="/bioregions/gippsland-plain">Gippsland Plain</nuxt-link></td>
+                    <td colspan="1"><nuxt-link to="/pages/gippsland-plain">Gippsland Plain</nuxt-link></td>
                     <td colspan="2" rowspan="1">Gippsland Plain</td>
                   </tr>
                   <tr>
-                    <td colspan="1"><nuxt-link to="/bioregions/otway-range">Otway Range</nuxt-link></td>
+                    <td colspan="1"><nuxt-link to="/pages/otway-range">Otway Range</nuxt-link></td>
                     <td colspan="1" rowspan="6">South Eastern Highlands</td>
                     <td colspan="2" rowspan="1">Otway Ranges</td>
                   </tr>
                   <tr>
-                    <td colspan="1"><nuxt-link to="/bioregions/gippsland-highlands">Gippsland Highlands</nuxt-link></td>
+                    <td colspan="1"><nuxt-link to="/pages/gippsland-highlands">Gippsland Highlands</nuxt-link></td>
                     <td colspan="2" rowspan="1">Strzelecki Ranges</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="2"><nuxt-link to="/bioregions/eastern-highlands">Eastern Highlands</nuxt-link></td>
+                    <td colspan="1" rowspan="2"><nuxt-link to="/pages/eastern-highlands">Eastern Highlands</nuxt-link></td>
                     <td colspan="2" rowspan="1">Highlands-Southern Fall</td>
                   </tr>
                   <tr>
                     <td colspan="2" rowspan="1">Highlands-Northern Fall</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="4"><nuxt-link to="/bioregions/east-gippsland">East Gippsland</nuxt-link></td>
+                    <td colspan="1" rowspan="4"><nuxt-link to="/pages/east-gippsland">East Gippsland</nuxt-link></td>
                     <td colspan="2" rowspan="1">Monaro Tablelands</td>
                   </tr>
                   <tr>
@@ -364,7 +367,7 @@
                     <td colspan="2" rowspan="1">East Gippsland Lowlands</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="2"><nuxt-link to="/bioregions/snowfields">Snowfields</nuxt-link></td>
+                    <td colspan="1" rowspan="2"><nuxt-link to="/pages/snowfields">Snowfields</nuxt-link></td>
                     <td colspan="1" rowspan="2">Australian Alps</td>
                     <td>Snowy Mountains</td>
                     <td colspan="1" rowspan="2">Victorian Alps</td>
@@ -373,13 +376,13 @@
                     <td>Victorian Alps</td>
                   </tr>
                   <tr>
-                    <td colspan="1" rowspan="2"><nuxt-link to="/bioregions/wilsons-promontory">Wilsons Promontory</nuxt-link></td>
+                    <td colspan="1" rowspan="2"><nuxt-link to="/pages/wilsons-promontory">Wilsons Promontory</nuxt-link></td>
                     <td colspan="1" rowspan="2">Furneaux</td>
                     <td>Wilsons Promontory</td>
                     <td colspan="1" rowspan="2">Wilsons Promontory</td>
                   </tr>
                   <tr>
-                    <td>Filnders</td>
+                    <td>Flinders</td>
                   </tr>
                 </tbody>
               </table>
@@ -402,3 +405,32 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import "~/assets/scss/custom_variables.scss";
+
+#staticcontent {
+  margin-top: 30px;
+}
+
+.m-main-title {
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+.m-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .m-legend-symbol {
+    justify-items: center;
+    display: inline-block;
+    height: 15px;
+    width: 30px;
+    border: 1px solid $grey;
+    margin-right: 5px;
+  }
+}
+</style>

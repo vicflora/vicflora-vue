@@ -49,7 +49,7 @@ export default {
     Highlights
   },
   async asyncData ({ $content }) {
-    const page = await $content('statics/index').fetch()
+    const page = await $content('pages/index').fetch()
     return {
       page
     }

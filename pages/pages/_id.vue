@@ -1,9 +1,9 @@
 <template>
-  <BContainer class="m-static">
+  <article class="container static-content">
     <!-- title -->
     <BRow>
       <BCol class="mt-4 mb-2 m-title">
-        <h2>{{ markdown.title }}</h2>
+        <h1>{{ markdown.title }}</h1>
       </BCol>
     </BRow>
     <!-- content -->
@@ -20,13 +20,14 @@
         <TableOfContent :toc="markdown.toc"></TableOfContent>
       </BCol>
     </BRow>
-  </BContainer>
+  </article>
 </template>
 
 <script>
 import TableOfContent from "@/components/App/AppTableOfContent"
+
 export default {
-  name:"Help",
+  name:"StaticContent",
   components: {
     TableOfContent
   },
@@ -43,23 +44,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.m-static::v-deep {
-  .m-title {
-      text-align: left;
-      h2 {
-          font-family: 'goodsans-medium';
-      }
-  }
-
-  .m-content{
-      img {
-          width: auto;
-          height: auto;
-          max-width: 100%;
-          max-height: 100%;
-      }
-  }
-}
-</style>
