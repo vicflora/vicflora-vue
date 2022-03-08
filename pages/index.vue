@@ -26,12 +26,12 @@
             class="btn btn-lg btn-block btn-primary"
           >Keys</a>
           
-          <highlights :highlights="page.highlights"></highlights>
+          <highlights v-if="highlights" :highlights="highlights"></highlights>
         </BCol>
 
         
         <b-col cols="12" lg="6" align-self="center">
-          <Carousel :slides="page.slides" class="m-carousel"></Carousel>
+          <Carousel v-if="slides" :slides="slides" class="m-carousel"></Carousel>
         </b-col>
       </BRow>
     </BContainer>
@@ -49,10 +49,28 @@ export default {
     Highlights
   },
   async asyncData ({ $content }) {
-    const page = await $content('pages/index').fetch()
+    const page = await $content('/').fetch()
     return {
       page
     }
+  },
+  computed: {
+    highlights() {
+      if (this.page[0].highlights !== undefined) {
+        return this.page[0].highlights
+      }
+      if (this.page[1].highlights !== undefined) {
+        return this.page[1].highlights
+      }
+    },
+    slides() {
+      if (this.page[0].slides !== undefined) {
+        return this.page[0].slides
+      }
+      if (this.page[1].slides !== undefined) {
+        return this.page[1].slides
+      }
+    },
   }
 }
 </script>
