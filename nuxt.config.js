@@ -5,7 +5,7 @@ const fs = require("fs-extra")
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "vicflora-nuxt",
+    title: "VicFlora – Royal Botanic Gardens Victoria",
     htmlAttrs: {
       lang: "en",
       dir: "ltr"
