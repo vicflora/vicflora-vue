@@ -8,7 +8,7 @@
       >
         <BNavbarNav>
           <BNavItem href="/">
-            <img src="/_nuxt/assets/images/rbgv-logo-pink-badge.png" alt="Logo"/><span class="nav-brand">VicFlora</span></BNavItem>
+            <img src="@/assets/images/rbgv-logo-pink-badge.png" alt="Logo"/><span class="nav-brand">VicFlora</span></BNavItem>
         </BNavbarNav>
 
         <BNavbarToggle target="nav-collapse"></BNavbarToggle>
