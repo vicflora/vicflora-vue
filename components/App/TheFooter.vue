@@ -1,6 +1,6 @@
 <template>
   <footer class="m-footer">
-    <BContainer>
+    <BContainer :fluid="fluid">
       <BRow>
         <BCol class="text-left">
           <nuxt-link class="m-copyright" to='/pages/copyright'>Copyright and citation</nuxt-link> &bull;
@@ -39,6 +39,12 @@
 <script>
 export default {
    name: "TheFooter",
+   props: {
+     fluid: {
+       type: Boolean,
+       default: false,
+     },
+   },
 }
 </script>
 
@@ -58,7 +64,7 @@ export default {
 }
 
 
-.container {
+.container, .container-fluid {
     min-height: auto;
 }
 </style>

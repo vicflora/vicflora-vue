@@ -1,14 +1,18 @@
 <template>
-    <iframe style="width:100vw;height:100vh;" :src="`https://vicflora.rbg.vic.gov.au/matrix-keys/${id}`" />
+  <b-container fluid id="#lucid-player-iframe">
+    <iframe style="width:100%;height:90vh;" :src="`/lucid-keys/${slug}`" />
+  </b-container>
+  
 </template>
 
 <script>
 export default {
-    computed:{
-        id:function(){
-            return this.$route.params.id
-        }
+  layout: 'matrixkeys',
+  computed:{
+    slug(){
+      return this.$route.params.id
     }
+  }
 }
 </script>
 

@@ -72,3 +72,9 @@
 <script>
 export default {};
 </script>
+
+<style lang="scss">
+iframe {
+  margin-right: 30px;
+}
+</style>

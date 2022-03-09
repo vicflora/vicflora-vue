@@ -1,5 +1,5 @@
 <template>
-    <BContainer :fluid="fluid" class="vicflora-navbar">
+    <BContainer fluid class="vicflora-navbar">
       <BNavbar
         toggleable="lg"
         type="light"
@@ -8,12 +8,7 @@
       >
         <BNavbarNav>
           <BNavItem href="/">
-              <BIcon
-                icon="house-door-fill"
-                font-scale="1.5"
-                class="m-icon"
-              />
-          </BNavItem>
+            <img src="/_nuxt/assets/images/rbgv-logo-pink-badge.png" alt="Logo"/><span class="nav-brand">VicFlora</span></BNavItem>
         </BNavbarNav>
 
         <BNavbarToggle target="nav-collapse"></BNavbarToggle>
@@ -68,7 +63,7 @@
 import SearchInput from "@/components/Search/SearchInput"
 
 export default {
-  name: "TheNavigationBar",
+  name: "TheFullWidthNavigationBar",
   components: {
     SearchInput
   },
@@ -80,3 +75,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.m-search-input {
+  margin-right: 8px;
+}
+</style>
