@@ -22,8 +22,9 @@ export default {
     return {
       categories: [
         'About',
-        'Bioregions',
         'Multi-access keys',
+        'Bioregions',
+        'Miscellaneous'
       ],
     }
   },
