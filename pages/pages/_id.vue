@@ -41,22 +41,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.static-content {
-  .m-title {
-      text-align: left;
-      margin-top: 24px;
-  }
-
-  .m-content{
-      img {
-          width: auto;
-          height: auto;
-          max-width: 100%;
-          max-height: 100%;
-      }
-  }
-}
-
-</style>
