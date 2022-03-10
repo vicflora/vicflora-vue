@@ -11,7 +11,7 @@
         class="linked-pages"
       >
         <div v-for="page in pages" :key="page.path">
-          <h3><nuxt-link :to="page.path">{{ page.title }}</nuxt-link></h3>
+          <h3><a :href="page.path">{{ page.title }}</a></h3>
           <p>{{ page.description.replace('Introduction\n', '') }}</p>
         </div>
       </div>

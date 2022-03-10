@@ -8,7 +8,7 @@
         <h2>{{ category.category }}</h2>
         <ul>
           <li v-for="page in category.pages" :key="page.path">
-            <nuxt-link :to="page.path">{{ page.title }}</nuxt-link>
+            <a :href="page.path">{{ page.title }}</a>
           </li>
         </ul>
       </div>
