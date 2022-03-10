@@ -1,10 +1,15 @@
 <template>
-  <b-button variant="outline-primary" :size="size"><a :href="href">{{button_text}}</a></b-button>
+  <b-button 
+    variant="primary" 
+    :size="size" 
+    :href="href"
+    :class="classes"
+  >{{button_text}}</b-button>
 </template>
 
 <script>
 export default {
-  name: "MarkdownButtonComponent",
+  name: "MarkdownButtonLinkComponent",
   props: {
     href:{
       type:String,
@@ -22,6 +27,10 @@ export default {
       type:String,
       required: true,
     },
+    classes: {
+      type: String,
+      default: 'matrix-key-button-link'
+    }
   },
 }
 </script>

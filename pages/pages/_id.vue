@@ -1,11 +1,8 @@
 <template>
   <article class="container static-content">
-    <!-- title -->
-    <BRow>
-      <BCol class="mt-4 mb-2 m-title">
-        <h1>{{ markdown.title }}</h1>
-      </BCol>
-    </BRow>
+    <header class="m-title">
+      <h1>{{ markdown.title }}</h1>
+    </header>
     <!-- content -->
     <BRow>
       <BCol align-self="start" cols="9" class="text-left">
@@ -44,3 +41,22 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.static-content {
+  .m-title {
+      text-align: left;
+      margin-top: 24px;
+  }
+
+  .m-content{
+      img {
+          width: auto;
+          height: auto;
+          max-width: 100%;
+          max-height: 100%;
+      }
+  }
+}
+
+</style>
