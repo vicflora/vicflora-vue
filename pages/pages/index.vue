@@ -29,6 +29,7 @@ export default {
   },
   async asyncData({ $content, params }) {
     const pages = await $content('pages')
+        .where({ display: {$ne: false } })
         .only(['title', 'category'])
         .sortBy('category').sortBy('title')
         .fetch()
