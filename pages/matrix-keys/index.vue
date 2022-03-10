@@ -11,7 +11,8 @@
         class="linked-pages"
       >
         <div v-for="page in pages" :key="page.path">
-          <h3><a :href="page.path">{{ page.title }}</a></h3>
+          <h3 v-if="page.permalink"><nuxt-link :to="page.permalink">{{ page.title }}</nuxt-link></h3>
+          <h3 v-else>{{ page.title }}</h3>
           <p>{{ page.description.replace('Introduction\n', '') }}</p>
         </div>
       </div>
@@ -26,12 +27,20 @@ export default {
     const markdown = await $content('pages/multi-access-keys').fetch()
     const pages = await $content('pages')
         .where({ display: {$ne: false }, category: 'Multi-access keys' })
-        .only(['title', 'description'])
+        .only(['title', 'description', 'permalink'])
         .sortBy('category').sortBy('title')
         .fetch()
     return {
       markdown,
       pages,
+    }
+  },
+  computed: {
+    subpages() {
+      return this.pages.map((page) => {
+        page.href = page.path
+        
+      })
     }
   },
 }

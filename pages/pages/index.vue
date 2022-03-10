@@ -7,8 +7,9 @@
       <div v-if="category.pages.length">
         <h2>{{ category.category }}</h2>
         <ul>
-          <li v-for="page in category.pages" :key="page.path">
-            <a :href="page.path">{{ page.title }}</a>
+          <li v-for="page in category.pages" :key="page.href">
+            <nuxt-link v-if="page.permalink" :to="page.permalink">{{ page.title }}</nuxt-link>
+            <span v-else>{{ page.title }}</span>
           </li>
         </ul>
       </div>
@@ -31,7 +32,7 @@ export default {
   async asyncData({ $content, params }) {
     const pages = await $content('pages')
         .where({ display: {$ne: false } })
-        .only(['title', 'category'])
+        .only(['title', 'category', 'permalink'])
         .sortBy('category').sortBy('title')
         .fetch()
     return { pages }
