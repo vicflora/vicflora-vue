@@ -111,15 +111,11 @@ query taxonConceptQuery($id: ID!) {
       ...taxonConceptFields
     }
     higherClassification {
-      id
-      depth
-      taxonConcept {
-        ...taxonConceptFields
-        taxonTreeDefItem {
-          id
-          name
-          rankId
-        }
+      ...taxonConceptFields
+      taxonTreeDefItem {
+        id
+        name
+        rankId
       }
     }
 

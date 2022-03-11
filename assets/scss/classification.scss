@@ -38,6 +38,10 @@ h2.m-taxon-name {
 
 }
 
+.vf-classification-current-taxon .m-taxon-name {
+  font-weight: bold;
+}
+
 #vf-taxon-classification, #vf-browse-classification {
   .m-row {
     margin-bottom: 8px !important;

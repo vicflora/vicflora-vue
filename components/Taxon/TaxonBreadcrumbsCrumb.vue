@@ -1,6 +1,6 @@
 <template>
-    <b-breadcrumb-item :to="`/flora/taxon/${crumb.taxonConcept.id}`">
-      {{crumb.taxonConcept.taxonName.fullName}}
+    <b-breadcrumb-item :to="`/flora/taxon/${taxonConcept.id}`">
+      {{taxonConcept.taxonName.fullName}}
     </b-breadcrumb-item>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   name: "TaxonBreadcrumbsCrumb",
   props: {
-    crumb: {
+    taxonConcept: {
       type: Object,
       required: true
     }

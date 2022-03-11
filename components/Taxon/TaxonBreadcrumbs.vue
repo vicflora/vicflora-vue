@@ -2,9 +2,9 @@
   <b-breadcrumb>
     <!-- higherClassification -->
     <Crumb
-      v-for="crumb in breadcrumbs"
-      :key="crumb.id"
-      :crumb="crumb"
+      v-for="item in concept.higherClassification.slice(1)"
+      :key="item.id"
+      :taxonConcept="item"
     />
 
     <!-- Siblings -->
@@ -56,12 +56,6 @@ export default {
         });
       },
     },
-    breadcrumbs() {
-      return this.concept.higherClassification
-        .slice()
-        .sort((a, b) => a.depth - b.depth)
-        .slice(3)
-    }
   },
   watch: {
     urlId: {

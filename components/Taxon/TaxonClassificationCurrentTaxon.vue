@@ -4,6 +4,7 @@
     :depth="depth"
     :indent="indent"
     :pageType="pageType"
+    class="vf-classification-current-taxon"
   >
     <TaxonClassificationNuxtLink
       v-if="pageType==='classification'"

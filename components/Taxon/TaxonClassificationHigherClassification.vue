@@ -1,18 +1,18 @@
 <template>
   <div class="higher-classification">
     <TaxonClassificationItem
-      v-for="(higherItem, index) in higherTaxa"
-      :key="higherItem.taxonConcept.id"
-      :item="higherItem.taxonConcept"
+      v-for="(item, index) in higherClassification"
+      :key="item.id"
+      :item="item"
       :depth="index"
       :indent="indent"
       :pageType="pageType"
     >
       <TaxonClassificationNuxtLink
-        :to="`/flora/${pageType}/${higherItem.taxonConcept.id}`"
-        :classes="getNameClasses(higherItem.taxonConcept.taxonTreeDefItem.rankId)"
-        :full-name="higherItem.taxonConcept.taxonName.fullName"
-        :authorship="higherItem.taxonConcept.taxonName.authorship"
+        :to="`/flora/${pageType}/${item.id}`"
+        :classes="getNameClasses(item.taxonTreeDefItem.rankId)"
+        :full-name="item.taxonName.fullName"
+        :authorship="item.taxonName.authorship"
       />
     </TaxonClassificationItem>
     <b-row>
@@ -47,10 +47,5 @@ export default {
       required: true
     }
   },
-  computed: {
-    higherTaxa() {
-      return this.higherClassification.slice().sort((a, b) => a.depth - b.depth)
-    }
-  }
 }
 </script>
