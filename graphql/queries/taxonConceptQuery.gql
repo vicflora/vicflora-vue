@@ -118,12 +118,18 @@ query taxonConceptQuery($id: ID!) {
         rankId
       }
     }
-
     identificationKeys {
       id
       title
       taxonomicScope
       geographicScope
+    }
+    references {
+      id
+      reference {
+        id
+        citationHtml
+      }
     }
   }
 }

@@ -27,6 +27,7 @@ import TaxonTabSynonymy from "@/components/Taxon/TaxonTabSynonymy"
 import TaxonTabImages from "@/components/Taxon/TaxonTabImages"
 import TaxonTabSpecimenImages from "@/components/Taxon/TaxonTabSpecimenImages"
 import TaxonTabDistribution from "@/components/Taxon/TaxonTabDistribution"
+import TaxonTabReferences from "@/components/Taxon/TaxonTabReferences"
 import { rankMixin } from "@/mixins/taxonMixins"
 import { watchRouteIdMixin } from "@/mixins/routeMixins"
 
@@ -38,7 +39,8 @@ export default {
     TaxonTabSpecimenImages,
     TaxonTabDistribution,
     TaxonClassification,
-    TaxonTabSynonymy
+    TaxonTabSynonymy,
+    TaxonTabReferences,
   },
   mixins: [
     rankMixin,
@@ -98,6 +100,13 @@ export default {
         tabs.push({
           title: "Specimen images",
           component: TaxonTabSpecimenImages
+        })
+      }
+
+      if (this.concept.references) {
+        tabs.push({
+          title: "References",
+          component: TaxonTabReferences
         })
       }
 
