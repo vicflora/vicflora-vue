@@ -1,5 +1,5 @@
 <template>
-  <div class="m-item row text-left">
+  <div class="vf-search-result-item vf-search-result-item row text-left">
     <BCol 
       cols="auto"
       class="text-left mr-auto" 
@@ -10,52 +10,43 @@
             item.taxonomicStatus === 'accepted'
         "
       >
-        <NLink
+        <NuxtLink
           :to="`/flora/taxon/${item.id}`"
-          class="m-item-name-accepted"
-          :style="
-            rankClass[item.taxonRank] > 140
-              ? 'font-style: italic;'
-              : ''
-          "
-        >{{ item.scientificName }}</NLink>
-        <span class="m-item-author">{{ item.scientificNameAuthorship }}</span>
-        <span class="m-item-vernacularname">{{ item.preferredVernacularName }}</span>
+          :style="rankClass[item.taxonRank] > 140 ? 'font-style: italic;' : ''"
+        >
+          <span class="vf-search-result-item-name-accepted">{{ item.scientificName }}</span>
+          <span class="vf-search-result-item-author">{{ item.scientificNameAuthorship }}</span>
+          <span class="vf-search-result-item-vernacularname">{{ item.preferredVernacularName }}</span>
+        </NuxtLink>
       </div>
 
       <div v-else>
         <div
           :style="item.acceptedNameUsageId ? '' : 'margin-bottom: 10px;'"
         >
-          <NLink
+          <NuxtLink
             :to="`/flora/taxon/${item.id}`"
-            class="m-item-name"
             :style="
               rankClass[item.taxonRank] > 140
                 ? 'font-style: italic;'
                 : ''
             "
-          >{{ item.scientificName }}</NLink>
-          <span class="m-item-author">{{ item.scientificNameAuthorship }}</span>
+          >
+            <span class="vf-search-result-item-name">{{ item.scientificName }}</span>
+            <span class="vf-search-result-item-author">{{ item.scientificNameAuthorship }}</span>
+          </NuxtLink>
         </div>
         <div v-if="item.acceptedNameUsageId">
           <span>{{ `= ` }}</span>
-          <n-link
+          <NuxtLink
             :to="`/flora/taxon/${item.acceptedNameUsageId}`"
-            class="m-item-name-accepted"
-            :style="
-              rankClass[item.taxonRank] > 140
-                ? 'font-style: italic;'
-                : ''
-            "
-            >{{ item.acceptedNameUsage }}</n-link
+            class="vf-search-result-item-name-accepted"
+            :style="rankClass[item.taxonRank] > 140 ? 'font-style: italic;' : ''"
           >
-          <span class="m-item-author">{{
-            item.acceptedNameUsageAuthorship
-          }}</span>
-          <span class="m-item-vernacularname">{{
-            item.vernacularName
-          }}</span>
+            <span class="vf-search-result-item-name-accepted">{{ item.acceptedNameUsage }}</span>
+            <span class="vf-search-result-item-author">{{ item.acceptedNameUsageAuthorship }}</span>
+            <span class="vf-search-result-item-vernacularname">{{ item.vernacularName }}</span>
+          </NuxtLink>
         </div>
       </div>
     </BCol>
@@ -64,7 +55,7 @@
       cols="auto" 
       class="m-responsive-disappear"
     >
-      <span class="m-item-familyname">{{ item.family }}</span>
+      <span class="vf-search-result-item-familyname">{{ item.family }}</span>
     </BCol>
   </div>
 </template>
