@@ -21,7 +21,8 @@ export default {
             taxon in the area.`
     },
     "EXTINCT": {
-        'extinct': `There is no evidence that the taxon is still present in the
+        'label': 'Extinct',
+        'description': `There is no evidence that the taxon is still present in the
             area.`
     },
     "EXCLUDED": {
