@@ -1,7 +1,6 @@
 <template>
   <div class="m-toc-container">
     <div class="m-content">
-      <p>NAVIGATION</p>
       <ul class="m-toc">
         <li
           @click="tableOfContentsHeadingClick(link)"
