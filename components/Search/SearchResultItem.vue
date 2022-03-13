@@ -96,33 +96,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import "~/assets/scss/custom_variables.scss";
-.m-item{
-    .m-item-name-accepted{
-        display: inline-block;
-        margin-bottom: 10px;
-        margin-right: 15px;
-        font-family: "goodsans-regular";
-        color: $primary;
-    }
-    .m-item-name{
-        display: inline-block;
-        margin-right: 15px;
-        font-family: "goodsans-regular";
-        color: $grey;
-    }
-    .m-item-author{
-        font-size: smaller;
-    }
-    .m-item-vernacularname{
-        margin-left: 15px;
-        color: $primary;
-    }
-    .m-item-familyname{
-        font-size: small;
-        text-align: right;
-    }
-}
-</style>

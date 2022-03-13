@@ -79,33 +79,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.breadcrumb {
-  background-color: white;
-  margin: 0;
-  padding-left: 0;
-  align-items: start;
-}
-
-.m-breadcrumb-selector-item {
-  max-width: 200px;
-  margin-left: 20px;
-  margin-top: -47px;
-}
-
-.vf-breadcrumb-item-children .m-breadcrumb-selector-item {
-  margin-left: 30px;
-}
-
-.breadcrumb-item + .vf-breadcrumb-item-children.breadcrumb-item::before {
-  padding-left: 1rem;
-}
-
-.breadcrumb-item:first-child .m-breadcrumb-selector-item {
-  margin-top: -5px;
-  margin-left: 0;
-}
-
-
-</style>

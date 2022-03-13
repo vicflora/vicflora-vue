@@ -46,26 +46,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-  .tc-status-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-
-    &.tc-status-label-flex {
-      width: 180px;
-      display: inline-flex;
-    }
-  }
-
-  .tc-status-content {
-    display: inline-block;
-    vertical-align: top;
-  }
-
-.popover.b-popover {
-  font-family: "goodsans-thin";
-  font-size: 80%;
-}
-
-</style>

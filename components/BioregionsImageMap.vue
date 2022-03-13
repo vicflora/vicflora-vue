@@ -1,5 +1,5 @@
 <template>
-  <map name="vicflora_bioregion">
+  <map name="vicflora_bioregions">
     <area
       shape="poly"
       id="vicflora_bioregion.18.0"
@@ -2870,8 +2870,9 @@
     />
   </map>
 </template>
+
 <script>
 export default {
-  name: "BioregionsMapConfig",
+  name: "BioregionsImageMap",
 };
 </script>

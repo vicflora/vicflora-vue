@@ -134,17 +134,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.m-map {
-  height: 650px;
-  max-height: 70vh;
-  margin-bottom: 20px;
-  text-align: left !important;
-
-  .leaflet-grab {
-    cursor: auto;
-  }
-}
-
-</style>

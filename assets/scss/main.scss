@@ -1,55 +1,330 @@
 // Your variable overrides
 @import './custom_variables.scss';
-
 // Bootstrap and its default variables
 @import '~/node_modules/bootstrap/scss/bootstrap';
-
 // BootstrapVue and its default variables
 @import '~/node_modules/bootstrap-vue/src/index.scss';
-
 @import './default-layout.scss';
 @import './navbar.scss';
+@import './banner.scss';
 @import './home.scss';
+@import './highlights.scss';
 @import './classification.scss';
 @import './search.scss';
+@import './checklists.scss';
+@import './glossary.scss';
+@import './footer.scss';
+@import './bioregions.scss';
 
 .page-header h2 {
-  margin-top: 30px;
-  margin-bottom: 15px;
-}
-
-
-//
-// Matrix key button on static pages
-//
-
-.matrix-key-button-link {
-  margin-bottom: 1rem;
-}
-
-//
-// Taxon Concept Overview Tab
-//
-.vf-taxon-concept-references {
-  margin-top: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 //
 // static content
 //
 .static-content {
-  .m-title {
-      text-align: left;
-      margin-top: 24px;
-  }
-
-  .m-content{
-      img {
-          width: auto;
-          height: auto;
-          max-width: 100%;
-          max-height: 100%;
-      }
-  }
+    .m-title {
+        text-align: left;
+        margin-top: 24px;
+    }
+    .m-content {
+        img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
 }
 
+// 
+// Static pages Table of contents
+// 
+.m-toc-container {
+    text-align: left;
+    list-style: none;
+    padding-left: 8px;
+    height: 100vh;
+    p {
+        margin-bottom: 4px;
+        font-family: "goodsans-medium";
+    }
+    .m-content {
+        padding-left: 10px;
+        margin-bottom: 4px;
+        position: fixed;
+        border-left: 1px solid #eee;
+    }
+}
+
+.m-toc {
+    text-align: left;
+    list-style: none;
+    padding-left: 0px;
+    padding-top: 2px;
+}
+
+.m-active {
+    font-weight: bold;
+}
+
+.m-hover:hover {
+    font-weight: bold;
+}
+
+.m-invisible {
+    display: none;
+}
+
+//
+// Matrix key button on static pages
+//
+.matrix-key-button-link {
+    margin-bottom: 1rem;
+}
+
+//
+// Taxon page breadcrumbs
+//
+.breadcrumb {
+    background-color: white;
+    margin: 0;
+    padding-left: 0;
+    align-items: start;
+}
+
+.m-breadcrumb-selector-item {
+    max-width: 200px;
+    margin-left: 20px;
+    margin-top: -47px;
+}
+
+.vf-breadcrumb-item-children .m-breadcrumb-selector-item {
+    margin-left: 30px;
+}
+
+.breadcrumb-item+.vf-breadcrumb-item-children.breadcrumb-item::before {
+    padding-left: 1rem;
+}
+
+.breadcrumb-item:first-child .m-breadcrumb-selector-item {
+    margin-top: -5px;
+    margin-left: 0;
+}
+
+//
+// Taxon name
+//
+.m-title {
+    display: inline-block;
+    .m-authorship {
+        margin-right: 15px;
+    }
+    .m-vernacular-names {
+        font-size: xx-large;
+    }
+    h2.m-taxon-name-not-accepted {
+        margin-top: 30px;
+    }
+}
+
+.vf-name-authorship {
+    color: initial;
+}
+
+.m-protologue {
+    margin-bottom: 15px;
+    i {
+        margin-right: 10px;
+    }
+    .b-icon.bi {
+        vertical-align: 0;
+    }
+    .tn-apni-link {
+        display: inline-block;
+        margin-left: 1em;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
+//
+// Taxon page status section
+//
+.tc-status-item-group {
+    .tc-status-item-group-item {
+        display: inline-block;
+    }
+    .tc-status-item {
+        display: inline-block;
+    }
+}
+
+.tc-status-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    &.tc-status-label-flex {
+        width: 180px;
+        display: inline-flex;
+    }
+}
+
+.tc-status-content {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.popover.b-popover {
+    font-family: "goodsans-thin";
+    font-size: 80%;
+}
+
+//
+// Taxon tabs component
+//
+.vf-taxon-page-tabs {
+    margin: 25px 0;
+}
+
+.m-distribution-title {
+    font-family: "goodsans-medium";
+    margin-bottom: 20px;
+}
+
+.tab-content>div {
+    padding-top: 15px;
+}
+
+//
+// Taxon Concept Overview Tab
+//
+.vf-taxon-concept-references {
+    margin-top: 1.5rem;
+}
+
+//
+// Taxon page Distribution tab
+//
+.vf-distribution-tab-section {
+    margin-bottom: 1rem;
+}
+
+.m-map {
+    height: 650px;
+    max-height: 70vh;
+    margin-bottom: 20px;
+    text-align: left !important;
+    .leaflet-grab {
+        cursor: auto;
+    }
+}
+
+.leaflet-control-layers-base {
+    text-align: left !important;
+}
+
+.vf-distribution-map-popup {
+    font-size: 14px;
+    p {
+        margin: 0 !important;
+        a {
+            color: $primary;
+        }
+    }
+    .m-btn-group {
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        .m-btn {
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+}
+
+#region-table {
+    margin: 10px 0;
+    .vf-status {
+        width: 2.5rem;
+        &.vf-status-native {
+            background-color: #a4f27d;
+        }
+        &.vf-status-introduced {
+            background-color: #ffcccc;
+        }
+        &.vf-status-naturalised {
+            background-color: #ffcccc;
+        }
+        &.vf-status-cultivated {
+            background-color: #3333ff;
+        }
+        &.vf-status-uncertain {
+            background-color: #ffbb00;
+        }
+        &.vf-status-extinct {
+            background-color: #e9aaff;
+        }
+        &.vf-status-doubtful {
+            background-color: #fcfc99;
+        }
+    }
+}
+
+// 
+// Taxon page Synonymy tab
+// 
+.vf-synonymy-author,
+.vf-synonymy-according-to {
+    color: initial;
+}
+
+// 
+// Taxon page Images tab
+// 
+.m-images {
+    &>.row {
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+    }
+    .thumbnail {
+        width: 100%;
+        border: solid 1px #cccccc;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 8px;
+        &:before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+        }
+        &>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 4px;
+        }
+    }
+}
+
+// 
+// Specimen images modal
+// 
+.modal {
+    iframe.m-modal-iframe {
+        width: 100%;
+        height: 100%;
+    }
+    .modal-content {
+        height: 90vh;
+    }
+}

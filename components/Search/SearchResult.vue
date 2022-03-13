@@ -1,30 +1,6 @@
 <template>
-  <div class="col col-lg-8">
+  <div class="vf-search-result col col-lg-8">
 
-    <!-- <BRow align-v="baseline">
-      <BCol 
-        class="text-left" 
-        cols="3" 
-        align-self="baseline"
-      >
-        <SearchResultNumberOfMatches :total="data.search.meta.pagination.total"/>
-      </BCol>
-
-      <BCol align-self="baseline">
-        <SearchResultNav
-            :activePage="activePage"
-            :lastPage="data.search.meta.pagination.lastPage"
-            @pageChanged="onPageChange"
-        />
-      </BCol>
-      
-      <BCol cols="3" 
-        align-self="baseline" 
-        class="text-right"
-      >
-        <SearchResultDownloadButton/>
-      </BCol>
-    </BRow> -->
     <SearchResultHeader :data="data" @pageChanged="onPageChange" />
 
     <SearchResultItem 
@@ -32,28 +8,6 @@
       :key="item.id"
       :item="item"
     />
-
-    <!-- <BRow align-v="baseline">
-      <BCol 
-        cols="3" 
-        align-self="baseline"
-        class="text-left"
-      />
-
-      <BCol align-self="baseline">
-        <SearchResultNav
-            :activePage="activePage"
-            :lastPage="data.search.meta.pagination.lastPage"
-            @pageChanged="onPageChange"
-        />
-      </BCol>
-
-      <BCol 
-        cols="3" 
-        align-self="baseline" 
-        class="text-right"
-      />
-    </BRow> -->
     <SearchResultFooter :data="data" @pageChanged="onPageChange" />
   </div>
 </template>
@@ -100,7 +54,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>

@@ -75,9 +75,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.m-search-input {
-  margin-right: 8px;
-}
-</style>

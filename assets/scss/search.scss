@@ -1,4 +1,4 @@
-.m-search, .m-checklist {
+.m-search, .vf-checklist-page {
   .m-main-title {
     h2 {
       font-family: "goodsans-medium";
@@ -33,3 +33,107 @@
     margin-bottom: 12px;
   }
 }
+
+.search-applied-filters {
+  &>ul {
+    padding-left: 0;
+    list-style-type: none;
+
+    &>li {
+      margin-left: 0 !important;
+    }
+  }
+}
+
+.search-filters {
+  .m-facetvalue {
+    display: block;
+    color: $primary;
+    // text-transform: capitalize;
+  }
+
+  .card-body {
+    padding-bottom: 0 !important;
+    padding-top: 3px !important;
+  }
+
+  .btn-sm {
+    padding: 2px 6px;
+  }
+  .m-more {
+    color: $primary;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-size: small;
+  }
+
+  .m-more:hover {
+    text-decoration: underline;
+  }
+}
+
+#facetModal {
+  .m-table {
+    width: 100%;
+    max-height: 60vh;
+  }
+
+  .table {
+    margin-bottom: 0;
+    width: 99%;
+  }
+
+  .m-facet-value {
+    color: $primary;
+    font-size: small;
+//    text-transform: capitalize;
+  }
+
+  .m-facet-value:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.m-search-input {
+  .mb-4.search-input-type-ahead {
+    margin-bottom: 0 !important;
+    text-align: left;
+    font-size: small;
+    .list-group-item {
+      padding: 5px 10px;
+      color: #000;
+    }
+  }
+}
+
+.vf-search-result {
+  .m-item {
+    .m-item-name-accepted{
+      display: inline-block;
+      margin-bottom: 10px;
+      margin-right: 15px;
+      font-family: "goodsans-regular";
+      color: $primary;
+    }
+    .m-item-name{
+      display: inline-block;
+      margin-right: 15px;
+      font-family: "goodsans-regular";
+      color: $grey;
+    }
+    .m-item-author{
+      font-size: smaller;
+    }
+    .m-item-vernacularname{
+      margin-left: 15px;
+      color: $primary;
+    }
+    .m-item-familyname{
+      font-size: small;
+      text-align: right;
+    }
+  }
+}
+
+

@@ -255,27 +255,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~/assets/scss/custom_variables.scss";
 
-.m-table {
-  width: 100%;
-  max-height: 60vh;
-}
-
-.table {
-  margin-bottom: 0;
-  width: 99%;
-}
-
-.m-facet-value {
-  color: $primary;
-  font-size: small;
-  text-transform: capitalize;
-}
-
-.m-facet-value:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
 </style>

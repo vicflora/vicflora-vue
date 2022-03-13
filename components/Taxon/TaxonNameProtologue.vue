@@ -29,12 +29,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.m-protologue {
-  .b-icon.bi {
-    vertical-align: 0;
-  }
-}
-</style>
-

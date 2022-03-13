@@ -43,9 +43,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.vf-synonymy-author, .vf-synonymy-according-to {
-  color: initial;
-}
-</style>

@@ -27,16 +27,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.search-applied-filters {
-  &>ul {
-    padding-left: 0;
-    list-style-type: none;
-
-    &>li {
-      margin-left: 0 !important;
-    }
-  }
-}
-</style>

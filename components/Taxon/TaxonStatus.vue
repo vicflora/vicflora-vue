@@ -108,14 +108,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.tc-status-item-group {
-  .tc-status-item-group-item {
-    display: inline-block;
-  }
-  .tc-status-item {
-    display: inline-block;
-  }
-}
-</style>

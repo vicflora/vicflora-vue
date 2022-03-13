@@ -1,4 +1,4 @@
-query glossaryTermByNameQuery($name: String!) {
+query glossaryTermByNameQuery($name: String="abaxial") {
   glossaryTermFirstLetters
   glossaryTermsByName(name: $name) {
     id

@@ -167,35 +167,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.m-map {
-  height: 363px;
-  width: 635px;
-  text-align: left !important;
-}
-
-.m-map:hover {
-  cursor: pointer;
-}
-
-.m-topic {
-  font-family: "goodsans-regular";
-  margin: 10px 0;
-  font-size: medium;
-}
-.m-table-fontsize {
-  font-size: small;
-}
-
-.m-popup-topic {
-font-family: "goodsans-regular";
-  margin-bottom: 10px;
-  font-size: x-small;
-}
-
-.m-popup-table-fontsize {
-    font-size: xx-small;
-}
-
-</style>

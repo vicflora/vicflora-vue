@@ -1,9 +1,5 @@
-<style lang="scss" scoped>
-@import "./Glossary.scss";
-</style>
-
 <template>
-  <b-container class="m-search">
+  <b-container class="vf-glossary-page">
     <ApolloQuery
       :query="require('@/graphql/queries/glossary.gql')"
       :variables="{ name }"
@@ -63,7 +59,7 @@
 </template>
 
 <script>
-import GlossaryDefinition from "@/components/Glossary-definition/Glossary-definition"
+import GlossaryDefinition from "@/components/Glossary/GlossaryDefinition"
 export default {
   name: "Glossary",
   components:{

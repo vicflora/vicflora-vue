@@ -185,33 +185,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import "~/assets/scss/custom_variables.scss";
-
-.m-facetvalue {
-  display: block;
-  color: $primary;
-  text-transform: capitalize;
-}
-
-.card-body {
-  padding-bottom: 0 !important;
-  padding-top: 3px !important;
-}
-
-.btn-sm {
-  padding: 2px 6px;
-}
-.m-more {
-  color: $primary;
-  cursor: pointer;
-  margin-bottom: 0;
-  font-size: small;
-}
-
-.m-more:hover {
-  text-decoration: underline;
-}
-</style>
-

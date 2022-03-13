@@ -1,5 +1,5 @@
 <template>
-  <div class="m-checklist">
+  <div class="vf-checklist-page">
     <b-container>
       <b-row class="mb-2">
         <b-col class="text-left">

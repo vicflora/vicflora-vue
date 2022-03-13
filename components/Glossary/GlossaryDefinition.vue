@@ -87,8 +87,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-@import "./Glossary-definition.scss";
-</style>
-

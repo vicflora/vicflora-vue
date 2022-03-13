@@ -83,14 +83,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.mb-4.search-input-type-ahead::v-deep {
-  margin-bottom: 0 !important;
-  text-align: left;
-  font-size: small;
-  .list-group-item {
-    padding: 5px 10px;
-    color: #000;
-  }
-}
+<style lang="scss">
 </style>

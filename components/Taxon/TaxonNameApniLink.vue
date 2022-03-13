@@ -20,12 +20,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.m-protologue {
-  .tn-apni-link {
-    display: inline-block;
-    margin-left: 1em;
-  }
-}
-</style>

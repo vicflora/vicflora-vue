@@ -45,30 +45,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~/assets/scss/custom_variables.scss";
 
-.m-highlight-title {
-  margin-top: 15px;
-  margin-bottom: -15px;
-}
-
-.m-highlight {
-  padding: 0 !important;
-  border: 1px solid $light !important;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 0px;
-  margin-right: 0px;
-
-  .m-highlight-image {
-    margin: 5px 0;
-  }
-}
-
-.m-hightlight-new {
-  color: red;
-}
 </style>
 

@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import DistributionMapConfig from "~/components/Distribution-map-config/Distribution-map-config"
 import DistributionMap from "~/components/Taxon/TaxonTabDistributionMap"
 import DistributionAvhMap from "~/components/Taxon/TaxonTabDistributionAvhMap"
 import DistributionTable from "~/components/Taxon/TaxonTabDistributionTable"
@@ -65,7 +64,6 @@ import TaxonConceptParkReservesQuery from "~/graphql/queries/taxonConceptParkRes
 export default {
   name: "TaxonTabDistribution",
   components: {
-    DistributionMapConfig,
     DistributionMap,
     DistributionAvhMap,
     DistributionTable,
@@ -169,9 +167,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.vf-distribution-tab-section {
-  margin-bottom: 1rem;
-}
-</style>

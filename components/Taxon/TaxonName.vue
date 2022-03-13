@@ -62,30 +62,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-@import "~/assets/scss/custom_variables.scss";
-
-.m-title {
-  display: inline-block;
-
-  .m-authorship {
-    margin-right: 15px;
-  }
-
-  .m-vernacular-names {
-    font-size: xx-large;
-  }
-
-  h2.m-taxon-name-not-accepted {
-    margin-top: 30px;
-  }
-}
-
-.m-protologue {
-  margin-bottom: 15px;
-  i {
-    margin-right: 10px;
-  }
-}
-</style>

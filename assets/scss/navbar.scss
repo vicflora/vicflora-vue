@@ -62,4 +62,9 @@
   .container {
     min-height: auto;
   }
+
+  &.container-fluid .m-search-input {
+    margin-right: 8px;
+  }
+  
 }

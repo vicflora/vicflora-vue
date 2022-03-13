@@ -70,16 +70,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.modal {
-  iframe.m-modal-iframe {
-    width: 100%;
-    height: 100%;
-  }
-
-  .modal-content {
-    height: 90vh;
-  }
-}
-</style>

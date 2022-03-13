@@ -108,9 +108,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.m-checklist .accordion ul {
-  padding-left: 10px;
-}
-</style>

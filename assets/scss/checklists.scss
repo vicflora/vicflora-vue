@@ -1,0 +1,48 @@
+// Copyright 2022 Royal Botanic Gardens Board
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+.vf-checklist-page {
+  .accordion ul {
+    padding-left: 10px;
+  }
+
+  .m-map {
+    height: 363px;
+    width: 635px;
+    text-align: left !important;
+  }
+
+  .m-map:hover {
+    cursor: pointer;
+  }
+
+  .m-topic {
+    font-family: "goodsans-regular";
+    margin: 10px 0;
+    font-size: medium;
+  }
+  .m-table-fontsize {
+    font-size: small;
+  }
+
+  .m-popup-topic {
+  font-family: "goodsans-regular";
+    margin-bottom: 10px;
+    font-size: x-small;
+  }
+
+  .m-popup-table-fontsize {
+      font-size: xx-small;
+  }
+}

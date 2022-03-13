@@ -59,27 +59,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import "~/assets/scss/custom_variables";
-
-.m-popup {
-  font-size: 14px;
-  p {
-    margin: 0;
-
-    a {
-      color: $primary;
-    }
-  }
-  .m-btn-group{
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    .m-btn {
-      display:inline-block;
-      cursor:pointer;
-    }
-  }
-}
-</style>

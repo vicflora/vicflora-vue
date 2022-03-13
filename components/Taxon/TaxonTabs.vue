@@ -103,7 +103,7 @@ export default {
         })
       }
 
-      if (this.concept.references) {
+      if (this.concept.references.length) {
         tabs.push({
           title: "References",
           component: TaxonTabReferences
@@ -143,19 +143,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-.vf-taxon-page-tabs {
-  margin: 25px 0;
-}
-
-.m-distribution-title {
-  font-family: "goodsans-medium";
-  margin-bottom: 20px;
-}
-
-.tab-content>div {
-  padding-top: 15px;
-}
-</style>
