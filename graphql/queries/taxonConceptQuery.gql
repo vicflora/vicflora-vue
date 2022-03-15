@@ -131,5 +131,12 @@ query taxonConceptQuery($id: ID!) {
         citationHtml
       }
     }
+    floraLinks {
+      id
+      flora
+      url
+      icon
+      sortOrder
+    }
   }
 }
