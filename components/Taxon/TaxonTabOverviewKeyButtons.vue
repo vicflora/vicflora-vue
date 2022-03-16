@@ -1,26 +1,21 @@
 <template>
-  <b-row class="vf-identification-key-buttons">
-    <b-col
+  <div >
+    <span class="vf-identification-key-button"
       v-for="item in keys"
       :key="item.id"
     >
-      <nuxt-link 
+      <b-button 
         v-if="item.relativePath !== undefined"
-        :to="item.relativePath" >
-        <b-button 
-          variant="primary" 
-        >{{ item.title }}</b-button>
-      </nuxt-link>
-      <nuxt-link
+        :to="item.relativePath" 
+        variant="outline-primary"
+      >{{ item.title }}</b-button>
+      <b-button 
         v-else
         :to="`/flora/key/${item.id}`" 
-      >
-        <b-button 
-          variant="primary" 
-        >{{ item.title }}</b-button>
-      </nuxt-link>
-    </b-col>
-  </b-row>
+          variant="outline-primary" 
+      >{{ item.title }}</b-button>
+    </span>
+  </div>
 </template>
 
 <script>
@@ -36,11 +31,8 @@ export default {
 </script>
 
 <style lang="scss">
-.vf-identification-key-buttons {
-    margin-top: 15px;
-
-    .col {
-      margin: 0.5rem 0;
-    }
+.vf-identification-key-button {
+  display: inline-block;
+  margin: 0.5rem 0.5rem 0.5rem 0;
 }
 </style>
