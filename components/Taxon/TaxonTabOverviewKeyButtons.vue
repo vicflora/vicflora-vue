@@ -1,21 +1,33 @@
 <template>
-  <div class="identification-keys">
-    <div
-      v-for="item in identificationKeys"
+  <b-row class="vf-identification-key-buttons">
+    <b-col
+      v-for="item in keys"
       :key="item.id"
     >
-      <nuxt-link :to="`/flora/key/${item.id}`" >
-        <b-button variant="primary" class="mb-2">{{ item.title }}</b-button>
+      <nuxt-link 
+        v-if="item.relativePath !== undefined"
+        :to="item.relativePath" >
+        <b-button 
+          variant="primary" 
+        >{{ item.title }}</b-button>
       </nuxt-link>
-    </div>
-  </div>
+      <nuxt-link
+        v-else
+        :to="`/flora/key/${item.id}`" 
+      >
+        <b-button 
+          variant="primary" 
+        >{{ item.title }}</b-button>
+      </nuxt-link>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
 export default {
   name: 'TaxonTabOverviewKeyButtons',
   props: {
-    identificationKeys: {
+    keys: {
       type: Array,
       required: true,
     },
@@ -24,7 +36,11 @@ export default {
 </script>
 
 <style lang="scss">
-.identification-keys {
+.vf-identification-key-buttons {
     margin-top: 15px;
+
+    .col {
+      margin: 0.5rem 0;
+    }
 }
 </style>

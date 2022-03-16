@@ -12,9 +12,9 @@
 
           <TaxonTabOverviewAttribution :concept="concept" />
 
-          <TaxonTabOverviewKeyButtons
-            v-if="concept.identificationKeys.length !== 0"
-            :identificationKeys="concept.identificationKeys"
+          <TaxonTabOverviewKeyButtons 
+            v-if="keys.length" 
+            :keys="keys"
           />
         </b-col>
 
@@ -73,6 +73,16 @@ export default {
     },
     hasAside() {
       return this.hasHeroImage || this.hasProfileMap
+    },
+    keys() {
+      let keys = []
+      if (this.concept.identificationKeys.length) {
+        keys = keys.concat(this.concept.identificationKeys)
+      }
+      if (this.concept.matrixKeys.length) {
+        keys = keys.concat(this.concept.matrixKeys)
+      }
+      return keys
     }
   },
   mounted() {
