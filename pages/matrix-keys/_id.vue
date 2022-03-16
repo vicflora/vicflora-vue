@@ -46,7 +46,7 @@ export default {
       query: matrixKeyQuery,
       result({ data, loading }) {
         if (!loading) {
-          this.taxonConcept = data.taxonConcept
+          this.matrixKey = data.matrixKey
         }
       },
       skip: true,
