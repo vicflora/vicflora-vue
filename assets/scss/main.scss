@@ -15,11 +15,28 @@
 @import './glossary.scss';
 @import './footer.scss';
 @import './bioregions.scss';
+@import './keybase';
+@import './matrix-keys';
 
 .page-header h2 {
     margin-top: 30px;
     margin-bottom: 15px;
 }
+
+ol.breadcrumb {
+    margin-top: 1rem;
+}
+
+.vf-icon-button {
+    &:hover {
+      text-decoration: none;
+    }
+  
+    span.vf-icon-button-icon, span.vf-icon-button-text {
+      vertical-align: middle;
+    }
+  }
+  
 
 //
 // static content
@@ -201,8 +218,12 @@
 //
 // Taxon Concept Overview Tab
 //
-.vf-taxon-concept-references {
-    margin-top: 1.5rem;
+.vf-identification-key-buttons {
+    margin-top: 15px;
+
+    .col {
+      margin: 0.5rem 0;
+    }
 }
 
 //
