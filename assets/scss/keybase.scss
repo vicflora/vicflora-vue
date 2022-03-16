@@ -20,10 +20,13 @@ limitations under the License.
 
 /* KeyBase player
 ----------------------------------------------*/
-@import "@/assets/scss/custom_variables.scss";
 
 .keybase-container {
     position: relative;
+}
+
+.keybase-container .breadcrumb, #lucid-player-container .breadcrumb {
+  margin-top: 1rem;
 }
 
 .keybase-player-window {

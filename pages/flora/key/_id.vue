@@ -1,60 +1,49 @@
-<style lang="scss" scoped>
-.m-keybase::v-deep {
-  text-align: left;
-  @import "./Keybase.scss";
-}
-</style>
-
 <template>
   <div class="container m-keybase">
     <div class="keybase-container" data-key-id="8099">
-      <div class="row" v-show="key">
-        <div class="col-md-12">
-          <ol class="breadcrumb">
-            <li v-if="taxonomicScope && taxonomicScope.id">
-              <nuxt-link
-                :to="{ name: 'taxa', params: { taxon: taxonomicScope.id } }"
-                >{{ taxonomicScope.item_name }}</nuxt-link
-              >
-            </li>
-            <li v-if="parentKey">
-              <nuxt-link
-                :to="{ name: 'keys', params: { key: parentKey.id } }"
-                >{{ parentKey.title }}</nuxt-link
-              >
-            </li>
-          </ol>
-          <h3 class="key-title mt-1 mb-4">{{ title }}</h3>
+      <ol class="breadcrumb">
+        <li v-if="taxonomicScope && taxonomicScope.id">
+          <nuxt-link
+            :to="{ name: 'taxa', params: { taxon: taxonomicScope.id } }"
+            >{{ taxonomicScope.item_name }}</nuxt-link
+          >
+        </li>
+        <li v-if="parentKey">
+          <nuxt-link
+            :to="{ name: 'keys', params: { key: parentKey.id } }"
+            >{{ parentKey.title }}</nuxt-link
+          >
+        </li>
+      </ol>
+      <h3 class="key-title mt-1 mb-4">{{ title }}</h3>
 
-          <!-- Tab panes -->
+      <!-- Tab panes -->
 
-          <b-tabs content-class="mt-3">
-            <b-tab title="Interactive key" active>
-              <keybase-player
-                :currentNode="currentNode"
-                :kbPath="kbPath"
-                :remainingItems="remainingItems"
-                :discardedItems="discardedItems"
-              ></keybase-player
-            ></b-tab>
-            <b-tab title="Bracketed key">
-              <bracketed-key
-                :bracketedKey="bracketedKey"
-                :items="items"
-                :leads="leads"
-              ></bracketed-key>
-            </b-tab>
-          </b-tabs>
-        </div>
+      <b-tabs content-class="mt-3">
+        <b-tab title="Interactive key" active>
+          <keybase-player
+            :currentNode="currentNode"
+            :kbPath="kbPath"
+            :remainingItems="remainingItems"
+            :discardedItems="discardedItems"
+          ></keybase-player
+        ></b-tab>
+        <b-tab title="Bracketed key">
+          <bracketed-key
+            :bracketedKey="bracketedKey"
+            :items="items"
+            :leads="leads"
+          ></bracketed-key>
+        </b-tab>
+      </b-tabs>
+    </div>
 
-        <!-- /role:tabpanel -->
-        <div class="keybase-key-source mt-2 m-keybase-key-source"></div>
-        <div class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link">
-          <a href="" target="_blank"
-            >Open key in KeyBase <b-icon icon="link45deg"></b-icon
-          ></a>
-        </div>
-      </div>
+    <!-- /role:tabpanel -->
+    <div class="keybase-key-source mt-2 m-keybase-key-source"></div>
+    <div class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link">
+      <a href="" target="_blank"
+        >Open key in KeyBase <b-icon icon="link45deg"></b-icon
+      ></a>
     </div>
   </div>
 </template>
@@ -68,6 +57,7 @@ require("./keybase");
 // require("./jquery.keybase.key");
 
 export default {
+  name: 'KeyPage',
   components: {
     KeybasePlayer,
     BracketedKey
