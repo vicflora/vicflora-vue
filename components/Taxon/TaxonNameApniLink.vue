@@ -4,7 +4,7 @@
       :href="`${apni.id}/api/apni-format`"
       target="_blank"
     >
-      <small>APNI <BIconBoxArrowUpRight/></small>
+      <small>{{ title }} <BIconBoxArrowUpRight/></small>
     </a>
   </span>
 </template>
@@ -17,6 +17,11 @@ export default {
       type: Object,
       required: true,
     }
-  }
+  },
+  computed: {
+    title() {
+      return this.apni.id.indexOf('ausmoss') > 0 ? 'AusMoss' : 'APNI'
+    }
+  },
 }
 </script>
