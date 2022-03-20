@@ -26,7 +26,7 @@ export default {
     },
     "CASUAL": {
         'label': 'Casual',
-        'decription': `Individuals surviving outside of captivity or cultivation
+        'description': `Individuals surviving outside of captivity or cultivation
             in a location. Reproduction is occurring, but population not
             self-sustaining.\n\nOffspring are produced, but these either do not
             survive or are not fertile enough to maintain the population.`
