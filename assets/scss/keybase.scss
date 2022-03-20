@@ -35,7 +35,7 @@ limitations under the License.
 
 .keybase-player-currentnode, .keybase-player-path,
 .keybase-player-remainingitems, .keybase-player-discardeditems {
-    border: solid 1px $primary;
+    border: solid 1px $gray-400;
 }
 
 .keybase-player-currentnode:after, .keybase-player-currentnode:before,
@@ -61,36 +61,32 @@ limitations under the License.
     cursor: row-resize;
 }
 
-.keybase-player-window h3 {
+.keybase-player-window h3, .keybase-player-window .h3 {
     margin: 0;
     padding: 8px 5px 10px 10px;
-    background-color: $primary;
-    color: $white;
+    background-color: $light;
+    color: $primary;
     font-size: 18px;
+    // border-bottom: solid 1px $primary;
 }
 
 .keybase-player-menu {
     float: right;
     font-size: 12px;
-    font-weight: normal;
-    color: #000000;
-    height: 20px;
-    margin-top: 3px;
+    margin-top: -5px;
 }
 
 .keybase-player-menu .keybase-player-startover,
-.keybase-player-menu .keybase-player-stepback,
-.keybase-player-filter, .keybase-player-filter-remove {
-    display: none;
-    // display: inline-block;
-    position: relative;
-}
-
-.keybase-player-menu .keybase-player-startover a,
-.keybase-player-menu .keybase-player-stepback a,
-.keybase-player-filter a, .keybase-player-filter-remove a {
+.keybase-player-menu .keybase-player-stepback {
     display: inline-block;
-    background-repeat: no-repeat;
+    position: relative;
+    background-color: $light;
+    border-color: $light;
+    font-weight: bold;
+
+    .b-icon.bi {
+      font-family: "goodsans-regular";
+    }
 }
 
 .keybase-player-currentnode > div, .keybase-player-path > div,
@@ -105,6 +101,7 @@ limitations under the License.
 .keybase-player-remainingitems ul, .keybase-player-discardeditems ul,
 .keybase-player-currentnode .keybase-player-result {
     padding-left: 25px;
+    padding-right: 0.5rem;
 }
 
 .keybase-player-tokey {
@@ -186,6 +183,10 @@ limitations under the License.
 #keybase-player .keybase-player-leftpane {
   width: calc(67% - 3px);
   left: 0px;
+
+  li>a {
+    color: $black;
+  }
 }
 
 #keybase-player .keybase-player-rightpane {
