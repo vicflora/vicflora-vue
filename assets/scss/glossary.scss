@@ -24,11 +24,11 @@
   .m-border-right {
     border-right: 2px solid grey;
   }
-  .m-letters-container {
+  .vf-glossary-first-letters {
     display: flexbox;
     padding-right: 3px;
     margin-bottom: 20px;
-    .m-letter {
+    .letter {
         width:25px;
         height:25px;
         text-align: center;
@@ -38,7 +38,7 @@
         display: inline-block;
         border: 1px solid $primary;
     }
-    .m-active-letter{
+    .active {
       background-color: $primary;
       color: white;
       font-weight: bold;
@@ -46,11 +46,17 @@
       
   }
 
-  .m-names-list {
+  .vf-glossary-term-list {
     height: 50vh;
     overflow-y: scroll;
+    padding-left: 0;
+
     li {
       list-style: none;
+    }
+
+    .active {
+      font-weight: bold;
     }
   }
 
@@ -65,5 +71,45 @@
 
   .m-img:hover {
     cursor: pointer;
+  }
+}
+
+.vf-glosary-term-use {
+  margin-top: 1rem;
+
+  .card {
+    border: none;
+    padding-top: 1rem;
+  }
+
+  .card-header {
+    padding: 0;
+    border: none;
+    background: none;
+
+    .card-header-pills {
+      margin: 0;
+
+      .nav-link {
+        border: solid 1px #dee2e6;
+
+        &.active {
+          border-color: $primary;
+        }
+      }
+    }
+  }
+
+  .card-body {
+    padding: 1rem 0;
+
+    .pagination {
+      margin-top: 1rem;
+    }
+  }
+
+  button.btn .b-icon.bi {
+    vertical-align: middle;
+    margin-left: 0.5rem;
   }
 }

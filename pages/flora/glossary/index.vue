@@ -1,92 +1,39 @@
 <template>
   <b-container class="vf-glossary-page">
-    <ApolloQuery
-      :query="require('@/graphql/queries/glossary.gql')"
-      :variables="{ name }"
-    >
-      <template v-slot="{ result: { loading, error, data } }">
-        <!-- Loading -->
-        <div v-if="loading" class="loading apollo">Loading...</div>
-
-        <!-- Error -->
-        <div v-else-if="error" class="error apollo">An error occurred</div>
-
-        <!-- Result -->
-        <div v-else-if="data" class="result apollo">
-          <b-row>
-            <b-col class="text-left">
-              <div class="m-main-title">
-                <h2>
-                  Glossary
-                </h2>
-              </div>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col md="3" class="text-left">
-              <div class="m-border-right">
-                <div class="m-letters-container" >
-                  <nuxt-link
-                    :to="`/flora/glossary?name=${item}`"    
-                    v-for="item in data.glossaryTermFirstLetters"
-                    :key="item"
-                    ><span class="m-letter" :class="letter.toLowerCase() === item.toLowerCase()?'m-active-letter':''">{{ item }}</span></nuxt-link
-                  >
-                </div>
-                <div class="m-names-list">
-                  <li v-for="item in data.glossaryTermsByName" :key="item.id">
-                    <b-icon icon="caret-right-fill" variant="dark" ></b-icon>
-                    <nuxt-link :to="`/flora/glossary?name=${item.name}`" :style="taxonName===item.name?'font-weight: bolder;':''" :id="item.name">{{
-                      item.name
-                    }}</nuxt-link>
-                  </li>
-                </div>
-              </div>
-            </b-col>
-            <b-col class="text-left">
-                <GlossaryDefinition :definition="taxonName.length>1?data.glossaryTermsByName.filter((ele => ele.name === taxonName))[0]:data.glossaryTermsByName[0]"></GlossaryDefinition>
-            </b-col>
-          </b-row>
+    <b-row>
+      <b-col class="text-left">
+        <div class="m-main-title">
+          <h2>
+            Glossary
+          </h2>
         </div>
-        <!-- No result -->
-        <div v-else class="no-result apollo">
-          <div class="spinner-border mt-5 mb-1" role="status"></div>
-          <h5>Loading...</h5>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col md="3" class="text-left">
+        <div class="m-border-right">
+          <GlossaryFirstLetters />
+          <GlossaryTermList/>
         </div>
-      </template>
-    </ApolloQuery>
+      </b-col>
+      <b-col class="text-left">
+        <GlossaryTerm />
+      </b-col> 
+    </b-row>
   </b-container>
 </template>
 
 <script>
-import GlossaryDefinition from "@/components/Glossary/GlossaryDefinition"
+import GlossaryFirstLetters from "@/components/Glossary/GlossaryFirstLetters"
+import GlossaryTermList from "@/components/Glossary/GlossaryTermList"
+import GlossaryTerm from "@/components/Glossary/GlossaryTerm"
+
 export default {
   name: "Glossary",
   components:{
-      GlossaryDefinition
+    GlossaryFirstLetters,
+    GlossaryTermList,
+    GlossaryTerm,
   },
-  data() {
-    return {
-        name: "A",
-        content:{},
-
-    };
-  },
-  computed: {
-    letter: function() {
-        return this.$route.query.name[0]
-    },
-    taxonName: function() {
-      return this.$route.query.name;
-    },
-  },
-  watch:{
-      letter:{
-        immediate: true,
-        handler: function() {
-            this.name = this.letter;
-        }
-      },
-  }
-};
+}
 </script>

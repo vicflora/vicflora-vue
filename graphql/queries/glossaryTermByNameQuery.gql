@@ -1,6 +1,5 @@
 query glossaryTermByNameQuery($name: String="abaxial") {
-  glossaryTermFirstLetters
-  glossaryTermsByName(name: $name) {
+  term: glossaryTermsByName(name: $name) {
     id
     name
     definition

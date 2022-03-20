@@ -1,0 +1,6 @@
+query glossaryTermsByFirstLetterQuery($firstLetter: String="A") {
+  terms: glossaryTermsByName(name: $firstLetter) {
+    id
+    name
+  }
+}

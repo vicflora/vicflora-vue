@@ -1,0 +1,29 @@
+query searchGlossaryTermQuery($input: SearchInput!) {
+  search(input: $input) {
+    meta {
+      params {
+        q
+        fq
+        fl
+        rows
+      }
+      pagination {
+        lastPage
+        total
+        currentPage
+      }
+    }
+    docs {
+      id
+    }
+    facetFields {
+      fieldName
+      fieldLabel
+      facets {
+        value
+        count
+        fq
+      }
+    }
+  }
+}
