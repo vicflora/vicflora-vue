@@ -1,6 +1,7 @@
 <template>
   <div class="m-banner">
     <BContainer>
+      <TheLoginBar/>
       <div class="m-logo-title">
         <div class="m-logo-container">
           <a href="/">
@@ -22,7 +23,12 @@
 
 
 <script>
+import TheLoginBar from "@/components/App/TheLoginBar"
+
 export default {
   name: 'TheBanner',
+  components: {
+    TheLoginBar,
+  },
 }
 </script>
