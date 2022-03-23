@@ -23,32 +23,32 @@
           <BNavbarNav>
             <BNavItem
               class="m-menu-item"
-              href="/flora/search?q=*"
+              to="/flora/search?q=*"
             >Search</BNavItem>
 
             <BNavItem
               class="m-menu-item"
-              href="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f"
+              to="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f"
             >Browse classification</BNavItem>
 
             <BNavItem
               class="m-menu-item"
-              href="/flora/key/1903"
+              to="/flora/key/1903"
             >Keys</BNavItem>
 
             <BNavItem
               class="m-menu-item"
-              href="/flora/checklist"
+              to="/flora/checklist"
             >CheckLists</BNavItem>
 
             <BNavItem
               class="m-menu-item"
-              href="/flora/glossary?name=abaxial"
+              to="/flora/glossary?name=abaxial"
             >Glossary</BNavItem>
 
             <BNavItem
               class="m-menu-item"
-              href="/pages/bioregions"
+              to="/pages/bioregions"
             >Bioregions &amp; Vegetation</BNavItem>
 
           </BNavbarNav>
