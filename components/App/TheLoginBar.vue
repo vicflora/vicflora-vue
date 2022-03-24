@@ -40,7 +40,7 @@ export default {
         }  
       }`,
       skip: true,
-      success({ data, loading }) {
+      result({ data, loading }) {
         if (!loading) {
           this.$store.dispatch('storeUser', data.user)
         }
