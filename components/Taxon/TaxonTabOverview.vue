@@ -30,9 +30,11 @@
             <b-button 
               variant="outline-primary" 
               size="sm" 
-              title="show glossary terms"
+              title="Look up glossary terms"
               @click="lookupGlossaryTerms"
-            ><b-icon-eye-fill/></b-button>
+            >
+              <b-icon-chat-left-text-fill/>
+            </b-button>
           </div>
 
           <TaxonTabOverviewAttribution :concept="concept" />
