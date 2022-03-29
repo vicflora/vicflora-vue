@@ -13,13 +13,14 @@
           <div v-if="glossaryTermsInString">
             <b-popover
               v-for="item in glossaryTermsInString"
-              :key="item.term.id"
-              :target="item.term.id"
+              :key="`${item.term.id}-${item.substring}`"
+              :target="`${item.term.id}-${item.substring}`"
               triggers="hover"
               placement="topright"
             >
               <template #title>{{ item.term.name }}</template>
               <div v-html="item.term.definition"/>
+              <div class="text-right"><nuxt-link :to="`/flora/glossary?name=${item.term.name}`">{{ item.term.name }} <b-icon-chevron-right/></nuxt-link></div>
             </b-popover>
           </div>
           <div 
@@ -116,9 +117,9 @@ export default {
         if (!loading) {
           if (data.glossaryTermsInString.length) {
             let desc = this.description
-            console.log(`Description: ${desc}`)
             data.glossaryTermsInString.forEach(item => {
-              desc = desc.replace(item.substring, `<span class="glossary-term" id="${item.term.id}">${item.substring}</span>`)
+              const regex = new RegExp('\\b' + item.substring + '\\b', 'g')
+              desc = desc.replace(regex, `<span class="glossary-term" id="${item.term.id}-${item.substring}">${item.substring}</span>`)
             })
             this.glossarizedDesc = desc
             const descriptionDiv = this.$el.querySelector('.description')
