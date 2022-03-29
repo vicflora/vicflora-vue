@@ -30,8 +30,9 @@
             <b-button 
               variant="outline-primary" 
               size="sm" 
-              @click="glossarize"
-            >Glossarize</b-button>
+              title="show glossary terms"
+              @click="lookupGlossaryTerms"
+            ><b-icon-eye-fill/></b-button>
           </div>
 
           <TaxonTabOverviewAttribution :concept="concept" />
@@ -192,7 +193,7 @@ export default {
     onProfileMapClicked() {
       this.$nuxt.$emit('profile-map-clicked')
     },
-    glossarize() {
+    lookupGlossaryTerms() {
       this.$apollo.queries.glossaryTermsInString.setVariables({
         string: this.description
       })
