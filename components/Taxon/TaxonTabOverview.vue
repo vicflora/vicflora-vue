@@ -10,6 +10,30 @@
             v-html="concept.currentProfile.profile"
           />
 
+          <div v-if="glossaryTermsInString">
+            <b-popover
+              v-for="item in glossaryTermsInString"
+              :key="item.term.id"
+              :target="item.term.id"
+              triggers="hover"
+              placement="topright"
+            >
+              <template #title>{{ item.term.name }}</template>
+              <div v-html="item.term.definition"/>
+            </b-popover>
+          </div>
+          <div 
+            v-else
+            class="text-right glossarize">
+            <!-- <a href="" @click.prevent="glossarize">Glossarize</a> -->
+            <!-- <b-checkbox @change="glossarize">Glossarize</b-checkbox> -->
+            <b-button 
+              variant="outline-primary" 
+              size="sm" 
+              @click="glossarize"
+            >Glossarize</b-button>
+          </div>
+
           <TaxonTabOverviewAttribution :concept="concept" />
 
           <TaxonTabOverviewKeyButtons 
@@ -48,6 +72,18 @@ import TaxonTabOverviewKeyButtons from "~/components/Taxon/TaxonTabOverviewKeyBu
 import TaxonTabOverviewImage from "~/components/Taxon/TaxonTabOverviewImage"
 import { rankMixin } from "~/mixins/taxonMixins"
 
+import gql from "graphql-tag"
+const GlossaryTermsInStringQuery = gql`query GlossaryTermsInStringQuery($string: String!) {
+  glossaryTermsInString(string: $string) {
+    substring
+    term {
+      id
+      name
+      definition
+    }
+  }
+}`
+
 export default {
   name: "TaxonTabOverview",
   components: {
@@ -63,6 +99,32 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      glossaryTermsInString: null,
+      glossarizedDesc: null,
+    }
+  },
+  apollo: {
+    glossaryTermsInString: {
+      query: GlossaryTermsInStringQuery,
+      result ({ data, loading }) {
+        if (!loading) {
+          if (data.glossaryTermsInString.length) {
+            let desc = this.description
+            console.log(`Description: ${desc}`)
+            data.glossaryTermsInString.forEach(item => {
+              desc = desc.replace(item.substring, `<span class="glossary-term" id="${item.term.id}">${item.substring}</span>`)
+            })
+            this.glossarizedDesc = desc
+            const descriptionDiv = this.$el.querySelector('.description')
+            descriptionDiv.innerHTML = `<p>${desc}</p>`
+          }
+        }
+      },
+      skip: true,
+    },
   },
   computed: {
     hasHeroImage() {
@@ -83,8 +145,23 @@ export default {
         keys = keys.concat(this.concept.matrixKeys)
       }
       return keys
-    }
+    },
+    description() {
+      return this.$el.querySelector('.description').innerText
+    },
   },
+  // watch: {
+  //   glossaryTermsInString: {
+  //     immediate: true,
+  //     deep: true,
+  //     handler() {
+  //       let desc = $el.querySelector('.description').innerHTML
+  //       for (item in this.glossaryTermsInString) {
+  //         desc = desc.replace(item.substring, `<span class="glossary-term" id="${item.term.id}">${item.substring}</span>`)
+  //       }
+  //     }
+  //   }
+  // },
   mounted() {
     let elements = document.getElementsByClassName('current-profile')[0]
         .getElementsByClassName('scientific_name')
@@ -115,6 +192,12 @@ export default {
     onProfileMapClicked() {
       this.$nuxt.$emit('profile-map-clicked')
     },
+    glossarize() {
+      this.$apollo.queries.glossaryTermsInString.setVariables({
+        string: this.description
+      })
+      this.$apollo.queries.glossaryTermsInString.skip = false
+    }
   },
 }
 </script>

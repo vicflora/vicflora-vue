@@ -1,7 +1,7 @@
 <template>
   <div class="col" v-if="definition">
     <h3 class="m-name mb-3">{{ definition.name }}</h3>
-    <div v-html="definition.definition"></div>
+    <p v-html="definition.definition"></p>
 
     <GlossaryTermRelationships 
       v-if="definition.relationships.length"
