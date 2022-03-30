@@ -4,7 +4,7 @@
       <ol class="breadcrumb">
         <li v-if="taxonomicScope && taxonomicScope.id">
           <nuxt-link
-            :to="{ name: 'taxa', params: { taxon: taxonomicScope.id } }"
+            :to="{ name: 'flora-taxon-id', params: { id: taxonomicScope.id } }"
             >{{ taxonomicScope.item_name }}</nuxt-link
           >
         </li>
@@ -41,7 +41,7 @@
     <!-- /role:tabpanel -->
     <div class="keybase-key-source mt-2 m-keybase-key-source"></div>
     <div class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link">
-      <a href="" target="_blank">Open key in KeyBase<b-icon-box-arrow-up-right/></a>
+      <a href="" target="_blank">Open key in KeyBase <small><b-icon-box-arrow-up-right/></small></a>
     </div>
   </div>
 </template>
