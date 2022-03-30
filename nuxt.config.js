@@ -27,9 +27,9 @@ export default {
   css: ["@/assets/scss/main.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    "~/plugins/vue-scrollactive.client.js"
-  ],
+  // plugins: [
+  //   "~/plugins/vue-scrollactive.client.js",
+  // ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -37,17 +37,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
       "@nuxtjs/style-resources",
-      '@nuxtjs/fontawesome',
   ],
-
-  fontawesome: {
-    icons: {
-      solid: [
-        'faRotate',
-        'faArrowRotateLeft',
-      ]
-    }
-  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -59,8 +49,7 @@ export default {
   bootstrapVue: {
     bootstrapCSS: false,
     bootstrapVueCSS: false,
-    // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
-    icons: true
+    icons: false,
   },
   apollo: {
     clientConfigs: {
@@ -74,7 +63,8 @@ export default {
   },
 
   plugins: [
-    '~plugins/leaflet.client.js'
+    '~plugins/leaflet.client.js',
+    '~plugins/fontawesome.js',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

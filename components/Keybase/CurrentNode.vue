@@ -8,7 +8,7 @@
           class="keybase-player-stepback"
         >
           <nuxt-link to="#" title="Step back">
-            <font-awesome-icon icon="arrow-rotate-left"/>
+            <font-awesome-icon icon="fa-solid fa-arrow-rotate-left"/>
           </nuxt-link>
         </b-button>
         <b-button 
@@ -17,7 +17,7 @@
           class="keybase-player-startover"
         >
           <nuxt-link to="#" title="Start over">
-            <font-awesome-icon icon="rotate"/>
+            <font-awesome-icon icon="fa-solid fa-rotate"/>
           </nuxt-link>
         </b-button>
       </span>
