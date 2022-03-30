@@ -4,7 +4,7 @@
       {{ filterValue }}
       <BIcon
         v-if="filterKey !== 'end_or_higher_taxon'"
-        icon="x"
+        icon="trash"
         font-scale="1.1"
         variant="danger"
         @click="removeFilter"
@@ -13,10 +13,15 @@
 </template>
 
 <script>
+import { BIcon, BIconTrash } from "bootstrap-vue"
 import { facetMixin } from "@/mixins/searchMixins"
 
 export default {
   name: "SearchAppliedFilter",
+  components: {
+    BIcon,
+    BIconTrash,
+  },
   mixins: [facetMixin],
   props: {
     filter: {

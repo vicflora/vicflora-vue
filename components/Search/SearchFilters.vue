@@ -36,12 +36,16 @@
 </template>
 
 <script>
+import { BIcon, BIconCaretDownFill, BIconCaretRightFill } from "bootstrap-vue"
 import SearchFiltersFacetField from "@/components/Search/SearchFiltersFacetField"
 
 export default {
   name: "SearchFilters",
   components: {
-    SearchFiltersFacetField
+    BIcon,
+    BIconCaretDownFill,
+    BIconCaretRightFill,
+    SearchFiltersFacetField,
   },
   props: {
     data: {

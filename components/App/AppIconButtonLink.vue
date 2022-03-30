@@ -26,8 +26,15 @@
 </template>
 
 <script>
+import { BIcon, BIconInfoCircle, BIconPlayBtn } from "bootstrap-vue"
+
 export default {
   name: 'AppIconButtonLink',
+  components: {
+    BIcon,
+    BIconInfoCircle,
+    BIconPlayBtn,
+  },
   props: {
     to: {
       type: String,

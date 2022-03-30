@@ -10,8 +10,14 @@
 </template>
 
 <script>
+import { BIcon, BIconBoxArrowUpRight } from "bootstrap-vue"
+
 export default {
   name: 'TaxonNameApniLink',
+  components: {
+    BIcon,
+    BIconBoxArrowUpRight,
+  },
   props: {
     apni: {
       type: Object,

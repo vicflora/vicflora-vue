@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { BIcon, BIconCaretUpFill } from "bootstrap-vue"
 import TaxonClassificationItem from "~/components/Taxon/TaxonClassificationItem"
 import TaxonClassificationNuxtLink from "~/components/Taxon/TaxonClassificationNuxtLink"
 import { classificationMixin } from "~/mixins/classificationMixin"
@@ -34,6 +35,8 @@ import { taxonNameClassesMixin } from "~/mixins/taxonMixins"
 export default {
   name: "TaxonClassificationHigherClassification",
   components: {
+    BIcon,
+    BIconCaretUpFill,
     TaxonClassificationItem,
     TaxonClassificationNuxtLink
   },

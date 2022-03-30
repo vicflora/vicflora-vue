@@ -41,15 +41,14 @@
     <!-- /role:tabpanel -->
     <div class="keybase-key-source mt-2 m-keybase-key-source"></div>
     <div class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link">
-      <a href="" target="_blank"
-        >Open key in KeyBase <b-icon icon="link45deg"></b-icon
-      ></a>
+      <a href="" target="_blank">Open key in KeyBase<b-icon-box-arrow-up-right/></a>
     </div>
   </div>
 </template>
 
 <script>
 // import { mapState } from 'vuex'
+import { BIcon, BIconBoxArrowUpRight } from "bootstrap-vue"
 import KeybasePlayer from "@/components/Keybase/KeybasePlayer";
 import BracketedKey from "@/components/Keybase/BracketedKey";
 
@@ -59,6 +58,8 @@ require("./keybase");
 export default {
   name: 'KeyPage',
   components: {
+    BIcon,
+    BIconBoxArrowUpRight,
     KeybasePlayer,
     BracketedKey
   },

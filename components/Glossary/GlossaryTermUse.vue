@@ -43,12 +43,15 @@
 </template>
 
 <script>
+import { BIcon, BIconSearch } from "bootstrap-vue"
 import GlossaryTermUseFacetField from "@/components/Glossary/GlossaryTermUseFacetField"
 import searchGlossaryTermQuery from "@/graphql/queries/searchGlossaryTermQuery"
 
 export default {
   name: 'GlossaryTermUse',
   components: {
+    BIcon,
+    BIconSearch,
     GlossaryTermUseFacetField,
   },
   props: {

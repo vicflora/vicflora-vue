@@ -45,6 +45,8 @@ export default {
       solid: [
         'faRotate',
         'faArrowRotateLeft',
+        'faPenToSquare',
+        'faPlus'
       ]
     }
   },
@@ -59,8 +61,7 @@ export default {
   bootstrapVue: {
     bootstrapCSS: false,
     bootstrapVueCSS: false,
-    // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
-    icons: true
+    icons: false,
   },
   apollo: {
     clientConfigs: {
