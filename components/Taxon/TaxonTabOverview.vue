@@ -118,8 +118,25 @@ export default {
           if (data.glossaryTermsInString.length) {
             let desc = this.description
             data.glossaryTermsInString.forEach(item => {
+              let index = 0
               const regex = new RegExp('\\b' + item.substring + '\\b', 'g')
-              desc = desc.replace(regex, `<span class="glossary-term" id="${item.term.id}-${item.substring}">${item.substring}</span>`)
+              desc = desc.replace(regex, match => {
+                index++
+                if (index > 1) {
+                  this.glossaryTermsInString.push({
+                    substring: item.substring,
+                    term: {
+                      id: item.term.id + '-' + index,
+                      name: item.term.name,
+                      definition: item.term.definition
+                    }
+                  })
+                  return `<span class="glossary-term" id="${item.term.id}-${index}-${item.substring}">${item.substring}</span>`
+                }
+                else {
+                  return `<span class="glossary-term" id="${item.term.id}-${item.substring}">${item.substring}</span>`
+                }
+              })
             })
             this.glossarizedDesc = desc
             const descriptionDiv = this.$el.querySelector('.description')
