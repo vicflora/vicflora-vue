@@ -1,5 +1,6 @@
 <template>
   <b-modal 
+    id="specimen-images-modal"
     v-model="showModal"
     size="xl"
     ref="specimenImagesModal"

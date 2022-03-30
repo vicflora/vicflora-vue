@@ -15,30 +15,25 @@
 -->
 
 <template>
-  <div class="taxon-edit-menu text-right">
-    <b-button 
-      variant="primary"
-      size="sm"
-      :to="{name: 'admin-edittaxon-id', params: { id: concept.id } }"
-    >Edit</b-button>
-
-    <taxon-edit-modal />
+  <div>
+    <b-container>
+      <b-row>
+        <b-col>
+          <header>
+            <h1>New taxon concept</h1>
+          </header>
+          <taxon-concept-form/>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-import TaxonEditModal from '@/components/Taxon/TaxonEditModal.vue'
-
+import TaxonConceptForm from '../../components/Forms/TaxonConceptForm.vue'
 export default {
-  name: 'TaxonEditMenu',
-  components: { 
-    TaxonEditModal,
-  },
-  props: {
-    concept: {
-      type: Object,
-      required: true,
-    },
-  },
+  components: { TaxonConceptForm },
+  name: "AddTaxonConcept",
+
 }
 </script>

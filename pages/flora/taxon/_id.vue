@@ -1,6 +1,10 @@
 <template>
   <div class="taxon">
     <b-container v-if="taxonConcept">
+      <taxon-edit-menu
+        v-if="$store.getters['isLoggedIn']"
+        :concept="taxonConcept"
+      />
       <b-row v-if="taxonConcept.taxonomicStatus === 'ACCEPTED'">
         <b-col>
           <Breadcrumbs :concept="taxonConcept"/>
@@ -53,6 +57,7 @@ import TaxonStatus from "@/components/Taxon/TaxonStatus"
 import TaxonTabs from "@/components/Taxon/TaxonTabs"
 import TaxonClassification from "@/components/Taxon/TaxonClassification"
 import TaxonAcceptedConceptLink from "@/components/Taxon/TaxonAcceptedConceptLink"
+import TaxonEditMenu from "@/components/Taxon/TaxonEditMenu"
 import taxonConceptQuery from "@/graphql/queries/taxonConceptQuery"
 
 export default {
@@ -63,7 +68,8 @@ export default {
     TaxonStatus,
     TaxonTabs,
     TaxonClassification,
-    TaxonAcceptedConceptLink
+    TaxonAcceptedConceptLink,
+    TaxonEditMenu,
   },
   data() {
     return {
