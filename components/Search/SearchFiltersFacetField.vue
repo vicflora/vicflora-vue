@@ -65,12 +65,16 @@
 </template>
 
 <script>
+import { BIcon, BIconCaretDownFill, BIconCaretRightFill } from "bootstrap-vue"
 import SearchFiltersFacet from "@/components/Search/SearchFiltersFacet"
 import SearchFiltersFacetFieldModal from "@/components/Search/SearchFiltersFacetFieldModal"
 
 export default {
   name: "SearchFiltersFacetField",
   components: {
+    BIcon,
+    BIconCaretDownFill,
+    BIconCaretRightFill,
     SearchFiltersFacet,
     SearchFiltersFacetFieldModal
   },

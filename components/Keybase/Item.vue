@@ -40,8 +40,13 @@
 </template>
 
 <script>
+import { BIcon, BIconArrowRightSquare } from "bootstrap-vue"
 export default {
   props: ["item"],
+  components: {
+    BIcon,
+    BIconArrowRightSquare,
+  },
   computed: {
     taxon() {
       return this.item.url

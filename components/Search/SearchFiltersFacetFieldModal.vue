@@ -98,11 +98,17 @@
 
 <script>
 import gql from "graphql-tag"
+import { BIcon, BIconSortAlphaDown, BIconSortDown } from "bootstrap-vue"
 import { searchMixin } from "@/mixins/searchMixins"
 import { FacetFieldQuery } from "@/graphql/queries/facetFieldQuery"
 
 export default {
   name: "FacetsCollapseModal",
+  components: {
+    BIcon,
+    BIconSortAlphaDown,
+    BIconSortDown,
+  },
   mixins: [searchMixin],
   props: {
     moreFacets: {

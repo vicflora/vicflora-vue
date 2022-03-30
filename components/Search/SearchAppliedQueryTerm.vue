@@ -5,7 +5,7 @@
       {{ term }}
       <BIcon
         v-if="term !== '*'"
-        icon="x"
+        icon="trash"
         font-scale="1.1"
         variant="danger"
         @click="removeq"
@@ -15,11 +15,15 @@
 </template>
 
 <script>
-
+import { BIcon, BIconTrash } from "bootstrap-vue"
 import { searchMixin } from "@/mixins/searchMixins"
 
 export default {
   name: "SearchAppliedQueryTerm",
+  components: {
+    BIcon,
+    BIconTrash,
+  },
   mixins: [searchMixin],
   props: {
     term: {
