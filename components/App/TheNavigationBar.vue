@@ -65,15 +65,12 @@
 </template>
 
 <script>
-import { BIcon, BIconHouseDoorFill } from "bootstrap-vue"
 import SearchInput from "@/components/Search/SearchInput"
 
 
 export default {
   name: "TheNavigationBar",
   components: {
-    BIcon,
-    BIconHouseDoorFill,
     SearchInput,
   },
   props: {

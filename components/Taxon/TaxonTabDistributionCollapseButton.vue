@@ -11,15 +11,8 @@
 </template>
 
 <script>
-import { BIcon, BIconCaretDownFill, BIconCaretRightFill } from "bootstrap-vue"
-
 export default {
   name: "TaxonTabDistributionCollapseButton",
-  components: {
-    BIcon,
-    BIconCaretDownFill,
-    BIconCaretRightFill,
-  },
   props: {
     collapseElement: {
       type: String,

@@ -57,15 +57,8 @@
 </template>
 
 <script>
-import { BIcon, BIconCaretDownFill, BIconCaretRightFill } from "bootstrap-vue"
-
 export default {
   name: "TaxonTabDistributionLegend",
-  components: {
-    BIcon,
-    BIconCaretDownFill,
-    BIconCaretRightFill,
-  },
   data() {
     return {
       items: {

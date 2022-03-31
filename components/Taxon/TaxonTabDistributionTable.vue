@@ -30,17 +30,11 @@
 </template>
 
 <script>
-import { BIcon, BIconCaretDownFill, BIconCaretRightFill } from "bootstrap-vue"
 import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
 import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
 
 export default {
   name: "TaxonTabDistributionTable",
-  components: {
-    BIcon,
-    BIconCaretDownFill,
-    BIconCaretRightFill,
-  },
   props: {
     layer:{
         type: String,

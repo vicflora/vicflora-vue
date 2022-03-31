@@ -13,15 +13,10 @@
 </template>
 
 <script>
-import { BIcon, BIconTrash } from "bootstrap-vue"
 import { facetMixin } from "@/mixins/searchMixins"
 
 export default {
   name: "SearchAppliedFilter",
-  components: {
-    BIcon,
-    BIconTrash,
-  },
   mixins: [facetMixin],
   props: {
     filter: {

@@ -74,6 +74,7 @@ export default {
 
   plugins: [
     '~plugins/leaflet.client.js',
+    '~plugins/bootstrapicons.js',
     '~plugins/fontawesome.js',
   ],
 

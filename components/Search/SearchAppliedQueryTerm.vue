@@ -15,15 +15,10 @@
 </template>
 
 <script>
-import { BIcon, BIconTrash } from "bootstrap-vue"
 import { searchMixin } from "@/mixins/searchMixins"
 
 export default {
   name: "SearchAppliedQueryTerm",
-  components: {
-    BIcon,
-    BIconTrash,
-  },
   mixins: [searchMixin],
   props: {
     term: {

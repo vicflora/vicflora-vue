@@ -37,16 +37,8 @@
 </template>
 
 <script>
-import { BIcon, BIconInstagram, BIconFacebook, BIconTwitter } from "bootstrap-vue"
-
 export default {
    name: "TheFooter",
-   components: {
-     BIcon,
-     BIconFacebook,
-     BIconInstagram,
-     BIconTwitter,
-   },
    props: {
      fluid: {
        type: Boolean,

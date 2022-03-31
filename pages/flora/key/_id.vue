@@ -48,7 +48,6 @@
 
 <script>
 // import { mapState } from 'vuex'
-import { BIcon, BIconBoxArrowUpRight } from "bootstrap-vue"
 import KeybasePlayer from "@/components/Keybase/KeybasePlayer";
 import BracketedKey from "@/components/Keybase/BracketedKey";
 
@@ -58,8 +57,6 @@ require("./keybase");
 export default {
   name: 'KeyPage',
   components: {
-    BIcon,
-    BIconBoxArrowUpRight,
     KeybasePlayer,
     BracketedKey
   },

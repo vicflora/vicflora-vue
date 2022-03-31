@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import { BIcon, BIconChatLeftTextFill, BIconChevronRight } from "bootstrap-vue"
 import TaxonTabOverviewAttribution from "~/components/Taxon/TaxonTabOverviewAttribution"
 import TaxonTabOverviewKeyButtons from "~/components/Taxon/TaxonTabOverviewKeyButtons"
 import TaxonTabOverviewImage from "~/components/Taxon/TaxonTabOverviewImage"
@@ -92,9 +91,6 @@ const GlossaryTermsInStringQuery = gql`query GlossaryTermsInStringQuery($string:
 export default {
   name: "TaxonTabOverview",
   components: {
-    BIcon,
-    BIconChatLeftTextFill,
-    BIconChevronRight,
     TaxonTabOverviewAttribution,
     TaxonTabOverviewKeyButtons,
     TaxonTabOverviewImage,

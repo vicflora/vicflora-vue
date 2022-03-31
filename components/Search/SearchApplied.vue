@@ -28,16 +28,12 @@
 </template>
 
 <script>
-import { BIcon, BIconCaretDownFill, BIconCaretRightFill } from "bootstrap-vue"
 import SearchAppliedQueryTerm from "@/components/Search/SearchAppliedQueryTerm"
 import SearchAppliedFilters from "@/components/Search/SearchAppliedFilters"
 
 export default {
   name: "SearchApplied",
   components: {
-    BIcon,
-    BIconCaretDownFill,
-    BIconCaretRightFill,
     SearchAppliedQueryTerm,
     SearchAppliedFilters
   },

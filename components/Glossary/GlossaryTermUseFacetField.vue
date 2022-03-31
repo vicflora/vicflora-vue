@@ -38,14 +38,8 @@
 </template>
 
 <script>
-import { BIcon, BIconSearch } from "bootstrap-vue"
-
 export default {
   name: 'GlossaryTermUseFacetField',
-  components: {
-    BIcon,
-    BIconSearch
-  },
   props: {
     field: {
       type: Object,

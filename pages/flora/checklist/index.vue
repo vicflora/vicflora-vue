@@ -105,7 +105,6 @@
 
 <script>
 import 'leaflet/dist/leaflet.css'
-import { BIcon, BIconBoxArrowUpRight } from "bootstrap-vue"
 import ChecklistMap from "@/components/Checklists/ChecklistMap"
 import ChecklistAccordion from "@/components/Checklists/ChecklistAccordion"
 import SearchApplied from "@/components/Search/SearchApplied"
@@ -120,8 +119,6 @@ import { FACET_FIELDS } from "@/constants/facet-fields"
 export default {
   name: "CheckList",
   components: {
-    BIcon,
-    BIconBoxArrowUpRight,
     ChecklistMap,
     ChecklistAccordion,
     SearchApplied,

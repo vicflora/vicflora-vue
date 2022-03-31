@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { BIcon, BIconSearch } from "bootstrap-vue"
 import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 import { debounce } from "lodash";
 
@@ -43,8 +42,6 @@ export default {
   name: "SearchInput",
   components: { 
     VueTypeaheadBootstrap,
-    BIcon,
-    BIconSearch,
   },
   data() {
     return {

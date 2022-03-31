@@ -64,16 +64,10 @@
 </template>
 
 <script>
-import { BIcon, BIconArrowLeftCircle, BIconArrowRightCircle } from "bootstrap-vue"
 import { popupContentMixin } from "@/mixins/mapMixins"
 
 export default {
   name: 'TaxonTabDistributionMapPopupContent',
-  components: {
-    BIcon,
-    BIconArrowLeftCircle,
-    BIconArrowRightCircle,
-  },
   mixins: [popupContentMixin],
   props: {
     occurrences: {
