@@ -60,7 +60,6 @@ export default {
   bootstrapVue: {
     bootstrapCSS: false,
     bootstrapVueCSS: false,
-    icons: false,
   },
   apollo: {
     clientConfigs: {
@@ -85,7 +84,10 @@ export default {
         new webpack.ProvidePlugin({
             '$' : 'jquery'
         })
-    ]
+    ],
+    babel: {
+      compact: true,
+    },
   },
   styleResources: {
     scss: ["@/assets/main.scss"]
