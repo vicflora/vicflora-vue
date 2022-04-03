@@ -98,7 +98,6 @@ export default {
         },
       }).then((data) => {
         // Result
-        console.log(data)
         this.$apolloHelpers.onLogin(data.data.login.access_token)
         this.$store.dispatch('storeToken', data.data.login.access_token)
         this.$store.dispatch('storeUser', data.data.login.user)

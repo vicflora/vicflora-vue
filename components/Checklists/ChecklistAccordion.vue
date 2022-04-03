@@ -71,7 +71,6 @@ export default {
         && this.$route.query !== undefined
         && this.$route.query !== '-*:*') {
       const q = this.$route.query.q
-      console.log(q)
       const field = q.substring(0, q.indexOf(':'))
       let layer =''
       switch(field) {

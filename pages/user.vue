@@ -47,7 +47,6 @@ export default {
   },
   created() {
     this.$apollo.queries.users.skip = false
-    console.log(this.$nuxt)
   }
 }
 </script>

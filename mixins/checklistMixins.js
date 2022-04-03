@@ -3,7 +3,6 @@ export const visibleLayerMixin = {
     setVisibleLayer() {
       if ('q' in this.$route.query && this.$route.query.q !== undefined) {
         const q = this.$route.query.q
-        console.log(q)
         const field = q.substring(0, q.indexOf(':'))
         let layer =''
         switch(field) {
