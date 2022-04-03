@@ -1,6 +1,7 @@
 export const state = () => ({
   token: null,
   user: {},
+  lastSearch: {},
 })
 
 export const getters = {
@@ -21,6 +22,9 @@ export const mutations = {
   },
   deleteUser (state) {
     state.user = {}
+  },
+  storeSearchParams (state, params) {
+    state.lastSearch = params
   }
 }
   
@@ -35,5 +39,8 @@ export const actions = {
     context.commit('deleteUser')
     context.commit('deleteToken')
   },
+  storeSearchParams (context, params) {
+    context.commit('storeSearchParams', params)
+  }
 }
   

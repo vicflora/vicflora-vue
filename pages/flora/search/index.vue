@@ -84,6 +84,7 @@ export default {
         else {
           $nuxt.$emit('progress-bar-stop')
           this.data = data
+          this.$store.dispatch('storeSearchParams', this.input)
         }
       },
       skip: true
