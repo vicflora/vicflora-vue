@@ -7,6 +7,7 @@
       />
       <b-row v-if="taxonConcept.taxonomicStatus === 'ACCEPTED'">
         <b-col>
+          <last-search-button v-if="lastSearch && Object.keys(lastSearch).length"/>
           <Breadcrumbs :concept="taxonConcept"/>
         </b-col>
       </b-row>
@@ -52,6 +53,7 @@
 
 <script>
 import Breadcrumbs from "@/components/Taxon/TaxonBreadcrumbs"
+import LastSearchButton from "@/components/Taxon/TaxonLastSeachButton"
 import TaxonName from "@/components/Taxon/TaxonName"
 import TaxonStatus from "@/components/Taxon/TaxonStatus"
 import TaxonTabs from "@/components/Taxon/TaxonTabs"
@@ -64,6 +66,7 @@ export default {
   name: "Taxon",
   components: {
     Breadcrumbs,
+    LastSearchButton,
     TaxonName,
     TaxonStatus,
     TaxonTabs,
@@ -74,6 +77,7 @@ export default {
   data() {
     return {
       taxonConcept: null,
+      lastSearch: null,
     }
   },
   apollo: {
@@ -92,6 +96,7 @@ export default {
     this.$nuxt.$emit('progress-bar-start')
     this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
     this.$apollo.queries.taxonConcept.skip = false
+    this.lastSearch = this.$store.state.lastSearch
   },
 }
 </script>
