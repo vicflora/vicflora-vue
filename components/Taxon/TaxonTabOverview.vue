@@ -24,7 +24,7 @@
             </b-popover>
           </div>
           <div 
-            v-else
+            v-else-if="description"
             class="text-right glossarize">
             <!-- <a href="" @click.prevent="glossarize">Glossarize</a> -->
             <!-- <b-checkbox @change="glossarize">Glossarize</b-checkbox> -->
@@ -106,6 +106,7 @@ export default {
   },
   data() {
     return {
+      description: null,
       glossaryTermsInString: null,
       glossarizedDesc: null,
     }
@@ -167,22 +168,9 @@ export default {
       }
       return keys
     },
-    description() {
-      return this.$el.querySelector('.description').innerText
-    },
   },
-  // watch: {
-  //   glossaryTermsInString: {
-  //     immediate: true,
-  //     deep: true,
-  //     handler() {
-  //       let desc = $el.querySelector('.description').innerHTML
-  //       for (item in this.glossaryTermsInString) {
-  //         desc = desc.replace(item.substring, `<span class="glossary-term" id="${item.term.id}">${item.substring}</span>`)
-  //       }
-  //     }
-  //   }
-  // },
+  created() {
+  },
   mounted() {
     let elements = document.getElementsByClassName('current-profile')[0]
         .getElementsByClassName('scientific_name')
@@ -196,6 +184,11 @@ export default {
         sciname = sciname.replace(' f. ', '</em> f. <em>')
       }
       elements[i].innerHTML = sciname
+    }
+
+    const descriptionEl = this.$el.querySelector('.description')
+    if (descriptionEl) {
+      this.description = descriptionEl.innertText
     }
   },
   methods: {
