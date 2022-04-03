@@ -40,7 +40,6 @@
           <span>{{ `= ` }}</span>
           <NuxtLink
             :to="`/flora/taxon/${item.acceptedNameUsageId}`"
-            class="vf-search-result-item-name-accepted"
             :style="rankClass[item.taxonRank] > 140 ? 'font-style: italic;' : ''"
           >
             <span class="vf-search-result-item-name-accepted">{{ item.acceptedNameUsage }}</span>
