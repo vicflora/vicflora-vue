@@ -77,6 +77,10 @@ export default {
         id: this.taxonNameProp.id
       },
     })
+
+    $nuxt.$on('protologue-updated', () => {
+      this.$apollo.queries.value.refetch()
+    })
   }
 
 }

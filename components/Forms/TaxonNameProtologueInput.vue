@@ -20,32 +20,33 @@
       </b-button>
     </div>
 
-    <b-modal
-      id="taxon-name-protologue-modal"
-      title="Protologue"
-      size="lg"
-    >
-      <taxon-name-protologue-form :protologue="value" />
-    </b-modal>
+    <taxon-name-protologue-modal :protologue="value" />
 
   </div>
 </template>
 
 <script>
 import { formControlPropsMixin } from "@/mixins/formMixins"
-import TaxonNameProtologueForm from './TaxonNameProtologueForm.vue'
+import TaxonNameProtologueModal from './TaxonNameProtologueModal.vue'
 
 export default {
-  components: { TaxonNameProtologueForm },
+  components: { TaxonNameProtologueModal },
   name: 'TaxonNameProtologueInput',
   mixins: [
     formControlPropsMixin,
   ],
+  created() {
+    this.$nuxt.$on('modal-closed', (modal) => {
+      if (modal = 'taxon-name-protologue-modal') {
+        this.hideModal()
+      }
+    })
+  },
   methods: {
     onInput(event) {
       this.$emit('input', event.target.value)
-    }
-  }
+    },
+  },
 }
 
 </script>

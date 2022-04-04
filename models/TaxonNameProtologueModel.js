@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export default class TaxonNameProtologue {
-
+class TaxonNameProtologue {
   constructor(data = {}) {
     this.id = data.id
     this.title = data.title
@@ -24,3 +23,26 @@ export default class TaxonNameProtologue {
     this.citation = data.citation
   }
 }
+
+class UpdateTaxonNameProtologueInput {
+  constructor(data = {}) {
+    this.id = data.id
+    this.title = data.title
+    this.volume = data.volume
+    this.issue = data.issue
+    this.pages = data.pages
+    this.publicationYear = data.publicationYear
+  }
+}
+
+class CreateTaxonNameProtologueInput {
+  constructor(data = {}) {
+    this.title = data.title
+    this.volume = data.volume
+    this.issue = data.issue
+    this.pages = data.pages
+    this.publicationYear = data.publicationYear
+  }
+}
+
+export { TaxonNameProtologue, CreateTaxonNameProtologueInput, UpdateTaxonNameProtologueInput }
