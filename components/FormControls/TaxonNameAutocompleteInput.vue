@@ -15,40 +15,28 @@
 -->
 
 <template>
-  <div class="form-group">
-    <label :for="name">{{ label }}</label>
-    <vue-typeahead-bootstrap
-      v-model="query"
-      id="name"
-      :placeholder="placeholder"
-      class="mb-12"
-      :data="taxonNames"
-      :serializer="item => fullNameWithAuthorship(item)"
-      :maxMatches="20"
-      @hit="onSelected"
-      @input="lookupTaxonName"
-    >
-      <template slot="append">
-        <b-button 
-          variant="primary" 
-          size="sm"
-          v-b-modal.taxon-name-modal
-        >
-          <font-awesome-icon icon="pen-to-square"/>
-        </b-button>
-        <b-button variant="primary" size="sm">
-          <font-awesome-icon icon="plus"/>
-        </b-button>
-      </template>
-    </vue-typeahead-bootstrap>
-
-    <b-modal
-      id="taxon-name-modal"
-      title="Taxon name"
-      size="lg"
-    >
-      <taxon-name-form :taxonNameProp="selectedTaxonName"/>
-    </b-modal>
+  <div>
+    <div 
+      v-if="show"
+      class="form-group">
+      <label :for="name">{{ label }}</label>
+      <vue-typeahead-bootstrap
+        v-model="query"
+        id="name"
+        :placeholder="placeholder"
+        class="mb-12"
+        :data="taxonNames"
+        :serializer="item => fullNameWithAuthorship(item)"
+        :maxMatches="20"
+        :disabled="disabled"
+        @hit="onSelected"
+        @input="lookupTaxonName"
+      />
+      <small 
+        v-if="description"
+        class="vf-form-control-description"
+      >{{ description }}</small>
+    </div>
   </div>
 </template>
 
@@ -95,6 +83,11 @@ export default {
       }
     }
   },
+  created() {
+    this.$nuxt.$on('protologue-updated', () => {
+      
+    })
+  },
   methods: {
     fullNameWithAuthorship(name) {
       return name.authorship ? name.fullName + ' ' + name.authorship : name.fullName
@@ -110,7 +103,13 @@ export default {
     onSelected(event) {
       this.selectedTaxonName = event
       this.$emit('input', event)
-    } 
+    },
+    openModalUpdate() {
+      this.$bvModal.show('update-taxon-name-form')
+    },
+    openModalCreate() {
+      this.$bvModal.show('create-taxon-name-form')
+    }
   }
 }
 </script>

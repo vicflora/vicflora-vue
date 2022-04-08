@@ -15,19 +15,28 @@
 -->
 
 <template>
-  <div class="form-group">
-    <label :for="name">{{ label }}</label>
-    <vue-typeahead-bootstrap
-      v-model="query"
-      id="name"
-      :placeholder="placeholder"
-      class="mb-12"
-      :data="taxonConcepts"
-      :serializer="item => fullNameWithAuthorship(item)"
-      :maxMatches="20"
-      @hit="onSelected"
-      @input="lookupTaxonConcept"
-    />
+  <div>
+    <div 
+      v-if="show"
+      class="form-group"
+    >
+      <label :for="name">{{ label }}</label>
+      <vue-typeahead-bootstrap
+        v-model="query"
+        id="name"
+        :placeholder="placeholder"
+        class="mb-12"
+        :data="taxonConcepts"
+        :serializer="item => fullNameWithAuthorship(item)"
+        :maxMatches="20"
+        @hit="onSelected"
+        @input="lookupTaxonConcept"
+      />
+      <small 
+        v-if="description"
+        class="vf-form-control-description"
+      >{{ description }}</small>
+    </div>
   </div>
 </template>
 

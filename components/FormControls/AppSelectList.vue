@@ -1,17 +1,32 @@
 <template>
-  <div class="form-group">
-    <label for="name">{{ label }}</label>
+  <div>
+    <div 
+      v-if="show"
+      class="form-group"
+    >
+      <label for="name">{{ label }}</label>
       <select
         class="form-control"
         :id="name"
         :name="name"
         :multiple="multi"
         :value="value"
-        @input="onInput">
-        <option v-for="option in options" :key="option.value" :value="option.value">
+        :disabled="disabled"
+        @input="onInput"
+      >
+        <option 
+          v-for="option in options" 
+          :key="option.value" 
+          :value="option.value"
+        >
           {{ option.label }}
         </option>
       </select>
+      <small 
+        v-if="description"
+        class="vf-form-control-description"
+      >{{ description }}</small>
+    </div>
   </div>
 </template>
 

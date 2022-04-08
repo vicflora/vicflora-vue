@@ -33,6 +33,23 @@ export const formControlPropsMixin = {
     rows: {
       type: Number,
       default: 1,
+    },
+    hide: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    description: {
+      type: String,
+      required: false,
+    }
+  },
+  computed: {
+    show() {
+      return !this.hide
     }
   },
 }
