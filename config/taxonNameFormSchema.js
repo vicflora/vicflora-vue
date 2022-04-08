@@ -14,9 +14,59 @@
 
 export default [
   {
+    fieldType: "SelectList",
+    name: "nameType",
+    label: "Name type",
+    multi: false,
+    options: [
+      { value: "SCIENTIFIC", label: "scientific"},
+      { value: "INFORMAL", label: "informal"},
+      { value: "HYBRID_NAME", label: "hybrid name"},
+      { value: "HYBRID_FORMULA", label: "hybrid formula"},
+      { value: "CULTIVAR", label: "cultivar"},
+    ],
+  },
+  {
+    fieldType: "SelectList",
+    name: "rank",
+    label: "Rank",
+    multi: false,
+    options: [
+      { value: "KINGDOM", label: "Kingdom" }, 
+      { value: "SUBKINGDOM", label: "Subkingdom" }, 
+      { value: "PHYLUM", label: "Phylum" }, 
+      { value: "SUBPHYLUM", label: "Subphylum" }, 
+      { value: "CLASS", label: "Class" }, 
+      { value: "SUBCLASS", label: "Subclass" }, 
+      { value: "SUPERORDER", label: "Superorder" }, 
+      { value: "ORDER", label: "Order" }, 
+      { value: "SUBORDER", label: "Suborder" }, 
+      { value: "FAMILY", label: "Family" }, 
+      { value: "GENUS", label: "Genus" }, 
+      { value: "SECTION", label: "Section" }, 
+      { value: "SPECIES", label: "Species" }, 
+      { value: "SUBSPECIES", label: "Subspecies" }, 
+      { value: "VARIETY", label: "Variety" }, 
+      { value: "SUBVARIETY", label: "Subvariety" }, 
+      { value: "FORM", label: "Form" }, 
+    ],
+  },
+  {
+    "fieldType": "TaxonNameAutocompleteInput",
+    "name": "parent",
+    "label": "Parent",
+    "hide": true,
+  },
+  {
+    "fieldType": "TextInput",
+    "name": "namePart",
+    "label": "Name part",
+  },
+  {
     fieldType: "TextInput",
     name: "fullName",
     label: "Full name",
+    disabled: true,
   },
   {
     fieldType: "TextInput",
@@ -27,6 +77,7 @@ export default [
     fieldType: "TaxonNameProtologueInput",
     name: "protologue",
     label: "Protologue",
+    disabled: true,
   },
   {
     fieldType:"TextInput",

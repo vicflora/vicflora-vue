@@ -42,6 +42,7 @@ class CreateTaxonNameProtologueInput {
     this.issue = data.issue
     this.pages = data.pages
     this.publicationYear = data.publicationYear
+    this.referenceType = "PROTOLOGUE"
   }
 }
 

@@ -5,7 +5,7 @@
         :key="index"
         :is="field.fieldType"
         :value="formData[field.name]"
-        @input="updateForm(field.name, $event)"
+        @input="onInput(field.name, $event)"
         @selected="onSelected"
         v-bind="field">
     </component>
@@ -13,11 +13,12 @@
 </template>
 
 <script>
-import NumberInput from "@/components/App/AppNumberInput"
-import SelectList from "@/components/App/AppSelectList"
-import TextInput from "@/components/App/AppTextInput"
-import TextareaControl from "@/components/App/AppTextareaControl"
-import TaxonNameProtologueInput from "@/components/Forms/TaxonNameProtologueInput"
+import NumberInput from "@/components/FormControls/AppNumberInput"
+import SelectList from "@/components/FormControls/AppSelectList"
+import TextInput from "@/components/FormControls/AppTextInput"
+import TextareaControl from "@/components/FormControls/AppTextareaControl"
+import TaxonNameProtologueInput from "@/components/FormControls/TaxonNameProtologueInput"
+import TaxonNameAutocompleteInput from '@/components/FormControls/TaxonNameAutocompleteInput.vue'
 
 export default {
   name: "TaxonNameFormGenerator",
@@ -27,6 +28,7 @@ export default {
     TextInput,
     TextareaControl, 
     TaxonNameProtologueInput,
+    TaxonNameAutocompleteInput,
   },
   props: {
     schema: Array,
@@ -38,19 +40,25 @@ export default {
       hide: false
     }
   },
-  methods: {
-    updateForm(fieldName, value) {
-      this.$set(this.formData, fieldName, value)
-      this.$emit("input", fieldName, value)
-    },
-    onSelected(item) {
-      this.$emit('selected', item)
-    }
-  },
   watch: {
     value() {
       this.formData = this.value
     }
-  }
+  },
+  methods: {
+    onInput(fieldName, value) {
+      this.$set(this.formData, fieldName, value)
+      this.$emit("input", fieldName, value)
+      $nuxt.$emit('taxon-name-form-input', fieldName, value, this.formData)
+    },
+    onSelected(item) {
+      this.$emit('selected', item)
+    },
+  },
+  watch: {
+    value() {
+      this.formData = this.value
+    },
+  },
 }
 </script>

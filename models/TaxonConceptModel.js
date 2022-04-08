@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import TaxonName from "@/models/TaxonNameModel"
+import { TaxonName } from "@/models/TaxonNameModel"
 
 export default class TaxonConcept {
 

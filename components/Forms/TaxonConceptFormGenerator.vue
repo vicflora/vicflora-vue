@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import NumberInput from "@/components/App/AppNumberInput"
-import SelectList from "@/components/App/AppSelectList"
-import TextInput from "@/components/App/AppTextInput"
-import TaxonNameAutocompleteInput from "@/components/Forms/TaxonNameAutocompleteInput"
-import TaxonConceptAutocompleteInput from "@/components/Forms/TaxonConceptAutocompleteInput"
+import NumberInput from "@/components/FormControls/AppNumberInput"
+import SelectList from "@/components/FormControls/AppSelectList"
+import TextInput from "@/components/FormControls/AppTextInput"
+import TaxonNameAutocompleteButtonsInput from "@/components/FormControls/TaxonNameAutocompleteButtonsInput"
+import TaxonConceptAutocompleteInput from "@/components/FormControls/TaxonConceptAutocompleteInput"
 
 
 export default {
@@ -26,7 +26,7 @@ export default {
     NumberInput, 
     SelectList, 
     TextInput, 
-    TaxonNameAutocompleteInput,
+    TaxonNameAutocompleteButtonsInput,
     TaxonConceptAutocompleteInput,
   },
   props: {
@@ -39,6 +39,11 @@ export default {
       hide: false
     }
   },
+  watch: {
+    value() {
+      this.formData = this.value
+    }
+  },
   methods: {
     updateForm(fieldName, value) {
       this.$set(this.formData, fieldName, value)
@@ -48,10 +53,5 @@ export default {
       this.$emit('selected', item)
     }
   },
-  watch: {
-    value() {
-      this.formData = this.value
-    }
-  }
 }
 </script>

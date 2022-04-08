@@ -14,7 +14,7 @@
 
 export default [
   {
-    fieldType: "TaxonNameAutocompleteInput",
+    fieldType: "TaxonNameAutocompleteButtonsInput",
     name: "taxonName",
     label: "Taxon name",
     placeholder: "Start typing taxon name..."

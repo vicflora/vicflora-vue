@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import TextInput from "@/components/App/AppTextInput"
+import TextInput from "@/components/FormControls/AppTextInput"
 
 export default {
   name: "TaxonNameProtologueFormGenerator",

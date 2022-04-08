@@ -90,7 +90,6 @@ export default {
     this.$nuxt.$emit('progress-bar-start')
     this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
     this.$apollo.queries.taxonConcept.skip = false
-
   },
 }
 </script>

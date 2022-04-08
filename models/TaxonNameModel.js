@@ -14,16 +14,76 @@
 
 import { TaxonNameProtologue } from "./TaxonNameProtologueModel"
 
-export default class TaxonName {
-
+class TaxonName {
   constructor(data = {}) {
     this.id = data.id
+    this.nameType = data.nameType || 'SCIENTIFIC'
+    this.rank = data.rank
+    this.namePart = data.namePart
     this.fullName = data.fullName
     this.authorship = data.authorship
     this.publicationYear = data.publicationYear
     this.nomenclaturalNote = data.nomenclaturalNote
     this.remarks = data.remarks
 
+    this.parent = data.parent ? new TaxonName(data.parent || {}) : null
     this.protologue = new TaxonNameProtologue(data.protologue || {})
   }
+
+  setParent(parent) {
+    this.parent = parent ? new TaxonName(parent || {}) : null
+  }
 }
+
+class UpdateTaxonNameInput {
+  constructor(data = {}) {
+    this.nameType = data.nameType
+    this.id = data.id
+    this.rank = data.rank
+    this.namePart = data.namePart
+    this.fullName = data.fullName
+    this.authorship = data.authorship
+    this.publicationYear = data.publicationYear
+    this.nomenclaturalNote = data.nomenclaturalNote
+    this.remarks = data.remarks
+
+    if (data.parent) {
+      this.parent = {
+        connect: data.parent.id
+      }
+    }
+
+    if (data.protologue) {
+      this.protologue = {
+        connect: data.protologue.id
+      }
+    }
+  }
+}
+
+class CreateTaxonNameInput {
+  constructor(data = {}) {
+    this.nameType = data.nameType
+    this.rank = data.rank
+    this.namePart = data.namePart
+    this.fullName = data.fullName
+    this.authorship = data.authorship
+    this.publicationYear = data.publicationYear
+    this.nomenclaturalNote = data.nomenclaturalNote
+    this.remarks = data.remarks
+
+    if (data.parent) {
+      this.parent = {
+        connect: data.parent.id
+      }
+    }
+
+    if (data.protologue) {
+      this.protologue = {
+        connect: data.protologue.id
+      }
+    }
+  }
+}
+
+export { TaxonName, UpdateTaxonNameInput, CreateTaxonNameInput }

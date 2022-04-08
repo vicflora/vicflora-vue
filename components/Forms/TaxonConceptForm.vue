@@ -45,8 +45,12 @@ export default {
     },
     schema() {
       return schema
-    }
+    },
+  },
+  created() {
+    this.$nuxt.$on('taxon-name-updated', data => {
+      this.formData.taxonName = data
+    })
   }
-
 }
 </script>
