@@ -129,7 +129,7 @@ export default {
       type: String,
       required: true,
     },
-    taxonNameProp: {
+    value: {
       type: Object,
       required: false,
     },
@@ -153,7 +153,7 @@ export default {
   },
   computed: {
     formData() {
-      return new TaxonName(this.value || {})
+      return new TaxonName(this.taxonName || {})
     },
     schema() {
       return schema
@@ -167,10 +167,6 @@ export default {
       if (['rank', 'parent', 'namePart'].indexOf(field) > -1) {
         this.fullName()
       }
-    })
-
-    this.$nuxt.$on('protologue-updated', (data) => {
-      this.formData.protologue = data
     })
   },
   methods: {
@@ -198,7 +194,7 @@ export default {
     onShow() {
       if (this.id == 'update-taxon-name-form') {
         this.$apollo.queries.taxonName.setVariables({
-          id: this.taxonNameProp.id,
+          id: this.value.id,
         })
         this.$apollo.queries.taxonName.skip = false
       }

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { TaxonName } from "@/models/TaxonNameModel"
+import { Reference } from "@/models/ReferenceModel"
 
 export default class TaxonConcept {
 
@@ -25,6 +26,7 @@ export default class TaxonConcept {
     this.degreeOfEstablishment = data.degreeOfEstablishment
 
     this.taxonName = new TaxonName(data.taxonName || {})
+    this.accordingTo = data.accordingTo ? new Reference(data.accordingTo) : null
     this.parent = data.parent ? new TaxonConcept(data.parent) : null
     this.acceptedConcept = data.acceptedConcept ? new TaxonConcept(data.acceptedConcept) : null
   }

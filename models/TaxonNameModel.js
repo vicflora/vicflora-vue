@@ -37,8 +37,8 @@ class TaxonName {
 
 class UpdateTaxonNameInput {
   constructor(data = {}) {
-    this.nameType = data.nameType
     this.id = data.id
+    this.nameType = data.nameType
     this.rank = data.rank
     this.namePart = data.namePart
     this.fullName = data.fullName

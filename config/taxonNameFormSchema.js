@@ -12,6 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import gql from "graphql-tag"
+
+const taxonNameAutocompleteQuery = gql`query($q: String!) {
+  suggestions: taxonNameAutocomplete(q: $q) {
+    id
+    fullName
+    authorship
+  }
+}`
+
+const taxonNameAutocompleteSerializer = (name) => {
+  return name.authorship ? name.fullName + ' ' + name.authorship : name.fullName
+}
+
 export default [
   {
     fieldType: "SelectList",
@@ -52,10 +66,14 @@ export default [
     ],
   },
   {
-    "fieldType": "TaxonNameAutocompleteInput",
+    "fieldType": "AutocompleteControl",
     "name": "parent",
     "label": "Parent",
     "hide": true,
+    "autocomplete": {
+      "query": taxonNameAutocompleteQuery,
+      "serializer": taxonNameAutocompleteSerializer,
+    }
   },
   {
     "fieldType": "TextInput",
@@ -74,10 +92,11 @@ export default [
     label: "Authors",
   },
   {
-    fieldType: "TaxonNameProtologueInput",
+    fieldType: "TextInputSubform",
     name: "protologue",
     label: "Protologue",
-    disabled: true,
+    subform: "TaxonNameProtologueForm",
+    serializerField: "citation"
   },
   {
     fieldType:"TextInput",

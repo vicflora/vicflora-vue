@@ -15,11 +15,11 @@
         :disabled="disabled"
         @input="onInput"
       />
-      <small 
-        v-if="description"
-        class="vf-form-control-description"
-      >{{ description }}</small>
     </div>
+    <small 
+      v-if="description"
+      class="vf-form-control-description"
+    >{{ description }}</small>
   </div>
 </template>
 

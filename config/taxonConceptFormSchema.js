@@ -12,17 +12,83 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import gql from "graphql-tag"
+
+const TaxonConceptAutoCompleteQuery = gql`query taxonConceptAutocomplete($q: String!) {
+  suggestions: taxonConceptAutocomplete(q: $q) {
+    id
+    taxonName {
+      fullName
+      authorship
+    }
+  }
+}`
+
+const taxonConceptSuggestionSerializer =  (concept) => {
+  return concept.taxonName.authorship 
+      ? concept.taxonName.fullName + ' ' + concept.taxonName.authorship 
+      : concept.taxonName.fullName
+}
+
+const taxonNameAutoCompleteQuery = gql`query($q: String!) {
+  suggestions: taxonNameAutocomplete(q: $q) {
+    id
+    fullName
+    authorship
+  }
+}`
+
+const taxonNameSuggestionSerializer = (name) => {
+  return name.authorship ? name.fullName + ' ' + name.authorship : name.fullName
+}
+
+const referenceAutocompleteQuery = gql`query ReferenceAutocompleteQuery($q: String!) {
+  suggestions: referenceAutocomplete(q: $q) {
+    id
+    author {
+      name
+    }
+    publicationYear
+    citationHtml
+  }
+}`
+
+const referenceAutocompleteSerializer = (reference) => {
+  return reference.author.name + ' ' + reference.publicationYear
+}
+
 export default [
   {
-    fieldType: "TaxonNameAutocompleteButtonsInput",
+    fieldType: "AutocompleteControl",
     name: "taxonName",
     label: "Taxon name",
-    placeholder: "Start typing taxon name..."
+    placeholder: "Start typing taxon name...",
+    autocomplete: {
+      query: taxonNameAutoCompleteQuery,
+      serializer: taxonNameSuggestionSerializer,
+    },
+    buttons: ["update", "create"],
+    form: "TaxonNameForm"
   },
   {
-    fieldType: "TaxonConceptAutocompleteInput",
+    fieldType: "AutocompleteControl",
+    name: "accordingTo",
+    label: "According to",
+    autocomplete: {
+      query: referenceAutocompleteQuery,
+      serializer: referenceAutocompleteSerializer,
+      showSelected: true,
+      suggestionField: "citationHtml"
+    }
+  },
+  {
+    fieldType: "AutocompleteControl",
     name: "parent",
     label: "Parent",
+    autocomplete: {
+      query: TaxonConceptAutoCompleteQuery,
+      serializer: taxonConceptSuggestionSerializer,
+    }
   },
   {
     fieldType: "SelectList",
@@ -64,9 +130,13 @@ export default [
     ],
   },
   {
-    fieldType: "TaxonConceptAutocompleteInput",
+    fieldType: "AutocompleteControl",
     name: "acceptedConcept",
     label: "Accepted name",
+    autocomplete: {
+      query: TaxonConceptAutoCompleteQuery,
+      serializer: taxonConceptSuggestionSerializer,
+    }
   },
   {
     fieldType: "SelectList",

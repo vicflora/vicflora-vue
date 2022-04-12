@@ -11,52 +11,58 @@
           class="form-control"
           :id="name"
           :name="name"
-          :value="value.citation"
+          :value="value[serializerField]"
           :placeholder="placeholder"
-          :disabled="disabled"
+          disabled
+          @input="onInput"
         />
-        <b-button 
-          variant="primary" 
-          size="sm"
-          v-b-modal.taxon-name-protologue-form
+        <span 
+          v-if="subform"
+          class="input-group-append"
         >
-          <font-awesome-icon icon="pen-to-square"/>
-        </b-button>
+          <AppButtonAppend
+            :form="subform"
+            :button="'update'"
+            :value="value"
+          />
+        </span>
       </div>
       <small 
         v-if="description"
         class="vf-form-control-description"
       >{{ description }}</small>
-
-      <taxon-name-protologue-form :protologue="value" />
     </div>
   </div>
 </template>
 
 <script>
 import { formControlPropsMixin } from "@/mixins/formMixins"
-import TaxonNameProtologueForm from '@/components/Forms/TaxonNameProtologueForm'
+
+const AppButtonAppend = () => import("@/components/FormControls/AppButtonAppend")
 
 export default {
-  components: { 
-    TaxonNameProtologueForm,
+  name: 'AppTextInputSubform',
+  components: {
+    AppButtonAppend,
   },
-  name: 'TaxonNameProtologueInput',
   mixins: [
     formControlPropsMixin,
   ],
-  created() {
-    this.$nuxt.$on('modal-closed', (modal) => {
-      if (modal = 'taxon-name-protologue-form') {
-        this.hideModal()
-      }
-    })
+  props: {
+    subform: {
+      type: String,
+      required: true,
+    },
+    serializerField: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     onInput(event) {
       this.$emit('input', event.target.value)
-    },
-  },
+    }
+  }
 }
 
 </script>

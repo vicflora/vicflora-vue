@@ -45,11 +45,24 @@ export const formControlPropsMixin = {
     description: {
       type: String,
       required: false,
-    }
+    },
   },
   computed: {
     show() {
       return !this.hide
     }
+  },
+}
+
+export const subformButtonPropsMixin = {
+  props: {
+    buttons: {
+      type: Array,
+      required: false,
+    },
+    form: {
+      type: String,
+      required: false,
+    },
   },
 }

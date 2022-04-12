@@ -17,8 +17,8 @@ import NumberInput from "@/components/FormControls/AppNumberInput"
 import SelectList from "@/components/FormControls/AppSelectList"
 import TextInput from "@/components/FormControls/AppTextInput"
 import TextareaControl from "@/components/FormControls/AppTextareaControl"
-import TaxonNameProtologueInput from "@/components/FormControls/TaxonNameProtologueInput"
-import TaxonNameAutocompleteInput from '@/components/FormControls/TaxonNameAutocompleteInput.vue'
+const AutocompleteControl = () => import("@/components/FormControls/AppAutocompleteControl") 
+const TextInputSubform = () => import("@/components/FormControls/AppTextInputSubform")
 
 export default {
   name: "TaxonNameFormGenerator",
@@ -26,9 +26,9 @@ export default {
     NumberInput, 
     SelectList, 
     TextInput,
+    TextInputSubform,
     TextareaControl, 
-    TaxonNameProtologueInput,
-    TaxonNameAutocompleteInput,
+    AutocompleteControl,
   },
   props: {
     schema: Array,
@@ -49,7 +49,7 @@ export default {
     onInput(fieldName, value) {
       this.$set(this.formData, fieldName, value)
       this.$emit("input", fieldName, value)
-      $nuxt.$emit('taxon-name-form-input', fieldName, value, this.formData)
+      $nuxt.$emit('taxon-name-form-input', fieldName, value)
     },
     onSelected(item) {
       this.$emit('selected', item)

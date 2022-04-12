@@ -16,10 +16,10 @@
 
 <template>
   <b-modal
-    id="taxon-name-protologue-form"
+    id="update-taxon-name-protologue-form"
     size="lg"
-    :title="protologue.id !== undefined ? 'Update protologue' : 'Add protologue'"
-    :ok-title="protologue.id !== undefined ? 'Update' : 'Save'"
+    :title="value.id !== undefined ? 'Update protologue' : 'Add protologue'"
+    :ok-title="value.id !== undefined ? 'Update' : 'Save'"
     :ok-disabled="okDisabled"
     @ok="onOk"
   >
@@ -72,7 +72,7 @@ export default {
     TaxonNameProtologueFormGenerator,
   },
   props: {
-    protologue: {
+    value: {
       type: Object,
       required: false,
     },
@@ -84,14 +84,11 @@ export default {
   },
   computed: {
     formData() {
-      return new TaxonNameProtologue(this.protologue || {})
+      return new TaxonNameProtologue(this.value || {})
     },
     schema() {
       return schema
     },
-  },
-  created() {
-    this.value = this.protologue
   },
   methods: {
     onOk(event) {
@@ -99,7 +96,7 @@ export default {
       this.okDisabled = true
       let mutation = false
       let input = false
-      if (this.protologue.id !== undefined) {
+      if (this.value.id !== undefined) {
         mutation = UpdateReferenceMutation
         input = new UpdateTaxonNameProtologueInput(this.formData)
       }
@@ -113,8 +110,8 @@ export default {
           input: {...input},
         },
       }).then(data => {
-        $nuxt.$emit('protologue-updated', data.data.createReference)
-        this.$bvModal.hide('taxon-name-protologue-form')
+        console.log(JSON.stringify(data, null, 2))
+        this.$bvModal.hide('update-taxon-name-protologue-form')
       }).catch((error) =>  {
         console.log(error)
       })
