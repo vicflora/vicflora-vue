@@ -23,7 +23,7 @@
 
 
 <script>
-import TheLoginBar from "@/components/App/TheLoginBar"
+const TheLoginBar = () => import("@/components/App/TheLoginBar")
 
 export default {
   name: 'TheBanner',

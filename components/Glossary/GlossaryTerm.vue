@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import GlossaryTermImages from "@/components/Glossary/GlossaryTermImages"
-import GlossaryTermRelationships from "@/components/Glossary/GlossaryTermRelationships"
-import GlossaryTermUse from "@/components/Glossary/GlossaryTermUse"
+const GlossaryTermImages = () => import("@/components/Glossary/GlossaryTermImages")
+const GlossaryTermRelationships = () => import("@/components/Glossary/GlossaryTermRelationships")
+const GlossaryTermUse = () => import("@/components/Glossary/GlossaryTermUse")
 import glossaryTermQuery from "@/graphql/queries/glossaryTermByNameQuery"
 
 

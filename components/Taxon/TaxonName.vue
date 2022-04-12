@@ -39,11 +39,11 @@
 
 <script>
 
-import NameString from "@/components/Taxon/TaxonNameString"
-import Authorship from "@/components/Taxon/TaxonNameAuthorship"
-import Protologue from "@/components/Taxon/TaxonNameProtologue"
-import VernacularName from "@/components/Taxon/TaxonNameVernacularName"
-import TaxonNameApniLink from "@/components/Taxon/TaxonNameApniLink"
+const NameString = () => import("@/components/Taxon/TaxonNameString")
+const Authorship = () => import("@/components/Taxon/TaxonNameAuthorship")
+const Protologue = () => import("@/components/Taxon/TaxonNameProtologue")
+const VernacularName = () => import("@/components/Taxon/TaxonNameVernacularName")
+const TaxonNameApniLink = () => import("@/components/Taxon/TaxonNameApniLink")
 
 export default {
   name: "TaxonName",

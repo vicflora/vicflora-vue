@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import TaxonTabImagesThumbnail from "@/components/Taxon/TaxonTabImagesThumbnail"
-import PhotoSwipeElement from "@/components/App/AppPhotoSwipeElement"
+const TaxonTabImagesThumbnail = () => import("@/components/Taxon/TaxonTabImagesThumbnail")
+const PhotoSwipeElement = () => import("@/components/App/AppPhotoSwipeElement")
 import { imagePaginatorMixin } from "~/mixins/imagePaginatorMixin"
 import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"
 import TaxonConceptImagesQuery from "~/graphql/queries/taxonConceptImagesQuery"

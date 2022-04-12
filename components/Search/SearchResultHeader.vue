@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import SearchResultNumberOfMatches from "@/components/Search/SearchResultNumberOfMatches"
-import SearchResultNav from "@/components/Search/SearchResultNav"
-import SearchResultDownloadButton from "@/components/Search/SearchResultDownloadButton"
+const SearchResultNumberOfMatches = () => import("@/components/Search/SearchResultNumberOfMatches")
+const SearchResultNav = () => import("@/components/Search/SearchResultNav")
+const SearchResultDownloadButton = () => import("@/components/Search/SearchResultDownloadButton")
 
 import { searchMixin, searchResultPaginationMixin } from "@/mixins/searchMixins"
 

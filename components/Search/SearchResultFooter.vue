@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import SearchResultNav from "@/components/Search/SearchResultNav"
+const SearchResultNav = () => import("@/components/Search/SearchResultNav")
 
 import { searchResultPaginationMixin } from "@/mixins/searchMixins"
 

@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import SearchInput from "@/components/Search/SearchInput"
-import SearchExcludeHigherTaxa from "@/components/Search/SearchExcludeHigherTaxa"
-import SearchApplied from "@/components/Search/SearchApplied"
-import SearchFilters from "@/components/Search/SearchFilters"
-import SearchResult from "@/components/Search/SearchResult"
+const SearchInput = () => import("@/components/Search/SearchInput")
+const SearchExcludeHigherTaxa = () => import("@/components/Search/SearchExcludeHigherTaxa")
+const SearchApplied = () => import("@/components/Search/SearchApplied")
+const SearchFilters = () => import("@/components/Search/SearchFilters")
+const SearchResult = () => import("@/components/Search/SearchResult")
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import SearchQuery from "@/graphql/queries/search.gql"
 import { FACET_FIELDS } from "@/constants/facet-fields"

@@ -26,7 +26,8 @@
 <script>
 import schema from "@/config/taxonConceptFormSchema"
 import TaxonConcept from "@/models/TaxonConceptModel"
-import TaxonConceptFormGenerator from '@/components/Forms/TaxonConceptFormGenerator'
+
+const TaxonConceptFormGenerator = () => import('@/components/Forms/TaxonConceptFormGenerator')
 
 export default {
   name: "TaxonConceptForm",

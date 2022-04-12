@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import TheNavigationBar from "@/components/App/TheNavigationBar"
-import TheBanner from "@/components/App/TheBanner"
-import TheProgressBar from "@/components/App/TheProgressBar"
+const TheNavigationBar = () => import("@/components/App/TheNavigationBar")
+const TheBanner = () => import("@/components/App/TheBanner")
+const TheProgressBar = () => import("@/components/App/TheProgressBar")
 
 export default {
   name: "TheHeader",

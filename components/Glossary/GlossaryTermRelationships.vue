@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import GlossaryTermRelationship from "@/components/Glossary/GlossaryTermRelationship"
+const GlossaryTermRelationship = () => import("@/components/Glossary/GlossaryTermRelationship")
 
 export default {
   name: 'GlossaryTermRelationships',

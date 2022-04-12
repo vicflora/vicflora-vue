@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import Carousel from "@/components/App/TheCarousel"
-import Highlights from "@/components/App/TheHighlights"
+const Carousel = () => import("@/components/App/TheCarousel")
+const Highlights = () => import("@/components/App/TheHighlights")
 
 export default {
   name: "Home",

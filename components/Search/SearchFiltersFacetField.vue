@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import SearchFiltersFacet from "@/components/Search/SearchFiltersFacet"
-import SearchFiltersFacetFieldModal from "@/components/Search/SearchFiltersFacetFieldModal"
+const SearchFiltersFacet = () => import("@/components/Search/SearchFiltersFacet")
+const SearchFiltersFacetFieldModal = () => import("@/components/Search/SearchFiltersFacetFieldModal")
 
 export default {
   name: "SearchFiltersFacetField",

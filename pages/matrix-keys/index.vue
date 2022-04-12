@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import IconButtonLink from "@/components/App/AppIconButtonLink"
+const IconButtonLink = () => import("@/components/App/AppIconButtonLink")
 
 export default {
   name: 'MatrixKeys',

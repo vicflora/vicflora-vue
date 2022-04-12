@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import SearchAppliedQueryTerm from "@/components/Search/SearchAppliedQueryTerm"
-import SearchAppliedFilters from "@/components/Search/SearchAppliedFilters"
+const SearchAppliedQueryTerm = () => import("@/components/Search/SearchAppliedQueryTerm")
+const SearchAppliedFilters = () => import("@/components/Search/SearchAppliedFilters")
 
 export default {
   name: "SearchApplied",

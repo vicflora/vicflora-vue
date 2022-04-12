@@ -105,11 +105,11 @@
 
 <script>
 import 'leaflet/dist/leaflet.css'
-import ChecklistMap from "@/components/Checklists/ChecklistMap"
-import ChecklistAccordion from "@/components/Checklists/ChecklistAccordion"
-import SearchApplied from "@/components/Search/SearchApplied"
-import SearchFilters from "@/components/Search/SearchFilters"
-import SearchResult from "@/components/Search/SearchResult"
+const ChecklistMap = () => import("@/components/Checklists/ChecklistMap")
+const ChecklistAccordion = () => import("@/components/Checklists/ChecklistAccordion")
+const SearchApplied = () => import("@/components/Search/SearchApplied")
+const SearchFilters = () => import("@/components/Search/SearchFilters")
+const SearchResult = () => import("@/components/Search/SearchResult")
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { selectedAreaMixin } from "@/mixins/checklistMixins"
 import ChecklistMapInfoQuery from "@/graphql/queries/checklists"

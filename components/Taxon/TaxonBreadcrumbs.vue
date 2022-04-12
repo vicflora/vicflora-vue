@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import Crumb from "@/components/Taxon/TaxonBreadcrumbsCrumb"
-import Siblings from "@/components/Taxon/TaxonBreadcrumbsSiblings"
-import Children from "@/components/Taxon/TaxonBreadcrumbsChildren"
+const Crumb = () => import("@/components/Taxon/TaxonBreadcrumbsCrumb")
+const Siblings = () => import("@/components/Taxon/TaxonBreadcrumbsSiblings")
+const Children = () => import("@/components/Taxon/TaxonBreadcrumbsChildren")
 
 export default {
   name: "TaxonBreadcrumbs",

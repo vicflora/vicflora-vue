@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import GlossaryFirstLetters from "@/components/Glossary/GlossaryFirstLetters"
-import GlossaryTermList from "@/components/Glossary/GlossaryTermList"
-import GlossaryTerm from "@/components/Glossary/GlossaryTerm"
+const GlossaryFirstLetters = () => import("@/components/Glossary/GlossaryFirstLetters")
+const GlossaryTermList = () => import("@/components/Glossary/GlossaryTermList")
+const GlossaryTerm = () => import("@/components/Glossary/GlossaryTerm")
 
 export default {
   name: "Glossary",

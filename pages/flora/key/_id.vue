@@ -48,8 +48,8 @@
 
 <script>
 // import { mapState } from 'vuex'
-import KeybasePlayer from "@/components/Keybase/KeybasePlayer";
-import BracketedKey from "@/components/Keybase/BracketedKey";
+const KeybasePlayer = () => import("@/components/Keybase/KeybasePlayer");
+const BracketedKey = () => import("@/components/Keybase/BracketedKey");
 
 require("./keybase");
 // require("./jquery.keybase.key");

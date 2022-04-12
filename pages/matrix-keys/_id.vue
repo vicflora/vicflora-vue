@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import IconButtonLink from "@/components/App/AppIconButtonLink"
+const IconButtonLink = () => import("@/components/App/AppIconButtonLink")
 import matrixKeyQuery from "@/graphql/queries/matrixKeyQuery"
 
 export default {

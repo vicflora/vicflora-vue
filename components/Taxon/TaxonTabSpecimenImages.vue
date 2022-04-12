@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import TaxonTabImagesThumbnail from "@/components/Taxon/TaxonTabImagesThumbnail"
+const TaxonTabImagesThumbnail = () => import("@/components/Taxon/TaxonTabImagesThumbnail")
 import TaxonTabSpecimenImagesModal from "~/components/Taxon/TaxonTabSpecimenImagesModal"
 import TaxonConceptSpecimenImagesQuery from "~/graphql/queries/taxonConceptSpecimenImagesQuery"
 import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ChecklistAccordionCard from "@/components/Checklists/ChecklistAccordionCard"
+const ChecklistAccordionCard = () => import("@/components/Checklists/ChecklistAccordionCard")
 
 export default {
   name: "ChecklistAccordion",

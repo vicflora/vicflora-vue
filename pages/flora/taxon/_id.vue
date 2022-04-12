@@ -52,14 +52,14 @@
 </template>
 
 <script>
-import Breadcrumbs from "@/components/Taxon/TaxonBreadcrumbs"
-import LastSearchButton from "@/components/Taxon/TaxonLastSeachButton"
-import TaxonName from "@/components/Taxon/TaxonName"
-import TaxonStatus from "@/components/Taxon/TaxonStatus"
-import TaxonTabs from "@/components/Taxon/TaxonTabs"
-import TaxonClassification from "@/components/Taxon/TaxonClassification"
-import TaxonAcceptedConceptLink from "@/components/Taxon/TaxonAcceptedConceptLink"
-import TaxonEditMenu from "@/components/Taxon/TaxonEditMenu"
+const Breadcrumbs = () => import("@/components/Taxon/TaxonBreadcrumbs")
+const LastSearchButton = () => import("@/components/Taxon/TaxonLastSeachButton")
+const TaxonName = () => import("@/components/Taxon/TaxonName")
+const TaxonStatus = () => import("@/components/Taxon/TaxonStatus")
+const TaxonTabs = () => import("@/components/Taxon/TaxonTabs")
+const TaxonClassification = () => import("@/components/Taxon/TaxonClassification")
+const TaxonAcceptedConceptLink = () => import("@/components/Taxon/TaxonAcceptedConceptLink")
+const TaxonEditMenu = () => import("@/components/Taxon/TaxonEditMenu")
 import taxonConceptQuery from "@/graphql/queries/taxonConceptQuery"
 
 export default {

@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import TaxonTabOverview from "@/components/Taxon/TaxonTabOverview"
-import TaxonClassification from "@/components/Taxon/TaxonClassification"
-import TaxonTabSynonymy from "@/components/Taxon/TaxonTabSynonymy"
-import TaxonTabImages from "@/components/Taxon/TaxonTabImages"
-import TaxonTabSpecimenImages from "@/components/Taxon/TaxonTabSpecimenImages"
-import TaxonTabDistribution from "@/components/Taxon/TaxonTabDistribution"
-import TaxonTabReferences from "@/components/Taxon/TaxonTabReferences"
-import TaxonTabFloraLinks from "@/components/Taxon/TaxonTabFloraLinks"
+const TaxonTabOverview = () => import("@/components/Taxon/TaxonTabOverview")
+const TaxonClassification = () => import("@/components/Taxon/TaxonClassification")
+const TaxonTabSynonymy = () => import("@/components/Taxon/TaxonTabSynonymy")
+const TaxonTabImages = () => import("@/components/Taxon/TaxonTabImages")
+const TaxonTabSpecimenImages = () => import("@/components/Taxon/TaxonTabSpecimenImages")
+const TaxonTabDistribution = () => import("@/components/Taxon/TaxonTabDistribution")
+const TaxonTabReferences = () => import("@/components/Taxon/TaxonTabReferences")
+const TaxonTabFloraLinks = () => import("@/components/Taxon/TaxonTabFloraLinks")
 import { rankMixin } from "@/mixins/taxonMixins"
 import { watchRouteIdMixin } from "@/mixins/routeMixins"
 

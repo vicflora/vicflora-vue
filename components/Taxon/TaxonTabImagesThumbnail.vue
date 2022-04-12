@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import LoadingSpinner from "@/components/App/AppLoadingSpinner"
+const LoadingSpinner = () => import("@/components/App/AppLoadingSpinner")
 
 export default {
   name: "TaxonTabImagesThumbnail",

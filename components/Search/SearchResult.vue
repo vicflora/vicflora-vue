@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import SearchResultNumberOfMatches from "@/components/Search/SearchResultNumberOfMatches"
-import SearchResultNav from "@/components/Search/SearchResultNav"
-import SearchResultItem from "@/components/Search/SearchResultItem"
-import SearchResultDownloadButton from "@/components/Search/SearchResultDownloadButton"
-import SearchResultHeader from "@/components/Search/SearchResultHeader"
-import SearchResultFooter from "@/components/Search/SearchResultFooter"
+const SearchResultNumberOfMatches = () => import("@/components/Search/SearchResultNumberOfMatches")
+const SearchResultNav = () => import("@/components/Search/SearchResultNav")
+const SearchResultItem = () => import("@/components/Search/SearchResultItem")
+const SearchResultDownloadButton = () => import("@/components/Search/SearchResultDownloadButton")
+const SearchResultHeader = () => import("@/components/Search/SearchResultHeader")
+const SearchResultFooter = () => import("@/components/Search/SearchResultFooter")
 
 export default {
   name: "SearchResult",

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import TableOfContent from "@/components/App/AppTableOfContent"
+const TableOfContent = () => import("@/components/App/AppTableOfContent")
 
 export default {
   name:"StaticContent",

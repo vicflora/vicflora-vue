@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import GlossaryTermImage from "@/components/Glossary/GlossaryTermImage"
+const GlossaryTermImage = () => import("@/components/Glossary/GlossaryTermImage")
 
 export default {
   name: 'GlossaryTermImages',

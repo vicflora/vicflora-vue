@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import NumberInput from "@/components/FormControls/AppNumberInput"
-import SelectList from "@/components/FormControls/AppSelectList"
-import TextInput from "@/components/FormControls/AppTextInput"
-import AutocompleteControl from "@/components/FormControls/AppAutocompleteControl"
+const NumberInput = () => import("@/components/FormControls/AppNumberInput")
+const SelectList = () => import("@/components/FormControls/AppSelectList")
+const TextInput = () => import("@/components/FormControls/AppTextInput")
+const AutocompleteControl = () => import("@/components/FormControls/AppAutocompleteControl")
 
 
 export default {

@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import SearchInput from "@/components/Search/SearchInput"
+const SearchInput = () => import("@/components/Search/SearchInput")
 
 
 export default {

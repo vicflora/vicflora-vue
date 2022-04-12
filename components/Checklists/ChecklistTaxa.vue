@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import SearchApplied from "@/components/Search/SearchApplied"
-import SearchFilters from "@/components/Search/SearchFilters"
-import SearchResult from "@/components/Search/SearchResult"
+const SearchApplied = () => import("@/components/Search/SearchApplied")
+const SearchFilters = () => import("@/components/Search/SearchFilters")
+const SearchResult = () => import("@/components/Search/SearchResult")
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import SearchQuery from "@/graphql/queries/search.gql"
 

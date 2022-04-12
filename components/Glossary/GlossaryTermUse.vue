@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import GlossaryTermUseFacetField from "@/components/Glossary/GlossaryTermUseFacetField"
+const GlossaryTermUseFacetField = () => import("@/components/Glossary/GlossaryTermUseFacetField")
 import searchGlossaryTermQuery from "@/graphql/queries/searchGlossaryTermQuery"
 
 export default {
