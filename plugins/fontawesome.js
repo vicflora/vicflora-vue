@@ -19,16 +19,33 @@ import {
   faRotate, 
   faArrowRotateLeft, 
   faPenToSquare, 
-  faPlus 
+  faPlus,
+  faChild,
+  faFloppyDisk,
+  faFile,
+  faFilePen,
+  faClone,
+  faMapLocation,
+  faBan,
+  faEye
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faRotate, 
   faArrowRotateLeft, 
   faPenToSquare, 
-  faPlus
+  faPlus,
+  faChild,
+  faFloppyDisk,
+  faFile,
+  faFilePen,
+  faClone,
+  faMapLocation,
+  faBan,
+  faEye
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

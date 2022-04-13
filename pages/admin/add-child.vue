@@ -15,25 +15,32 @@
 -->
 
 <template>
-  <div>
-    <b-container>
-      <b-row>
-        <b-col>
-          <header>
-            <h1>New taxon concept</h1>
-          </header>
-          <taxon-concept-form/>
-        </b-col>
-      </b-row>
-    </b-container>
-  </div>
+  <b-container>
+    <TaxonEditMenu/>
+    <b-row>
+      <b-col>
+        <header class="page-header">
+          <h2>Coming soon</h2>
+        </header>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
-<script>
-import TaxonConceptForm from '../../components/Forms/TaxonConceptForm.vue'
-export default {
-  components: { TaxonConceptForm },
-  name: "AddTaxonConcept",
+<router>
+{
+  path: '/flora/taxon/:id/add-child'
+}
+</router>
 
+<script>
+const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
+
+export default {
+  name: 'AddChild',
+  components: {
+    TaxonEditMenu
+  }
 }
 </script>
+

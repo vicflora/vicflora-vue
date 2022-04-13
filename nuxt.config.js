@@ -37,6 +37,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
       "@nuxtjs/style-resources",
+      '@nuxtjs/router-extras',
   ],
 
   fontawesome: {

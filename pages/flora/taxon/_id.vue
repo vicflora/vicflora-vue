@@ -3,7 +3,6 @@
     <b-container v-if="taxonConcept">
       <taxon-edit-menu
         v-if="$store.getters['isLoggedIn']"
-        :concept="taxonConcept"
       />
       <b-row v-if="taxonConcept.taxonomicStatus === 'ACCEPTED'">
         <b-col>
