@@ -40,6 +40,9 @@ const SearchFiltersFacetField = () => import("@/components/Search/SearchFiltersF
 
 export default {
   name: "SearchFilters",
+  components: {
+    SearchFiltersFacetField,
+  },
   props: {
     data: {
       type: Object,
