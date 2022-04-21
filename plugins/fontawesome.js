@@ -27,7 +27,12 @@ import {
   faClone,
   faMapLocation,
   faBan,
-  faEye
+  faEye,
+  faCaretRight,
+  faCaretDown,
+  faTable,
+  faGlobe,
+  faBook,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -42,7 +47,12 @@ library.add(
   faClone,
   faMapLocation,
   faBan,
-  faEye
+  faEye,
+  faCaretRight,
+  faCaretDown,
+  faTable,
+  faGlobe,
+  faBook,
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

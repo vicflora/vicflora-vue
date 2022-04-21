@@ -15,32 +15,21 @@
 -->
 
 <template>
-  <b-container>
-    <TaxonEditMenu/>
-    <b-row>
-      <b-col>
-        <header class="page-header">
-          <h2>Coming soon</h2>
-        </header>
-      </b-col>
-    </b-row>
-  </b-container>
+  <BRow>
+    <BCol>
+      <h3>To do</h3>
+    </BCol>
+  </BRow>
 </template>
 
-<router>
-{
-  path: '/flora/taxon/:id/add-child'
-}
-</router>
-
 <script>
-const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
-
 export default {
-  name: 'AddChild',
-  components: {
-    TaxonEditMenu
-  }
+  name: 'TaxonTabEditVernacularNames',
+  props: {
+    concept: {
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>
-

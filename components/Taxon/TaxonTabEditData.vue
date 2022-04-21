@@ -15,31 +15,30 @@
 -->
 
 <template>
-  <b-container>
-    <TaxonEditMenu/>
-    <b-row>
-      <b-col>
-        <header class="page-header">
-          <h2>Coming soon</h2>
-        </header>
-      </b-col>
-    </b-row>
-  </b-container>
+  <b-row>
+    <b-col>
+      <taxon-concept-form 
+        v-if="concept"
+        :id="'taxon-concept-update'"
+        :taxonConcept="concept"
+      />
+    </b-col>
+  </b-row>
 </template>
 
-<router>
-{
-  path: '/flora/taxon/:id/edit-profile'
-}
-</router>
-
 <script>
-const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
+const TaxonConceptForm = () => import('@/components/Forms/TaxonConceptForm')
 
 export default {
-  name: 'EditProfile',
+  name: 'TaxonTabEditData',
   components: {
-    TaxonEditMenu
-  }
+    TaxonConceptForm,
+  },
+  props: {
+    concept: {
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>
