@@ -1,0 +1,106 @@
+// Copyright 2022 Royal Botanic Gardens Board
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+.vf-profile {
+  .collapsed > .when-open,
+  .not-collapsed > .when-closed {
+    display: none;
+  }
+
+  .previous > a {
+    color: $grey;
+  }
+
+  p.description {
+    font-style: normal;
+  }
+
+  p.description:before {
+    content: "Description: ";
+    font-weight: bold;
+  }
+
+  p.phenology {
+    font-style: normal;
+  }
+
+  p.phenology:before {
+    content: "Phenology: ";
+    font-weight: bold;
+  }
+
+  p.distribution_australia {
+    font-style: normal;
+  }
+
+  p.distribution_australia:before {
+    content: "State distribution: ";
+    font-weight: bold;
+  }
+
+  p.distribution_world {
+    font-style: normal;
+  }
+
+  p.distribution_world:before {
+    content: "World distribution: ";
+    font-weight: bold;
+  }
+
+  p.habitat {
+    font-style: normal;
+  }
+
+  p.habitat:before {
+    content: "Habitat: ";
+    font-weight: bold;
+  }
+
+  p.note {
+    font-style: normal;
+  }
+
+  p.note:before {
+    content: 'Note: ';
+    font-weight: bold;
+  }
+
+  p.references {
+    font-style: normal;
+  }
+
+  p.references:before {
+    content: 'References: ';
+    font-weight: bold;
+  }
+
+  span.scientific_name {
+    font-style: italic;
+    background-color: #ffb;
+  }
+
+  div.source > p:before {
+    content: 'Source: ';
+    font-weight: bold;
+  }
+}
+
+.vf-profile-meta {
+  padding: 1rem;
+  background-color: $gray-100;
+
+  .vf-profile-delete {
+    margin-top: -5px;
+  }
+}

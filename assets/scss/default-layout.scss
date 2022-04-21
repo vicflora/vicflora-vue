@@ -53,10 +53,10 @@ html, body {
 
 body {
   overflow-x: hidden;
+  font-family: goodsans-thin, Helvetica, Arial, sans-serif;
 }
 
 #app {
-  font-family: goodsans-thin, Helvetica, Arial, sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -73,4 +73,12 @@ body {
 }
 #footer {
   height: auto;
+}
+
+label {
+  font-weight: bold;
+
+  &.form-check-label {
+    font-weight: normal;
+  }
 }

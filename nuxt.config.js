@@ -32,7 +32,7 @@ export default {
   // ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -77,6 +77,7 @@ export default {
     '~plugins/leaflet.client.js',
     '~plugins/bootstrapicons.js',
     '~plugins/fontawesome.js',
+    '~plugins/ckeditor4.client.js',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

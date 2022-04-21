@@ -26,44 +26,25 @@
       v-if="showEdit"
       variant="primary"
       size="sm"
-      :to="{name: 'admin-edit', params: { id: $route.params.id } }"
+      :to="{name: 'flora-taxon-edit', params: { id: $route.params.id } }"
     ><FontAwesomeIcon icon="pen-to-square"/> Edit</b-button>
-    <b-button 
-      v-if="showEditProfile"
-      variant="primary"
-      size="sm"
-      :to="{name: 'admin-edit-profile', params: { id: $route.params.id } }"
-    ><FontAwesomeIcon icon="file-pen"/> Edit profile</b-button>
-    <b-button 
-      v-if="showEditDistribution"
-      variant="primary"
-      size="sm"
-      :to="{name: 'admin-edit-distribution', params: { id: $route.params.id } }"
-    ><FontAwesomeIcon icon="map-location"/> Edit distribution</b-button>
     <b-button 
       v-if="showAddChild"
       variant="primary"
       size="sm"
-      :to="{name: 'admin-add-child', params: { id: $route.params.id } }"
+      :to="{name: 'flora-taxon-add-child', params: { id: $route.params.id } }"
     ><FontAwesomeIcon icon="child"/> Add child</b-button>
-    <taxon-edit-modal />
   </div>
 </template>
 
 <script>
-import TaxonEditModal from '@/components/Taxon/TaxonEditModal.vue'
 
 export default {
   name: 'TaxonEditMenu',
-  components: { 
-    TaxonEditModal,
-  },
   data() {
     return {
       showView: false,
       showEdit: false,
-      showEditProfile: false,
-      showEditDistribution: false,
       showAddChild: false,
     }
   },
@@ -74,25 +55,11 @@ export default {
         this.showAddChild = true
         break;
     
-      case 'admin-edit':
+      case 'flora-taxon-edit':
         this.showView = true
-        this.showEditProfile = true
-        this.showEditDistribution = true
         break;
 
-      case 'admin-edit-profile':
-        this.showView = true
-        this.showEdit = true
-        this.showEditDistribution = true
-        break;
-
-      case 'admin-edit-distribution':
-        this.showView = true
-        this.showEdit = true
-        this.showEditProfile = true
-        break;
-
-      case 'admin-add-child':
+      case 'flora-taxon-add-child':
         this.showView = true
         break;
     
