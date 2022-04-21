@@ -69,7 +69,6 @@ export default [
     "fieldType": "AutocompleteControl",
     "name": "parent",
     "label": "Parent",
-    "hide": true,
     "autocomplete": {
       "query": taxonNameAutocompleteQuery,
       "serializer": taxonNameAutocompleteSerializer,

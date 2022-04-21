@@ -31,6 +31,8 @@
         @input="okDisabled = false"
       />
     </div>
+    <template slot="modal-ok"><FontAwesomeIcon icon="floppy-disk"/> Save</template>
+    <template slot="modal-cancel"><FontAwesomeIcon icon="ban"/> Cancel</template>
   </b-modal>
 </template>
 
@@ -41,7 +43,9 @@ import {
   UpdateTaxonNameInput, 
   CreateTaxonNameInput
 } from "@/models/TaxonNameModel"
-import TaxonNameFormGenerator from '@/components/Forms/TaxonNameFormGenerator.vue'
+import { formMethodsMixin } from "@/mixins/formMixins"
+
+const TaxonNameFormGenerator = () => import("@/components/Forms/TaxonNameFormGenerator.vue")
 
 import gql from "graphql-tag"
 const TaxonNameQuery = gql`query TaxonNameQuery($id: ID!) {
@@ -66,6 +70,18 @@ const TaxonNameQuery = gql`query TaxonNameQuery($id: ID!) {
       publicationYear
       citation
     }
+  }
+}`
+
+const parentQuery = gql`query ($id: ID!) {
+  parent: taxonConcept(id: $id) {
+    id
+    taxonName {
+      id
+      fullName
+      rank
+    }
+    taxonRank
   }
 }`
 
@@ -124,6 +140,9 @@ export default {
   components: {
     TaxonNameFormGenerator,
   },
+  mixins: [
+    formMethodsMixin,
+  ],
   props: {
     id: {
       type: String,
@@ -137,6 +156,7 @@ export default {
   data() {
     return {
       taxonName: {},
+      parentName: {},
       okDisabled: true,
     }
   },
@@ -150,6 +170,30 @@ export default {
         }
       }
     },
+    parent: {
+      query: parentQuery,
+      skip: true,
+      result({ data, loading }) {
+        if (!loading) {
+          console.log(JSON.stringify(data, null, 2))
+          this.parentName = data.parent.taxonName
+          this.taxonName = new TaxonName()
+          switch (data.parent.taxonRank) {
+            case 'GENUS':
+              this.taxonName.rank = 'SPECIES'
+              this.taxonName.parent = data.parent.taxonName
+              this.showHideField('parent', true)
+              break;
+
+            case 'SPECIES':
+              this.taxonName.parent = data.parent.taxonName
+              break;
+            default:
+              break;
+          }
+        }
+      }
+    }
   },
   computed: {
     formData() {
@@ -168,12 +212,12 @@ export default {
         this.fullName()
       }
     })
+
+    this.$nuxt.$on('taxon-name-protologue-updated', value => {
+      this.formData.protologue = value
+    })
   },
   methods: {
-    showHideField(field, show=true) {
-      const index = this.schema.map(element => element.name).indexOf(field)
-      this.schema[index].hide = !show
-    },
     showHideParent(rank) {
       const showParentFor = [
         'SPECIES',
@@ -198,6 +242,15 @@ export default {
         })
         this.$apollo.queries.taxonName.skip = false
       }
+      else {
+        if (this.$route.name === 'flora-taxon-add-child') {
+          this.$apollo.queries.parent.setVariables({
+            id: this.$route.params.id
+          })
+          this.$apollo.queries.parent.skip = false
+        }
+      }
+
     },
     fullName(data) {
       const ranksWithNameParents = [
@@ -258,9 +311,10 @@ export default {
         variables: {
           input: {...input},
         },
-      }).then(data => {
+      }).then(({data}) => {
+        console.log(JSON.stringify(data, null, 2))
         $nuxt.$emit('taxon-name-updated', 
-            data.data.updateTaxonName || data.data.createTaxonName)
+            data.updateTaxonName || data.createTaxonName)
         this.$bvModal.hide(this.id)
       })
     }

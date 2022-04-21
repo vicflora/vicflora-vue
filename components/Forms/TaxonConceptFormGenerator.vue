@@ -16,6 +16,8 @@
 const NumberInput = () => import("@/components/FormControls/AppNumberInput")
 const SelectList = () => import("@/components/FormControls/AppSelectList")
 const TextInput = () => import("@/components/FormControls/AppTextInput")
+const CheckboxInput = () => import("@/components/FormControls/AppCheckboxInput")
+const TextareaControl = () => import("@/components/FormControls/AppTextareaControl")
 const AutocompleteControl = () => import("@/components/FormControls/AppAutocompleteControl")
 
 
@@ -25,6 +27,8 @@ export default {
     NumberInput, 
     SelectList, 
     TextInput, 
+    TextareaControl,
+    CheckboxInput,
     AutocompleteControl,
   },
   props: {

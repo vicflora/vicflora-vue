@@ -29,7 +29,8 @@
           class="mb-12"
           :data="suggestions"
           :serializer="item => autocomplete.serializer(item)"
-          :maxMatches="20"
+          :maxMatches="100"
+          :disabled="disabled"
           @hit="onSelected"
           @input="suggest"
         >
@@ -47,14 +48,18 @@
         <span
             v-if="buttons"
             class="vf-autocomplete-append"
-          >
-          <ButtonAppend
+        >
+          <span
             v-for="button in buttons"
-            :key="button"
-            :button="button"
-            :form="form"
-            :value="button === 'update' && selectedSuggestion ? selectedSuggestion : {}"
-          />
+              :key="button"
+            >
+            <ButtonAppend
+              v-if="button === 'create' || selectedSuggestion.id !== undefined"
+              :button="button"
+              :form="form"
+              :value="button === 'update' && selectedSuggestion ? selectedSuggestion : {}"
+            />
+          </span>
         </span>
       </div>
       <small 
@@ -146,6 +151,12 @@ export default {
     right: 0;
     bottom: 0;
     height: 38px;
+    z-index: 10;
   }
+
+}
+
+.vf-autocomplete-selected {
+  margin-top: 0.5rem;
 }
 </style>

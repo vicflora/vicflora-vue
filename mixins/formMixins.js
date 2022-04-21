@@ -66,3 +66,12 @@ export const subformButtonPropsMixin = {
     },
   },
 }
+
+export const formMethodsMixin = {
+  methods: {
+    showHideField(field, show=true) {
+      const index = this.schema.map(element => element.name).indexOf(field)
+      this.schema[index].hide = !show
+    },
+  },
+}

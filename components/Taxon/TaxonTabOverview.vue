@@ -26,8 +26,6 @@
           <div 
             v-else-if="description"
             class="text-right glossarize">
-            <!-- <a href="" @click.prevent="glossarize">Glossarize</a> -->
-            <!-- <b-checkbox @change="glossarize">Glossarize</b-checkbox> -->
             <b-button 
               variant="outline-primary" 
               size="sm" 
@@ -186,10 +184,15 @@ export default {
       elements[i].innerHTML = sciname
     }
 
-    const descriptionEl = this.$el.querySelector('.description')
-    if (descriptionEl) {
-      this.description = descriptionEl.innertText
+    const list = document.getElementsByClassName('description');
+    if (list.length) {
+      this.description = list[0].innerText
     }
+
+    // const descriptionEl = this.$el.querySelector('.description')
+    // if (descriptionEl) {
+    //   this.description = descriptionEl.innertText
+    // }
   },
   methods: {
     getBtnText: function(name) {

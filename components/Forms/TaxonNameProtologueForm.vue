@@ -30,6 +30,8 @@
         @input="okDisabled = false"
       />
     </div>
+    <template slot="modal-ok"><FontAwesomeIcon icon="floppy-disk"/> Save</template>
+    <template slot="modal-cancel"><FontAwesomeIcon icon="ban"/> Cancel</template>
   </b-modal>
 </template>
 
@@ -79,16 +81,23 @@ export default {
   },
   data() {
     return {
+      formData: {},
       okDisabled: true,
     }
   },
   computed: {
-    formData() {
-      return new TaxonNameProtologue(this.value || {})
-    },
     schema() {
       return schema
     },
+  },
+  watch: {
+    value: {
+      immediate: true,
+      deep: true,
+      handler(value) {
+        this.formData = new TaxonNameProtologue(value || {})
+      }
+    }
   },
   methods: {
     onOk(event) {
@@ -109,8 +118,10 @@ export default {
         variables: {
           input: {...input},
         },
-      }).then(data => {
+      }).then(({ data }) => {
         console.log(JSON.stringify(data, null, 2))
+        this.formData = data.createReference
+        this.$nuxt.$emit('taxon-name-protologue-updated', data.createReference)
         this.$bvModal.hide('update-taxon-name-protologue-form')
       }).catch((error) =>  {
         console.log(error)

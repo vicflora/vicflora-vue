@@ -45,6 +45,7 @@ const taxonNameSuggestionSerializer = (name) => {
 const referenceAutocompleteQuery = gql`query ReferenceAutocompleteQuery($q: String!) {
   suggestions: referenceAutocomplete(q: $q) {
     id
+    quickRef
     author {
       name
     }
@@ -151,6 +152,11 @@ export default [
     ],
   },
   {
+    fieldType: "CheckboxInput",
+    name: "endemic",
+    label: "endemic",
+  },
+  {
     fieldType: "SelectList",
     name: "establishmentMeans",
     label: "Origin",
@@ -160,6 +166,11 @@ export default [
       { value: "INTRODUCED", label: "Introduced" }, 
       { value: "UNCERTAIN", label: "Uncertain" }, 
     ],
+  },
+  {
+    fieldType: "CheckboxInput",
+    name: "hasIntroducedOccurrences",
+    label: "has introduced occurrences",
   },
   {
     fieldType: "SelectList",
@@ -175,5 +186,11 @@ export default [
       { value: "COLONISING", label: "Colonising" }, 
     ],
   },
+  {
+    fieldType: "TextareaControl",
+    name: "remarks",
+    label: "Comments",
+    rows: 4,
+  }
 
 ]

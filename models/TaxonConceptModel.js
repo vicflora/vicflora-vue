@@ -15,19 +15,91 @@
 import { TaxonName } from "@/models/TaxonNameModel"
 import { Reference } from "@/models/ReferenceModel"
 
-export default class TaxonConcept {
+export class TaxonConcept {
 
   constructor(data = {}) {
     this.id = data.id
     this.taxonRank = data.taxonRank
     this.taxonomicStatus = data.taxonomicStatus
     this.occurrenceStatus = data.occurrenceStatus
+    this.endemic = data.endemic
     this.establishmentMeans = data.establishmentMeans
+    this.hasIntroducedOccurrences = data.hasIntroducedOccurrences
     this.degreeOfEstablishment = data.degreeOfEstablishment
+    this.remarks = this.remarks
 
     this.taxonName = new TaxonName(data.taxonName || {})
     this.accordingTo = data.accordingTo ? new Reference(data.accordingTo) : null
     this.parent = data.parent ? new TaxonConcept(data.parent) : null
     this.acceptedConcept = data.acceptedConcept ? new TaxonConcept(data.acceptedConcept) : null
+  }
+}
+
+export class UpdateTaxonConceptInput {
+  constructor(data = {}) {
+    this.id = data.id
+    this.taxonRank = data.taxonRank
+    this.taxonomicStatus = data.taxonomicStatus
+    this.occurrenceStatus = data.occurrenceStatus
+    this.endemic = data.endemic
+    this.establishmentMeans = data.establishmentMeans
+    this.hasIntroducedOccurrences = data.hasIntroducedOccurrences
+    this.degreeOfEstablishment = data.degreeOfEstablishment
+    this.remarks = this.remarks
+
+    this.taxonName = {
+      connect: data.taxonName.id
+    }
+
+    if (data.accordingTo) {
+      this.accordingTo = {
+        connect: data.accordingTo.id
+      }
+    }
+    if (data.parent) {
+      this.parent = {
+        connect: data.parent.id
+      }
+    }
+
+    if (data.acceptedConcept) {
+      this.acceptedConcept = {
+        connect: data.acceptedConcept.id
+      }
+    }
+  }
+}
+
+export class CreateTaxonConceptInput {
+  constructor(data = {}) {
+    this.taxonRank = data.taxonRank
+    this.taxonomicStatus = data.taxonomicStatus
+    this.occurrenceStatus = data.occurrenceStatus
+    this.endemic = data.endemic
+    this.establishmentMeans = data.establishmentMeans
+    this.hasIntroducedOccurrences = data.hasIntroducedOccurrences
+    this.degreeOfEstablishment = data.degreeOfEstablishment
+    this.remarks = this.remarks
+
+    this.taxonName = {
+      connect: data.taxonName.id
+    }
+
+    if (data.accordingTo) {
+      this.accordingTo = {
+        connect: data.accordingTo.id
+      }
+    }
+    if (data.parent) {
+      this.parent = {
+        connect: data.parent.id
+      }
+    }
+
+    if (data.acceptedConcept) {
+      this.acceptedConcept = {
+        connect: data.acceptedConcept.id
+      }
+    }
   }
 }

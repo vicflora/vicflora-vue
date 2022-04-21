@@ -15,25 +15,25 @@
 import { Agent } from "@/models/AgentModel"
 
 class Reference {
-  constructor(ref = {}) {
-    this.id = ref.id
-    this.type = ref.type
-    this.publicationYear = ref.publicationYear
-    this.title = ref.title
-    this.parent = ref.parent ? new Reference(ref.parent) : null
-    this.volume = ref.volume
-    this.issue = ref.issue
-    this.number = ref.number
-    this.pageStart = ref.pageStart
-    this.pageEnd = ref.pageEnd
-    this.pages = ref.pages
-    this.numberOfPages = ref.numberOfPages
-    this.publisher = ref.publisher
-    this.isbn = ref.isbn
-    this.issn = ref.issn
-    this.doi = ref.doi
-    this.citation = ref.citation
-    this.citationHtml = ref.citationHtml
+  constructor(data = {}) {
+    this.id = data.id
+    this.type = data.type
+    this.publicationYear = data.publicationYear
+    this.title = data.title
+    this.parent = data.parent ? new Reference(data.parent) : null
+    this.volume = data.volume
+    this.issue = data.issue
+    this.number = data.number
+    this.pageStart = data.pageStart
+    this.pageEnd = data.pageEnd
+    this.pages = data.pages
+    this.numberOfPages = data.numberOfPages
+    this.publisher = data.publisher
+    this.isbn = data.isbn
+    this.issn = data.issn
+    this.doi = data.doi
+    this.citation = data.citation
+    this.citationHtml = data.citationHtml
 
     this.author = data.author ? new Agent(data.author) : null
   }
