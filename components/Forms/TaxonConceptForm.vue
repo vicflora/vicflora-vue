@@ -200,9 +200,8 @@ export default {
         
         if (['SYNONYM', 'HOMOTYPIC_SYNONYM', 'HETEROTYPIC_SYNONYM', 'MISAPPLICATION']) {
           this.formData.acceptedConcept = null
-          this.formData.acceptedConcept = 
-              this.taxonConcept.parent ? 
-              new TaxonConcept(this.taxonConcept.acceptedConcept) : null
+          this.formData.acceptedConcept = this.id === 'taxon-concept-update' 
+              ? new TaxonConcept(this.taxonConcept.acceptedConcept) : null
           this.showHideField('acceptedConcept', true)
         }
         else {
@@ -246,6 +245,9 @@ export default {
               id: data.createTaxonConcept.id
             }
           })
+        }
+        else {
+          this.$nuxt.$emit('taxon-concept-updated')
         }
       })
     }

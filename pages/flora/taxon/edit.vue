@@ -85,6 +85,25 @@ const taxonEditFormQuery = gql`query taxonEditFormQuery($id: ID!) {
       }
     }
     remarks
+    changes {
+      id
+      to {
+        id
+        taxonName {
+          id
+          fullName
+          authorship
+        }
+      }
+      changeType
+      changeSource {
+        quickRef
+      }
+      createdBy {
+        name
+      }
+      createdAt
+    }
   }
 }`
 
@@ -116,6 +135,10 @@ export default {
     this.$nuxt.$emit('progress-bar-start')
     this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
     this.$apollo.queries.taxonConcept.skip = false
+
+    this.$nuxt.$on('taxon-concept-updated', () => {
+      this.$apollo.queries.taxonConcept.refetch()
+    })
   },
 }
 </script>

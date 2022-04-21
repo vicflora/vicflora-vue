@@ -31,7 +31,7 @@ export default {
         'description': `The name is a homotypic (syn.: nomenclatural) synonym.`
     },
     "HETEROTYPIC_SYNONYM": {
-        'label': 'Heterotypic ynonym',
+        'label': 'Heterotypic synonym',
         'description': `The name is a heterotypic (syn.: taxonomic) synonym.`
     },
     "MISAPPLICATION": {

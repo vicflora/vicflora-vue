@@ -26,6 +26,7 @@ const TaxonTabEditProfile = () => import("@/components/Taxon/TaxonTabEditProfile
 const TaxonTabEditDistribution = () => import("@/components/Taxon/TaxonTabEditDistribution")
 const TaxonTabEditVernacularNames = () => import("@/components/Taxon/TaxonTabEditVernacularNames")
 const TaxonTabEditReferences = () => import("@/components/Taxon/TaxonTabEditReferences")
+const TaxonTabEditChanges = () => import("@/components/Taxon/TaxonTabEditChanges")
 import { rankMixin } from "@/mixins/taxonMixins"
 import { watchRouteIdMixin } from "@/mixins/routeMixins"
 
@@ -37,6 +38,7 @@ export default {
     TaxonTabEditDistribution,
     TaxonTabEditVernacularNames,
     TaxonTabEditReferences,
+    TaxonTabEditChanges,
   },
   mixins: [
     rankMixin,
@@ -87,7 +89,14 @@ export default {
           icon: 'book',
           component: TaxonTabEditReferences,
         })
-        
+      }
+
+      if (this.concept && this.concept.changes && this.concept.changes.length) {
+        tabs.push({
+          title: "Changes",
+          icon: 'dice',
+          component: TaxonTabEditChanges,
+        })
       }
 
       return tabs
