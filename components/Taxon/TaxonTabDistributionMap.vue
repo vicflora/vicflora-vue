@@ -153,8 +153,7 @@ export default {
     getOccurrences(event) {
       this.marker = null
       let mapClick = event.latlng
-      let distance = 1 / (this.zoom ** 2)
-      console.log({distance: distance})
+      let distance = 1 / (2**this.zoom)
       this.$apollo.addSmartQuery('taxonOccurrencesAtPoint', {
         query: taxonOccurrencesAtPointQuery,
         variables: {
