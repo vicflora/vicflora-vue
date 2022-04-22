@@ -104,6 +104,12 @@ const taxonEditFormQuery = gql`query taxonEditFormQuery($id: ID!) {
       }
       createdAt
     }
+    vernacularNames {
+      id
+      name
+      isPreferred
+      nameUsage
+    },
   }
 }`
 
@@ -137,6 +143,10 @@ export default {
     this.$apollo.queries.taxonConcept.skip = false
 
     this.$nuxt.$on('taxon-concept-updated', () => {
+      this.$apollo.queries.taxonConcept.refetch()
+    })
+
+    this.$nuxt.$on('vernacular-names-updated', () => {
       this.$apollo.queries.taxonConcept.refetch()
     })
   },

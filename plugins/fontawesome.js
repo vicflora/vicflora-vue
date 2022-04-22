@@ -34,6 +34,7 @@ import {
   faGlobe,
   faBook,
   faDice,
+  faTrashCan,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -55,6 +56,7 @@ library.add(
   faGlobe,
   faBook,
   faDice,
+  faTrashCan,
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

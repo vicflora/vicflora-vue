@@ -34,12 +34,14 @@
 <script>
 const TaxonNameForm = () => import("@/components/Forms/TaxonNameForm")
 const TaxonNameProtologueForm = () => import("@/components/Forms/TaxonNameProtologueForm")
+const VernacularNameForm = () => import("@/components/Forms/VernacularNameForm")
 
 export default {
   name: "AppButtonAppend",
   components: {
     TaxonNameForm,
     TaxonNameProtologueForm,
+    VernacularNameForm,
   },
   props: {
     button: {
@@ -53,7 +55,11 @@ export default {
     value: {
       type: Object,
       required: true,
-    }
+    },
+    index: {
+      type: Number,
+      required: false,
+    },
   },
   computed: {
     icon() {
@@ -73,7 +79,12 @@ export default {
       return icon
     },
     modal() {
-      return this.button + this.form.replace(/[A-Z]/g, ($0) => '-' + $0.toLowerCase())
+      if (this.index !== undefined) {
+        return this.button + this.form.replace(/[A-Z]/g, ($0) => '-' 
+            + $0.toLowerCase()) + '-' + this.index
+      }
+      return this.button + this.form.replace(/[A-Z]/g, ($0) => '-' 
+          + $0.toLowerCase())
     },
   },
   methods: {

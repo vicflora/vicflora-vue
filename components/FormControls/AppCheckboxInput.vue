@@ -45,10 +45,16 @@
 import { formControlPropsMixin } from "@/mixins/formMixins"
 
 export default {
-  name: 'AppTextInput',
+  name: 'AppCheckboxInput',
   mixins: [
     formControlPropsMixin,
   ],
+  props: {
+    value: {
+      type: Boolean, // overwrites prop in mixin
+      required: false,
+    }
+  },
   methods: {
     onInput(event) {
       this.$emit('input', event.target.checked)
