@@ -4,8 +4,9 @@
       <l-map
         :zoom="zoom"
         :center="center"
-        @click="getOccurrences"
         :options="mapOptions"
+        @click="getOccurrences"
+        @update:zoom="onZoom"
       >
         <l-marker v-if="marker" :lat-lng="marker" ref="marker">
           <l-icon
@@ -152,12 +153,15 @@ export default {
     getOccurrences(event) {
       this.marker = null
       let mapClick = event.latlng
+      let distance = 1 / (this.zoom ** 2)
+      console.log({distance: distance})
       this.$apollo.addSmartQuery('taxonOccurrencesAtPoint', {
         query: taxonOccurrencesAtPointQuery,
         variables: {
           taxonConceptId: this.taxonConceptId,
           latitude: mapClick.lat,
-          longitude: mapClick.lng
+          longitude: mapClick.lng,
+          distance: distance
         },
         update(data) {
           return data.taxonOccurrencesAtPoint
@@ -171,6 +175,9 @@ export default {
           }
         }
       })
+    },
+    onZoom(event) {
+      this.zoom = event
     }
   }
 }
