@@ -144,6 +144,11 @@ export default {
       skip: true
     }
   },
+  beforeCreate() {
+    if (!this.$store.getters.isLoggedIn) {
+      this.$router.push('/')
+    }
+  },
   created() {
     this.$nuxt.$emit('progress-bar-start')
     this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})

@@ -1,0 +1,13 @@
+mutation registerMutation ($input: RegisterInput!) {
+  register(input: $input) {
+    status
+    tokens {
+      user {
+        id
+        name
+        email
+      }
+      access_token
+    }
+  }
+}

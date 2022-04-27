@@ -58,4 +58,13 @@ class CreateAgentInput {
     }
   }
 }
-export { Agent, CreateAgentInput, UpdateAgentInput }
+
+class LinkToUserInput {
+  constructor(data) {
+    this.id = data.id
+    this.name = data.name
+    this.email = data.email
+  }
+}
+
+export { Agent, CreateAgentInput, UpdateAgentInput, LinkToUserInput }

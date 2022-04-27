@@ -89,6 +89,9 @@ export default {
               id
               email
               name
+              agent {
+                id
+              }
             }
           }
         }`,

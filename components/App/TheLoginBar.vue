@@ -17,7 +17,8 @@
 <template>
   <div class="login">
     <div v-if="$store.getters['isLoggedIn']">
-      {{ $store.state.user.name }} | <a href="/logout" @click.prevent="logout">Logout</a>
+      <NuxtLink to="/user">{{ $store.state.user.name }}</NuxtLink>
+      | <a href="/logout" @click.prevent="logout">Logout</a>
     </div>
     <div v-else>
       <nuxt-link to="/login">Login</nuxt-link>
@@ -37,6 +38,9 @@ export default {
           id
           name
           email
+          agent {
+            id
+          }
         }  
       }`,
       skip: true,
