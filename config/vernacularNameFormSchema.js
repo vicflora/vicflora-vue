@@ -24,8 +24,9 @@ export default [
     label: "preferred"
   },
   {
-    fieldType: "TextInput",
+    fieldType: "TextareaControl",
     name: "nameUsage",
     label: "Usage",
+    rows: 3,
   },
 ]

@@ -29,12 +29,14 @@
 
 <script>
 const TextInput = () => import("@/components/FormControls/AppTextInput")
+const TextareaControl = () => import("@/components/FormControls/AppTextareaControl")
 const CheckboxInput = () => import("@/components/FormControls/AppCheckboxInput")
 
 export default {
   name: "VernacularNameFormGenerator",
   components: { 
     TextInput,
+    TextareaControl,
     CheckboxInput,
   },
   props: {
