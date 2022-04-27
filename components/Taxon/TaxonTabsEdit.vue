@@ -72,11 +72,13 @@ export default {
           component: TaxonTabEditProfile,
         })
 
-        tabs.push({
-          title: "Distribution",
-          icon: 'map-location',
-          component: TaxonTabEditDistribution,
-        })
+        if (this.rankClass[this.concept.taxonRank.toUpperCase()] > 180) {
+          tabs.push({
+            title: "Distribution",
+            icon: 'map-location',
+            component: TaxonTabEditDistribution,
+          })
+        }
 
         tabs.push({
           title: "Vernacular names",

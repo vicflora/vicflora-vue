@@ -1,0 +1,11 @@
+query ReferenceAutocompleteQuery($q: String!) {
+  suggestions: referenceAutocomplete(q: $q) {
+    id
+    quickRef
+    author {
+      name
+    }
+    publicationYear
+    citationHtml
+  }
+}

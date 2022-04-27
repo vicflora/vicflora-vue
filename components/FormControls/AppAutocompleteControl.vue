@@ -20,7 +20,7 @@
       v-if="show"
       class="form-group"
     >
-      <label :for="name">{{ label }}</label>
+      <label v-if="label" :for="name">{{ label }}</label>
       <div class="vf-autocomplete-wrapper">
         <vue-typeahead-bootstrap
           v-model="query"
@@ -54,10 +54,13 @@
               :key="button"
             >
             <ButtonAppend
-              v-if="button === 'create' || selectedSuggestion.id !== undefined"
+              v-if="button === 'create' || (selectedSuggestion && selectedSuggestion.id !== undefined)"
               :button="button"
               :form="form"
+              :field="`${inForm}-${name}`"
               :value="button === 'update' && selectedSuggestion ? selectedSuggestion : {}"
+              :subtype="subtype"
+              :index="index"
             />
           </span>
         </span>
@@ -97,6 +100,14 @@ export default {
     autocomplete: {
       type: Object,
     },
+    subtype: {
+      type: String,
+      required: false,
+    },
+    index: {
+      type: Number,
+      required: false,
+    },
   },
   data() {
     return {
@@ -116,14 +127,6 @@ export default {
         }
       }
     }
-  },
-  mounted() {
-    const inputGroup = this.$el.querySelector('.input-group')
-    const appendix = this.$el.querySelector('.input-group-append')
-    // if (appendix) {
-    //   inputGroup.appendChild(appendix)
-    // }
-    
   },
   methods: {
     suggest: debounce(function() {

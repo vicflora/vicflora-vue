@@ -1,0 +1,14 @@
+mutation createTaxonConceptReferenceMutation ($input: CreateTaxonConceptReferenceInput!) {
+  createTaxonConceptReference(input: $input) {
+    id
+    reference {
+      id
+      quickRef
+      author {
+        name
+      }
+      publicationYear
+      citationHtml
+    }
+  }
+}

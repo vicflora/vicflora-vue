@@ -1,0 +1,5 @@
+mutation deleteTaxonConceptReferenceMutation ($id: ID!) {
+  deleteTaxonConceptReference(id: $id) {
+    id
+  }
+}

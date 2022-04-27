@@ -17,10 +17,10 @@ import { Agent } from "@/models/AgentModel"
 class Reference {
   constructor(data = {}) {
     this.id = data.id
+    this.referenceType = data.referenceType
     this.type = data.type
     this.publicationYear = data.publicationYear
     this.title = data.title
-    this.parent = data.parent ? new Reference(data.parent) : null
     this.volume = data.volume
     this.issue = data.issue
     this.number = data.number
@@ -36,7 +36,92 @@ class Reference {
     this.citationHtml = data.citationHtml
 
     this.author = data.author ? new Agent(data.author) : null
+
+    if (data.isPartOf && data.referenceType === 'CHAPTER') {
+      this.book = data.isPartOf
+    }
+    else if (data.isPartOf && data.referenceType === 'ARTICLE') {
+      this.journal = data.isPartOf
+    }
   }
 }
 
-export { Reference }
+class UpdateReferenceInput {
+  constructor(data = {}) {
+    this.id = data.id
+    this.referenceType = data.referenceType
+    this.type = data.type
+    this.publicationYear = data.publicationYear
+    this.title = data.title
+    this.volume = data.volume
+    this.issue = data.issue
+    this.number = data.number
+    this.pageStart = data.pageStart
+    this.pageEnd = data.pageEnd
+    this.pages = data.pages
+    this.numberOfPages = data.numberOfPages
+    this.publisher = data.publisher
+    this.isbn = data.isbn
+    this.issn = data.issn
+    this.doi = data.doi
+    this.citation = data.citation
+    this.citationHtml = data.citationHtml
+
+    if (data.author) {
+      this.author = {
+        connect: data.author
+      }
+    }
+
+    if (data.referenceType === 'ARTICLE' && data.journal) {
+      this.journal = {
+        connect: data.journal.id
+      }
+    }
+    if (data.referenceType === 'CHAPTER' && data.book) {
+      this.book = {
+        connect: data.book.id
+      }
+    }
+  }
+}
+
+class CreateReferenceInput {
+  constructor(data = {}) {
+    this.referenceType = data.referenceType
+    this.type = data.type
+    this.publicationYear = data.publicationYear
+    this.title = data.title
+    this.volume = data.volume
+    this.issue = data.issue
+    this.number = data.number
+    this.pageStart = data.pageStart ? parseInt(data.pageStart) : null
+    this.pageEnd = data.pageEnd ? parseInt(data.pageEnd) : null
+    this.pages = data.pages
+    this.numberOfPages = data.numberOfPages
+    this.publisher = data.publisher
+    this.isbn = data.isbn
+    this.issn = data.issn
+    this.doi = data.doi
+    this.citation = data.citation
+    this.citationHtml = data.citationHtml
+
+    if (data.author) {
+      this.author = {
+        connect: data.author.id
+      }
+    }
+
+    if (data.referenceType === 'ARTICLE' && data.journal) {
+      this.journal = {
+        connect: data.journal.id
+      }
+    }
+    if (data.referenceType === 'CHAPTER' && data.book) {
+      this.book = {
+        connect: data.book.id
+      }
+    }
+  }
+}
+export { Reference, CreateReferenceInput, UpdateReferenceInput }

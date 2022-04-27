@@ -24,6 +24,7 @@ import {
     BIconCaretRightFill,
     BIconCaretUpFill,
     BIconChatLeftTextFill,
+    BIconChevronRight,
     BIconHouseDoorFill,
     BIconInfoCircle, 
     BIconPlayBtn, 
@@ -48,6 +49,7 @@ Vue.component('BIconCaretDownFill', BIconCaretDownFill)
 Vue.component('BIconCaretRightFill', BIconCaretRightFill)
 Vue.component('BIconCaretUpFill', BIconCaretUpFill)
 Vue.component('BIconChatLeftTextFill', BIconChatLeftTextFill)
+Vue.component('BIconChevronRight', BIconChevronRight)
 Vue.component('BIconHouseDoorFill', BIconHouseDoorFill)
 Vue.component('BIconInfoCircle', BIconInfoCircle)
 Vue.component('BIconPlayBtn', BIconPlayBtn)

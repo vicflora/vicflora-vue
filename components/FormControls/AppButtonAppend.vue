@@ -27,6 +27,9 @@
       :is="form"
       :id="modal" 
       :value="value"
+      :subtype="subtype"
+      :mode="button"
+      :calledFrom="field"
     />
   </span>
 </template>
@@ -35,6 +38,8 @@
 const TaxonNameForm = () => import("@/components/Forms/TaxonNameForm")
 const TaxonNameProtologueForm = () => import("@/components/Forms/TaxonNameProtologueForm")
 const VernacularNameForm = () => import("@/components/Forms/VernacularNameForm")
+const AgentForm = () => import("@/components/Forms/AgentForm")
+const ReferenceForm = () => import('@/components/Forms/ReferenceForm')
 
 export default {
   name: "AppButtonAppend",
@@ -42,6 +47,8 @@ export default {
     TaxonNameForm,
     TaxonNameProtologueForm,
     VernacularNameForm,
+    AgentForm,
+    ReferenceForm,
   },
   props: {
     button: {
@@ -59,6 +66,14 @@ export default {
     index: {
       type: Number,
       required: false,
+    },
+    subtype: {
+      type: String,
+      required: false,
+    },
+    field: {
+      type: String,
+      default: '',
     },
   },
   computed: {
@@ -79,12 +94,15 @@ export default {
       return icon
     },
     modal() {
-      if (this.index !== undefined) {
-        return this.button + this.form.replace(/[A-Z]/g, ($0) => '-' 
-            + $0.toLowerCase()) + '-' + this.index
-      }
-      return this.button + this.form.replace(/[A-Z]/g, ($0) => '-' 
+      let modal = this.button + this.form.replace(/[A-Z]/g, ($0) => '-' 
           + $0.toLowerCase())
+      if (this.subtype !== undefined) {
+        modal += '-' + this.subtype
+      }
+      if (this.index !== undefined) {
+        modal += '-' + this.index
+      }
+      return modal
     },
   },
   methods: {

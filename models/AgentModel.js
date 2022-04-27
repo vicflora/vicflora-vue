@@ -12,11 +12,50 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { GroupPersonInput } from './GroupPersonModel'
 class Agent {
   constructor(data = {}) {
     this.id = data.id
+    this.agentType = data.agentType
     this.name = data.name
+    this.lastName = data.lastName
+    this.firstName = data.firstName
+    this.initials = data.initials
+
+    this.members = data.members  ? data.members : null
   }
 }
 
-export { Agent }
+class UpdateAgentInput {
+  constructor(data = {}) {
+    this.id = data.id
+    this.agentType = data.agentType
+    this.name = data.name
+    this.lastName = data.lastName
+    this.firstName = data.firstName
+    this.initials = data.initials
+    if (data.members && data.members.length) {
+      this.members = []
+      data.members.forEach(item => {
+        this.members.push(new GroupPersonInput(item))
+      })
+    }
+  }
+}
+
+class CreateAgentInput {
+  constructor(data = {}) {
+    this.agentType = data.agentType
+    this.name = data.name
+    this.lastName = data.lastName
+    this.firstName = data.firstName
+    this.initials = data.initials
+    if (data.members && data.members.length) {
+      this.members = []
+      data.members.forEach(item => {
+        this.members.push(new GroupPersonInput(item))
+      })
+    }
+  }
+}
+export { Agent, CreateAgentInput, UpdateAgentInput }
