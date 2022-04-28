@@ -18,6 +18,7 @@ const TaxonConceptAutoCompleteQuery = gql`query taxonConceptAutocomplete($q: Str
   suggestions: taxonConceptAutocomplete(q: $q) {
     id
     taxonName {
+      id
       fullName
       authorship
     }
