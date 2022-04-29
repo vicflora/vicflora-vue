@@ -18,6 +18,12 @@
   <div>
     <b-row align-h="center">
       <b-col cols="4">
+        <div 
+          v-if="alert"
+          class="alert alert-danger"
+        >
+          {{ alert }}
+        </div>
         <b-card no-body id="login-form">
           <b-card-header><h5>Login</h5></b-card-header>
           <b-card-body>
@@ -70,6 +76,7 @@ export default {
         username: '',
         password: '',
       },
+      alert: null,
     }
   },
   methods: {
@@ -100,13 +107,14 @@ export default {
           password: this.form.password,
         },
       }).then((data) => {
-        // Result
+        console.log(data)
         this.$apolloHelpers.onLogin(data.data.login.access_token)
         this.$store.dispatch('storeToken', data.data.login.access_token)
         this.$store.dispatch('storeUser', data.data.login.user)
         this.$router.push('/')
       }).catch((error) => {
         // Error
+        this.alert = 'Authentication failed. There is no account with the supplied credentials'
         console.error(error)
         // We restore the initial user input
       })

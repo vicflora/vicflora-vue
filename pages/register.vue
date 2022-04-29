@@ -18,6 +18,18 @@
   <div>
     <b-row align-h="center">
       <b-col cols="4">
+        <div 
+          v-if="success"
+          class="alert alert-success"
+        >
+          {{ success }}
+        </div>
+        <div 
+          v-else-if="error"
+          class="alert alert-danger"
+        >
+          {{ error }}
+        </div>
         <b-card no-body id="registration-form">
           <b-card-header><h5>Register</h5></b-card-header>
           <b-card-body>
@@ -108,6 +120,8 @@ export default {
         password_confirmation: '',
       },
       user: null,
+      success: null,
+      error: null,
     }
   },
   beforeCreate() {
@@ -135,7 +149,10 @@ export default {
       }).then(({ data }) => {
         console.log(JSON.stringify(data, null, 2))
         this.linkUserToAgent(data.register.tokens.user)
-        // $nuxt.$emit('user-registered', )
+        this.success = 'Registration successful'
+      }).catch((error) => {
+        console.error(error)
+        this.error = 'Registration failed'
       })
     },
     linkUserToAgent(user) {
