@@ -10,9 +10,9 @@
       v-if="item.to_key && !item.url"
       :to="`/flora/key/${item.to_key}`"
     >
-      <span class="keybase-player-tokey"
-        ><b-icon icon="arrow-right-square"></b-icon
-      ></span>
+      <span class="keybase-player-tokey">
+        <font-awesome-icon icon="fa-solid fa-circle-chevron-right"/>
+      </span>
     </nuxt-link>
 
     <span

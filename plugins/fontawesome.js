@@ -38,6 +38,7 @@ import {
   faDice,
   faTrashCan,
   faCommentDots,
+  faCircleChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -63,6 +64,7 @@ library.add(
   faDice,
   faTrashCan,
   faCommentDots,
+  faCircleChevronRight
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

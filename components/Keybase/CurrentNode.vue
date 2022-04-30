@@ -46,7 +46,7 @@
               class="keybase-lead" 
               :href="`#l_${ lead.lead_id }`"
             >
-              <b-icon icon="arrow-right-square"/>
+              <font-awesome-icon icon="fa-solid fa-circle-chevron-right"/>
             </a>
           </div>
         </div>
