@@ -1,8 +1,5 @@
 <template>
-  <div 
-    class="keybase-player-currentnode"
-    :key="componentKey"
-  >
+  <div class="keybase-player-currentnode">
     <h3>Current node
       <span class="keybase-player-menu">
         <b-button 
@@ -80,16 +77,13 @@
       </div>
     </div>
 
-    <div 
-      v-if="glossaryTermsInString"
-      :key="popoverDivKey"
-    >
+    <div v-if="glossaryTermsInString">
       <b-popover
         v-for="item in glossaryTermsInString"
         :key="`${item.term.id}-${item.substring}`"
-        :target="`${item.term.id}-${item.substring}`"
+        :target="`_${step}-${item.term.id}-${item.substring}`"
         triggers="hover"
-        placement="topright"
+        placement="rightbottom"
       >
         <template #title>{{ item.term.name }}</template>
         <div v-html="item.term.definition"/>
@@ -110,8 +104,7 @@ export default {
       glossarise: false,
       glossaryTermsInString: [],
       glossarisedLeads: [],
-      popoverDivKey: 0,
-      componentKey: 0,
+      step: 0,
     }
   },
   apollo: {
@@ -121,7 +114,12 @@ export default {
       result ({ data, loading }) {
         if (!loading) {
           if (data.glossaryTermsInString && data.glossaryTermsInString.length) {
-            this.glossaryTermsInString = []
+            this.step++
+            this.glossaryTermsInString = data.glossaryTermsInString.map(item => {
+              return Object.assign(item, {
+                step: this.step
+              })
+            })
             let desc = this.currentNode.map(item => {return item.lead_text})
                 .join(' | ')
             data.glossaryTermsInString.forEach(item => {
@@ -135,13 +133,14 @@ export default {
                     term: {
                       id: item.term.id + '-' + index,
                       name: item.term.name,
-                      definition: item.term.definition
+                      definition: item.term.definition,
+                      step: this.step
                     }
                   })
-                  return `<span class="glossary-term" id="${item.term.id}-${index}-${item.substring}">${item.substring}</span>`
+                  return `<span class="glossary-term" id="_${this.step}-${item.term.id}-${index}-${item.substring}">${item.substring}</span>`
                 }
                 else {
-                  return `<span class="glossary-term" id="${item.term.id}-${item.substring}">${item.substring}</span>`
+                  return `<span class="glossary-term" id="_${this.step}-${item.term.id}-${item.substring}">${item.substring}</span>`
                 }
               })
             })
@@ -155,11 +154,7 @@ export default {
     currentNode: {
       deep: true,
       handler(currentNode, previousNode) {
-        // if (previousNode && previousNode.length === 0) {
-        //   this.componentKey++
-        // }
         if (this.glossarise) {
-          this.popoverDivKey++
           this.glossariseLeadText(currentNode)
         }
         else {
