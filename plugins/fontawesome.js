@@ -37,6 +37,7 @@ import {
   faBook,
   faDice,
   faTrashCan,
+  faCommentDots,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -61,6 +62,7 @@ library.add(
   faBook,
   faDice,
   faTrashCan,
+  faCommentDots,
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

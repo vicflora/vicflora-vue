@@ -20,20 +20,149 @@
             <font-awesome-icon icon="fa-solid fa-rotate"/>
           </nuxt-link>
         </b-button>
+        <b-button
+          variant="outline-primary"
+          size="sm"
+          class="keybase-player-glossariser"
+          title="Look up terms in glossary"
+          @click.prevent="onGlossariseButtonClicked"
+        >
+          <font-awesome-icon icon="fa-solid fa-comment-dots"/>
+        </b-button>
       </span>
     </h3>
     <div>
-      <ul v-if="currentNode">
+      <div v-if="currentNode && glossarisedLeads.length">
+        <div 
+          v-for="(lead, index) in currentNode" 
+          :key="lead.lead_id"
+          class="glossarised-lead d-flex"
+        >
+          <div class="p-2 flex-grow-1"
+            v-html="glossarisedLeads[index]"
+          />
+          <div class="p-2 glossarised-lead-next">
+            <a 
+              class="keybase-lead" 
+              :href="`#l_${ lead.lead_id }`"
+            >
+              <b-icon icon="arrow-right-square"/>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <ul v-else-if="currentNode">
         <li v-for="lead in currentNode" :key="lead.lead_id">
-          <a class="keybase-lead" :href="`#l_${ lead.lead_id }`">{{ lead.lead_text }}</a>
+          <a 
+            class="keybase-lead" 
+            :href="`#l_${ lead.lead_id }`"
+          >{{ lead.lead_text }}</a>
         </li>
       </ul>
+    </div>
+
+    <div v-if="glossaryTermsInString">
+      <b-popover
+        v-for="item in glossaryTermsInString"
+        :key="`${item.term.id}-${item.substring}`"
+        :target="`${item.term.id}-${item.substring}`"
+        triggers="hover"
+        placement="topright"
+      >
+        <template #title>{{ item.term.name }}</template>
+        <div v-html="item.term.definition"/>
+        <div class="text-right"><nuxt-link :to="`/flora/glossary?name=${item.term.name}`">{{ item.term.name }} <b-icon-chevron-right/></nuxt-link></div>
+      </b-popover>
     </div>
   </div>
 </template>
 
 <script>
+import glossaryTermsInStringQuery from '@/graphql/queries/glossaryTermsInStringQuery'
+
 export default {
-  props: ['currentNode']
+  props: ['currentNode'],
+  data() {
+    return {
+      text: '',
+      glossarise: false,
+      glossaryTermsInString: [],
+      glossarisedLeads: []
+    }
+  },
+  apollo: {
+    glossaryTermsInString: {
+      query: glossaryTermsInStringQuery,
+      skip: true,
+      result ({ data, loading }) {
+        if (!loading) {
+          if (data.glossaryTermsInString.length) {
+            let desc = this.currentNode.map(item => {return item.lead_text})
+                .join(' | ')
+            data.glossaryTermsInString.forEach(item => {
+              let index = 0
+              const regex = new RegExp('\\b' + item.substring + '\\b', 'g')
+              desc = desc.replace(regex, match => {
+                index++
+                if (index > 1) {
+                  this.glossaryTermsInString.push({
+                    substring: item.substring,
+                    term: {
+                      id: item.term.id + '-' + index,
+                      name: item.term.name,
+                      definition: item.term.definition
+                    }
+                  })
+                  return `<span class="glossary-term" id="${item.term.id}-${index}-${item.substring}">${item.substring}</span>`
+                }
+                else {
+                  return `<span class="glossary-term" id="${item.term.id}-${item.substring}">${item.substring}</span>`
+                }
+              })
+            })
+            this.glossarisedLeads = desc.split(' | ')
+          }
+        }
+      },
+    }
+  },
+  watch: {
+    currentNode: {
+      deep: true,
+      handler(currentNode) {
+        if (this.glossarise) {
+          this.glossariseLeadText(currentNode)
+        }
+      }
+    }
+  },
+  methods: {
+    onGlossariseButtonClicked() {
+      this.glossarise = !this.glossarise
+      if (this.glossarise) {
+        this.glossariseLeadText(this.currentNode)
+      }
+      else {
+        this.glossarisedLeads = []
+      }
+    },
+    glossariseLeadText(currentNode) {
+      const text = currentNode.map(item => {return item.lead_text})
+          .join(' | ')
+      this.text = text
+      console.log(text)
+      this.$apollo.queries.glossaryTermsInString.setVariables({
+        string: text
+      })
+      this.$apollo.queries.glossaryTermsInString.skip = false
+    }
+  }
 }
 </script>
+
+<style lang="scss">
+.glossarised-lead-next {
+  font-size: 160%;
+}
+</style>

@@ -77,7 +77,8 @@ limitations under the License.
 }
 
 .keybase-player-menu .keybase-player-startover,
-.keybase-player-menu .keybase-player-stepback {
+.keybase-player-menu .keybase-player-stepback,
+.keybase-player-menu .keybase-player-glossariser {
     display: inline-block;
     position: relative;
     background-color: $light;
@@ -88,6 +89,12 @@ limitations under the License.
       width: 1.1rem;
     }
 }
+
+.keybase-player-menu .keybase-player-glossariser svg:hover {
+  color: $primary;
+}
+
+
 
 .keybase-player-currentnode > div, .keybase-player-path > div,
 .keybase-player-remainingitems > div, .keybase-player-discardeditems > div {

@@ -1,0 +1,10 @@
+query glossaryTermsInStringQuery ($string: String!) {
+  glossaryTermsInString(string: $string) {
+    substring
+    term {
+      id
+      name
+      definition
+    }
+  }
+}
