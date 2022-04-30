@@ -2,7 +2,10 @@
   <div id="keybase-player" class="keybase-panel">
     <div class="keybase-player-window">
       <div class="keybase-player-leftpane">
-        <current-node :currentNode="currentNode"></current-node>
+        <current-node 
+          :currentNode="currentNode"
+          :remainingItems="remainingItems"
+        />
         <div class="keybase-player-drag-updown"></div>
         <kb-path :path="kbPath"></kb-path>
       </div>

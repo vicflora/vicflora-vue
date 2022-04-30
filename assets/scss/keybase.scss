@@ -105,10 +105,13 @@ limitations under the License.
 }
 
 .keybase-player-currentnode ul, .keybase-player-path ol,
-.keybase-player-remainingitems ul, .keybase-player-discardeditems ul,
-.keybase-player-currentnode .keybase-player-result {
+.keybase-player-remainingitems ul, .keybase-player-discardeditems ul {
     padding-left: 25px;
     padding-right: 0.5rem;
+}
+
+.keybase-player-result {
+  padding-left: 1rem !important;
 }
 
 .keybase-player-tokey {

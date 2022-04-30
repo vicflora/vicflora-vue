@@ -1,5 +1,8 @@
 <template>
-  <div class="keybase-player-currentnode">
+  <div 
+    class="keybase-player-currentnode"
+    :key="componentKey"
+  >
     <h3>Current node
       <span class="keybase-player-menu">
         <b-button 
@@ -32,7 +35,8 @@
       </span>
     </h3>
     <div>
-      <div v-if="currentNode && glossarisedLeads.length">
+      <div v-if="currentNode && currentNode.length && glossarisedLeads 
+          && glossarisedLeads.length">
         <div 
           v-for="(lead, index) in currentNode" 
           :key="lead.lead_id"
@@ -52,7 +56,7 @@
         </div>
       </div>
 
-      <ul v-else-if="currentNode">
+      <ul v-else-if="currentNode.length">
         <li v-for="lead in currentNode" :key="lead.lead_id">
           <a 
             class="keybase-lead" 
@@ -60,9 +64,26 @@
           >{{ lead.lead_text }}</a>
         </li>
       </ul>
+
+      <div 
+        v-else-if="remainingItems && remainingItems.length"
+        class="keybase-player-result"
+      >
+        <b>Result:</b> 
+        <nuxt-link 
+          v-if="remainingItems[0].url"
+          :to="remainingItems[0].url.substr(remainingItems[0].url.indexOf('/'))"
+        >
+          {{ remainingItems[0].item_name }}
+        </nuxt-link>
+        <span v-else>{{ remainingItems[0].item_nam }}</span>
+      </div>
     </div>
 
-    <div v-if="glossaryTermsInString">
+    <div 
+      v-if="glossaryTermsInString"
+      :key="popoverDivKey"
+    >
       <b-popover
         v-for="item in glossaryTermsInString"
         :key="`${item.term.id}-${item.substring}`"
@@ -82,13 +103,15 @@
 import glossaryTermsInStringQuery from '@/graphql/queries/glossaryTermsInStringQuery'
 
 export default {
-  props: ['currentNode'],
+  props: ['currentNode', 'remainingItems'],
   data() {
     return {
       text: '',
       glossarise: false,
       glossaryTermsInString: [],
-      glossarisedLeads: []
+      glossarisedLeads: [],
+      popoverDivKey: 0,
+      componentKey: 0,
     }
   },
   apollo: {
@@ -97,7 +120,8 @@ export default {
       skip: true,
       result ({ data, loading }) {
         if (!loading) {
-          if (data.glossaryTermsInString.length) {
+          if (data.glossaryTermsInString && data.glossaryTermsInString.length) {
+            this.glossaryTermsInString = []
             let desc = this.currentNode.map(item => {return item.lead_text})
                 .join(' | ')
             data.glossaryTermsInString.forEach(item => {
@@ -130,9 +154,18 @@ export default {
   watch: {
     currentNode: {
       deep: true,
-      handler(currentNode) {
+      handler(currentNode, previousNode) {
+        // if (previousNode && previousNode.length === 0) {
+        //   this.componentKey++
+        // }
         if (this.glossarise) {
+          this.popoverDivKey++
           this.glossariseLeadText(currentNode)
+        }
+        else {
+          this.$apollo.queries.glossaryTermsInString.skip = true
+          this.glossarisedLeads = []
+          this.glossaryTermsInString = []
         }
       }
     }
@@ -144,7 +177,9 @@ export default {
         this.glossariseLeadText(this.currentNode)
       }
       else {
+        this.$apollo.queries.glossaryTermsInString.skip = true
         this.glossarisedLeads = []
+        this.glossaryTermsInString = []
       }
     },
     glossariseLeadText(currentNode) {

@@ -153,6 +153,7 @@ export default {
         remainingItemsDisplay: function() {},
         discardedItemsDisplay: function() {},
         bracketedKeyDisplay: function() {},
+        resultDisplay: function() {},
         onJson: this.onJson,
         onLoad: this.getBracketedKey,
         onNextCouplet: this.onNextCouplet,
