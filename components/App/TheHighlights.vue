@@ -1,12 +1,12 @@
 <template>
   <div class="highlights">
     <div class="m-highlight-title">
-      <p>HIGHLIGHTS</p>
+      <p>NEWS</p>
     </div>
 
     <BRow 
       v-for="item in highlights" 
-      :key="item.index" 
+      :key="item.path" 
       class="m-highlight"
     >
       <BCol 
@@ -14,7 +14,7 @@
         class="m-highlight-col"
       >
         <BImg 
-          :src="item.img" 
+          :src="item.thumbnail" 
           fluid 
           class="m-highlight-image" 
           alt=""
@@ -24,10 +24,11 @@
         cols="9" 
         class="m-highlight-col"
       >
-        <div 
+        <h5 
           class="m-hightlight-1" 
-          v-html="item.text"
-        ></div> 
+          v-html="item.title"
+        ></h5> 
+        <div>{{ item.description }}..... <NuxtLink :to="getRoute(item.path)">Read more...</NuxtLink></div>
       </BCol>
     </BRow>
   </div>
@@ -41,7 +42,16 @@ export default {
       type: Array,
       required: true
     }
-  }
+  },
+  methods: {
+    getRoute(path) {
+      let to = path.replace('posts', 'news')
+      for (var i=0; i<3; i++) {
+        to = to.replace('-', '/')
+      }
+      return to
+    },
+  },
 }
 </script>
 

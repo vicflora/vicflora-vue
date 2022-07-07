@@ -9,22 +9,33 @@
         >
           <div class="m-introduction" v-html="homePage.intro"/>
 
-          <NuxtLink 
-            to="/flora/search?q=**" 
-            class="btn btn-lg btn-block btn-primary"
-          >Search</NuxtLink>
+          <BRow>
+            <BCol 
+              v-for="card in homePage.cards" 
+              :key="card.title"
+            >
+              <b-card
+                
+                :title="card.title"
+                :img-src="card.image"
+                img-alt="Image"
+                img-top
+                tag="article"
+              >
+                <!-- <b-button 
+                  v-for="link in card.links"
+                  :key="link.text"
+                  :href="link.href" 
+                  variant="primary">{{ link.text }}
+                </b-button> -->
+                <h6 v-for="link in card.links" :key="link.text">
+                  <NuxtLink :to="link.to">{{ link.text }} <FontAwesomeIcon icon="caret-right"/></NuxtLink>
+                </h6>
+              </b-card>
+            </BCol>
+          </BRow>     
 
-          <NuxtLink 
-            to="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f" 
-            class="btn btn-lg btn-block btn-primary"
-          >Browse classification</NuxtLink>
-
-          <a 
-            href="https://keybase.rbg.vic.gov.au/keys/show/1903" 
-            class="btn btn-lg btn-block btn-primary"
-          >Keys</a>
-          
-          <highlights :highlights="homePage.highlights"/>
+          <highlights :highlights="newsItems"/>
         </BCol>
 
         
@@ -48,8 +59,15 @@ export default {
   },
   async asyncData ({ $content }) {
     const homePage = await $content('home-page/index').fetch()
+    const newsItems = await $content('posts')
+      .only(['title', 'description', 'path', 'thumbnail'])
+      .sortBy('created', 'desc')
+      .limit(3)
+      .fetch()
+
     return {
-      homePage
+      homePage,
+      newsItems
     }
   },
 }
