@@ -33,11 +33,6 @@
 
             <BNavItem
               class="m-menu-item"
-              to="/flora/key/1903"
-            >Keys</BNavItem>
-
-            <BNavItem
-              class="m-menu-item"
               to="/flora/checklist"
             >CheckLists</BNavItem>
 
