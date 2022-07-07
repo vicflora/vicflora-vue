@@ -36,6 +36,7 @@ import {
     BIconFacebook, 
     BIconInstagram, 
     BIconTwitter, 
+    BIconYoutube,
     
 } from 'bootstrap-vue'
 
@@ -60,3 +61,4 @@ Vue.component('BIconTrash', BIconTrash)
 Vue.component('BIconFacebook', BIconFacebook)
 Vue.component('BIconInstagram', BIconInstagram)
 Vue.component('BIconTwitter', BIconTwitter)
+Vue.component('BIconYoutube', BIconYoutube)
