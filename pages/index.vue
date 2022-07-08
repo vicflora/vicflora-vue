@@ -9,39 +9,15 @@
         >
           <div class="m-introduction" v-html="homePage.intro"/>
 
-          <BRow>
-            <BCol 
-              v-for="card in homePage.cards" 
-              :key="card.title"
-            >
-              <b-card
-                
-                :title="card.title"
-                :img-src="card.image"
-                img-alt="Image"
-                img-top
-                tag="article"
-              >
-                <!-- <b-button 
-                  v-for="link in card.links"
-                  :key="link.text"
-                  :href="link.href" 
-                  variant="primary">{{ link.text }}
-                </b-button> -->
-                <h6 v-for="link in card.links" :key="link.text">
-                  <NuxtLink :to="link.to">{{ link.text }} <FontAwesomeIcon icon="caret-right"/></NuxtLink>
-                </h6>
-              </b-card>
-            </BCol>
-          </BRow>     
+          <CardDeck :cards="homePage.cards"/>
 
-          <highlights :highlights="newsItems"/>
+          <Highlights :highlights="newsItems"/>
         </BCol>
 
         
-        <b-col cols="12" lg="6" align-self="center">
+        <BCol cols="12" lg="6" align-self="center">
           <Carousel :slides="homePage.slides" class="m-carousel"/>
-        </b-col>
+        </BCol>
       </BRow>
     </BContainer>
   </div>
@@ -50,12 +26,14 @@
 <script>
 const Carousel = () => import("@/components/App/TheCarousel")
 const Highlights = () => import("@/components/App/TheHighlights")
+const CardDeck = () => import("@/components/App/AppCardDeck")
 
 export default {
   name: "Home",
   components: {
     Carousel,
-    Highlights
+    Highlights,
+    CardDeck,
   },
   async asyncData ({ $content }) {
     const homePage = await $content('home-page/index').fetch()
