@@ -8,7 +8,7 @@
             <img class="m-logo img-fluid" src="@/assets/images/rbgv-logo-pink-badge.png" alt="Logo" />
           </a>
         </div>
-        <div>
+        <div class="m-title-container">
           <a href="/">
             <div class="m-title">
               VICFLORA
@@ -32,3 +32,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.m-logo-container, .m-title-container {
+  white-space: nowrap;
+}
+</style>
