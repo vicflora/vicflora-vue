@@ -38,6 +38,7 @@ export default {
   buildModules: [
       "@nuxtjs/style-resources",
       '@nuxtjs/router-extras',
+      '@nuxtjs/google-analytics',
   ],
 
   fontawesome: {
@@ -49,6 +50,10 @@ export default {
         'faPlus'
       ]
     }
+  },
+
+  googleAnalytics: {
+    id: 'UA-65744764-1',
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules

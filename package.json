@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/router-extras": "^1.1.1",
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.1.3",
