@@ -11,37 +11,38 @@
       </BRow>
     </BContainer>
     </div>
+
     <div class="rbgv-footer">
     <BContainer :fluid="fluid">
       <BRow>
         <BCol class="text-left">
           <div class="rbgv-website">
-            <a href="https://www.rbg.vic.gov.au">
+            <a href="https://www.rbg.vic.gov.au" target="_blank">
               <img src="https://www.rbg.vic.gov.au/assets/images/rbgv-logo-lg.svg" alt="RBGV logo"/>
             </a>
           </div>
         </BCol>
         <BCol class="text-right">
           <div class="social-media">
-            <a href="https://www.instagram.com/royalbotanicgardensvic/">
+            <a href="https://www.instagram.com/royalbotanicgardensvic/" target="_blank">
               <BIconInstagram 
                 font-scale="1.5" 
                 class="m-media"
               />
             </a>  
-            <a href="https://www.facebook.com/BotanicGardensVictoria">
+            <a href="https://www.facebook.com/BotanicGardensVictoria" target="_blank">
               <BIconFacebook 
                 font-scale="1.5" 
                 class="m-media"
               />
             </a>      
-            <a href="https://twitter.com/RBG_Victoria">
+            <a href="https://twitter.com/RBG_Victoria" target="_blank">
               <BIconTwitter 
                 font-scale="1.5" 
                 class="m-media"
               />
             </a>
-            <a href="https://www.youtube.com/channel/UCSVV1rE_DbHr8MPzFu9g5WQ">
+            <a href="https://www.youtube.com/channel/UCSVV1rE_DbHr8MPzFu9g5WQ" target="_blank">
               <BIconYoutube 
                 font-scale="1.5" 
                 class="m-media"
