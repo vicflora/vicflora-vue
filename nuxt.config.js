@@ -24,7 +24,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["@/assets/scss/main.scss"],
+  css: [
+    '@/assets/scss/main.scss', 
+    '@fortawesome/fontawesome/styles.css'
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   // plugins: [
@@ -40,17 +43,6 @@ export default {
       '@nuxtjs/router-extras',
       '@nuxtjs/google-analytics',
   ],
-
-  fontawesome: {
-    icons: {
-      solid: [
-        'faRotate',
-        'faArrowRotateLeft',
-        'faPenToSquare',
-        'faPlus'
-      ]
-    }
-  },
 
   googleAnalytics: {
     id: 'UA-65744764-1',

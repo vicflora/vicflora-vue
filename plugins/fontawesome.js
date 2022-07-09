@@ -13,7 +13,12 @@
 // limitations under the License.
 
 import Vue from 'vue'
+import fontawesome from '@fortawesome/fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
+
+fontawesome.config = {
+  autoAddCss: false,
+}
 
 import { 
   faRotate, 
