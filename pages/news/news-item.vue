@@ -25,11 +25,15 @@
         <p>
           <FontAwesomeIcon icon="calendar-days"/> {{ created }}
         </p>
-        <nuxt-content :document="markdown"/>
+        <nuxt-content
+          id="scrollspy-nested"
+          :document="markdown"
+          class="m-content"
+        />
       </BCol>
-      <BCol align-self="start" cols="3">
+      <!-- <BCol align-self="start" cols="3">
         <RecentPosts :recentPosts="posts"/>
-      </BCol>
+      </BCol> -->
     </BRow>
   </article>
 </template>
