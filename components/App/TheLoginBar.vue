@@ -67,3 +67,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.login {
+  visibility: hidden;
+}
+</style>
