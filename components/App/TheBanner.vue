@@ -32,9 +32,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.m-logo-container, .m-title-container {
-  white-space: nowrap;
-}
-</style>

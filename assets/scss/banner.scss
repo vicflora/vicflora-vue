@@ -27,19 +27,10 @@
   }
   .m-logo-title {
     width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-items: left;
-    justify-content: left;
     
     a {
       display: inline-block;
     }
-
-    // .m-logo-container{
-    //   max-width: 6vw;
-    //   min-width: 70px;
-    // }
 
     .m-logo{
       max-width: 6vw;
@@ -51,10 +42,10 @@
       display: inline-block;
       vertical-align: baseline;
       font-family: goodsans-regular;
-      font-size: 3vw;
+      font-size: 24px;
       letter-spacing: 1px;
       margin-left: 1vw;
-      padding-bottom: 3px;
+      padding-top: 3px;
     }
 
     .m-subtitle {
@@ -62,6 +53,19 @@
       font-size: 20px;
       letter-spacing: -1px;
       color: $black;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .m-banner .m-logo-title {
+    display: flex;
+    align-items: flex-end;
+    justify-items: left;
+    justify-content: left;
+
+    .m-title {
       padding-bottom: 3px;
     }
   }
