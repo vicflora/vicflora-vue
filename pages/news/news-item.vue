@@ -25,8 +25,7 @@
         <p>
           <FontAwesomeIcon icon="calendar-days"/> {{ created }}
         </p>
-        <nuxt-content
-          id="scrollspy-nested"
+        <nuxt-content 
           :document="markdown"
           class="m-content"
         />
