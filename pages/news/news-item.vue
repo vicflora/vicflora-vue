@@ -25,10 +25,7 @@
         <p>
           <FontAwesomeIcon icon="calendar-days"/> {{ created }}
         </p>
-        <nuxt-content 
-          :document="markdown"
-          class="m-content"
-        />
+        <nuxt-content :document="markdown"/>
       </BCol>
       <BCol align-self="start" cols="3">
         <RecentPosts :recentPosts="posts"/>
