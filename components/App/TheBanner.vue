@@ -9,12 +9,12 @@
           </a>
         </div>
         <div class="m-title-container">
-          <a href="/">
-            <div class="m-title">
+          <div class="m-title">
+            <a href="/">
               VICFLORA
               <span class="m-subtitle">Flora of Victoria</span>  
-            </div>
-          </a>  
+            </a>  
+          </div>
         </div>                
       </div>
     </BContainer>
