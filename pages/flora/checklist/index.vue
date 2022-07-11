@@ -7,29 +7,10 @@
             <h1 v-if="checklistArea && checklistArea!='*'">Checklist: {{ checklistArea }}</h1>
             <h1 v-else>Checklists</h1>
           </div>
-          <p>
-            Create your own checklist for any Victorian park or reserve in the
-            <a href="https://www.environment.gov.au/land/nrs/science/capad"
-              >Collaborative Australian Protected Area Database (CAPAD)
-              <b-icon icon="box-arrow-up-right"></b-icon> </a
-            >, based on occurrence data from
-            <a href="https://avh.chah.org.au/"
-              >Australia's Virtual Herbarium (AVH)
-              <b-icon icon="box-arrow-up-right"></b-icon
-            ></a>
-            and the
-            <a
-              href="https://www.environment.vic.gov.au/biodiversity/victorian-biodiversity-atlas"
-              >Victorian Biodiversity Atlas (VBA)
-              <b-icon icon="box-arrow-up-right"></b-icon
-            ></a>
-            and using the taxonomy of VicFlora.
-          </p>
-          <p>
-            Click on a point on the map below and a list of reserves will
-            appear. Select a reserve and a checklist of vascular plant taxa
-            will be generated below the map.
-          </p>
+
+          <div class="intro">
+            <NuxtContent :document="intro"/>
+          </div>
         </b-col>
       </b-row>
 
@@ -71,31 +52,20 @@
 
       <b-row class="checklist-source">
         <b-col>
-          <h4>Source</h4>
-          <ul class="m-ul">
-            <li>
-              <b>Protected areas: </b
-              ><i>Collaborative Australian Protected Areas Database</i> (CAPAD)
-              2014, Commonwealth of Australia 2014
-            </li>
-            <li>
-              <b>Occurrence data:</b>
-              <ul>
-                <li>
-                  AVH (2021). <i>Australia’s Virtual Herbarium</i>, Council of
-                  Heads of Australasian Herbaria, (<a
-                    href="http://avh.chah.org.au"
-                    >http://avh.chah.org.au</a
-                  >)
-                </li>
-                <li>
-                  <i>Victorian Biodiversity Atlas</i>, © The State of Victoria,
-                  Department of Environment and Primary Industries (published
-                  Dec. 2014).
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <b-button 
+            v-b-toggle="'attribution'" 
+            variant="primary"
+            size="sm"
+          >
+            Attribution
+            <span class="when-open"><b-icon-caret-down-fill></b-icon-caret-down-fill></span>
+            <span class="when-closed"><b-icon-caret-right-fill></b-icon-caret-right-fill></span>
+          </b-button>
+
+          <b-collapse id="attribution">
+            <div>&nbsp;</div>
+            <NuxtContent :document="attribution"/>
+          </b-collapse>
         </b-col>
       </b-row>
 
@@ -126,6 +96,11 @@ export default {
     SearchResult,
   },
   mixins: [searchMixin, searchWatchMixin, selectedAreaMixin],
+  async asyncData({ $content }) {
+    const intro = await $content('checklists/index').fetch()
+    const attribution = await $content('checklists/attribution').fetch()
+    return { intro, attribution }
+  },
   data() {
     return {
       checklistArea: null,

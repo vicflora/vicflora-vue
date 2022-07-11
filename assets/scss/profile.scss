@@ -13,11 +13,6 @@
 // limitations under the License.
 
 .vf-profile {
-  .collapsed > .when-open,
-  .not-collapsed > .when-closed {
-    display: none;
-  }
-
   .previous > a {
     color: $grey;
   }
@@ -104,3 +99,9 @@
     margin-top: -5px;
   }
 }
+
+.collapsed > .when-open,
+.not-collapsed > .when-closed {
+  display: none;
+}
+
