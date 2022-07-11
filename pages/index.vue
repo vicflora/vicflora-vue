@@ -37,7 +37,7 @@ export default {
   },
   async asyncData ({ $content }) {
     const homePage = await $content('home-page/index').fetch()
-    const newsItems = await $content('posts')
+    const newsItems = await $content('articles')
       .only(['title', 'description', 'path', 'thumbnail'])
       .sortBy('created', 'desc')
       .limit(3)

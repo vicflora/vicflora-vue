@@ -22,64 +22,47 @@
     <!-- content -->
     <BRow>
       <BCol align-self="start" cols="9" class="text-left">
-        <p>
-          <FontAwesomeIcon icon="calendar-days"/> {{ created }}
-        </p>
-        <nuxt-content
+        <BlogDateCreated :dateCreated="markdown.created"/>
+        <NuxtContent
           id="scrollspy-nested"
           :document="markdown"
           class="m-content"
         />
+        <BlogCategories :categories="markdown.categories"/>
       </BCol>
-      <!-- <BCol align-self="start" cols="3">
-        <RecentPosts :recentPosts="posts"/>
-      </BCol> -->
+      <!-- table of content -->
+      <BCol align-self="start" cols="3">
+        <TableOfContent :toc="markdown.toc"></TableOfContent>
+      </BCol>
     </BRow>
   </article>
 </template>
 
 <router>
 {
-  path: '/news/:year/:month/:day/:slug'
+  path: '/articles/:year/:month/:day/:slug'
 }
 </router>
 
 <script>
-const RecentPosts = () => import('@/components/News/RecentPosts')
+const BlogDateCreated = () => import('@/components/Blog/BlogDateCreated')
+const BlogCategories = () => import('@/components/Blog/BlogCategories')
 
 export default {
-  name:"NewsItem",
+  name:"Article",
   components: {
-    RecentPosts,
+    BlogDateCreated,
+    BlogCategories,
   },
   async asyncData({ $content, params}) {
-    const markdown = await $content(`posts/${params.year}-${params.month}-${params.day}-${params.slug}`).fetch()
-    const posts = await $content('posts')
-    .only(['title', 'created'])
-    .sortBy('created', 'desc')
-    .limit(5)
-    .fetch()
-
-    return { markdown, posts }
+    const markdown = await $content(`articles/${params.year}-${params.month}-${params.day}-${params.slug}`).fetch()
+    return { markdown }
   },
   data() {
     return {
       content: ""
     };
   },
-  computed: {
-    created() {
-      const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-      }
-
-      const createDate = new Date(this.markdown.created)
-      return createDate.toLocaleString('en-AU', options)
-    }
-  }
 }
 </script>
 

@@ -15,45 +15,23 @@
 -->
 
 <template>
-  <div id="recent-posts">
-    <h2>Recent posts</h2>
-    <ul v-if="recentPosts.length">
-      <li 
-        v-for="post in recentPosts"
-        :key="post.path"
-      >
-        <NuxtLink :to="getRoute(post.path)">
-          {{ post.title }}
-        </NuxtLink>
-      </li>
-    </ul>
-  </div>
+  <p class="blog-categories">
+    <FontAwesomeIcon icon="tag"/>
+    <span v-for="category, index in categories" :key="category">
+      <NuxtLink :to="`/articles/categories/${category.toLowerCase().replaceAll(' ', '-')}`">
+        {{ category }}</NuxtLink><span v-if="index < categories.length - 1">,</span>
+    </span>
+  </p>
 </template>
 
 <script>
 export default {
-  name: "RecentPosts",
+  name: "BlogCategories",
   props: {
-    recentPosts: {
+    categories: {
       type: Array,
       required: true,
     },
   },
-  methods: {
-    getRoute(path) {
-      let to = path.replace('posts', 'news')
-      for (var i=0; i<3; i++) {
-        to = to.replace('-', '/')
-      }
-      return to
-    }
-  },
 }
 </script>
-
-<style lang="scss" scoped>
-ul {
-  padding-left: 0;
-  list-style-type: none;
-}
-</style>

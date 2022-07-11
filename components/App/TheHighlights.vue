@@ -28,15 +28,25 @@
           class="m-hightlight-1" 
           v-html="item.title"
         ></h5> 
-        <div>{{ item.description }}..... <NuxtLink :to="getRoute(item.path)">Read more...</NuxtLink></div>
+        <div>
+          <BlogArticleExcerpt :excerpt="item.description"/> 
+          <BlogArticleLink :path="item.path"/>
+        </div>
       </BCol>
     </BRow>
   </div>
 </template>
 
 <script>
+const BlogArticleExcerpt = () => import('@/components/Blog/BlogArticleExcerpt')
+const BlogArticleLink = () => import('@/components/Blog/BlogArticleLink')
+
 export default {
   name: "TheHighlights",
+  components: {
+    BlogArticleExcerpt,
+    BlogArticleLink,
+  },
   props: {
     highlights: {
       type: Array,
