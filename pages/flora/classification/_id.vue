@@ -6,8 +6,8 @@
     >
       <b-row>
         <b-col class="text-left">
-          <div class="m-title">
-            <h2>Classification</h2>
+          <div class="page-header">
+            <h1>Classification</h1>
           </div>
         </b-col>
       </b-row>

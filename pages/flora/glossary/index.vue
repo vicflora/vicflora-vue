@@ -2,10 +2,10 @@
   <b-container class="vf-glossary-page">
     <b-row>
       <b-col class="text-left">
-        <div class="m-main-title">
-          <h2>
+        <div class="page-header">
+          <h1>
             Glossary
-          </h2>
+          </h1>
         </div>
       </b-col>
     </b-row>

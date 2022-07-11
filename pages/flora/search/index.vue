@@ -2,10 +2,10 @@
   <BContainer class="m-search">
     <BRow>
       <BCol class="text-left">
-        <div class="m-main-title">
-          <h2>
+        <div class="page-header">
+          <h1>
             Search
-          </h2>
+          </h1>
         </div>
       </BCol>
     </BRow>

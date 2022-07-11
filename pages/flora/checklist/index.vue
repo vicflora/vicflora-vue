@@ -4,8 +4,8 @@
       <b-row class="mb-2">
         <b-col class="text-left">
           <div class="page-header">
-            <h2 v-if="checklistArea && checklistArea!='*'">Checklist: {{ checklistArea }}</h2>
-            <h2 v-else>Checklists</h2>
+            <h1 v-if="checklistArea && checklistArea!='*'">Checklist: {{ checklistArea }}</h1>
+            <h1 v-else>Checklists</h1>
           </div>
           <p>
             Create your own checklist for any Victorian park or reserve in the
