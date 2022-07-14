@@ -98,6 +98,11 @@ var downloadGql = gql`
 
 export default {
   name: "Dowload",
+  head() {
+    return {
+      title: 'VicFlora – Download',
+    }
+  },
   data() {
     return {
       DownloadSearchResult: "",

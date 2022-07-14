@@ -35,5 +35,10 @@ export default {
     GlossaryTermList,
     GlossaryTerm,
   },
+  head() {
+    return {
+      title: 'VicFlora – Glossary',
+    }
+  },
 }
 </script>

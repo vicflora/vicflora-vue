@@ -73,10 +73,16 @@ export default {
     TaxonAcceptedConceptLink,
     TaxonEditMenu,
   },
+  head() {
+    return {
+      title: this.pageTitle,
+    }
+  },
   data() {
     return {
       taxonConcept: null,
       lastSearch: null,
+      pageTitle: 'Flora of Victoria'
     }
   },
   apollo: {
@@ -86,6 +92,7 @@ export default {
         if (!loading) {
           $nuxt.$emit('progress-bar-stop')
           this.taxonConcept = data.taxonConcept
+          this.pageTitle = `VicFlora – ${data.taxonConcept.taxonName.fullName}`
         }
       },
       skip: true

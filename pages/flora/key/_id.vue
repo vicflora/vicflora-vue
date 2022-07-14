@@ -60,6 +60,11 @@ export default {
     KeybasePlayer,
     BracketedKey
   },
+  head() {
+    return {
+      title: 'VicFlora – Key',
+    }
+  },
   data() {
     return {
       key: null,

@@ -36,6 +36,11 @@ export default {
   components: {
     IconButtonLink,
   },
+  head() {
+    return {
+      title: 'VicFlora – Matrix key',
+    }
+  },
   data() {
     return {
       matrixKey: null,

@@ -48,6 +48,11 @@ export default {
     TaxonClassificationCurrentTaxon,
     TaxonClassificationChildren
   },
+  head() {
+    return {
+      title: 'VicFlora – Classification',
+    }
+  },
   data(){
     return {
       taxonConcept: null,

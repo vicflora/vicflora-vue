@@ -62,6 +62,11 @@ export default {
     SearchResult
   },
   mixins: [searchMixin, searchWatchMixin],
+  head() {
+    return {
+      title: 'VicFlora – Key',
+    }
+  },
   data() {
     return {
       input: {

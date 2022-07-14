@@ -101,6 +101,11 @@ export default {
     const attribution = await $content('checklists/attribution').fetch()
     return { intro, attribution }
   },
+  head() {
+    return {
+      title: 'VicFlora – Checklist',
+    }
+  },
   data() {
     return {
       checklistArea: null,
