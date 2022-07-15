@@ -10,7 +10,9 @@
       v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.occurrenceStatus"
       :label="'Occurrence status'"
       :value="occurrenceStatusEnum[concept.occurrenceStatus]"
-    />
+    >
+      <TaxonStatusEndemic v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.occurrenceStatus && concept.endemic"/>
+    </TaxonStatusItem>
 
     <TaxonStatusItem
       v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.establishmentMeans"
@@ -61,6 +63,8 @@
 
 <script>
 import TaxonStatusItem from "~/components/Taxon/TaxonStatusItem"
+const TaxonStatusEndemic = () => import('~/components/Taxon/TaxonStatusEndemic')
+
 import taxonomicStatusEnum from "~/graphql/enums/taxonomicStatusEnum"
 import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
 import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
@@ -72,6 +76,7 @@ export default {
   name: "TaxonStatus",
   components: {
     TaxonStatusItem,
+    TaxonStatusEndemic,
   },
   props: {
     concept: {
