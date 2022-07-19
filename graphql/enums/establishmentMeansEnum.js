@@ -21,8 +21,7 @@ export default {
     },
     "INTRODUCED": {
         'label': 'Introduced',
-        'description': `Re-established by direct introduction by humans into an area that
-            was once part of its natural range, but from where it had become extinct.`
+        'description': `Established by human agency into an area that is not part of its natural range.`
     },
     "UNCERTAIN": {
         'label': 'Uncertain',

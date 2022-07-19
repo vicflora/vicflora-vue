@@ -94,7 +94,7 @@ export default {
     },
     "NE": {
         'label': `Not Evaluated (NE)`,
-        'description': `A taxon is Not Evaluated when it is has not yet been
+        'description': `A taxon is Not Evaluated when it has not yet been
             evaluated against the criteria.`
     },
 }
