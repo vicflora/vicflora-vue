@@ -70,6 +70,8 @@
           :styles="occurrenceLayer.styles"
           layer-type="overlay"
         />
+        <TaxonTabDistributionMapAlaLinks :taxonConcept="taxonConcept" />
+
       </l-map>
     </client-only>
   </div>
@@ -78,15 +80,16 @@
 <script>
 import { baseLayersMixin, iconMixin, popupMixin } from "@/mixins/mapMixins"
 import "leaflet/dist/leaflet.css"
-import TaxonTabDistributionMapPopupContent
-    from "@/components/Taxon/TaxonTabDistributionMapPopupContent"
+const TaxonTabDistributionMapPopupContent = () => import('@/components/Taxon/TaxonTabDistributionMapPopupContent')
+const TaxonTabDistributionMapAlaLinks = () => import('@/components/Taxon/TaxonTabDistributionMapAlaLinks')
 import { taxonOccurrencesAtPointQuery }
     from "@/graphql/queries/taxonOccurrencesAtPointQuery.gql"
 
 export default {
   name: "DistributionMap",
   components: {
-    TaxonTabDistributionMapPopupContent
+    TaxonTabDistributionMapPopupContent,
+    TaxonTabDistributionMapAlaLinks,
   },
   mixins: [
     baseLayersMixin,
@@ -94,9 +97,9 @@ export default {
     popupMixin
   ],
   props: {
-    taxonConceptId: {
-      type: String,
-      required: true
+    taxonConcept: {
+      type: Object,
+      required: false
     }
   },
   data() {
@@ -124,6 +127,9 @@ export default {
     }
   },
   computed: {
+    taxonConceptId() {
+      return this.taxonConcept.id
+    },
     cqlFilter: function() {
       return `taxon_concept_id='${this.taxonConceptId}' ` +
           `AND occurrence_status NOT IN ('doubtful', 'absent') ` +

@@ -384,3 +384,14 @@ ol.breadcrumb {
 .vf-form-control-description {
     color: $secondary;
 }
+
+//
+// Leaflet map control buttons
+//
+.leaflet-container a.btn.btn-outline-primary.btn-sm {
+    color: $primary;
+
+    &:hover {
+        color: $white;
+    }
+}

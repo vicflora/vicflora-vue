@@ -20,6 +20,7 @@
       <b-col cols="12" class="text-left">
         <distribution-map
           :taxonConceptId="concept.id"
+          :taxonConcept="concept"
           @layer="switchLayer($event)"
         />
 
