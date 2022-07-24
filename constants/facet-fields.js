@@ -14,4 +14,5 @@ export const FACET_FIELDS = [
     "class",
     "order",
     "family",
+    "media",
 ]
