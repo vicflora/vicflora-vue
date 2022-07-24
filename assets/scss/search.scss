@@ -123,7 +123,6 @@
 
     .vf-search-result-item-name {
       display: inline-block;
-      margin-right: 15px;
       font-family: "goodsans-regular";
       color: $grey;
     }
@@ -132,6 +131,11 @@
       font-size: smaller;
       color: $default-text-color;
       font-style: normal;
+    }
+
+    .vf-search-result-item-sensu {
+      font-style: normal;
+      color: $default-text-color;
     }
 
     .vf-search-result-item-vernacularname {
