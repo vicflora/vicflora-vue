@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vf-taxon-name">
     <div class="m-title">
       <NameString
         :full-name="concept.taxonName.fullName"
@@ -20,11 +20,11 @@
 
     <div
       v-if="concept.taxonName.protologue || concept.taxonName.apniName"
-      class="m-protologue"
+      class="vf-published-in"
     >
-      <Protologue
-        v-if="concept.taxonName.protologue"
-        :protologue="concept.taxonName.protologue"
+      <PublishedIn
+        v-if="concept.taxonName.publishedIn"
+        :publishedIn="concept.taxonName.publishedIn"
       />
 
       <TaxonNameApniLink
@@ -32,6 +32,12 @@
         :apni="concept.taxonName.apniName"
       />
     </div>
+
+    <TaxonAccordingTo 
+      v-if="concept.accordingTo"
+      :accordingTo="concept.accordingTo"
+    />
+
 
 
   </div>
@@ -41,18 +47,20 @@
 
 const NameString = () => import("@/components/Taxon/TaxonNameString")
 const Authorship = () => import("@/components/Taxon/TaxonNameAuthorship")
-const Protologue = () => import("@/components/Taxon/TaxonNameProtologue")
+const PublishedIn = () => import("@/components/Taxon/TaxonNamePublishedIn")
 const VernacularName = () => import("@/components/Taxon/TaxonNameVernacularName")
 const TaxonNameApniLink = () => import("@/components/Taxon/TaxonNameApniLink")
+const TaxonAccordingTo = () => import('@/components/Taxon/TaxonAccordingTo')
 
 export default {
   name: "TaxonName",
   components: {
     NameString,
     Authorship,
-    Protologue,
+    PublishedIn,
     VernacularName,
     TaxonNameApniLink,
+    TaxonAccordingTo,
   },
   props: {
     concept: {

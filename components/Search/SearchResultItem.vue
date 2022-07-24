@@ -34,6 +34,7 @@
           >
             <span class="vf-search-result-item-name">{{ item.scientificName }}</span>
             <span class="vf-search-result-item-author">{{ item.scientificNameAuthorship }}</span>
+            <span v-if="item.nameAccordingTo" class="vf-search-result-item-sensu">sensu {{ item.nameAccordingTo }}</span>
           </NuxtLink>
         </div>
         <div v-if="item.acceptedNameUsageId">
@@ -80,7 +81,9 @@ export default {
         family: 140,
         genus: 180,
         species: 220,
-        subspecies: 230
+        subspecies: 230,
+        variety: 240,
+        forma: 260,
       }
     }
   }

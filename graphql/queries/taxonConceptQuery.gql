@@ -7,17 +7,25 @@ query taxonConceptQuery($id: ID!) {
       id
       fullName
       authorship
-      protologue {
+      publishedIn {
         id
+        referenceType
         title
         publicationYear
         volume
         pages
+        quickRef
+        citationHtml
       }
       apniName {
         id
         apniNumber
       }
+    }
+    accordingTo {
+      id
+      quickRef
+      citationHtml
     }
     acceptedConcept {
       ...taxonConceptFields
