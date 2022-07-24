@@ -12,7 +12,7 @@ query taxonConceptImagesQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
       assetCreationDate
       creator
       license
-      rights
+      copyrightOwner
       subtype
     }
     paginatorInfo {
