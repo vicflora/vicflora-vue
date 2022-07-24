@@ -21,7 +21,7 @@
       <iframe
         class="m-modal-iframe"
         :src="
-          'https://vicflora.rbg.vic.gov.au/flora/specimen_image_viewer/' +
+          'https://keybase.rbg.vic.gov.au/projects/specimen_image_viewer/' +
             images[currentThumbnail].alaImageUuid
         "
       >
