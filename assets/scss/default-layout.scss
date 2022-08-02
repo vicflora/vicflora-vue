@@ -1,7 +1,7 @@
 @font-face {
   font-family: "goodsans";
   src: local("goodsans"),
-    url(~assets/fonts/GoodSans-Regular.otf) format("truetype");
+    url(~assets/fonts/GoodSans-Light.otf) format("truetype");
 }
 @font-face {
   font-family: "goodsans-thin";
@@ -59,6 +59,8 @@ html, body {
 body {
   overflow-x: hidden;
   font-family: goodsans, Helvetica, Arial, sans-serif;
+  letter-spacing: -0.1px;
+  word-spacing: -0.2px;
 }
 
 #app {
