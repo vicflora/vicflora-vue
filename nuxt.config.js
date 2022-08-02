@@ -67,7 +67,8 @@ export default {
   content: {
     markdown: {
       tocDepth: 6
-    }
+    },
+    liveEdit: false,
   },
 
   plugins: [

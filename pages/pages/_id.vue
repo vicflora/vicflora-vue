@@ -22,11 +22,25 @@
 
 <script>
 const TableOfContent = () => import("@/components/App/AppTableOfContent")
+const CurrentDateComponent = () => import("@/components/global/CurrentDateComponent")
+const CurrentYearComponent = () => import("@/components/global/CurrentYearComponent")
+const BioregionsMap = () => import("@/components/global/BioregionsMap")
+const BioregionsImageMap = () => import("@/components/global/BioregionsImageMap")
+const MarkdownAlertComponent = () => import("@/components/global/MarkdownAlertComponent")
+const MarkdownButtonLinkComponent = () => import("@/components/global/MarkdownButtonLinkComponent")
+const MarkdownFigureComponent = () => import("@/components/global/MarkdownFigureComponent")
 
 export default {
   name:"StaticContent",
   components: {
-    TableOfContent
+    TableOfContent,
+    CurrentDateComponent,
+    CurrentYearComponent,
+    BioregionsMap,
+    BioregionsImageMap,
+    MarkdownAlertComponent,
+    MarkdownButtonLinkComponent,
+    MarkdownFigureComponent,
   },
   async asyncData({ $content, params }) {
     const markdown = await $content(`pages/${params.id.toLowerCase()}`).fetch()
