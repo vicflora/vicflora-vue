@@ -1,5 +1,8 @@
 <template>
   <div class="search-filters">
+    <div class="float-right">
+      <SearchFilterConfig/>
+    </div>
     <div
       class="m-subtitle"
       aria-controls="collapse-filter"
@@ -36,11 +39,13 @@
 </template>
 
 <script>
+const SearchFilterConfig = () => import('@/components/Search/SearchFilterConfig')
 const SearchFiltersFacetField = () => import("@/components/Search/SearchFiltersFacetField")
 
 export default {
   name: "SearchFilters",
   components: {
+    SearchFilterConfig,
     SearchFiltersFacetField,
   },
   props: {
@@ -52,8 +57,8 @@ export default {
   data() {
     return {
       filtersFacet: true,
-      key: 0
+      key: 0,
     }
-  }
+  },
 }
 </script>
