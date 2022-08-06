@@ -35,16 +35,5 @@ export default {
       return this.fq.map(item => item.split(':')[0])
     }
   },
-  watch: {
-    fq: {
-      immediate: true,
-      handler() {
-        this.checked = this.getSelected
-      }
-    }
-  },
-  mounted() {
-    this.checked = this.getSelected
-  }
 }
 </script>
