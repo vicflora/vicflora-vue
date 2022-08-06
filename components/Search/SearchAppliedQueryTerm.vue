@@ -4,7 +4,7 @@
     <span>
       {{ term }}
       <BIcon
-        v-if="term !== '*'"
+        v-if="deleteOption && term !== '*'"
         icon="trash"
         font-scale="1.1"
         variant="danger"
@@ -24,7 +24,11 @@ export default {
     term: {
       type: String,
       required: true
-    }
+    },
+    deleteOption: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     removeq: function() {
