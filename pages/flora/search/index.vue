@@ -50,7 +50,6 @@ const SearchFilters = () => import("@/components/Search/SearchFilters")
 const SearchResult = () => import("@/components/Search/SearchResult")
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import SearchQuery from "@/graphql/queries/search.gql"
-import { FACET_FIELDS } from "@/constants/facet-fields"
 
 export default {
   name: "Search",
@@ -64,7 +63,7 @@ export default {
   mixins: [searchMixin, searchWatchMixin],
   head() {
     return {
-      title: 'VicFlora – Key',
+      title: 'VicFlora – Search',
     }
   },
   data() {
@@ -75,7 +74,7 @@ export default {
         fq: [],
         page: 1,
         facetLimit: 20,
-        facetField: FACET_FIELDS,
+        facetField: [],
       }
     }
   },
@@ -100,16 +99,32 @@ export default {
       deep: true,
       handler: function() {
         this.$apollo.queries.search.refetch({
-          input: this.input
+          input: {
+            ...this.input,
+            facetField: this.$store.getters['search/getSelectedFilterFields']
+          }
         })
       }
     },
   },
   created() {
+
     this.$apollo.queries.search.setVariables({
-      input: this.input
+      input: {
+        ...this.input,
+        facetField: this.$store.getters['search/getSelectedFilterFields']
+      }
     })
     this.$apollo.queries.search.skip = false
+
+    this.$nuxt.$on('search-filter-config-changed', () => {
+      this.$apollo.queries.search.refetch({
+        input: {
+          ...this.input,
+          facetField: this.$store.getters['search/getSelectedFilterFields']
+        }
+      })
+    })
   },
   mounted() {
     $nuxt.$emit('progress-bar-start')
