@@ -46,6 +46,7 @@ import {
   faCommentDots,
   faCircleChevronRight,
   faTag,
+  faGear,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -74,6 +75,7 @@ library.add(
   faCommentDots,
   faCircleChevronRight,
   faTag,
+  faGear,
 )
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
