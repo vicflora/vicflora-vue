@@ -21,7 +21,7 @@
       v-model="queryFacet"
       visible 
     >
-      <SearchAppliedQueryTerm :term="q"/>
+      <SearchAppliedQueryTerm :term="q" :deleteOption="queryTermDeleteOption"/>
       <SearchAppliedFilters :filters="fq"/>
     </BCollapse>
   </div>
@@ -45,7 +45,11 @@ export default {
     fq: {
       type: Array,
       required: true
-    }
+    },
+    queryTermDeleteOption: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
