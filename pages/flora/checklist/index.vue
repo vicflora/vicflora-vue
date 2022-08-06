@@ -35,7 +35,11 @@
           class="text-left"
         >
           <!-- Query -->
-          <SearchApplied :q="data.search.meta.params.q" :fq="data.search.meta.params.fq || []"/>
+          <SearchApplied 
+            :q="data.search.meta.params.q" 
+            :fq="data.search.meta.params.fq || []"
+            :queryTermDeleteOption="false"
+          />
           <!-- Filters -->
           <SearchFilters :data="data"/>
 
@@ -84,7 +88,6 @@ import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { selectedAreaMixin } from "@/mixins/checklistMixins"
 import ChecklistMapInfoQuery from "@/graphql/queries/checklists"
 import SearchQuery from "@/graphql/queries/search"
-import { CHECKLIST_FACET_FIELDS } from "@/constants/facet-fields"
 
 export default {
   name: "CheckList",
@@ -193,7 +196,7 @@ export default {
         this.$apollo.queries.search.refetch({
           input: {
             ...this.input,
-            facetField: CHECKLIST_FACET_FIELDS
+            facetField: this.$store.getters['search/getSelectedFilterFields']
           }
         })
       }
@@ -203,7 +206,7 @@ export default {
     this.$apollo.queries.search.setVariables({
       input: {
         ...this.input,
-        facetField: CHECKLIST_FACET_FIELDS
+        facetField: this.$store.getters['search/getSelectedFilterFields']
       }
     })
     this.$apollo.queries.search.skip = false
@@ -232,6 +235,15 @@ export default {
           q: payload.q,
           fq: [],
           page: 1
+        }
+      })
+    })
+
+    this.$nuxt.$on('search-filter-config-changed', () => {
+      this.$apollo.queries.search.refetch({
+        input: {
+          ...this.input,
+          facetField: this.$store.getters['search/getSelectedFilterFields']
         }
       })
     })
