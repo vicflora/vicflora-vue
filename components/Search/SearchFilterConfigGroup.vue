@@ -17,20 +17,25 @@
 <template>
   <BRow>
     <b-col cols="12"><h4 class="vf-filter-group-label">{{ filterGroup.label }}</h4></b-col>
-    <b-col cols="6">
+    <b-col cols="4">
       <SearchFilterConfigField 
         v-for="field in leftColFields"
         :key="field.name"
         :facetField="field"
-        :cols="6"
       />
     </b-col>
-    <b-col v-if="rightColFields.length" cols="6">
+    <b-col v-if="middleColFields.length" cols="4">
+      <SearchFilterConfigField 
+        v-for="field in middleColFields"
+        :key="field.name"
+        :facetField="field"
+      />
+    </b-col>
+    <b-col v-if="rightColFields.length" cols="4">
       <SearchFilterConfigField 
         v-for="field in rightColFields"
         :key="field.name"
         :facetField="field"
-        :cols="6"
       />
     </b-col>
   </BRow>
@@ -57,15 +62,20 @@ export default {
       })
     },
     leftColFields() {
-      const middleIndex = Math.ceil(this.filterFields.length / 2)
-      const leftCol = this.filterFields.slice(0, middleIndex)
+      const index = Math.ceil(this.filterFields.length / 3)
+      const leftCol = this.filterFields.slice(0, index)
       return leftCol
+    },
+    middleColFields() {
+      const index = Math.ceil(this.filterFields.length / 3)
+      const middleCol = this.filterFields.slice(index, index * 2)
+      return middleCol
     },
     rightColFields() {
       let rightCol = []
       if (this.filterFields.length > 1) {
-        const middleIndex = Math.ceil(this.filterFields.length / 2)
-        rightCol = this.filterFields.slice(-(middleIndex-1))
+        const index = Math.ceil(this.filterFields.length / 3)
+        rightCol = this.filterFields.slice(index * 2)
       }
       return rightCol
     }
