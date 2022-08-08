@@ -59,15 +59,15 @@ html, body {
 body {
   overflow-x: hidden;
   font-family: goodsans, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: $default-text-color;
   letter-spacing: -0.1px;
   word-spacing: -0.1px;
 }
 
 #app {
-  font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   display: flex;
   width: 100vw;
   min-height: 100vh;
