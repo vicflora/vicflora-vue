@@ -21,7 +21,7 @@
       | <a href="/logout" @click.prevent="logout">Logout</a>
     </div>
     <div v-else>
-      <nuxt-link to="/login">Login</nuxt-link>
+      <nuxt-link to="/login" class="login-link">Login</nuxt-link>
     </div>
   </div>
 </template>
@@ -69,7 +69,5 @@ export default {
 </script>
 
 <style lang="scss">
-.login {
-  visibility: hidden;
-}
+
 </style>

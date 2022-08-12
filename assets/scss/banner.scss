@@ -19,7 +19,11 @@
 
   .login {
     float: right;
-    margin-top: -1rem;
+    margin-top: -0.8rem;
+
+    .login-link {
+      color: white;
+    }
   }
 
   span {
