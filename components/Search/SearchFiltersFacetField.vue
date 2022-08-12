@@ -34,7 +34,7 @@
               <SearchFiltersFacet :facet="facet"/>
             </div>
           </BFormCheckboxGroup>
-          <div v-if="facetField.facets.length > 3">
+          <div v-if="facetField.facets.length > 1">
             <p
               class="m-more"
               @click="
