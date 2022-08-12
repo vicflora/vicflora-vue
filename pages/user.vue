@@ -20,7 +20,7 @@
       <b-col cols="4">
         <div 
           v-if="message"
-          class="alert alert-success text-center"
+          :class="classes"
           role="alert"
         >
           {{ message }}
@@ -57,71 +57,37 @@
                 ></b-form-input>
               </b-form-group>
             </div>
-            <p class="text-right">
-              <a
-                href="" 
-                @click.prevent="onChangePasswordClicked"
-              >
-                Change password
-              </a>
+
+            <p class="text-right user-page-links">
+              <ChangePasswordModal />&emsp;
+              <RegisterUserModal />
             </p>
           </b-card-body>
         </b-card>
       </b-col>
     </b-row>
-    <b-modal 
-      id="change-password-modal" 
-      title="Change password"
-      @ok="onOk"
-    >
-      <b-form-group 
-        id="input-group-5" 
-        label="Old password:" 
-        label-for="input-5"
-      >
-        <b-form-input
-          id="input-5"
-          v-model="form.old_password"
-          placeholder="Enter password"
-          type="password"
-          required
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group 
-        id="input-group-3" 
-        label="New password:" 
-        label-for="input-3"
-      >
-        <b-form-input
-          id="input-3"
-          v-model="form.password"
-          placeholder="Enter password"
-          type="password"
-          required
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-input
-        id="input-4"
-        v-model="form.password_confirmation"
-        placeholder="Confirm password"
-        type="password"
-        required
-      ></b-form-input>
-    </b-modal>
   </div>
 </template>
 
 <script>
-import updatePasswordMutation from '@/graphql/mutations/updatePasswordMutation'
+const ChangePasswordModal = () => import('@/components/Admin/ChangePasswordModal')
+const RegisterUserModal = () => import('@/components/Admin/RegisterUserModal')
 
 export default {
   name: 'User',
+  components: {
+    ChangePasswordModal,
+    RegisterUserModal,
+  },
   data() {
     return {
-      form: {},
       message: null,
+      classes: {
+        'alert': true,
+        'alert-success': true,
+        'alert-danger': false,
+        'text-center': true
+      }
     }
   },
   computed: {
@@ -129,22 +95,24 @@ export default {
       return this.$store.state.user
     }
   },
-  methods: {
-    onChangePasswordClicked() {
-      this.message = null
-      this.form = {}
-      this.$bvModal.show('change-password-modal')
-    },
-    onOk() {
-      this.$apollo.mutate({
-        mutation: updatePasswordMutation,
-        variables: {
-          input: this.form,
-        },
-      }).then(({data}) => {
-        this.message = data.updatePassword.message
-      })
-    }
+  created() {
+    this.$nuxt.$on('password-updated', message => {
+      this.classes['alert-success'] = true
+      this.classes['alert-danger'] = false
+      this.message = message
+    })
+
+    this.$nuxt.$on('user-registered', message => {
+      this.classes['alert-success'] = true
+      this.classes['alert-danger'] = false
+      this.message = message
+    })
+
+    this.$nuxt.$on('user-registration-fail', error => {
+      this.classes['alert-success'] = false
+      this.classes['alert-danger'] = true
+      this.message = error
+    })
   }
 }
 </script>
@@ -153,5 +121,9 @@ export default {
 #user-info {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.user-page-links>div {
+  display: inline-block;
 }
 </style>
