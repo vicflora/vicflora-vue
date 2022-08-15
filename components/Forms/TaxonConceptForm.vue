@@ -183,6 +183,12 @@ export default {
         this.handleEstablishmentMeans(value)
       }
     })
+
+    if (this.id === 'taxon-concept-update') {
+      const index = this.schema.map(element => element.name).indexOf('taxonName')
+      this.schema[index].disabled = true
+      this.schema[index].buttons = ['update']
+    }
   },
   methods: {
     handleTaxonomicStatus(value) {
