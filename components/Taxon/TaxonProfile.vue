@@ -22,7 +22,7 @@
       >
         <span class="when-open"><font-awesome-icon icon="caret-down" size="lg"/></span>
         <span class="when-closed"><font-awesome-icon icon="caret-right" size="lg"/></span>
-        {{ profile.id }}
+        {{ profile.id }} – {{ profile.createdBy.name }}, {{ profile.createdAt.substring(0, 10) }}
       </a>
     </p>
     <b-collapse :id="`accordion-${index}`" accordion="profile-accordion" role="tabpanel">

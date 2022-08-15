@@ -109,8 +109,6 @@ const taxonConceptProfilesQuery = gql`query ($id: ID!) {
       id
       name
     }
-    isUpdated
-    isCurrent
     profile
   }
 }`

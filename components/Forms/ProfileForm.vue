@@ -84,8 +84,6 @@ const updateProfileMutation = gql`mutation ($input: UpdateProfileInput!) {
       id
       name
     }
-    isUpdated
-    isCurrent
     profile
   }
 }`
@@ -124,8 +122,6 @@ const createProfileMutation = gql`mutation ($input: CreateProfileInput!) {
       id
       name
     }
-    isUpdated
-    isCurrent
     profile
   }
 }`
@@ -165,11 +161,11 @@ export default {
         this.formData = new Profile(value)
         if (value.source) {
           this.showHideField('source', true)
-          this.showHideField('acceptedConcept', true)
+          // this.showHideField('acceptedConcept', true)
         }
         else {
           this.showHideField('source', false)
-          this.showHideField('acceptedConcept', false)
+          // this.showHideField('acceptedConcept', false)
         }
       }
     }
@@ -205,14 +201,19 @@ export default {
     },
     onCreateVersion() {
       const input = new CreateProfileInput(this.formData)
-      console.log(JSON.stringify(input, null, 2))
       this.$apollo.mutate({
         mutation: createProfileMutation,
         variables: {
           input: input
         }
       }).then(({ data }) => {
-        console.log(JSON.stringify(data, null, 2))
+        if (data.createProfile.acceptedConcept.id !== this.$route.params.id) {
+          console.log(data.createProfile.acceptedConcept.id);
+          console.log(this.$route.params.id)
+          this.$router.push({
+            path: `/flora/taxon/${ data.createProfile.acceptedConcept.id }`,
+          })
+        }
         this.$nuxt.$emit('profile-updated')
       })
     },

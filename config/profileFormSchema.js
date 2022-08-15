@@ -19,6 +19,7 @@ const referenceAutocompleteQuery = gql`query ReferenceAutocompleteQuery($q: Stri
     id
     quickRef
     author {
+      id
       name
     }
     publicationYear
@@ -34,6 +35,7 @@ const TaxonConceptAutoCompleteQuery = gql`query taxonConceptAutocomplete($q: Str
   suggestions: taxonConceptAutocomplete(q: $q) {
     id
     taxonName {
+      id
       fullName
       authorship
     }
