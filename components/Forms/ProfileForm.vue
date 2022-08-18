@@ -16,6 +16,22 @@
 
 <template>
   <div>
+    <b-alert 
+      v-if="success"
+      variant="success"
+      show
+      dismissible
+    >
+      <div v-html="success"/>
+    </b-alert>
+    <b-alert 
+      v-if="error"
+      variant="error"
+      show
+      dismissible
+    >
+      <div v-html="error"/>
+    </b-alert>
     <ProfileFormGenerator 
       :schema="schema"
       :value="formData"
@@ -146,6 +162,8 @@ export default {
       updateDisabled: true,
       createVersionDisabled: true,
       createProfileDisabled: true,
+      success: null,
+      error: null,
     }
   },
   computed: {
@@ -189,6 +207,8 @@ export default {
       this.formData = new Profile(this.value)
     },
     onUpdate() {
+      this.success = null
+      this.error = null
       const input = new UpdateProfileInput(this.formData)
       this.$apollo.mutate({
         mutation: updateProfileMutation,
@@ -196,10 +216,15 @@ export default {
           input: {...input},
         },
       }).then(({ data }) => {
+        this.success = `Current profile <b>${data.updateProfile.id}</b> sucessfully updated`
         this.$nuxt.$emit('profile-updated')
+      }).catch((error) => {
+        this.error = `Update failed: ${ error }`
       })
     },
     onCreateVersion() {
+      this.success = null
+      this.error = null
       const input = new CreateProfileInput(this.formData)
       this.$apollo.mutate({
         mutation: createProfileMutation,
@@ -208,17 +233,21 @@ export default {
         }
       }).then(({ data }) => {
         if (data.createProfile.acceptedConcept.id !== this.$route.params.id) {
-          console.log(data.createProfile.acceptedConcept.id);
-          console.log(this.$route.params.id)
           this.$router.push({
             path: `/flora/taxon/${ data.createProfile.acceptedConcept.id }`,
           })
         }
+        else {
+          this.success = `New version <b>${ data.createProfile.id }</b> succesfully created`
+        }
         this.$nuxt.$emit('profile-updated')
+      }).catch((error) => {
+        this.error = `Update failed: ${ error }`
       })
     },
     onCreateProfile() {
-      console.log('Create new profile')
+      this.success = null
+      this.error = null
       const input = new CreateProfileInput(this.formData)
       input.source = null
       input.id = null
@@ -228,7 +257,10 @@ export default {
           input: input
         }
       }).then(({ data }) => {
+        this.success = `New profile <b>${ data.createProfile.id }</b> succesfully created`
         this.$nuxt.$emit('profile-updated')
+      }).catch((error) => {
+        this.error = `Update failed: ${ error }`
       })
     }
   }
