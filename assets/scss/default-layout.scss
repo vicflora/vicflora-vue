@@ -3,36 +3,6 @@
   src: local("goodsans"),
     url(~assets/fonts/GoodSans-Thin.otf) format("truetype");
 }
-@font-face {
-  font-family: "goodsans-thin";
-  src: local("goodsans-thin"),
-    url(~assets/fonts/GoodSans-Thin.otf) format("truetype");
-}
-@font-face {
-  font-family: "goodsans-light";
-  src: local("goodsans-light"),
-    url(~assets/fonts/GoodSans-Light.otf) format("truetype");
-}
-@font-face {
-  font-family: "goodsans-regular";
-  src: local("goodsans-regular"),
-    url(~assets/fonts/GoodSans-Regular.otf) format("truetype");
-}
-@font-face {
-  font-family: "goodsans-medium";
-  src: local("goodsans-medium"),
-    url(~assets/fonts/GoodSans-Medium.otf) format("truetype");
-}
-@font-face {
-  font-family: "goodsans-bold";
-  src: local("goodsans-bold"),
-    url(~assets/fonts/GoodSans-Bold.otf) format("truetype");
-}
-@font-face {
-  font-family: "goodsans-black";
-  src: local("goodsans-black"),
-    url(~assets/fonts/GoodSans-Black.otf) format("truetype");
-}
 
 html {
   font-family: "Source Sans Pro", "Segoe UI", "Helvetica Neue", Arial,
