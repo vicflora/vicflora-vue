@@ -82,7 +82,7 @@ export default {
     return {
       taxonConcept: null,
       lastSearch: null,
-      pageTitle: 'Flora of Victoria'
+      pageTitle: 'Flora of Victoria',
     }
   },
   apollo: {
@@ -97,6 +97,13 @@ export default {
       },
       skip: true
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (from && from.name === 'flora-taxon-edit') {
+        vm.$apollo.queries.taxonConcept.refetch()
+      }
+    })
   },
   created() {
     this.$nuxt.$emit('progress-bar-start')
