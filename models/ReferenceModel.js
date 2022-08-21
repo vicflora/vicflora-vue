@@ -32,8 +32,8 @@ class Reference {
     this.isbn = data.isbn
     this.issn = data.issn
     this.doi = data.doi
-    this.citation = data.citation
-    this.citationHtml = data.citationHtml
+    this.referenceString = data.referenceString
+    this.referenceStringHtml = data.referenceStringHtml
 
     this.author = data.author ? new Agent(data.author) : null
 
@@ -64,8 +64,8 @@ class UpdateReferenceInput {
     this.isbn = data.isbn
     this.issn = data.issn
     this.doi = data.doi
-    this.citation = data.citation
-    this.citationHtml = data.citationHtml
+    this.referenceString = data.referenceString
+    this.referenceStringHtml = data.referenceStringHtml
 
     if (data.author) {
       this.author = {
@@ -103,8 +103,8 @@ class CreateReferenceInput {
     this.isbn = data.isbn
     this.issn = data.issn
     this.doi = data.doi
-    this.citation = data.citation
-    this.citationHtml = data.citationHtml
+    this.referenceString = data.referenceString
+    this.referenceStringHtml = data.referenceStringHtml
 
     if (data.author) {
       this.author = {

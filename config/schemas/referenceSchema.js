@@ -29,12 +29,12 @@ const agentSuggestionSerializer = (agent) => {
 const JournalAutocompleteQuery = gql`query ($q: String!) {
   suggestions: journalAutocomplete(q: $q) {
     id
-    citation
+    referenceString
   }
 }`
 
 const JournalSuggestionSerializer = (journal) => {
-  return journal.citation
+  return journal.referenceString
 }
 
 export default [

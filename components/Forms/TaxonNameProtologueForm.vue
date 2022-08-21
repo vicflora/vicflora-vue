@@ -53,7 +53,7 @@ const UpdateReferenceMutation = gql`mutation UpdateReferenceMutation($input: Upd
     issue
     pages
     publicationYear
-    citation
+    referenceString
   } 
 }`
 const CreateReferenceMutation = gql`mutation CreateReferenceMutation($input: CreateReferenceInput!) {
@@ -64,7 +64,7 @@ const CreateReferenceMutation = gql`mutation CreateReferenceMutation($input: Cre
     issue
     pages
     publicationYear
-    citation
+    referenceString
   }
 }`
 

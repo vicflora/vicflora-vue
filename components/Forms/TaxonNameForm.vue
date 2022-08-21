@@ -68,7 +68,7 @@ const TaxonNameQuery = gql`query TaxonNameQuery($id: ID!) {
       issue
       pages
       publicationYear
-      citation
+      referenceString
     }
   }
 }`
@@ -105,7 +105,7 @@ const UpdateTaxonNameMutation = gql`mutation UpdateTaxonNameMutation ($input: Up
       issue
       pages
       publicationYear
-      citation
+      referenceString
     }
   }
 }`
@@ -130,7 +130,7 @@ const CreateTaxonNameMutation = gql`mutation CreateTaxonNameMutation($input: Cre
       issue
       pages
       publicationYear
-      citation
+      referenceString
     }
   }
 }`

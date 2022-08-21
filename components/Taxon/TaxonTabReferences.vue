@@ -18,7 +18,7 @@
     <p
       v-for="ref in concept.references"
       :key="ref.id"
-      v-html="ref.reference.citationHtml"
+      v-html="ref.reference.referenceStringHtml"
     />
   </div>
 </template>

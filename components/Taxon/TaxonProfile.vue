@@ -31,7 +31,7 @@
         <div 
           v-if="profile.source" 
           class="source"
-          v-html="profile.source.citationHtml"
+          v-html="profile.source.referenceStringHtml"
         />
         <div v-if="profile.taxonConcept.id !== profile.acceptedConcept.id">
           <b>As:</b> {{ profile.taxonConcept.taxonName.fullName }}

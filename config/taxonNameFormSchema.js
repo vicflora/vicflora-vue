@@ -95,7 +95,7 @@ export default [
     name: "protologue",
     label: "Protologue",
     subform: "TaxonNameProtologueForm",
-    serializerField: "citation"
+    serializerField: "referenceString"
   },
   {
     fieldType:"TextInput",

@@ -23,7 +23,7 @@
         <a href="#" @click="onUpdateClicked($event, ref.reference)"><FontAwesomeIcon icon="pen-to-square"/></a>
         <a href="#" @click="onDeleteClicked($event, ref.id)"><FontAwesomeIcon icon="trash-can"/></a>
       </div>
-      <p v-html="ref.reference.citation"/>
+      <p v-html="ref.reference.referenceString"/>
     </div>
     <div class="d-flex">
       <div class="flex-grow-1">
@@ -34,7 +34,7 @@
             query: referenceAutocompleteQuery,
             serializer: referenceAutocompleteSerializer,
             showSelected: true,
-            suggestionField: 'citationHtml',
+            suggestionField: 'referenceStringHtml',
           }"
           :buttons="['update', 'create']"
           :form="'ReferenceForm'"
@@ -113,9 +113,9 @@ export default {
   },
   methods: {
     splitOffAuthorYear(ref) {
-      let citation = ref.reference.citationHtml.replace('<p>', '').replace('</p>', '').trim()
-      ref.reference.authorYear = citation.substring(8, citation.indexOf('</strong>')).trim()
-      ref.reference.citation = citation.substring(citation.indexOf('</strong>')+10).trim()
+      let referenceString = ref.reference.referenceStringHtml.replace('<p>', '').replace('</p>', '').trim()
+      ref.reference.authorYear = referenceString.substring(8, referenceString.indexOf('</strong>')).trim()
+      ref.reference.referenceString = referenceString.substring(referenceString.indexOf('</strong>')+10).trim()
       return ref
     },
     onUpdateClicked(event, reference) {

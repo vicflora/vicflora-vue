@@ -114,7 +114,7 @@ const taxonEditFormQuery = gql`query taxonEditFormQuery($id: ID!) {
       id
       reference {
         id
-        citationHtml
+        referenceStringHtml
       }
     }
   }

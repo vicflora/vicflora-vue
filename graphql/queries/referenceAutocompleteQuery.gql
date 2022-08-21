@@ -6,6 +6,6 @@ query ReferenceAutocompleteQuery($q: String!) {
       name
     }
     publicationYear
-    citationHtml
+    referenceStringHtml
   }
 }

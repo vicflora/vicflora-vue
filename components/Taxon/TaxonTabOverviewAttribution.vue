@@ -8,7 +8,7 @@
       <span class="profile-attribution-label">Source: </span>
       <span
         class="profile-source-citation"
-        v-html="concept.currentProfile.source.citationHtml"
+        v-html="concept.currentProfile.source.referenceStringHtml"
       ></span>
     </div>
     <!-- Created time -->

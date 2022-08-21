@@ -18,7 +18,7 @@
   <div>
     <b>According to:</b> <span id="according-to-popover-target">{{ accordingTo.quickRef }}</span>
   <b-popover target="according-to-popover-target" triggers="hover" placement="bottomright">
-    <div v-html="accordingTo.citationHtml"></div>
+    <div v-html="accordingTo.referenceStringHtml"></div>
   </b-popover>
 
   </div>

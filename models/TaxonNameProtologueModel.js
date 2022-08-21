@@ -20,7 +20,7 @@ class TaxonNameProtologue {
     this.issue = data.issue
     this.pages = data.pages
     this.publicationYear = data.publicationYear
-    this.citation = data.citation
+    this.referenceString = data.referenceString
   }
 }
 

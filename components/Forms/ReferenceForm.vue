@@ -65,7 +65,7 @@ const ReferenceQuery = gql`query ($id: ID!) {
     edition
     journal {
       id
-      citation
+      referenceString
     }
     book {
       id
@@ -74,7 +74,7 @@ const ReferenceQuery = gql`query ($id: ID!) {
         name
       }
       publicationYear
-      citation
+      referenceString
     }
     volume
     issue
@@ -98,8 +98,8 @@ const UpdateReferenceMutation = gql`mutation ($input: UpdateReferenceInput!) {
       name
     }
     publicationYear
-    citation
-    citationHtml
+    referenceString
+    referenceStringHtml
   }
 }`
 
@@ -111,8 +111,8 @@ const CreateReferenceMutation = gql`mutation ($input: CreateReferenceInput!) {
       name
     }
     publicationYear
-    citation
-    citationHtml
+    referenceString
+    referenceStringHtml
   }
 }`
 

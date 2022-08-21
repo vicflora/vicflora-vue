@@ -86,7 +86,7 @@ const taxonConceptProfilesQuery = gql`query ($id: ID!) {
         name
       }
       publicationYear
-      citationHtml
+      referenceStringHtml
     }
     taxonConcept {
       id

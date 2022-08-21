@@ -77,7 +77,7 @@ const updateProfileMutation = gql`mutation ($input: UpdateProfileInput!) {
         name
       }
       publicationYear
-      citationHtml
+      referenceStringHtml
     }
     taxonConcept {
       id
@@ -115,7 +115,7 @@ const createProfileMutation = gql`mutation ($input: CreateProfileInput!) {
         name
       }
       publicationYear
-      citationHtml
+      referenceStringHtml
     }
     taxonConcept {
       id

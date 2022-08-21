@@ -15,7 +15,7 @@ query taxonConceptQuery($id: ID!) {
         volume
         pages
         quickRef
-        citationHtml
+        referenceStringHtml
       }
       apniName {
         id
@@ -25,7 +25,7 @@ query taxonConceptQuery($id: ID!) {
     accordingTo {
       id
       quickRef
-      citationHtml
+      referenceStringHtml
     }
     acceptedConcept {
       ...taxonConceptFields
@@ -80,7 +80,7 @@ query taxonConceptQuery($id: ID!) {
       profile
       source {
         id
-        citationHtml
+        referenceStringHtml
       }
       creator {
         lastName
@@ -142,7 +142,7 @@ query taxonConceptQuery($id: ID!) {
       id
       reference {
         id
-        citationHtml
+        referenceStringHtml
       }
     }
     floraLinks {

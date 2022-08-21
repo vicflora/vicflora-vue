@@ -2,12 +2,12 @@
   <div class="vf-name-published-in">
       <span 
         v-if="publishedIn.referenceType === 'PROTOLOGUE'"
-        v-html="citation"
+        v-html="referenceString"
       ></span>
       <div v-else>
         <b>Published in:</b> <span id="published-in-popover-target">{{ publishedIn.quickRef }}</span>
         <b-popover target="published-in-popover-target" triggers="hover" placement="bottomright">
-          <div v-html="publishedIn.citationHtml"></div>
+          <div v-html="publishedIn.referenceStringHtml"></div>
         </b-popover>
       </div>
   </div>
@@ -23,8 +23,8 @@ export default {
     }
   },
   computed: {
-    citation() {
-      return this.publishedIn.citationHtml.replace('<p>', '').replace('</p>', '')
+    referenceString() {
+      return this.publishedIn.referenceStringHtml.replace('<p>', '').replace('</p>', '')
     },
   }
 }

@@ -23,7 +23,7 @@ const referenceAutocompleteQuery = gql`query ReferenceAutocompleteQuery($q: Stri
       name
     }
     publicationYear
-    citationHtml
+    referenceStringHtml
   }
 }`
 
@@ -71,7 +71,7 @@ export default [
       query: referenceAutocompleteQuery,
       serializer: referenceAutocompleteSerializer,
       showSelected: true,
-      suggestionField: "citationHtml"
+      suggestionField: "referenceStringHtml"
     },
     disabled: true,
   },
