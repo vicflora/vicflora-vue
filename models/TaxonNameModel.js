@@ -72,13 +72,13 @@ class CreateTaxonNameInput {
     this.nomenclaturalNote = data.nomenclaturalNote
     this.remarks = data.remarks
 
-    if (data.parent) {
+    if (data.parent && Object.keys(data.parent).length > 0) {
       this.parent = {
         connect: data.parent.id
       }
     }
 
-    if (data.protologue) {
+    if (data.protologue && Object.keys(data.protologue).length > 0) {
       this.protologue = {
         connect: data.protologue.id
       }
