@@ -19,7 +19,7 @@ const fields = [
   'author',
   'publicationYear',
   'title',
-  // 'book',
+  'book',
   'pageStart',
   'pageEnd',
   'pages'

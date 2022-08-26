@@ -190,10 +190,15 @@ export default {
       this.formData.journal = reference
       this.okDisabled = false
     })
+    this.$nuxt.$on('reference-book-changed', (reference) => {
+      this.formData.book = reference
+      this.okDisabled = false
+    })
   },
   beforeDestroy() {
     this.$nuxt.$off('reference-author-changed')
     this.$nuxt.$off('reference-journal-changed')
+    this.$nuxt.$off('reference-book-changed')
   },
   methods: {
     onShown() {

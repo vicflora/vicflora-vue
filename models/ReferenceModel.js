@@ -29,6 +29,7 @@ class Reference {
     this.pages = data.pages
     this.numberOfPages = data.numberOfPages
     this.publisher = data.publisher
+    this.placeOfPublication = data.placeOfPublication
     this.isbn = data.isbn
     this.issn = data.issn
     this.doi = data.doi
@@ -61,6 +62,7 @@ class UpdateReferenceInput {
     this.pages = data.pages
     this.numberOfPages = data.numberOfPages
     this.publisher = data.publisher
+    this.placeOfPublication = data.placeOfPublication
     this.isbn = data.isbn
     this.issn = data.issn
     this.doi = data.doi
@@ -100,6 +102,7 @@ class CreateReferenceInput {
     this.pages = data.pages
     this.numberOfPages = data.numberOfPages
     this.publisher = data.publisher
+    this.placeOfPublication = data.placeOfPublication
     this.isbn = data.isbn
     this.issn = data.issn
     this.doi = data.doi

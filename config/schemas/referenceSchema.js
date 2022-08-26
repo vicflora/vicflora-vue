@@ -37,6 +37,17 @@ const JournalSuggestionSerializer = (journal) => {
   return journal.referenceString
 }
 
+const BookAutocompleteQuery = gql`query ($q: String!) {
+  suggestions: bookAutocomplete(q: $q) {
+    id
+    referenceString
+  }
+}`
+
+const BookSuggestionSerializer = (reference) => {
+  return reference.referenceString
+}
+
 export default [
   {
     fieldType: "SelectList",
@@ -91,6 +102,18 @@ export default [
     buttons: ['update', 'create'],
     form: 'ReferenceForm',
     subtype: 'Journal'
+  },
+  {
+    fieldType: "AutocompleteControl",
+    label: "In",
+    name: "book",
+    autocomplete: {
+      query: BookAutocompleteQuery,
+      serializer: BookSuggestionSerializer,
+    },
+    buttons: ['update', 'create'],
+    form: 'ReferenceForm',
+    subtype: 'Book'
   },
   {
     fieldType: 'TextInput',

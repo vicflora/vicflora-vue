@@ -5,6 +5,7 @@ mutation createTaxonConceptReferenceMutation ($input: CreateTaxonConceptReferenc
       id
       quickRef
       author {
+        id
         name
       }
       publicationYear

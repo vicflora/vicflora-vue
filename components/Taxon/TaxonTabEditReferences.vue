@@ -158,6 +158,7 @@ export default {
           connect: this.newReference.id,
         },
       }
+      console.log(input)
       this.$apollo.mutate({
         mutation: createTaxonConceptReferenceMutation,
         variables: {
@@ -167,6 +168,8 @@ export default {
         this.$nuxt.$emit('taxon-reference-added')
         this.newReference = null
         this.autocompleteComponentKey++
+      }).catch(error => {
+        console.log(error)
       })
     },
     deleteTaxonConceptReference(id) {
