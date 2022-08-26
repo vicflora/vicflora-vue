@@ -31,6 +31,11 @@
               to="/flora/classification/6abc498a-70de-11e6-a989-005056b0018f"
             >Browse classification</BNavItem>
 
+            <b-nav-item-dropdown text="Keys">
+              <b-dropdown-item to="/flora/key/1903">Key to the main groups of vascular plants</b-dropdown-item>
+              <b-dropdown-item to="/flora/matrix-keys">Multi-access keys</b-dropdown-item>
+            </b-nav-item-dropdown>
+
             <BNavItem
               class="m-menu-item"
               to="/flora/checklist"
@@ -76,3 +81,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.nuxt-link-exact-active:active {
+  background-color: #ddd;
+}
+</style>
