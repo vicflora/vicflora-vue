@@ -61,6 +61,7 @@ import { waitTillActivatedMixin } from "~/mixins/waitTillActivatedMixin"
 import TaxonConceptBioregionsQuery from "~/graphql/queries/taxonConceptBioregionsQuery"
 import TaxonConceptLocalGovernmentAreasQuery from "~/graphql/queries/taxonConceptLocalGovernmentAreasQuery"
 import TaxonConceptParkReservesQuery from "~/graphql/queries/taxonConceptParkReservesQuery"
+import TaxonConceptRegisteredAboriginalPartiesQuery from "~/graphql/queries/taxonConceptRegisteredAboriginalPartiesQuery"
 
 export default {
   name: "TaxonTabDistribution",
@@ -78,6 +79,18 @@ export default {
     concept: {
       type: Object,
       required: true
+    }
+  },
+  data(){
+    return {
+      tabIndex: 0,
+      layer: "None",
+      showMap: "Victoria",
+      taxonConceptBioregions: [],
+      taxonConceptLocalGovernmentAreas: [],
+      taxonConceptParkReserves: [],
+      taxonConceptRegisteredAboriginalParties: [],
+      tableData: [],
     }
   },
   apollo: {
@@ -108,17 +121,15 @@ export default {
       },
       skip: true,
     },
-  },
-  data(){
-    return {
-      tabIndex: 0,
-      layer: "None",
-      showMap: "Victoria",
-      taxonConceptBioregions: [],
-      taxonConceptLocalGovernmentAreas: [],
-      taxonConceptParkReserves: [],
-      tableData: [],
-    }
+    taxonConceptRegisteredAboriginalParties: {
+      query: TaxonConceptRegisteredAboriginalPartiesQuery,
+      result ({ data, loading }) {
+        if (!loading) {
+          this.tableData = data.taxonConceptRegisteredAboriginalParties
+        }
+      },
+      skip: true,
+    },
   },
   computed: {
     variables() {
@@ -131,6 +142,7 @@ export default {
     this.$apollo.queries.taxonConceptBioregions.setVariables({ ...this.variables })
     this.$apollo.queries.taxonConceptLocalGovernmentAreas.setVariables({ ...this.variables })
     this.$apollo.queries.taxonConceptParkReserves.setVariables({ ...this.variables })
+    this.$apollo.queries.taxonConceptRegisteredAboriginalParties.setVariables({ ...this.variables })
   },
   methods:{
     switchLayer: function(newLayer){
@@ -158,6 +170,14 @@ export default {
           }
           else {
             this.$apollo.queries.taxonConceptParkReserves.skip = false
+          }
+          break
+        case 'Registered Aboriginal Parties':
+          if (this.taxonConceptRegisteredAboriginalParties.length) {
+            this.tableData = this.taxonConceptRegisteredAboriginalParties
+          }
+          else {
+            this.$apollo.queries.taxonConceptRegisteredAboriginalParties.skip = false
           }
           break
       }

@@ -69,6 +69,20 @@ export const baseLayersMixin = {
                     transparent: true,
                     opacity: 0.8,
                     attribution: "DataVic"
+                },
+                {
+                    name: "Registered Aboriginal Parties",
+                    service: "WMS",
+                    version: "1.1.0",
+                    request: "GetMap",
+                    visible: false,
+                    layers: "vicflora-mapper:taxon_raps,vicflora-mapper:raps",
+                    srs: "EPSG:4326",
+                    format: "image/png",
+                    styles: "polygon-establishment-means-transparent,polygon-no-fill-grey-outline",
+                    transparent: true,
+                    opacity: 0.8,
+                    attribution: "DataVic"
                 }
             ]
         }

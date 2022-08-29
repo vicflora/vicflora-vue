@@ -1,0 +1,10 @@
+query TaxonConceptRegisteredAboriginalPartiesQuery($taxonConceptId: ID!) {
+  taxonConceptRegisteredAboriginalParties(taxonConceptId: $taxonConceptId) {
+    id
+    registeredAboriginalPartyName
+    registeredAnoriginalPartyShortName
+    registeredAnoriginalPartyTraditionalOwners
+    occurrenceStatus
+    establishmentMeans
+  }
+}
