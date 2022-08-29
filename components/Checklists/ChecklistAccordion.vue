@@ -55,6 +55,11 @@ export default {
           dataField: 'localGovernmentAreas',
           searchField: 'local_government_area',
         },
+        {
+          name: 'Registered Aboriginal Parties',
+          dataField: 'registeredAboriginalParties',
+          searchField: 'raps',
+        },
       ],
     }
   },
@@ -82,6 +87,9 @@ export default {
           break
         case 'park_or_reserve':
           layer = 'Parks and Reserves'
+          break
+        case 'registered_aboriginal_party':
+          layer = 'Registered Aboriginal Parties'
           break
       }
       this.visibleLayer = layer
