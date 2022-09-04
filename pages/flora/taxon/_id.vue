@@ -47,6 +47,13 @@
         :concept="taxonConcept.acceptedConcept"
       />
     </b-container>
+    <b-container v-if="error">
+      <b-row>
+        <b-col>
+          <ErrorMessage :error="error"/>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -59,6 +66,7 @@ const TaxonTabs = () => import("@/components/Taxon/TaxonTabs")
 const TaxonClassification = () => import("@/components/Taxon/TaxonClassification")
 const TaxonAcceptedConceptLink = () => import("@/components/Taxon/TaxonAcceptedConceptLink")
 const TaxonEditMenu = () => import("@/components/Taxon/TaxonEditMenu")
+const ErrorMessage = () => import('@/components/App/AppErrorMessage')
 import taxonConceptQuery from "@/graphql/queries/taxonConceptQuery"
 
 export default {
@@ -72,6 +80,7 @@ export default {
     TaxonClassification,
     TaxonAcceptedConceptLink,
     TaxonEditMenu,
+    ErrorMessage,
   },
   head() {
     return {
@@ -83,6 +92,7 @@ export default {
       taxonConcept: null,
       lastSearch: null,
       pageTitle: 'Flora of Victoria',
+      error: null,
     }
   },
   apollo: {
@@ -94,6 +104,9 @@ export default {
           this.taxonConcept = data.taxonConcept
           this.pageTitle = `VicFlora – ${data.taxonConcept.taxonName.fullName}`
         }
+      },
+      error(error) {
+        this.error = error
       },
       skip: true
     }
