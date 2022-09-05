@@ -17,8 +17,7 @@
 <template>
   <l-control position="bottomleft" >
     <b-button
-      variant="outline-primary"
-      size="sm"
+      variant="primary"
       :href="`https://avh.ala.org.au/occurrences/search?taxa=${alaQueryString}`"
       :title="`Find ${taxonConcept.taxonName.fullName} in AVH`"
       target="_blank"
@@ -26,8 +25,7 @@
       <b-icon-search/> AVH
     </b-button>
     <b-button
-      variant="outline-primary"
-      size="sm"
+      variant="primary"
       :href="`https://biocache.ala.org.au/occurrences/search?taxa=${alaQueryString}&fq=data_resource_uid:dr1097`"
       :title="`Find ${taxonConcept.taxonName.fullName} in the Victorian Biodiversity Atlas`"
       target="_blank"
