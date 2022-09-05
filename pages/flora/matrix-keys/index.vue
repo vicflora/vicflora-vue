@@ -18,8 +18,9 @@
           >
             <b-card
               :title="page.title"
+              title-tag="h2"
               :img-src="page.image"
-              img-alt="Card image"
+              img-alt=""
               img-top
               class="card-matrix-key"
             >
@@ -80,6 +81,10 @@ export default {
 <style lang="scss">
 .card.card-matrix-key {
   margin-bottom: 30px;
+}
+
+.card-title {
+  font-size: 1.5rem;
 }
 </style>
 

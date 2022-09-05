@@ -86,7 +86,7 @@ export default {
       return [
         {
           key: 'status',
-          label: '',
+          label: 'Symbol',
         },
         {
           key: 'areaName',

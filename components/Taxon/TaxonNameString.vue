@@ -1,7 +1,7 @@
 <template>
-  <h2 :class="getNameClasses(rankId, taxonomicStatus)">
+  <h1 :class="getNameClasses(rankId, taxonomicStatus)">
     {{ fullName }}  
-  </h2>
+  </h1>
 </template>
 
 <script>

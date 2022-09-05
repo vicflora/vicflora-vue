@@ -16,12 +16,12 @@
       class="table table-borderless text-center">
       <thead>
         <tr>
-          <th scope="col"></th>
+          <th scope="col" rowspan="2"><span class="sr-only">Layer</span></th>
           <th scope="col" colspan="3">Origin and degree of establishment</th>
           <th scope="col">Occurrence status</th>
         </tr>
         <tr>
-          <th scope="col" width="*"></th>
+          <!-- <th scope="col" width="*"></th> -->
           <th scope="col" width="20%">Native</th>
           <th scope="col" width="20%">Introduced</th>
           <th scope="col" width="20%">Cultivated</th>

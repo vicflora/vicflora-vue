@@ -17,7 +17,8 @@
         v-for="slide in slides" 
         :key="slide.index" 
         :img-src="slide.imgSource" 
-        :text="slide.caption"
+        :img-alt="slide.caption"
+        :title="slide.caption"
       />
     </BCarousel>
   </div>

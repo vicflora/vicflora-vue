@@ -20,14 +20,19 @@
       v-for="card in cards" 
       :key="card.title"
       :title="card.title"
+      title-tag="h1"
       :img-src="card.image"
-      img-alt="Image"
+      img-alt=""
       img-top
       tag="article"
     >
-      <h6 v-for="link in card.links" :key="link.text">
+      <p 
+        v-for="link in card.links" 
+        :key="link.text"
+        class="vf-card-link"
+      >
         <NuxtLink :to="link.to">{{ link.text }} <FontAwesomeIcon icon="caret-right"/></NuxtLink>
-      </h6>
+      </p>
     </b-card>
   </b-card-group>     
 </template>
