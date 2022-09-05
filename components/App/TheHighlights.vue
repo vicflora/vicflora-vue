@@ -24,10 +24,10 @@
         cols="9" 
         class="m-highlight-col"
       >
-        <h5 
-          class="m-hightlight-1" 
+        <div 
+          class="h5 m-hightlight-1" 
           v-html="item.title"
-        ></h5> 
+        ></div> 
         <div>
           <BlogArticleExcerpt :excerpt="item.description"/> 
           <BlogArticleLink :path="item.path"/>
@@ -64,9 +64,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-@import "~/assets/scss/custom_variables.scss";
-
-</style>
-
