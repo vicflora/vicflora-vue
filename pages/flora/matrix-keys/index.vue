@@ -19,7 +19,7 @@
             <b-card
               :title="page.title"
               :img-src="page.image"
-              img-alt="Card image"
+              img-alt=""
               img-top
               class="card-matrix-key"
             >
