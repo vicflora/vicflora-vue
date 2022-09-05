@@ -8,6 +8,7 @@
 @import './navbar.scss';
 @import './banner.scss';
 @import './home.scss';
+@import './carousel.scss';
 @import './highlights.scss';
 @import './classification.scss';
 @import './search.scss';
@@ -392,10 +393,14 @@ ol.breadcrumb {
 //
 // Leaflet map control buttons
 //
-.leaflet-container a.btn.btn-outline-primary.btn-sm {
+.leaflet-container a.btn.btn-outline-primary {
     color: $primary;
 
     &:hover {
         color: $white;
     }
+}
+
+.leaflet-container a.btn.btn-primary {
+    color: $white;
 }

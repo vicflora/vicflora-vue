@@ -18,7 +18,7 @@
         <BCol class="text-left">
           <div class="rbgv-website">
             <a href="https://www.rbg.vic.gov.au" target="_blank">
-              <img src="https://www.rbg.vic.gov.au/assets/images/rbgv-logo-lg.svg" alt="RBGV logo"/>
+              <img src="@/assets/images/rbgv-logo-lg.svg" alt="RBGV logo"/>
             </a>
           </div>
         </BCol>

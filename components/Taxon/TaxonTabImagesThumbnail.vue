@@ -6,7 +6,7 @@
           v-show="showImage === true"
           :src="image.thumbnailUrl"
           :data-src="image.previewUrl"
-          :alt="getCaption(image)"
+          :alt="getCaption(image.caption)"
           @load="loadImage"
           @click="onClick"
         >
@@ -53,14 +53,8 @@ export default {
     loadImage(value) {
       this.showImage = true;
     },
-    getCaption(image) {
-      let caption = this.taxonConcept.taxonName.fullName + "."
-      if (image.caption) {
-        caption += " " + image.caption
-      }
-      caption += image.subtype ? " " + image.subtype + ": " : ""
-      caption += image.creator
-      caption += image.rights ? ". " + image.rights : ''
+    getCaption(caption) {
+      return caption.replace('<br/>', '. ').replace(/<[^>]*>?/gm, '')
     },
     onClick(e) {
       e.preventDefault()

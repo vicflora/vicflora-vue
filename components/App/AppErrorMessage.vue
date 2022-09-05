@@ -15,34 +15,23 @@
 -->
 
 <template>
-  <b-card-group deck>
-    <b-card
-      v-for="card in cards" 
-      :key="card.title"
-      :title="card.title"
-      title-tag="h1"
-      :img-src="card.image"
-      img-alt=""
-      img-top
-      tag="article"
-    >
-      <p 
-        v-for="link in card.links" 
-        :key="link.text"
-        class="vf-card-link"
-      >
-        <NuxtLink :to="link.to">{{ link.text }} <FontAwesomeIcon icon="caret-right"/></NuxtLink>
+  <div class="vf-error-message">
+    <h2>Something went wrong...</h2>
+      <p>
+        Please report this error to 
+        <a href="mailto:vicflora@rbg.vic.gov.au">vicflora@rbg.vic.gov.au</a>,
+        citing the URL of this page and/or the taxon name.
       </p>
-    </b-card>
-  </b-card-group>     
+      <pre>{{ error }}</pre>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "AppCardDeck",
+  name: "AppErrorMessage",
   props: {
-    cards: {
-      type: Array,
+    error: {
+      type: String,
       required: true,
     },
   },

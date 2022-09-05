@@ -3,8 +3,6 @@
   .m-introduction {
     margin-top: 15px;
     margin-bottom: 15px;
-    text-align: justify;
-    text-justify: auto;
   }
   .m-btn {
     display: block;
@@ -30,5 +28,13 @@
     border-color: $light;
     color: $primary;
     font-weight: bold;
+  }
+
+  .card .card-body .vf-card-link {
+    margin-bottom: 0.5rem;
+  
+    a {
+      font-weight: 500;
+    }
   }
 }

@@ -23,7 +23,10 @@
         v-model="visible"
         visible
       >
-        <BFormGroup v-slot="{ ariaDescribedby }">
+        <BFormGroup 
+          :label="facetField.fieldName"
+          label-sr-only
+          v-slot="{ ariaDescribedby }">
           <BFormCheckboxGroup
             v-model="selected"
             :aria-describedby="ariaDescribedby"

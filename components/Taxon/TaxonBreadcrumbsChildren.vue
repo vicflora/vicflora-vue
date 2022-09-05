@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-form-select 
+      id="select-child"
       v-model="taxonId" 
       size="sm" 
       class="m-breadcrumb-selector-item"

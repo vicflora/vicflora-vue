@@ -5,7 +5,11 @@
       <div class="m-logo-title">
         <div class="m-logo-container">
           <a href="/">
-            <img class="m-logo img-fluid" src="@/assets/images/rbgv-logo-pink-badge.png" alt="Logo" />
+            <img 
+              class="m-logo img-fluid" 
+              src="@/assets/images/rbgv-logo-pink-badge.png" 
+              alt="Royal Botanic Garedns Victoria logo" 
+            />
           </a>
         </div>
         <div class="m-title-container">
