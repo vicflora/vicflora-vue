@@ -9,6 +9,10 @@
 
     <!-- Siblings -->
     <b-breadcrumb-item class="vf-breadcrumb-item-siblings">
+      <label
+        class="sr-only"
+        for="select-sibling"
+      >Sibling</label>
       <Siblings :siblings="concept.siblings"/>
     </b-breadcrumb-item>
 
@@ -17,6 +21,10 @@
       v-if="concept.children.length !== 0"
       class="vf-breadcrumb-item-children"
     >
+      <label
+        class="sr-only"
+        for="select-child"
+      >Child</label>
       <Children :children="concept.children"/>
     </b-breadcrumb-item>
   </b-breadcrumb>
