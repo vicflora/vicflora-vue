@@ -16,7 +16,7 @@
 
 <template>
   <BRow>
-    <b-col cols="12"><h4 class="vf-filter-group-label">{{ filterGroup.label }}</h4></b-col>
+    <b-col cols="12"><h2 class="vf-filter-group-label">{{ filterGroup.label }}</h2></b-col>
     <b-col cols="4">
       <SearchFilterConfigField 
         v-for="field in leftColFields"
@@ -85,7 +85,7 @@ export default {
 
 <style lang="scss">
 .vf-filter-group-label {
-  font-size: x-large;
+  font-size: 1.2rem;
   margin-top: 1.2rem;
   margin-bottom: 0.5rem;
 }

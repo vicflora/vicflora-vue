@@ -1,7 +1,7 @@
 export const FILTER_GROUPS = [
   {
-    "name": "status",
-    "label": "Status"
+    "name": "attributes",
+    "label": "Attributes"
   },
   {
     "name": "threat_status",
@@ -16,8 +16,8 @@ export const FILTER_GROUPS = [
     "label": "Geography"
   },
   {
-    "name": "admin",
-    "label": "Admin"
+    "name": "miscellaneous",
+    "label": "Miscellaneous"
   },
 ]
 
@@ -25,37 +25,37 @@ export const FILTER_FIELDS = [
   {
     "name": "name_type",
     "label": "Name type",
-    "group": "status"
+    "group": "attributes"
   },
   {
     "name": "taxonomic_status",
     "label": "Taxonomic status",
-    "group": "status"
+    "group": "attributes"
   },
   {
     "name": "occurrence_status",
     "label": "Occurrence status",
-    "group": "status"
+    "group": "attributes"
   },
   {
     "name": "endemic",
     "label": "Endemic",
-    "group": "status"
+    "group": "attributes"
   },
   {
     "name": "establishment_means",
     "label": "Establishment means",
-    "group": "status"
+    "group": "attributes"
   },
   {
     "name": "has_introduced_occurrences",
     "label": "Has introduced occurrences",
-    "group": "status"
+    "group": "attributes"
   },
   {
     "name": "degree_of_establishment",
     "label": "Degree of establishment",
-    "group": "status"
+    "group": "attributes"
   },
   {
     "name": "ffg",
@@ -125,7 +125,7 @@ export const FILTER_FIELDS = [
   {
     "name": "media",
     "label": "Media",
-    "group": "admin"
+    "group": "miscellaneous"
   }
 ]
 

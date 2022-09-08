@@ -28,6 +28,7 @@
       id="filter-config-modal" 
       class="vf-filter-config-modal"
       title="Configure filters"
+      title-tag="h1"
       size="lg"
       @ok="onOk"
     >
@@ -76,5 +77,9 @@ export default {
 
 .vf-filter-config-modal {
   font-size: 14px;
+
+  .modal-header h1 {
+    font-size: 1.5rem;
+  }
 }
 </style>
