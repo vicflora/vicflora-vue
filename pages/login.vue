@@ -57,13 +57,14 @@
               </b-form-group>
 
               <b-button type="submit" variant="primary">Submit</b-button>
+              &emsp;<nuxt-link to="/password/reset">Forgot passsword</nuxt-link>
             </b-form>
           </b-card-body>
         </b-card>
       </b-col>
     </b-row>
   </div>
-</template></template>
+</template>
 
 <script>
 import gql from "graphql-tag"
@@ -122,10 +123,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-#login-form {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-</style>
