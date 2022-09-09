@@ -24,6 +24,12 @@
     @show="onShow"
     @ok="onOk"
   >
+    <div 
+      v-if="alert"
+      class="alert alert-danger"
+    >
+      {{ alert }}
+    </div>
     <div class="taxon-name-form">
       <TaxonNameFormGenerator 
         :schema="schema"
@@ -158,6 +164,7 @@ export default {
       taxonName: {},
       parentName: {},
       okDisabled: true,
+      alert: null,
     }
   },
   apollo: {
@@ -316,6 +323,8 @@ export default {
         $nuxt.$emit('taxon-name-updated', 
             data.updateTaxonName || data.createTaxonName)
         this.$bvModal.hide(this.id)
+      }).catch(error => {
+        this.alert = error
       })
     }
   }
