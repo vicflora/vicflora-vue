@@ -120,6 +120,12 @@ const taxonEditFormQuery = gql`query taxonEditFormQuery($id: ID!) {
   }
 }`
 
+const updateSolrIndexMutation = gql`mutation UpdateSolrIndexMutation($id: ID!) {
+	updateSolrIndex(id: $id) {
+    id
+  }
+}`
+
 export default {
   name: "EditTaxon",
   components: { 
@@ -164,6 +170,18 @@ export default {
 
     this.$nuxt.$on('taxon-reference-added', () => {
       this.$apollo.queries.taxonConcept.refetch()
+    })
+  },
+  beforeDestroy() {
+    this.$apollo.mutate({
+      mutation: updateSolrIndexMutation,
+      variables: {
+        id: this.$route.params.id,
+      },
+    }).then(({data}) => {
+      console.log('SOLR index updated: ' + data.updateSolrIndex.id)
+    }).catch(error => {
+      console.log(error)
     })
   },
 }
