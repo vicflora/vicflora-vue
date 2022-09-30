@@ -51,5 +51,17 @@ export default {
             cultivation, with individuals surviving a significant distance from
             the original point of The population is maintained by reproduction
             and is spreading.`
+    },
+    "INVASIVE": {
+        'label': 'Invasive',
+        'description': `Self-sustaining population outside of captivity or 
+            cultivation, with individuals surviving and reproducing a 
+            significant distance from the original point of introduction.`
+    },
+    "WIDESPREAD_INVASIVE": {
+        'label': 'Widespread invasive',
+        'description': `Fully invasive species, with individuals dispersing, 
+            surviving and reproducing at multiple sites across a spectrum of 
+            habitats and geographic range.`
     }
 }
