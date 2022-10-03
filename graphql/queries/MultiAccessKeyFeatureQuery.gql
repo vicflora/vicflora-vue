@@ -1,0 +1,34 @@
+query MultiAccessKeyFeatureQuery($id: ID!) {
+  multiAccessKeyFeature(id: $id) {
+    id
+    type
+    featureType
+    name
+    description
+    key {
+      id
+      title
+    }
+    states {
+      id
+      name
+      description
+      images {
+        id
+        previewUrl
+        thumbnailUrl
+        w: pixelXDimension
+        h: pixelYDimension
+        caption
+        assetCreationDate
+        creator
+        license
+        copyrightOwner
+        subtype
+      }
+    }
+    unit {
+      name
+    }
+  }
+}

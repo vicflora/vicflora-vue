@@ -1,0 +1,27 @@
+query MultiAccessKeyQuery($id: ID!) {
+  multiAccessKey(id: $id) {
+    id
+    title
+    description
+    featureGroups {
+      id
+      type
+      name
+      description
+      children {
+        id
+      }
+    }
+    features {
+      id
+      type
+      name
+      description
+      states {
+        id
+        name
+        description
+      }
+    }
+  }
+}

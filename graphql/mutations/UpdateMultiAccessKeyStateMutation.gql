@@ -1,0 +1,15 @@
+mutation UpdateMultiAccessKeyStateMutation($input: UpdateMultiAccessKeyStateInput!) {
+  updateMultiAccessKeyState(input: $input) {
+    id
+    name
+    description
+    feature {
+      id
+      name
+      key {
+        id
+        title
+      }
+    }
+  }
+}

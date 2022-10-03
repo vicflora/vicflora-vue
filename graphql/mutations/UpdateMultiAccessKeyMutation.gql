@@ -1,0 +1,8 @@
+mutation UpdateMultiAccessKeyMutation($input: UpdateMultiAccessKeyInput!) {
+  updateMultiAccessKey(input: $input) {
+    id
+    title
+    location
+    description
+  } 
+}
