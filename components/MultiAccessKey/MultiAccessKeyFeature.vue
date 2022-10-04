@@ -28,6 +28,12 @@
       </nuxt-link>
     </div>
     <h1>{{ feature.name }}</h1>
+    <div class="select-feature">
+      <multi-access-key-feature-select
+        :keyId="feature.key.id"
+        :featureId="feature.id"
+      />
+    </div>
     <p><b>Type:</b> {{ FeatureTypeEnum[feature.featureType].label }}</p>
     <p v-if="feature.featureType === 'numeric' && feature.unit">
       <b>Unit:</b> {{ feature.unit.name }}
@@ -57,6 +63,8 @@
 <script>
 import FeatureTypeEnum from "~/graphql/enums/FeatureTypeEnum"
 
+const MultiAccessKeyFeatureSelect = () => 
+    import('@/components/MultiAccessKey/MultiAccessKeyFeatureSelect.vue')
 const MultiAccessKeyFeatureStates = () => 
     import('@/components/MultiAccessKey/MultiAccessKeyFeatureStates')
 const PhotoSwipeElement = () => 
@@ -67,6 +75,7 @@ const MultiAccessKeyEditFeatureModal = () =>
 export default {
   name: 'MultiAccessKeyFeature',
   components: {
+    MultiAccessKeyFeatureSelect,
     MultiAccessKeyFeatureStates,
     PhotoSwipeElement,
     MultiAccessKeyEditFeatureModal,
@@ -147,3 +156,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.select-feature {
+  margin-bottom: 1rem;
+}
+</style>

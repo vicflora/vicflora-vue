@@ -16,6 +16,11 @@
 
 <template>
   <li class="feature-list-item">
+    <span 
+      class="badge badge-light badge-feature-type"
+      :title="FeatureTypeEnum[feature.featureType].label">
+      {{ feature.featureType.charAt(0) }}
+    </span>
     <nuxt-link :to="{
       name: 'multi-access-keys-features-id',
       params: {
@@ -23,11 +28,13 @@
       }
     }">
       {{ feature.name }}
-    </nuxt-link>
+    </nuxt-link> 
   </li>
 </template>
 
 <script>
+import FeatureTypeEnum from "~/graphql/enums/FeatureTypeEnum"
+
 export default {
   name: 'MultiAccessKeyFeatureListItem',
   props: {
@@ -35,6 +42,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      FeatureTypeEnum
+    }
   }
 }
 </script>

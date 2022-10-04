@@ -17,11 +17,18 @@
 <template>
   <div>
     <h2>Features</h2>
-    <ul v-if="groups">
-      <li v-for="group in groups" :key="group.id">
-        <!-- <nuxt-link :to="`/multi-access-keys/features/${group.id}`"> -->
+    <ul 
+      v-if="groups"
+      class="feature-list"
+    >
+      <li 
+        v-for="group in groups" 
+        :key="group.id"
+        class="feature-list-group"
+      >
+        <span class="feature-list-group-label">
           {{ group.name }}
-        <!-- </nuxt-link> -->
+        </span>
         <ul>
           <multi-access-key-feature-list-item
             v-for="feature in group.children"
