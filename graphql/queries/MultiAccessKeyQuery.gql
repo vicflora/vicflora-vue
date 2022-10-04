@@ -10,11 +10,13 @@ query MultiAccessKeyQuery($id: ID!) {
       description
       children {
         id
+        name
       }
     }
     features {
       id
       type
+      featureType
       name
       description
       states {
