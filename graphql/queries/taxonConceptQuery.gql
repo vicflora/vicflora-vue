@@ -27,6 +27,7 @@ query taxonConceptQuery($id: ID!) {
       quickRef
       referenceStringHtml
     }
+    publicationStatus
     acceptedConcept {
       ...taxonConceptFields
     }
