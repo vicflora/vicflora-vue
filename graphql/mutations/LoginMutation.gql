@@ -1,0 +1,22 @@
+mutation LoginMutation ($username: String!, $password: String!) {
+  login(input: {
+    username: $username,
+    password: $password
+  }) {
+    access_token
+    refresh_token
+    expires_in
+    token_type
+    user {
+      id
+      email
+      name
+      agent {
+        id
+      }
+      preferences {
+        defaultPublicationStatus
+      }
+    }
+  }
+}
