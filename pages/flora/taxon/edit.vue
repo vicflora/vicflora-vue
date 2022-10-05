@@ -43,82 +43,13 @@
 </router>
 
 <script>
+import gql from "graphql-tag"
+import TaxonEditFormQuery from '@/graphql/queries/TaxonEditFormQuery'
+
 const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
 const TaxonName = () => import('@/components/Taxon/TaxonName')
 const TaxonTabsEdit = () => import('@/components/Taxon/TaxonTabsEdit.vue')
 
-import gql from "graphql-tag"
-const taxonEditFormQuery = gql`query taxonEditFormQuery($id: ID!) {
-  taxonConcept(id: $id) {
-    id
-    taxonName {
-      id
-      fullName
-      authorship
-    }
-    taxonRank
-    taxonomicStatus
-    occurrenceStatus
-    endemic
-    establishmentMeans
-    hasIntroducedOccurrences
-    degreeOfEstablishment
-    taxonTreeDefItem {
-      id
-      name
-      rankId
-    }
-    parent {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
-    }
-    acceptedConcept {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
-    }
-    remarks
-    changes {
-      id
-      to {
-        id
-        taxonName {
-          id
-          fullName
-          authorship
-        }
-      }
-      changeType
-      changeSource {
-        quickRef
-      }
-      createdBy {
-        name
-      }
-      createdAt
-    }
-    vernacularNames {
-      id
-      name
-      isPreferred
-      nameUsage
-    },
-    references {
-      id
-      reference {
-        id
-        referenceStringHtml
-      }
-    }
-  }
-}`
 
 const updateSolrIndexMutation = gql`mutation UpdateSolrIndexMutation($id: ID!) {
 	updateSolrIndex(id: $id) {
@@ -140,7 +71,7 @@ export default {
   },
   apollo: {
     taxonConcept: {
-      query: taxonEditFormQuery,
+      query: TaxonEditFormQuery,
       result({ data, loading }) {
         if (!loading) {
           $nuxt.$emit('progress-bar-stop')

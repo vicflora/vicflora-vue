@@ -1,0 +1,72 @@
+query TaxonEditFormQuery($id: ID!) {
+  taxonConcept(id: $id) {
+    id
+    publicationStatus
+    taxonName {
+      id
+      fullName
+      authorship
+    }
+    taxonRank
+    taxonomicStatus
+    occurrenceStatus
+    endemic
+    establishmentMeans
+    hasIntroducedOccurrences
+    degreeOfEstablishment
+    taxonTreeDefItem {
+      id
+      name
+      rankId
+    }
+    parent {
+      id
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    acceptedConcept {
+      id
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    remarks
+    changes {
+      id
+      to {
+        id
+        taxonName {
+          id
+          fullName
+          authorship
+        }
+      }
+      changeType
+      changeSource {
+        quickRef
+      }
+      createdBy {
+        name
+      }
+      createdAt
+    }
+    vernacularNames {
+      id
+      name
+      isPreferred
+      nameUsage
+    },
+    references {
+      id
+      reference {
+        id
+        referenceStringHtml
+      }
+    }
+  }
+}

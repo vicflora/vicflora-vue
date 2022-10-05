@@ -26,7 +26,8 @@ export class TaxonConcept {
     this.establishmentMeans = data.establishmentMeans
     this.hasIntroducedOccurrences = data.hasIntroducedOccurrences
     this.degreeOfEstablishment = data.degreeOfEstablishment
-    this.remarks = this.remarks
+    this.remarks = data.remarks
+    this.publicationStatus = data.publicationStatus
 
     this.taxonName = new TaxonName(data.taxonName || {})
     this.accordingTo = data.accordingTo ? new Reference(data.accordingTo) : null
@@ -45,7 +46,8 @@ export class UpdateTaxonConceptInput {
     this.establishmentMeans = data.establishmentMeans
     this.hasIntroducedOccurrences = data.hasIntroducedOccurrences
     this.degreeOfEstablishment = data.degreeOfEstablishment
-    this.remarks = this.remarks
+    this.remarks = data.remarks
+    this.publicationStatus = data.publicationStatus
 
     this.taxonName = {
       connect: data.taxonName.id
@@ -79,7 +81,8 @@ export class CreateTaxonConceptInput {
     this.establishmentMeans = data.establishmentMeans
     this.hasIntroducedOccurrences = data.hasIntroducedOccurrences
     this.degreeOfEstablishment = data.degreeOfEstablishment
-    this.remarks = this.remarks
+    this.remarks = data.remarks
+    this.publicationStatus = data.publicationStatus
 
     this.taxonName = {
       connect: data.taxonName.id
