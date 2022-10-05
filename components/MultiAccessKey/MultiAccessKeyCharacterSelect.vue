@@ -27,13 +27,13 @@
 import MultiAccessKeyQuery from '@/graphql/queries/MultiAccessKeyQuery'
 
 export default {
-  name: 'MultiAccessKeyFeatureSelect',
+  name: 'MultiAccessKeyCharacterSelect',
   props: {
     keyId: {
       type: String,
       required: true,
     },
-    featureId: {
+    characterId: {
       type: String,
       required: true
     },
@@ -66,13 +66,13 @@ export default {
       this.$apollo.queries.multiAccessKey.skip = false
   },
   mounted() {
-    this.selected = this.featureId
+    this.selected = this.characterId
   },
   methods: {
     createOptions() {
       let options = []
-      if (this.multiAccessKey.featureGroups.length) {
-        options = this.multiAccessKey.featureGroups.map(group => {
+      if (this.multiAccessKey.characterGroups.length) {
+        options = this.multiAccessKey.characterGroups.map(group => {
           return {
             label: group.name,
             options: group.children.map(child => {
@@ -85,10 +85,10 @@ export default {
         })
       }
       else {
-        options = this.multiAccessKey.features.map(feature => {
+        options = this.multiAccessKey.characters.map(character => {
           return {
-            value: feature.id,
-            text: feature.name
+            value: character.id,
+            text: character.name
           }
         })
       }
@@ -96,7 +96,7 @@ export default {
     },
     onChange() {
       this.$router.push({
-        name: 'multi-access-keys-features-id',
+        name: 'multi-access-keys-characters-id',
         params: {
           id: this.selected
         }

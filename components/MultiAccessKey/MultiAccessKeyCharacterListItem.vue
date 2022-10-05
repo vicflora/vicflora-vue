@@ -15,32 +15,38 @@
 -->
 
 <template>
-  <div>
-    <h2>States</h2>
-    <div>
-      <multi-access-key-feature-state 
-        v-for="state in states" 
-        :key="state.id"
-        :state="state"
-      />
-    </div>
-  </div>
+  <li class="character-list-item">
+    <span 
+      class="badge badge-light badge-character-type"
+      :title="CharacterTypeEnum[character.characterType].label">
+      {{ character.characterType.charAt(0) }}
+    </span>
+    <nuxt-link :to="{
+      name: 'multi-access-keys-characters-id',
+      params: {
+        id: character.id
+      }
+    }">
+      {{ character.name }}
+    </nuxt-link> 
+  </li>
 </template>
 
 <script>
-const MultiAccessKeyFeatureState = 
-    () => import('@/components/MultiAccessKey/MultiAccessKeyFeatureState')
+import CharacterTypeEnum from "~/graphql/enums/CharacterTypeEnum"
 
 export default {
-  name: 'MultiAccessKeyFeatureStates',
-  components: {
-    MultiAccessKeyFeatureState,
-  },
+  name: 'MultiAccessKeyCharacterListItem',
   props: {
-    states: {
-      type: Array,
+    character: {
+      type: Object,
       required: true,
     },
   },
+  data() {
+    return {
+      CharacterTypeEnum
+    }
+  }
 }
 </script>

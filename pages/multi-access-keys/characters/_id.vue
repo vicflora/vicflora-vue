@@ -20,9 +20,9 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <multi-access-key-feature
-           v-if="multiAccessKeyFeature"
-           :feature="multiAccessKeyFeature"
+          <multi-access-key-character
+           v-if="multiAccessKeyCharacter"
+           :character="multiAccessKeyCharacter"
           />
         </div>
       </div>
@@ -31,27 +31,27 @@
 </template>
 
 <script>
-import MultiAccessKeyFeatureQuery from '@/graphql/queries/MultiAccessKeyFeatureQuery'
+import MultiAccessKeyCharacterQuery from '@/graphql/queries/MultiAccessKeyCharacterQuery'
 
-const MultiAccessKeyFeature = () => import('@/components/MultiAccessKey/MultiAccessKeyFeature')
+const MultiAccessKeyCharacter = () => import('@/components/MultiAccessKey/MultiAccessKeyCharacter')
 
 export default {
-  name: 'MultiAccessKeyFeaturePage',
+  name: 'MultiAccessKeyCharacterPage',
   components: {
-    MultiAccessKeyFeature
+    MultiAccessKeyCharacter
   },
   data() {
     return {
-      multiAccessKeyFeature: null,
+      multiAccessKeyCharacter: null,
       error: null,
     }
   },
   apollo: {
-    multiAccessKeyFeature: {
-      query: MultiAccessKeyFeatureQuery,
+    multiAccessKeyCharacter: {
+      query: MultiAccessKeyCharacterQuery,
       result({ data, loading }) {
         if (!loading) {
-          this.multiAccessKeyFeature = data.multiAccessKeyFeature
+          this.multiAccessKeyCharacter = data.multiAccessKeyCharacter
         }
       },
       error(error) {
@@ -70,9 +70,9 @@ export default {
     })
   },
   created() {
-    this.$apollo.queries.multiAccessKeyFeature
+    this.$apollo.queries.multiAccessKeyCharacter
         .setVariables({id: this.$route.params.id})
-    this.$apollo.queries.multiAccessKeyFeature.skip = false
+    this.$apollo.queries.multiAccessKeyCharacter.skip = false
   }
 }
 </script>

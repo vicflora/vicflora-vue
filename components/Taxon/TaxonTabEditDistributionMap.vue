@@ -114,7 +114,7 @@ export default {
       const L = this.$L
       const map = this.$refs.map.mapObject
 
-      const drawnFeatures = new L.FeatureGroup().addTo(map)
+      const drawnCharacters = new L.CharacterGroup().addTo(map)
 
       const shapeOptions = {
         polylineID: false,
@@ -158,7 +158,7 @@ export default {
           circlemarker: false,
         },
         edit: {
-          featureGroup: drawnFeatures,
+          featureGroup: drawnCharacters,
           remove: true,
         },
       })
@@ -200,7 +200,7 @@ export default {
           layer.bindPopup(content)
         }
         layer.addTo(map)
-        drawnFeatures.addLayer(layer)
+        drawnCharacters.addLayer(layer)
         layer.openPopup()
       })
 

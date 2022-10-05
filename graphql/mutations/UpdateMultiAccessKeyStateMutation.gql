@@ -3,7 +3,7 @@ mutation UpdateMultiAccessKeyStateMutation($input: UpdateMultiAccessKeyStateInpu
     id
     name
     description
-    feature {
+    character {
       id
       name
       key {

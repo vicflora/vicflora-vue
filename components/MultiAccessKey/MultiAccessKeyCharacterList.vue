@@ -16,46 +16,49 @@
 
 <template>
   <div>
-    <h2>Features</h2>
+    <h2>Characters</h2>
     <ul 
       v-if="groups"
-      class="feature-list"
+      class="character-list"
     >
       <li 
         v-for="group in groups" 
         :key="group.id"
-        class="feature-list-group"
+        class="character-list-group"
       >
-        <span class="feature-list-group-label">
+        <span class="character-list-group-label">
           {{ group.name }}
         </span>
         <ul>
-          <multi-access-key-feature-list-item
-            v-for="feature in group.children"
-            :key="feature.id"  
-            :feature="feature"
+          <multi-access-key-character-list-item
+            v-for="character in group.children"
+            :key="character.id"  
+            :character="character"
           />
         </ul>
       </li>
     </ul>
-    <ul v-else>
-      <multi-access-key-feature-list-item
-        v-for="feature in multiAccessKey.features"
-        :key="feature.id"  
-        :feature="feature"
+    <ul 
+      v-else
+      class="character-list"
+    >
+      <multi-access-key-character-list-item
+        v-for="character in multiAccessKey.characters"
+        :key="character.id"  
+        :character="character"
       />
     </ul>
   </div>
 </template>
 
 <script>
-const MultiAccessKeyFeatureListItem = () => 
-    import('@/components/MultiAccessKey/MultiAccessKeyFeatureListItem')
+const MultiAccessKeyCharacterListItem = () => 
+    import('@/components/MultiAccessKey/MultiAccessKeyCharacterListItem')
 
 export default {
-  name: 'MultiAccessKeyFeatureList',
+  name: 'MultiAccessKeyCharacterList',
   components: {
-    MultiAccessKeyFeatureListItem,
+    MultiAccessKeyCharacterListItem,
   },
   props: {
     multiAccessKey: {
@@ -65,13 +68,13 @@ export default {
   },
   computed: {
     groups() {
-      if (this.multiAccessKey.featureGroups.length) {
+      if (this.multiAccessKey.characterGroups.length) {
         const groups = []
-        this.multiAccessKey.featureGroups.forEach(item => {
+        this.multiAccessKey.characterGroups.forEach(item => {
           const group = item
           group.children = item.children.map(child => {
-            return this.multiAccessKey.features.filter(feature => {
-              return feature.id === child.id
+            return this.multiAccessKey.characters.filter(character => {
+              return character.id === child.id
             })[0]
           })
           groups.push(group)

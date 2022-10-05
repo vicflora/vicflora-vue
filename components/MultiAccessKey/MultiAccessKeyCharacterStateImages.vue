@@ -37,7 +37,7 @@ const TaxonTabImagesThumbnail =
     () => import("@/components/Taxon/TaxonTabImagesThumbnail")
 
 export default {
-  name: 'MultiAccessKeyFeatureStateImages',
+  name: 'MultiAccessKeyCharacterStateImages',
   components: {
     TaxonTabImagesThumbnail,
   },

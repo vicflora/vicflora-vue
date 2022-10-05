@@ -24,7 +24,7 @@
       v-html="state.description"
     ></div>
 
-    <multi-access-key-feature-state-images
+    <multi-access-key-character-state-images
       v-if="state.images.length > 0"
       :images="state.images"
     />
@@ -39,15 +39,15 @@
 </template>
 
 <script>
-const MultiAccessKeyFeatureStateImages = 
-    () => import('@/components/MultiAccessKey/MultiAccessKeyFeatureStateImages')
+const MultiAccessKeyCharacterStateImages = 
+    () => import('@/components/MultiAccessKey/MultiAccessKeyCharacterStateImages')
 const MultiAccessKeyEditStateModal =
     () => import('@/components/MultiAccessKey/MultiAccessKeyEditStateModal')
 
 export default {
-  name: 'MultiAccessKeyFeatureState',
+  name: 'MultiAccessKeyCharacterState',
   components: {
-    MultiAccessKeyFeatureStateImages,
+    MultiAccessKeyCharacterStateImages,
     MultiAccessKeyEditStateModal,
   },
   props: {

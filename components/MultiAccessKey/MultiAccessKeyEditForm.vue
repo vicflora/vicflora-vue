@@ -45,15 +45,15 @@
     </b-form-group>
 
     <b-form-group
-      v-if="form.featureType !== undefined"
-      label="Feature type:"
-      label-for="select-feature-type"
+      v-if="form.characterType !== undefined"
+      label="Character type:"
+      label-for="select-character-type"
     >
       <b-form-select
-        id="select-feature-type"
-        v-model="form.featureType"
-        :options="featureTypeOptions"
-        placeholder="Enter feature type"
+        id="select-character-type"
+        v-model="form.characterType"
+        :options="characterTypeOptions"
+        placeholder="Enter character type"
         required
       ></b-form-select>
     </b-form-group>
@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import FeatureTypeEnum from "~/graphql/enums/FeatureTypeEnum"
+import CharacterTypeEnum from "~/graphql/enums/CharacterTypeEnum"
 
 export default {
   name: 'MultiAccessKeyEditForm',
@@ -103,12 +103,12 @@ export default {
     }
   },
   computed: {
-    featureTypeOptions() {
-      if (this.form.featureType !== undefined) {
-        return Object.keys(FeatureTypeEnum).map(item => {
+    characterTypeOptions() {
+      if (this.form.characterType !== undefined) {
+        return Object.keys(CharacterTypeEnum).map(item => {
           return {
             value: item,
-            text: FeatureTypeEnum[item].label
+            text: CharacterTypeEnum[item].label
           }
         })
       }

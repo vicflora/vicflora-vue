@@ -20,38 +20,38 @@
       <nuxt-link :to="{
           name: 'multi-access-keys-id',
           params: {
-            id: feature.key.id
+            id: character.key.id
           }
         }"
       >
-        {{ feature.key.title }}
+        {{ character.key.title }}
       </nuxt-link>
     </div>
-    <h1>{{ feature.name }}</h1>
-    <div class="select-feature">
-      <multi-access-key-feature-select
-        :keyId="feature.key.id"
-        :featureId="feature.id"
+    <h1>{{ character.name }}</h1>
+    <div class="select-character">
+      <multi-access-key-character-select
+        :keyId="character.key.id"
+        :characterId="character.id"
       />
     </div>
-    <p><b>Type:</b> {{ FeatureTypeEnum[feature.featureType].label }}</p>
-    <p v-if="feature.featureType === 'numeric' && feature.unit">
-      <b>Unit:</b> {{ feature.unit.name }}
+    <p><b>Type:</b> {{ CharacterTypeEnum[character.characterType].label }}</p>
+    <p v-if="character.characterType === 'numeric' && character.unit">
+      <b>Unit:</b> {{ character.unit.name }}
     </p>
     <div 
-      v-if="feature.description" 
-      v-html="feature.description"
+      v-if="character.description" 
+      v-html="character.description"
     ></div>
     <div class="text-right">
-      <multi-access-key-edit-feature-modal 
+      <multi-access-key-edit-character-modal 
         v-if="$store.getters['isLoggedIn']" 
-        :feature="feature"
+        :character="character"
       />
     </div>
 
-    <multi-access-key-feature-states
-      v-if="feature.states.length"
-      :states="feature.states"
+    <multi-access-key-character-states
+      v-if="character.states.length"
+      :states="character.states"
     />
     <PhotoSwipeElement
       ref="photoswipe2"
@@ -61,41 +61,41 @@
 </template>
 
 <script>
-import FeatureTypeEnum from "~/graphql/enums/FeatureTypeEnum"
+import CharacterTypeEnum from "~/graphql/enums/CharacterTypeEnum"
 
-const MultiAccessKeyFeatureSelect = () => 
-    import('@/components/MultiAccessKey/MultiAccessKeyFeatureSelect.vue')
-const MultiAccessKeyFeatureStates = () => 
-    import('@/components/MultiAccessKey/MultiAccessKeyFeatureStates')
+const MultiAccessKeyCharacterSelect = () => 
+    import('@/components/MultiAccessKey/MultiAccessKeyCharacterSelect.vue')
+const MultiAccessKeyCharacterStates = () => 
+    import('@/components/MultiAccessKey/MultiAccessKeyCharacterStates')
 const PhotoSwipeElement = () => 
     import("@/components/App/AppPhotoSwipeElement")
-const MultiAccessKeyEditFeatureModal = () => 
-    import('@/components/MultiAccessKey/MultiAccessKeyEditFeatureModal')
+const MultiAccessKeyEditCharacterModal = () => 
+    import('@/components/MultiAccessKey/MultiAccessKeyEditCharacterModal')
 
 export default {
-  name: 'MultiAccessKeyFeature',
+  name: 'MultiAccessKeyCharacter',
   components: {
-    MultiAccessKeyFeatureSelect,
-    MultiAccessKeyFeatureStates,
+    MultiAccessKeyCharacterSelect,
+    MultiAccessKeyCharacterStates,
     PhotoSwipeElement,
-    MultiAccessKeyEditFeatureModal,
+    MultiAccessKeyEditCharacterModal,
   },
   props: {
-    feature: {
+    character: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      FeatureTypeEnum
+      CharacterTypeEnum
     }
   },
   computed: {
     photoSwipeItems() {
-      if (this.feature.states.length) {
+      if (this.character.states.length) {
         const images = []
-        this.feature.states.forEach(state => {
+        this.character.states.forEach(state => {
           if (state.images.length > 0) {
             state.images.forEach(image => {
               images.push(image)
@@ -119,14 +119,14 @@ export default {
     })
   },
   mounted() {
-    if (this.feature.states.length) {
+    if (this.character.states.length) {
       let index = 0
       const images = []
-      this.feature.states.forEach(state => {
+      this.character.states.forEach(state => {
         if (state.images.length > 0) {
           state.images.forEach(image => {
             image.index = index++
-            image.caption = '<p style="font-weight:bold">' + this.feature.name + ': <span style="color: red">' + state.name + '</span></p>' + image.caption
+            image.caption = '<p style="font-weight:bold">' + this.character.name + ': <span style="color: red">' + state.name + '</span></p>' + image.caption
             images.push(image)
           })
         }
@@ -158,7 +158,7 @@ export default {
 </script>
 
 <style lang="scss">
-.select-feature {
+.select-character {
   margin-bottom: 1rem;
 }
 </style>

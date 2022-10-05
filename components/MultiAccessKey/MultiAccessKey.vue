@@ -31,23 +31,23 @@
       />
     </div>
 
-    <multi-access-key-feature-list
-      v-if="multiAccessKey.features.length"
+    <multi-access-key-character-list
+      v-if="multiAccessKey.characters.length"
       :multiAccessKey="multiAccessKey"
     />
   </div>
 </template>
 
 <script>
-const MultiAccessKeyFeatureList = () =>
-    import('@/components/MultiAccessKey/MultiAccessKeyFeatureList')
+const MultiAccessKeyCharacterList = () =>
+    import('@/components/MultiAccessKey/MultiAccessKeyCharacterList')
 const MultiAccessKeyEditKeyModal =
     () => import('@/components/MultiAccessKey/MultiAccessKeyEditKeyModal')
 
 export default {
   name: 'MultiAccessKey',
   components: {
-    MultiAccessKeyFeatureList,
+    MultiAccessKeyCharacterList,
     MultiAccessKeyEditKeyModal,
   },
   props: {

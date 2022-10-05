@@ -18,36 +18,36 @@
   <div>
     <b-button 
       variant="primary"
-      @click="$bvModal.show(`modal-feature-${feature.id}`)"
+      @click="$bvModal.show(`modal-character-${character.id}`)"
     >
       <font-awesome-icon icon="fa-solid fa-pen-to-square"/>
     </b-button>
 
     <b-modal 
-      :id="`modal-feature-${feature.id}`" 
-      title="Edit multi-access key feature"
+      :id="`modal-character-${character.id}`" 
+      title="Edit multi-access key character"
       :ok-disabled="okDisabled"
       @ok="handleOk"
     >
-      <multi-access-key-edit-form :form="feature"/>
+      <multi-access-key-edit-form :form="character"/>
     </b-modal>
   </div>
 </template>
 
 <script>
-import UpdateMultiAccessKeyFeatureMutation 
-    from '@/graphql/mutations/UpdateMultiAccessKeyFeatureMutation'
+import UpdateMultiAccessKeyCharacterMutation 
+    from '@/graphql/mutations/UpdateMultiAccessKeyCharacterMutation'
 
 const MultiAccessKeyEditForm = 
     () => import('@/components/MultiAccessKey/MultiAccessKeyEditForm')
 
 export default {
-  name: 'MultiAccessKeyEditFeatureModal',
+  name: 'MultiAccessKeyEditCharacterModal',
   components: {
     MultiAccessKeyEditForm,
   },
   props: {
-    feature: {
+    character: {
       type: Object,
       required: true,
     },
@@ -68,13 +68,13 @@ export default {
   methods: {
     handleOk() {
       this.$apollo.mutate({
-        mutation: UpdateMultiAccessKeyFeatureMutation,
+        mutation: UpdateMultiAccessKeyCharacterMutation,
         variables: {
           input: {
-            id: this.feature.id,
-            name: this.feature.name,
-            featureType: this.feature.featureType,
-            description: this.feature.description,
+            id: this.character.id,
+            name: this.character.name,
+            characterType: this.character.characterType,
+            description: this.character.description,
           },
         },
       }).then(({ data }) => {

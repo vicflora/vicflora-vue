@@ -3,7 +3,7 @@ query MultiAccessKeyQuery($id: ID!) {
     id
     title
     description
-    featureGroups {
+    characterGroups {
       id
       type
       name
@@ -13,10 +13,10 @@ query MultiAccessKeyQuery($id: ID!) {
         name
       }
     }
-    features {
+    characters {
       id
       type
-      featureType
+      characterType
       name
       description
       states {

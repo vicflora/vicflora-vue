@@ -1,8 +1,8 @@
-query MultiAccessKeyFeatureQuery($id: ID!) {
-  multiAccessKeyFeature(id: $id) {
+query MultiAccessKeyCharacterQuery($id: ID!) {
+  multiAccessKeyCharacter(id: $id) {
     id
     type
-    featureType
+    characterType
     name
     description
     key {

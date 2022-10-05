@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-.feature-list {
+.character-list {
   padding-left: 0;
 }
 
-.feature-list-group {
+.character-list-group {
   list-style-type: none;
   margin-top: 1rem;
 
-  .feature-list-group-label {
+  .character-list-group-label {
     font-size: 1.1rem;
   }
   
@@ -29,11 +29,11 @@
   }
 }
 
-.feature-list-item {
+.character-list-item {
   list-style-type: none;
 }
 
-.badge-feature-type {
+.badge-character-type {
   border: solid 1px #999;
   cursor: default;
 }
