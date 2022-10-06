@@ -126,7 +126,13 @@ export const FILTER_FIELDS = [
     "name": "media",
     "label": "Media",
     "group": "miscellaneous"
-  }
+  },
+  {
+    "name": "publication_status",
+    "label": "Publication status",
+    "group": "miscellaneous"
+  },
+
 ]
 
 export const DEFAULT_FACET_FIELDS = [
