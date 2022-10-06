@@ -7,8 +7,12 @@ export const state = () => ({
 export const getters = {
   isLoggedIn(state) {
     return state.token !== null
+  },
+  user(state) {
+    return state.user
   }
 }
+
   
 export const mutations = {
   storeToken (state, token) {
@@ -25,6 +29,9 @@ export const mutations = {
   },
   storeSearchParams (state, params) {
     state.lastSearch = params
+  },
+  setUserPreferences(state, preferences) {
+    state.user.preferences = preferences
   }
 }
   
@@ -41,6 +48,9 @@ export const actions = {
   },
   storeSearchParams (context, params) {
     context.commit('storeSearchParams', params)
-  }
+  },
+  updateUserPreferences (context, preferences) {
+    context.commit('setUserPreferences', preferences)
+  },
 }
   

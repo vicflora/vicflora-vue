@@ -192,6 +192,15 @@ export default [
     name: "remarks",
     label: "Comments",
     rows: 4,
-  }
+  },
+  {
+    fieldType: "SelectList",
+    name: "publicationStatus",
+    label: "Publication status",
+    options: [
+      { value: "DRAFT", label: "draft" },
+      { value: "PUBLISHED", label: "published" },
+    ],
+  },
 
 ]

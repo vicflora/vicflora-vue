@@ -38,79 +38,13 @@ import {
   CreateTaxonConceptInput 
 } from "@/models/TaxonConceptModel"
 import { formMethodsMixin } from "@/mixins/formMixins"
-import gql from "graphql-tag"
+import UpdateTaxonConceptMutation 
+    from '@/graphql/mutations/UpdateTaxonConceptMutation'
+import CreateTaxonConceptMutation 
+    from '@/graphql/mutations/CreateTaxonConceptMutation'
 
-const TaxonConceptFormGenerator = () => import('@/components/Forms/TaxonConceptFormGenerator')
-
-const UpdateTaxonConceptMutation = gql`mutation UpdateTaxonConceptMutation($input: UpdateTaxonConceptInput!) {
-  updateTaxonConcept(input: $input) {
-    id
-    taxonName {
-      id
-      fullName
-      authorship
-    }
-    taxonRank
-    taxonomicStatus
-    occurrenceStatus
-    endemic
-    establishmentMeans
-    hasIntroducedOccurrences
-    degreeOfEstablishment
-    parent {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
-    }
-    acceptedConcept {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
-    }
-    remarks
-  }
-}`
-
-const CreateTaxonConceptMutation = gql`mutation CreateTaxonConceptMutation($input: CreateTaxonConceptInput!) {
-  createTaxonConcept(input: $input) {
-    id
-    taxonName {
-      id
-      fullName
-      authorship
-    }
-    taxonRank
-    taxonomicStatus
-    occurrenceStatus
-    endemic
-    establishmentMeans
-    hasIntroducedOccurrences
-    degreeOfEstablishment
-    parent {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
-    }
-    acceptedConcept {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
-    }
-    remarks
-  }
-}`
+const TaxonConceptFormGenerator = () => 
+  import('@/components/Forms/TaxonConceptFormGenerator')
 
 export default {
   name: "TaxonConceptForm",
@@ -188,6 +122,12 @@ export default {
       const index = this.schema.map(element => element.name).indexOf('taxonName')
       this.schema[index].disabled = true
       this.schema[index].buttons = ['update']
+    }
+  },
+  mounted() {
+    if (this.id === 'taxon-concept-create') {
+      this.formData.publicationStatus = 
+          this.$store.getters.user.preferences.defaultPublicationStatus
     }
   },
   methods: {

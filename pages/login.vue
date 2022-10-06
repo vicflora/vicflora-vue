@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import gql from "graphql-tag"
+import LoginMutation from '@/graphql/mutations/LoginMutation'
 
 export default {
   name: 'Login',
@@ -84,25 +84,7 @@ export default {
     login() {
       this.$apollo.mutate({
         // Query
-        mutation: gql`mutation LoginMutation ($username: String!, $password: String!) {
-          login(input: {
-            username: $username,
-            password: $password
-          }) {
-            access_token
-            refresh_token
-            expires_in
-            token_type
-            user {
-              id
-              email
-              name
-              agent {
-                id
-              }
-            }
-          }
-        }`,
+        mutation: LoginMutation,
         variables: {
           username: this.form.username,
           password: this.form.password,

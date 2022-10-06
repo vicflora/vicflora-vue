@@ -58,10 +58,9 @@
               </b-form-group>
             </div>
 
-            <p class="text-right user-page-links">
-              <ChangePasswordModal />&emsp;
-              <RegisterUserModal />
-            </p>
+            <UserPreferencesModal />
+            <ChangePasswordModal />
+            <RegisterUserModal />
           </b-card-body>
         </b-card>
       </b-col>
@@ -70,12 +69,14 @@
 </template>
 
 <script>
+const UserPreferencesModal = () => import('@/components/Admin/UserPreferencesModal')
 const ChangePasswordModal = () => import('@/components/Admin/ChangePasswordModal')
 const RegisterUserModal = () => import('@/components/Admin/RegisterUserModal')
 
 export default {
   name: 'User',
   components: {
+    UserPreferencesModal,
     ChangePasswordModal,
     RegisterUserModal,
   },
@@ -113,6 +114,19 @@ export default {
       this.classes['alert-danger'] = true
       this.message = error
     })
+
+    this.$nuxt.$on('user-preferences-updated', message => {
+      this.classes['alert-success'] = true
+      this.classes['alert-danger'] = false
+      this.message = message
+    })
+
+    this.$nuxt.$on('user-registration-fail', error => {
+      this.classes['alert-success'] = false
+      this.classes['alert-danger'] = true
+      this.message = error
+    })
+
   }
 }
 </script>

@@ -1,0 +1,35 @@
+mutation CreateTaxonConceptMutation($input: CreateTaxonConceptInput!) {
+  createTaxonConcept(input: $input) {
+    id
+    taxonName {
+      id
+      fullName
+      authorship
+    }
+    taxonRank
+    taxonomicStatus
+    occurrenceStatus
+    endemic
+    establishmentMeans
+    hasIntroducedOccurrences
+    degreeOfEstablishment
+    parent {
+      id
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    acceptedConcept {
+      id
+      taxonName {
+        id
+        fullName
+        authorship
+      }
+    }
+    remarks
+    publicationStatus
+  }
+}

@@ -2,7 +2,7 @@
   <b-breadcrumb>
     <!-- higherClassification -->
     <Crumb
-      v-for="item in concept.higherClassification.slice(1)"
+      v-for="item in concept.higherClassification"
       :key="item.id"
       :taxonConcept="item"
     />

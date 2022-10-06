@@ -1,4 +1,4 @@
-mutation linkUserToAgentMutation ($input: LinkUserInput!) {
+mutation LinkUserToAgentMutation ($input: LinkUserInput!) {
   linkUserToAgent(input: $input) {
     id
     name
