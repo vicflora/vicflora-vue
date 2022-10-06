@@ -124,6 +124,12 @@ export default {
       this.schema[index].buttons = ['update']
     }
   },
+  mounted() {
+    if (this.id === 'taxon-concept-create') {
+      this.formData.publicationStatus = 
+          this.$store.getters.user.preferences.defaultPublicationStatus
+    }
+  },
   methods: {
     handleTaxonomicStatus(value) {
       if (value === 'ACCEPTED') {
