@@ -1,0 +1,9 @@
+mutation UpdateUserPreferencesMutation($input: UpdateUserPreferencesInput!) {
+  updateUserPreferences(input: $input) {
+    user {
+      id
+      email
+    }
+    defaultPublicationStatus
+  }
+}
