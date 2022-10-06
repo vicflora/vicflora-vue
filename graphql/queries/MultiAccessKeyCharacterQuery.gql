@@ -1,0 +1,34 @@
+query MultiAccessKeyCharacterQuery($id: ID!) {
+  multiAccessKeyCharacter(id: $id) {
+    id
+    type
+    characterType
+    name
+    description
+    key {
+      id
+      title
+    }
+    states {
+      id
+      name
+      description
+      images {
+        id
+        previewUrl
+        thumbnailUrl
+        w: pixelXDimension
+        h: pixelYDimension
+        caption
+        assetCreationDate
+        creator
+        license
+        copyrightOwner
+        subtype
+      }
+    }
+    unit {
+      name
+    }
+  }
+}
