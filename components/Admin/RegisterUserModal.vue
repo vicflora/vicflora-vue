@@ -35,76 +35,69 @@
         {{ error }}
       </div>
 
-        <b-form-group
-          id="input-group-1"
-          label="Name:"
-          label-for="input-1"
-        >
-          <b-form-input
-            id="input-1"
-            v-model="form.name"
-            type="text"
-            placeholder="Enter name"
-            required
-          ></b-form-input>
-        </b-form-group>
+      <b-form-group
+        id="input-group-1"
+        label="Name:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.name"
+          type="text"
+          placeholder="Enter name"
+          required
+        ></b-form-input>
+      </b-form-group>
 
-        <b-form-group
-          id="input-group-2"
-          label="Email address:"
-          label-for="input-2"
-        >
-          <b-form-input
-            id="input-2"
-            v-model="form.email"
-            type="email"
-            placeholder="Enter email"
-            required
-          ></b-form-input>
-        </b-form-group>
+      <b-form-group
+        id="input-group-2"
+        label="Email address:"
+        label-for="input-2"
+      >
+        <b-form-input
+          id="input-2"
+          v-model="form.email"
+          type="email"
+          placeholder="Enter email"
+          required
+        ></b-form-input>
+      </b-form-group>
 
-        <b-form-group 
-          id="input-group-3" 
-          label="Password:" 
-          label-for="input-3"
-        >
-          <b-form-input
-            id="input-3"
-            v-model="form.password"
-            placeholder="Enter password"
-            type="password"
-            required
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group 
-          id="input-group-4" 
-          label="Password:" 
-          label-for="input-4"
-        >
-          <b-form-input
-            id="input-4"
-            v-model="form.password_confirmation"
-            placeholder="Confirm password"
-            type="password"
-            required
-          ></b-form-input>
-        </b-form-group>
-
-        <!-- <template #modal-footer="{ cancel }">
-          <b-button @click="cancel()">
-            Cancel
-          </b-button>
-          <b-button variant="primary" @click="register()">
-            OK
-          </b-button>
-        </template> -->
+      <b-form-group 
+        id="input-group-3" 
+        label="Password:" 
+        label-for="input-3"
+      >
+        <b-form-input
+          id="input-3"
+          v-model="form.password"
+          placeholder="Enter password"
+          type="password"
+          required
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group 
+        id="input-group-4" 
+        label="Password:" 
+        label-for="input-4"
+      >
+        <b-form-input
+          id="input-4"
+          v-model="form.password_confirmation"
+          placeholder="Confirm password"
+          type="password"
+          required
+        ></b-form-input>
+      </b-form-group>
     </b-modal>
   </div>
 </template>
 
 <script>
-import registerMutation from '@/graphql/mutations/registerMutation'
-import linkUserToAgentMutation from '@/graphql/mutations/linkUserToAgentMutation'
+import RegisterMutation from '@/graphql/mutations/RegisterMutation'
+import LinkUserToAgentMutation from '@/graphql/mutations/LinkUserToAgentMutation'
+import CreateUserPreferencesMutation from '@/graphql/mutations/CreateUserPreferencesMutation'
+
 import { LinkToUserInput } from '@/models/AgentModel'
 
 export default {
@@ -123,7 +116,6 @@ export default {
   },
   methods: {
     onRegisterUserClicked() {
-      this.message = null
       this.form = {}
       this.$bvModal.show('register-user-modal')
     },
@@ -131,13 +123,14 @@ export default {
       bvModalEvent.preventDefault()
       console.log(JSON.stringify({input: this.form}, null, 2))
       this.$apollo.mutate({
-        mutation: registerMutation,
+        mutation: RegisterMutation,
         variables: {
           input: this.form
         }
       }).then(({ data }) => {
         this.linkUserToAgent(data.register.tokens.user)
         $nuxt.$emit('user-registered', 'Registration successful')
+        this.createUserPreferences(data.register.token.user)
         this.$bvModal.hide('register-user-modal')
       }).catch((error) => {
         this.error = error
@@ -146,12 +139,26 @@ export default {
     linkUserToAgent(user) {
       const input = new LinkToUserInput(user)
       this.$apollo.mutate({
-        mutation: linkUserToAgentMutation,
+        mutation: LinkUserToAgentMutation,
         variables: {
           input: input,
         },
       })
-    }
+    },
+    createUserPreferences(user) {
+      const input = {
+        user: {
+          connect: user.id
+        },
+        defaultPublicationStatus: 'PUBLISHED',
+      }
+      this.$apollo.mutate({
+        mutation: CreateUserPreferencesMutation,
+        variables: {
+          input: input,
+        },
+      })
+    },
   },
 }
 </script>

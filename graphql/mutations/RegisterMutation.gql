@@ -1,4 +1,4 @@
-mutation registerMutation ($input: RegisterInput!) {
+mutation RegisterMutation ($input: RegisterInput!) {
   register(input: $input) {
     status
     tokens {
