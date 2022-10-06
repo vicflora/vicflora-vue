@@ -28,21 +28,13 @@
 
 <script>
 import gql from "graphql-tag"
+import AuthenticatedUserQuery from '@/graphql/queries/AuthenticatedUserQuery'
 
 export default {
   name: 'TheLoginBar',
   apollo: {
     user: {
-      query: gql`query {
-        user:authenticatedUser {
-          id
-          name
-          email
-          agent {
-            id
-          }
-        }  
-      }`,
+      query: AuthenticatedUserQuery,
       skip: true,
       result({ data, loading }) {
         if (!loading) {

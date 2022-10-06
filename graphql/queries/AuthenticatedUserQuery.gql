@@ -1,0 +1,13 @@
+query {
+  user:authenticatedUser {
+    id
+    name
+    email
+    agent {
+      id
+    }
+    preferences {
+      defaultPublicationStatus
+    }
+  }  
+}
