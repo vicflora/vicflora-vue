@@ -3,7 +3,7 @@
     <header class="m-title">
       <h1>Static pages</h1>
     </header>
-    <div v-for="category in pagesByCategory" :key="category">
+    <div v-for="(category, index) in pagesByCategory" :key="index">
       <div v-if="category.pages.length">
         <h2>{{ category.category }}</h2>
         <ul>

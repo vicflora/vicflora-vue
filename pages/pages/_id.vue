@@ -29,6 +29,7 @@ const BioregionsImageMap = () => import("@/components/global/BioregionsImageMap"
 const MarkdownAlertComponent = () => import("@/components/global/MarkdownAlertComponent")
 const MarkdownButtonLinkComponent = () => import("@/components/global/MarkdownButtonLinkComponent")
 const MarkdownFigureComponent = () => import("@/components/global/MarkdownFigureComponent")
+const NaturalRegionMapImage = () => import("@/components/global/NaturalRegionMapImage")
 
 export default {
   name:"StaticContent",
@@ -41,6 +42,7 @@ export default {
     MarkdownAlertComponent,
     MarkdownButtonLinkComponent,
     MarkdownFigureComponent,
+    NaturalRegionMapImage,
   },
   async asyncData({ $content, params }) {
     const markdown = await $content(`pages/${params.id.toLowerCase()}`).fetch()
@@ -55,3 +57,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+#content {
+  h2, h3, h4, h5 {
+    clear: both;
+  }
+}
+</style>
