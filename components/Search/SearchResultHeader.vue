@@ -9,12 +9,7 @@
     </BCol>
 
     <BCol align-self="baseline">
-      <SearchResultNav
-          :activePage="activePage"
-          :lastPage="data.search.meta.pagination.lastPage"
-          @click.prevent
-          @pageChanged="onPageChange"
-      />
+      <SearchResultNav :pagination="data.search.meta.pagination"/>
     </BCol>
     
     <BCol cols="3" 
@@ -47,11 +42,5 @@ export default {
       required: true
     }
   },
-  methods: {
-    onPageChange(pageNum) {
-      this.activePage = pageNum
-      this.$emit("pageChanged", pageNum)
-    }
-  }
 }
 </script>

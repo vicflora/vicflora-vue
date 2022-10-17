@@ -46,10 +46,7 @@
         </BCol>
 
         <client-only>
-          <SearchResult
-            :data="data"
-            @pageChanged="onPageChange"
-          />
+          <SearchResult :data="data"/>
         </client-only>
 
       </BRow>
@@ -189,6 +186,20 @@ export default {
         $nuxt.$emit('selected-area-set', this.selectedArea)
       },
       deep: true,
+    },
+    '$route': {
+      deep: true,
+      immediate: true,
+      handler() {
+        this.input = {
+          q: this.$route.query.q ? this.$route.query.q : "*",
+          rows: 50,
+          fq: this.$route.query.fq ? this.$route.query.fq : [],
+          page: this.$route.query.page ? this.$route.query.page : 1,
+          facetLimit: 20,
+          facetField: [],
+        }
+      }
     },
     input: {
       deep: true,

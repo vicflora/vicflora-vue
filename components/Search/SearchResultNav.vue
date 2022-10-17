@@ -1,12 +1,9 @@
 <template>
   <div class="mt-0 search-result-nav" style="display:inline-block">
-    <BPaginationNav
-      :value="currentPage"
-      :no-page-detect="true"
-      :number-of-pages="numberOfPages"
-      :link-gen="linkGen"
-      :use-router="false"
-      style="align-items:center;"
+    <BPagination
+      v-model="pagination.currentPage"
+      :total-rows="pagination.total"
+      per-page="50"
       size="sm"
       first-number
       last-number
@@ -20,16 +17,11 @@ import { searchMixin } from "@/mixins/searchMixins"
 
 export default {
   name: "SearchResultNav",
-  mixins: [searchMixin],
   props: {
-    activePage: {
-      type: Number,
-      default: 1
+    pagination: {
+      type: Object,
+      required: true,
     },
-    lastPage: {
-      type: Number,
-      required: true
-    }
   },
   data: function() {
     return {
@@ -42,47 +34,26 @@ export default {
     }
   },
   watch: {
-    q: {
+    '$route': {
+      deep: true,
       immediate: true,
-      handler: function() {
-        if ("page" in this.$route.query && this.$route.query.page !== undefined) {
-          this.currentPage = this.$route.query.page
+      handler() {
+        if (this.$route.query.page) {
+          this.pagination.currentPage = this.$route.query.page
         }
-      }
-    },
-    fq: {
-      immediate: true,
-      handler: function() {
-        if ("page" in this.$route.query && this.$route.query.page !== undefined) {
-          this.currentPage = this.$route.query.page
-        }
-      }
-    },
-    activePage: {
-      immediate: true,
-      handler: function(newVal) {
-        this.currentPage = newVal
       }
     }
   },
-  mounted: function() {
-    if ("page" in this.$route.query && this.$route.query.page !== undefined) {
-      this.currentPage = this.$route.query.page
-    }
-  },
+  mounted: function() {},
   methods: {
-    linkGen: function(pageNum) {
-      return {
-        path: this.$route.path,
+    onChange: function(pageNum) {
+      this.$router.push({
+        name: this.$route.name,
         query: {
           ...this.$route.query,
-          page: pageNum
-        }
-      }
-    },
-    onChange: function(pageNum) {
-      this.currentPage = pageNum
-      this.$emit("pageChanged", pageNum)
+          page: pageNum,
+        },
+      })
     }
   }
 }

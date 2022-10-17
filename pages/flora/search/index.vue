@@ -33,7 +33,6 @@
       <client-only>
         <SearchResult
           :data="data"
-          @pageChanged="onPageChange"
         />
       </client-only>
 
@@ -95,6 +94,20 @@ export default {
     }
   },
   watch: {
+    '$route': {
+      deep: true,
+      immediate: true,
+      handler() {
+        this.input = {
+          q: this.$route.query.q ? this.$route.query.q : "*",
+          rows: 50,
+          fq: this.$route.query.fq ? this.$route.query.fq : [],
+          page: this.$route.query.page ? this.$route.query.page : 1,
+          facetLimit: 20,
+          facetField: [],
+        }
+      }
+    },
     input: {
       deep: true,
       handler: function() {
@@ -108,7 +121,6 @@ export default {
     },
   },
   created() {
-
     this.$apollo.queries.search.setVariables({
       input: {
         ...this.input,
@@ -136,14 +148,6 @@ export default {
     this.input.page = "page" in this.$route.query
         && this.$route.query.page !== undefined
         ? parseInt(this.$route.query.page) : 1
-  },
-  methods: {
-    onPageChange: function(pageNum) {
-      this.input = {
-        ...this.input,
-        page: parseInt(pageNum)
-      }
-    }
   },
 }
 </script>

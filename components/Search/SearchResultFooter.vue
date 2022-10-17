@@ -7,11 +7,7 @@
     />
 
     <BCol align-self="baseline">
-      <SearchResultNav
-          :activePage="activePage"
-          :lastPage="data.search.meta.pagination.lastPage"
-          @page-change="onPageChange"
-      />
+      <SearchResultNav :pagination="data.search.meta.pagination"/>
     </BCol>
 
     <BCol 
@@ -38,6 +34,6 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
 }
 </script>

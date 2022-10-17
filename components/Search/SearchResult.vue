@@ -1,14 +1,14 @@
 <template>
   <div class="vf-search-result col col-lg-8">
 
-    <SearchResultHeader :data="data" @pageChanged="onPageChange" />
+    <SearchResultHeader :data="data"/>
 
     <SearchResultItem 
       v-for="item in data.search.docs"
       :key="item.id"
       :item="item"
     />
-    <SearchResultFooter :data="data" @pageChanged="onPageChange" />
+    <SearchResultFooter :data="data"/>
   </div>
 </template>
 
@@ -46,11 +46,5 @@ export default {
         && this.$route.query.page !== undefined 
         ? parseInt(this.$route.query.page) : 1
   },
-  methods: {
-    onPageChange: function(pageNum) {
-      this.activePage = pageNum
-      this.$emit("pageChanged", pageNum)
-    }
-  }
 }
 </script>
