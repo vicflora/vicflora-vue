@@ -195,7 +195,7 @@ export default {
           q: this.$route.query.q ? this.$route.query.q : "*",
           rows: 50,
           fq: this.$route.query.fq ? this.$route.query.fq : [],
-          page: this.$route.query.page ? this.$route.query.page : 1,
+          page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
           facetLimit: 20,
           facetField: [],
         }
