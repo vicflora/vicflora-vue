@@ -101,7 +101,11 @@ export default {
         {
           name: "Bioregions",
           layers: "vicflora-mapper:bioregions",
-        }
+        },
+        {
+          name: "Registered Aboriginal Parties",
+          layers: "vicflora-mapper:raps",
+        },
       ],
       overlay: {
         name: "Parks and Reserves",

@@ -12,6 +12,9 @@ export const visibleLayerMixin = {
           case 'local_government_area':
             layer = 'Local Government Areas'
             break
+          case 'registered_aboriginal_party':
+            layer = 'Registered Aboriginal Parties'
+            break
           default:
             layer = 'Parks and Reserves'
         }
@@ -45,7 +48,11 @@ export const selectedAreaMixin = {
             baseUrl += `?cql_filter=name%3D%27${area}%27`
             layers += 'park_reserves'
             break
-          default:
+            case 'park_or_reserve':
+              baseUrl += `?cql_filter=rap_name%3D%27${area}%27`
+              layers += 'raps'
+              break
+            default:
             baseUrl = null
             layers = null
         }

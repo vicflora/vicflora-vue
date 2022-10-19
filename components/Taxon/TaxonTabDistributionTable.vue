@@ -64,6 +64,9 @@ export default {
         case 'Parks and Reserves':
           areaNameProperty = 'parkReserveName'
           break
+        case 'Registered Aboriginal Parties':
+          areaNameProperty = 'registeredAboriginalPartyName'
+          break
       }
       return areaNameProperty
     },
@@ -78,6 +81,9 @@ export default {
           break
         case 'Parks and Reserves':
           areaLabel = 'Park or Reserve name'
+          break
+        case 'Registered Aboriginal Parties':
+          areaLabel = 'Registered Aboriginal Party name'
           break
       }
       return areaLabel

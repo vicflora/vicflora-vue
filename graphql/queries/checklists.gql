@@ -19,4 +19,11 @@ query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
       label
     }
   }
+
+  registeredAboriginalParties: registeredAboriginalPartiesByPoint(latitude: $latitude, longitude: $longitude) {
+    properties {
+      name
+      label
+    }
+  }
 }

@@ -141,6 +141,9 @@ export default {
           if (this.layer == 'Parks and Reserves' && data.parksOrReserves.length) {
             q = `park_or_reserve:"${data.parksOrReserves[0].properties.name}"`
           }
+          if (this.layer == 'Registered Aboriginal Parties' && data.registeredAboriginalParties.length) {
+            q = `registered_aboriginal_party:"${data.registeredAboriginalParties[0].properties.name}"`
+          }
           this.$router.push({
             query: {
               ...this.$route.query,

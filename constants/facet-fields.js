@@ -123,6 +123,11 @@ export const FILTER_FIELDS = [
     "group": "spatial"
   },
   {
+    "name": "registered_aboriginal_party",
+    "label": "Registered Aboriginal Party",
+    "group": "spatial"
+  },
+  {
     "name": "media",
     "label": "Media",
     "group": "miscellaneous"
