@@ -19,7 +19,9 @@ query glossaryTermByNameQuery($name: String="abaxial") {
       id
       imageUrl
       rights
+      title
       caption
+      source
     }
   }
 }

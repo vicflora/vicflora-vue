@@ -16,18 +16,24 @@
 
 <template>
   <div>
-    <b-img
-      class="mt-3 m-img"
-      thumbnail
-      fluid
-      v-show="showImage"
-      @load="loadImage"
-      :src="image.imageUrl"
-      :data-src="image.imageUrl"
-      :alt="image.caption"
-    >
-    </b-img>
     <LoadingSpinner v-show="showImage === false" />
+    <figure>
+      <b-img
+        class="mt-3 m-img"
+        thumbnail
+        fluid
+        v-show="showImage"
+        @load="loadImage"
+        :src="image.imageUrl"
+        :data-src="image.imageUrl"
+        :alt="image.caption"
+      >
+      </b-img>
+      <figcaption 
+        v-show="showImage"
+        v-html="caption"
+      ></figcaption>
+    </figure>
   </div>
 </template>
 
@@ -48,6 +54,13 @@ export default {
   data() {
     return {
       showImage: false,
+    }
+  },
+  computed: {
+    caption() {
+      const title = this.image.title.substring(this.image.title.indexOf('fig.')).replace('fig.', 'Figure').trim()
+      return `<b>${title}</b> ${this.image.caption} Source: ${this.image.source} 
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>`
     }
   },
   methods: {
