@@ -71,6 +71,8 @@ export default {
       .range([height - margins.top - margins.bottom, 0])
 
     let yAxis = d3.axisLeft(yScale)
+      .tickValues(yScale.ticks().filter(tick => Number.isInteger(tick)))
+      .tickFormat(d3.format('d'))
 
     g.append('g')
       .attr('transform', 'translate(' + 0 + ',' + (height - margins.top - margins.bottom) + ')')
