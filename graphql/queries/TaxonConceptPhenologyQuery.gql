@@ -1,0 +1,9 @@
+query TaxonConceptPhenologyQuery($id: ID!){
+  taxonConceptPhenology(taxonConceptId: $id) {
+    month
+    total
+    buds
+    flowers
+    fruit
+  }
+}
