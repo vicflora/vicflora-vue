@@ -17,13 +17,16 @@
 <template>
   <div class="vf-taxon-tab-phenology">
     <div v-if="data">
-      <TaxonTabPhenologyChart 
+      <div
         v-for="subgroup in subgroups" 
         :key="subgroup"
-        :data="data"
-        :subgroup="subgroup"
-      />
-    
+      >
+        <TaxonTabPhenologyChart 
+          v-if="data.reduce((accumulator, object) => accumulator + object[subgroup], 0) > 0"
+          :data="data"
+          :subgroup="subgroup"
+        />
+      </div>
     </div>
     <TaxonTabPhenologyDataTable 
       v-if="data"
