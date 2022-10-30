@@ -58,7 +58,7 @@ export default {
         {
           name: 'Registered Aboriginal Parties',
           dataField: 'registeredAboriginalParties',
-          searchField: 'raps',
+          searchField: 'registered_aboriginal_party',
         },
       ],
     }

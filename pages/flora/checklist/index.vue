@@ -230,10 +230,12 @@ export default {
     })
 
     this.$nuxt.$on('map-clicked', latlng => {
-      this.$apollo.queries.pointData.setVariables({
+      const variables = {
         latitude: latlng.lat,
         longitude: latlng.lng
-      })
+      }
+      console.log(JSON.stringify(variables, null, 2))
+      this.$apollo.queries.pointData.setVariables(variables)
       this.$apollo.queries.pointData.skip = false
     })
 

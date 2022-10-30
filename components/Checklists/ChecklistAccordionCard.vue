@@ -78,7 +78,7 @@ export default {
       $nuxt.$emit('accordion-collapse-shown', this.layer.name)
     },
     onAreaClicked(areaName) {
-      $nuxt.$emit('accordion-area-clicked', layer.field, areaName)
+      $nuxt.$emit('accordion-area-clicked', this.layer.searchField, areaName)
     }
   }
 }
