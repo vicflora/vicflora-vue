@@ -48,11 +48,11 @@ export const selectedAreaMixin = {
             baseUrl += `?cql_filter=name%3D%27${area}%27`
             layers += 'park_reserves'
             break
-            case 'park_or_reserve':
-              baseUrl += `?cql_filter=rap_name%3D%27${area}%27`
+          case 'registered_aboriginal_party':
+              baseUrl += `?cql_filter=name%3D%27${area}%27`
               layers += 'raps'
               break
-            default:
+          default:
             baseUrl = null
             layers = null
         }
