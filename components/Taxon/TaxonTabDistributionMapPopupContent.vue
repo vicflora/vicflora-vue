@@ -1,10 +1,10 @@
 <template>
   <div class="vf-distribution-map-popup">
     <div v-if="occurrences[page].properties !== undefined">
-      <h5>{{occurrences[page].properties.acceptedNameUsage}}
+      <h5>{{taxonConcept.taxonName.fullName}}
       <span
         v-if="occurrences[page].properties.scientificName
-            != occurrences[page].properties.acceptedNameUsage"
+            != taxonConcept.taxonName.fullName"
         style="display: block;"
       >
         <small>
@@ -70,6 +70,10 @@ export default {
   name: 'TaxonTabDistributionMapPopupContent',
   mixins: [popupContentMixin],
   props: {
+    taxonConcept: {
+      type: Object,
+      required: true,
+    },
     occurrences: {
       type: Array,
       required: true

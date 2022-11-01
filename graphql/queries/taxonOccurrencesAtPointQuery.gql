@@ -24,10 +24,9 @@ query taxonOccurrencesAtPointQuery(
         recordNumber
         eventDate
         scientificName
-        acceptedNameUsage
-        speciesName
         occurrenceStatus
         establishmentMeans
+        degreeOfEstablishment
       }
     }
   }

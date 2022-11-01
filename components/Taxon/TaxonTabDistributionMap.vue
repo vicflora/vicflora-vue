@@ -20,6 +20,7 @@
             :options="popupOptions"
           >
             <taxon-tab-distribution-map-popup-content
+              :taxonConcept="taxonConcept"
               :occurrences="taxonOccurrencesAtPoint.data"/>
           </l-popup>
         </l-marker>
@@ -160,14 +161,16 @@ export default {
       this.marker = null
       let mapClick = event.latlng
       let distance = 1 / (2**this.zoom)
+      const variables = {
+        taxonConceptId: this.taxonConceptId,
+        latitude: mapClick.lat,
+        longitude: mapClick.lng,
+        distance: distance
+      }
+      console.log(JSON.stringify(variables, null, 2))
       this.$apollo.addSmartQuery('taxonOccurrencesAtPoint', {
         query: taxonOccurrencesAtPointQuery,
-        variables: {
-          taxonConceptId: this.taxonConceptId,
-          latitude: mapClick.lat,
-          longitude: mapClick.lng,
-          distance: distance
-        },
+        variables: variables,
         update(data) {
           return data.taxonOccurrencesAtPoint
         },
