@@ -17,7 +17,10 @@
 <template>
     <b-row>
       <b-col>
-        <ProfileForm :value="currentProfile"/>
+        <ProfileForm 
+          :value="currentProfile"
+          :concept="concept"
+        />
         <h3>History</h3>
         <div v-if="profiles" class="accordion" role="tablist">
           <TaxonProfile
@@ -79,6 +82,12 @@ export default {
   components: {
     TaxonProfile,
     ProfileForm,
+  },
+  props: {
+    concept: {
+      type: Object,
+      required: true,
+    }
   },
   data() {
     return {

@@ -43,9 +43,9 @@ class CreateProfileInput {
     this.taxonConcept = {
       connect: data.taxonConcept.id
     }
-    this.acceptedConcept = {
-      connect: data.acceptedConcept.id
-    }
+    // this.acceptedConcept = {
+    //   connect: data.acceptedConcept.id
+    // }
     if (data.source) {
       this.source = {
         connect: data.source.id

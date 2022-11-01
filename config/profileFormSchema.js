@@ -61,7 +61,8 @@ export default [
     autocomplete: {
       query: TaxonConceptAutoCompleteQuery,
       serializer: taxonConceptSuggestionSerializer,
-    }
+    },
+    hide: true,
   },
   {
     fieldType: "AutocompleteControl",

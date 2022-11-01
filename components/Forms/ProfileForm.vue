@@ -155,6 +155,10 @@ export default {
       type: Object,
       required: false,
     },
+    concept: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
@@ -168,6 +172,11 @@ export default {
   },
   computed: {
     schema() {
+      if (Object.keys(this.value).length > 0) {
+        let index = schema.findIndex(element => element.name === 'acceptedConcept')
+        console.log(schema[index])
+        schema[index].hide = false
+      }
       return schema
     }
   },
@@ -199,8 +208,10 @@ export default {
   },
   methods: {
     onInput() {
-      this.updateDisabled = false
-      this.createVersionDisabled = false
+      if (Object.keys(this.value).length > 0) {
+        this.updateDisabled = false
+        this.createVersionDisabled = false
+      }
       this.createProfileDisabled = false
     },
     onCancel() {
@@ -210,6 +221,7 @@ export default {
       this.success = null
       this.error = null
       const input = new UpdateProfileInput(this.formData)
+      console.log(JSON.stringify(input, null, 2))
       this.$apollo.mutate({
         mutation: updateProfileMutation,
         variables: {
@@ -226,6 +238,7 @@ export default {
       this.success = null
       this.error = null
       const input = new CreateProfileInput(this.formData)
+      console.log(JSON.stringify(input, null, 2))
       this.$apollo.mutate({
         mutation: createProfileMutation,
         variables: {
@@ -248,9 +261,11 @@ export default {
     onCreateProfile() {
       this.success = null
       this.error = null
+      this.formData.taxonConcept = this.concept
       const input = new CreateProfileInput(this.formData)
       input.source = null
       input.id = null
+      console.log(JSON.stringify(input, null, 2))
       this.$apollo.mutate({
         mutation: createProfileMutation,
         variables: {
@@ -259,6 +274,7 @@ export default {
       }).then(({ data }) => {
         this.success = `New profile <b>${ data.createProfile.id }</b> succesfully created`
         this.$nuxt.$emit('profile-updated')
+        this.createProfileDisabled = true
       }).catch((error) => {
         this.error = `Update failed: ${ error }`
       })
