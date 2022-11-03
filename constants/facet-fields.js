@@ -16,6 +16,10 @@ export const FILTER_GROUPS = [
     "label": "Geography"
   },
   {
+    "name": "phenology",
+    "label": "Phenology"
+  },
+  {
     "name": "miscellaneous",
     "label": "Miscellaneous"
   },
@@ -128,6 +132,21 @@ export const FILTER_FIELDS = [
     "group": "spatial"
   },
   {
+    "name": "buds",
+    "label": "Buds",
+    "group": "phenology"
+  },
+  {
+    "name": "flowers",
+    "label": "Flowers",
+    "group": "phenology"
+  },
+  {
+    "name": "fruit",
+    "label": "Fruit",
+    "group": "phenology"
+  },
+  {
     "name": "media",
     "label": "Media",
     "group": "miscellaneous"
@@ -137,7 +156,6 @@ export const FILTER_FIELDS = [
     "label": "Publication status",
     "group": "miscellaneous"
   },
-
 ]
 
 export const DEFAULT_FACET_FIELDS = [

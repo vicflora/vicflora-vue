@@ -29,6 +29,7 @@ const TaxonTabSpecimenImages = () => import("@/components/Taxon/TaxonTabSpecimen
 const TaxonTabDistribution = () => import("@/components/Taxon/TaxonTabDistribution")
 const TaxonTabReferences = () => import("@/components/Taxon/TaxonTabReferences")
 const TaxonTabFloraLinks = () => import("@/components/Taxon/TaxonTabFloraLinks")
+const TaxonTabPhenology = () => import("@/components/Taxon/TaxonTabPhenology")
 import { rankMixin } from "@/mixins/taxonMixins"
 import { watchRouteIdMixin } from "@/mixins/routeMixins"
 
@@ -43,6 +44,7 @@ export default {
     TaxonTabSynonymy,
     TaxonTabReferences,
     TaxonTabFloraLinks,
+    TaxonTabPhenology,
   },
   mixins: [
     rankMixin,
@@ -61,6 +63,14 @@ export default {
     }
   },
   computed: {
+    hasPhenologyTab() {
+      const classItem = this.concept.higherClassification.filter(item => {
+        return ['Magnoliopsida'].indexOf(item.taxonName.fullName)
+      })
+      const rankId = this.concept.taxonTreeDefItem.rankId
+      return classItem.length > 0 && 
+          (rankId === 140 || rankId === 180 || rankId >= 220)
+    },
     tabs() {
       const tabs = []
 
@@ -88,6 +98,13 @@ export default {
         tabs.push({
           title: "Distribution",
           component: TaxonTabDistribution
+        })
+      }
+
+      if (this.hasPhenologyTab) {
+        tabs.push({
+          title: "Phenology",
+          component: TaxonTabPhenology
         })
       }
 
