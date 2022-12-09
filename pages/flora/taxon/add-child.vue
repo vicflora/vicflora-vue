@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,10 +22,11 @@
           <header class="page-header">
             <h2 :class="classes">Edit: {{ taxonConceptLabel }}</h2>
           </header>
-          <taxon-concept-form 
-            v-if="taxonConcept"
+          <taxon-concept-form
+            v-if="taxonConcept && defaultPublicationStatus"
             :id="'taxon-concept-create'"
             :taxonConcept="taxonConcept"
+            :defaultPublicationStatus="defaultPublicationStatus"
           />
       </b-col>
     </b-row>
@@ -80,6 +81,13 @@ export default {
         }
       },
       skip: true,
+    }
+  },
+  computed: {
+    defaultPublicationStatus() {
+      if (this.$store.getters.user.preferences) {
+       return this.$store.getters.user.preferences.defaultPublicationStatus
+      }
     }
   },
   created() {

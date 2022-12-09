@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,11 +15,11 @@
 -->
 
 <template>
-  <div 
+  <div
     :id="id"
     class="taxon-concept-form"
   >
-    <taxon-concept-form-generator 
+    <taxon-concept-form-generator
       :schema="schema"
       :value="formData"
     />
@@ -32,18 +32,18 @@
 
 <script>
 import schema from "@/config/taxonConceptFormSchema"
-import { 
-  TaxonConcept, 
-  UpdateTaxonConceptInput, 
-  CreateTaxonConceptInput 
+import {
+  TaxonConcept,
+  UpdateTaxonConceptInput,
+  CreateTaxonConceptInput
 } from "@/models/TaxonConceptModel"
 import { formMethodsMixin } from "@/mixins/formMixins"
-import UpdateTaxonConceptMutation 
+import UpdateTaxonConceptMutation
     from '@/graphql/mutations/UpdateTaxonConceptMutation'
-import CreateTaxonConceptMutation 
+import CreateTaxonConceptMutation
     from '@/graphql/mutations/CreateTaxonConceptMutation'
 
-const TaxonConceptFormGenerator = () => 
+const TaxonConceptFormGenerator = () =>
   import('@/components/Forms/TaxonConceptFormGenerator')
 
 export default {
@@ -62,6 +62,10 @@ export default {
     taxonConcept: {
       type: Object,
       required: true,
+    },
+    defaultPublicationStatus: {
+      type: String,
+      default: 'PUBLISHED'
     }
   },
   data() {
@@ -76,7 +80,7 @@ export default {
     },
     taxonConceptLabel() {
       const name = this.formData.taxonName.fullName
-      const accordingTo = this.formData.accordingTo ? 
+      const accordingTo = this.formData.accordingTo ?
           this.formData.accordingTo.quickRef : null
       let label = name
       if (accordingTo) {
@@ -91,6 +95,9 @@ export default {
       deep: true,
       handler(taxonConcept) {
         this.formData = new TaxonConcept(taxonConcept || {})
+        if (this.formData.publicationStatus === undefined) {
+          this.formData.publicationStatus = this.defaultPublicationStatus
+        }
       }
     },
     taxonConceptLabel: {
@@ -124,12 +131,6 @@ export default {
       this.schema[index].buttons = ['update']
     }
   },
-  mounted() {
-    if (this.id === 'taxon-concept-create') {
-      this.formData.publicationStatus = 
-          this.$store.getters.user.preferences.defaultPublicationStatus
-    }
-  },
   methods: {
     handleTaxonomicStatus(value) {
       if (value === 'ACCEPTED') {
@@ -143,10 +144,10 @@ export default {
         this.showHideField('occurrenceStatus', false)
         this.showHideField('establishmentMeans', false)
         this.showHideField('degreeOfEstablishment', false)
-        
+
         if (['SYNONYM', 'HOMOTYPIC_SYNONYM', 'HETEROTYPIC_SYNONYM', 'MISAPPLICATION']) {
           this.formData.acceptedConcept = null
-          this.formData.acceptedConcept = this.id === 'taxon-concept-update' 
+          this.formData.acceptedConcept = this.id === 'taxon-concept-update'
               ? new TaxonConcept(this.taxonConcept.acceptedConcept) : null
           this.showHideField('acceptedConcept', true)
         }
