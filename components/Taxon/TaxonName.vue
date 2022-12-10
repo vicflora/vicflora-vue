@@ -19,7 +19,7 @@
     </div>
 
     <div
-      v-if="concept.taxonName.protologue || concept.taxonName.apniName"
+      v-if="concept.taxonName.publishedIn || concept.taxonName.apniName"
       class="vf-published-in"
     >
       <PublishedIn
@@ -33,7 +33,7 @@
       />
     </div>
 
-    <TaxonAccordingTo 
+    <TaxonAccordingTo
       v-if="concept.accordingTo"
       :accordingTo="concept.accordingTo"
     />
