@@ -42,10 +42,13 @@
           />
         </b-col>
       </b-row>
-      <TaxonAcceptedConceptLink
-        v-else-if="taxonConcept.acceptedConcept"
-        :concept="taxonConcept.acceptedConcept"
-      />
+      <div v-else>
+        <TaxonAcceptedConceptLink
+          v-if="taxonConcept.acceptedConcept"
+          :concept="taxonConcept.acceptedConcept"
+        />
+        <div v-if="taxonConcept.remarks" v-html="taxonConcept.remarks"></div>
+      </div>
     </b-container>
     <b-container v-if="error">
       <b-row>

@@ -49,6 +49,7 @@ query taxonConceptQuery($id: ID!) {
     epbc
     ffg
     vicAdvisory
+    remarks
 
     createdBy {
       name
