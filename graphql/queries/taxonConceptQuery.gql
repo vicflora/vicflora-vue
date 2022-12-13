@@ -46,6 +46,7 @@ query taxonConceptQuery($id: ID!) {
     endemic
     establishmentMeans
     degreeOfEstablishment
+    hasIntroducedOccurrences
     epbc
     ffg
     vicAdvisory
@@ -101,9 +102,9 @@ query taxonConceptQuery($id: ID!) {
       name
       rankId
     }
+    taxonRank
     parent {
       id
-
       taxonName {
         id
         fullName
@@ -153,6 +154,26 @@ query taxonConceptQuery($id: ID!) {
       url
       icon
       sortOrder
+    }
+    changes {
+      id
+      to {
+        ...taxonConceptFields
+      }
+      changeType
+      changeSource {
+        quickRef
+      }
+      createdBy {
+        name
+      }
+      createdAt
+    }
+    vernacularNames {
+      id
+      name
+      isPreferred
+      nameUsage
     }
   }
 }
