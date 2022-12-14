@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,7 +16,7 @@
 
 <template>
   <div>
-    <div 
+    <div
       v-if="show"
       class="form-group"
     >
@@ -31,15 +31,16 @@
           :serializer="item => autocomplete.serializer(item)"
           :maxMatches="100"
           :disabled="disabled"
+          :inputClass="inputClass"
           @hit="onSelected"
           @input="suggest"
         >
-          <template 
+          <template
             v-if="autocomplete.suggestionField"
-            slot="suggestion" 
+            slot="suggestion"
             slot-scope="{ data }"
           >
-            <div 
+            <div
               class="vf-autocomplete-suggestion"
               v-html="data[autocomplete.suggestionField]"
             />
@@ -65,12 +66,12 @@
           </span>
         </span>
       </div>
-      <small 
+      <small
         v-if="description"
         class="vf-form-control-description"
       >{{ description }}</small>
       <div
-        v-if="autocomplete.showSelected && selectedSuggestion" 
+        v-if="autocomplete.showSelected && selectedSuggestion"
         v-html="selectedSuggestion[autocomplete.suggestionField]"
         class="vf-autocomplete-selected"
       />
@@ -114,6 +115,7 @@ export default {
       query: '',
       suggestions: [],
       selectedSuggestion: null,
+      inputClass: '',
     }
   },
   watch: {

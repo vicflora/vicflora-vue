@@ -1,0 +1,10 @@
+query TaxonConceptAutocompleteQuery($q: String!) {
+  suggestions: taxonConceptAutocomplete(q: $q) {
+    id
+    taxonName {
+      id
+      fullName
+      authorship
+    }
+  }
+}

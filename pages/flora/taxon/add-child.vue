@@ -20,9 +20,9 @@
     <b-row>
       <b-col>
           <header class="page-header">
-            <h2 :class="classes">Edit: {{ taxonConceptLabel }}</h2>
+            <h2 :class="classes">Add child: {{ taxonConceptLabel }}</h2>
           </header>
-          <taxon-concept-form
+          <new-taxon-concept-form
             v-if="taxonConcept && defaultPublicationStatus"
             :id="'taxon-concept-create'"
             :taxonConcept="taxonConcept"
@@ -42,7 +42,7 @@
 <script>
 import { TaxonConcept } from '@/models/TaxonConceptModel'
 const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
-const TaxonConceptForm = () => import('@/components/Forms/TaxonConceptForm.vue')
+const NewTaxonConceptForm = () => import('@/components/Forms/NewTaxonConceptForm.vue')
 
 import gql from "graphql-tag"
 const taxonConceptParentQuery = gql`query ($id: ID!) {
@@ -53,6 +53,7 @@ const taxonConceptParentQuery = gql`query ($id: ID!) {
       fullName
       authorship
     }
+    taxonRank
   }
 }`
 
@@ -60,7 +61,7 @@ export default {
   name: 'AddChild',
   components: {
     TaxonEditMenu,
-    TaxonConceptForm,
+    NewTaxonConceptForm,
   },
   data() {
     return {
