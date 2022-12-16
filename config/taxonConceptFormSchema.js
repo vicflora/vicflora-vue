@@ -1,11 +1,11 @@
 // Copyright 2022 Royal Botanic Gardens Board
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,8 +26,8 @@ const TaxonConceptAutoCompleteQuery = gql`query taxonConceptAutocomplete($q: Str
 }`
 
 const taxonConceptSuggestionSerializer =  (concept) => {
-  return concept.taxonName.authorship 
-      ? concept.taxonName.fullName + ' ' + concept.taxonName.authorship 
+  return concept.taxonName.authorship
+      ? concept.taxonName.fullName + ' ' + concept.taxonName.authorship
       : concept.taxonName.fullName
 }
 
@@ -43,7 +43,7 @@ const taxonNameSuggestionSerializer = (name) => {
   return name.authorship ? name.fullName + ' ' + name.authorship : name.fullName
 }
 
-const referenceAutocompleteQuery = gql`query ReferenceAutocompleteQuery($q: String!) {
+const ReferenceAutocompleteQuery = gql`query ReferenceAutocompleteQuery($q: String!) {
   suggestions: referenceAutocomplete(q: $q) {
     id
     quickRef
@@ -77,7 +77,7 @@ export default [
     name: "accordingTo",
     label: "According to",
     autocomplete: {
-      query: referenceAutocompleteQuery,
+      query: ReferenceAutocompleteQuery,
       serializer: referenceAutocompleteSerializer,
       showSelected: true,
       suggestionField: "referenceStringHtml"
@@ -98,23 +98,23 @@ export default [
     label: "Rank",
     multi: false,
     options: [
-      { value: "KINGDOM", label: "Kingdom" }, 
-      { value: "SUBKINGDOM", label: "Subkingdom" }, 
-      { value: "PHYLUM", label: "Phylum" }, 
-      { value: "SUBPHYLUM", label: "Subphylum" }, 
-      { value: "CLASS", label: "Class" }, 
-      { value: "SUBCLASS", label: "Subclass" }, 
-      { value: "SUPERORDER", label: "Superorder" }, 
-      { value: "ORDER", label: "Order" }, 
-      { value: "SUBORDER", label: "Suborder" }, 
-      { value: "FAMILY", label: "Family" }, 
-      { value: "GENUS", label: "Genus" }, 
-      { value: "SECTION", label: "Section" }, 
-      { value: "SPECIES", label: "Species" }, 
-      { value: "SUBSPECIES", label: "Subspecies" }, 
-      { value: "VARIETY", label: "Variety" }, 
-      { value: "SUBVARIETY", label: "Subvariety" }, 
-      { value: "FORM", label: "Form" }, 
+      { value: "KINGDOM", label: "Kingdom" },
+      { value: "SUBKINGDOM", label: "Subkingdom" },
+      { value: "PHYLUM", label: "Phylum" },
+      { value: "SUBPHYLUM", label: "Subphylum" },
+      { value: "CLASS", label: "Class" },
+      { value: "SUBCLASS", label: "Subclass" },
+      { value: "SUPERORDER", label: "Superorder" },
+      { value: "ORDER", label: "Order" },
+      { value: "SUBORDER", label: "Suborder" },
+      { value: "FAMILY", label: "Family" },
+      { value: "GENUS", label: "Genus" },
+      { value: "SECTION", label: "Section" },
+      { value: "SPECIES", label: "Species" },
+      { value: "SUBSPECIES", label: "Subspecies" },
+      { value: "VARIETY", label: "Variety" },
+      { value: "SUBVARIETY", label: "Subvariety" },
+      { value: "FORM", label: "Form" },
     ],
   },
   {
@@ -123,12 +123,12 @@ export default [
     label: "Taxonomic status",
     multi: false,
     options: [
-      { value: "ACCEPTED", label: "Accepted" }, 
-      { value: "SYNONYM", label: "Synonym" }, 
-      { value: "HOMOTYPIC_SYNONYM", label: "Homotypic synonym" }, 
-      { value: "HETEROTYPIC_SYNONYM", label: "Heterotypic synonym" }, 
-      { value: "MISAPPLICATION", label: "Misapplication" }, 
-      { value: "NOT_ACCEPTED", label: "Not accepted" }, 
+      { value: "ACCEPTED", label: "Accepted" },
+      { value: "SYNONYM", label: "Synonym" },
+      { value: "HOMOTYPIC_SYNONYM", label: "Homotypic synonym" },
+      { value: "HETEROTYPIC_SYNONYM", label: "Heterotypic synonym" },
+      { value: "MISAPPLICATION", label: "Misapplication" },
+      { value: "NOT_ACCEPTED", label: "Not accepted" },
     ],
   },
   {
@@ -146,10 +146,10 @@ export default [
     label: "Occurrence status",
     multi: false,
     options: [
-      { value: "PRESENT", label: "Present" }, 
-      { value: "EXTINCT", label: "Extinct" }, 
-      { value: "EXCLUDED", label: "Excluded" }, 
-      { value: "DOUBTFUL", label: "Doubtful" }, 
+      { value: "PRESENT", label: "Present" },
+      { value: "EXTINCT", label: "Extinct" },
+      { value: "EXCLUDED", label: "Excluded" },
+      { value: "DOUBTFUL", label: "Doubtful" },
     ],
   },
   {
@@ -163,9 +163,9 @@ export default [
     label: "Origin",
     multi: false,
     options: [
-      { value: "NATIVE", label: "Native" }, 
-      { value: "INTRODUCED", label: "Introduced" }, 
-      { value: "UNCERTAIN", label: "Uncertain" }, 
+      { value: "NATIVE", label: "Native" },
+      { value: "INTRODUCED", label: "Introduced" },
+      { value: "UNCERTAIN", label: "Uncertain" },
     ],
   },
   {
@@ -179,12 +179,12 @@ export default [
     label: "Degree of establishment",
     multi: false,
     options: [
-      { value: "NATIVE", label: "Native" }, 
-      { value: "CULTIVATED", label: "Cultivated" }, 
-      { value: "CASUAL", label: "Casual" }, 
-      { value: "REPRODUCING", label: "Reproducing" }, 
-      { value: "ESTABLISHED", label: "Established" }, 
-      { value: "COLONISING", label: "Colonising" }, 
+      { value: "NATIVE", label: "Native" },
+      { value: "CULTIVATED", label: "Cultivated" },
+      { value: "CASUAL", label: "Casual" },
+      { value: "REPRODUCING", label: "Reproducing" },
+      { value: "ESTABLISHED", label: "Established" },
+      { value: "COLONISING", label: "Colonising" },
     ],
   },
   {

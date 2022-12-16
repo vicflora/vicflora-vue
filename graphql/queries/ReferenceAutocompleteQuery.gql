@@ -3,6 +3,7 @@ query ReferenceAutocompleteQuery($q: String!) {
     id
     quickRef
     author {
+      id
       name
     }
     publicationYear

@@ -28,7 +28,7 @@ const taxonNameSuggestionSerializer = (name) => {
   return name.authorship ? name.fullName + ' ' + name.authorship : name.fullName
 }
 
-import referenceAutocompleteQuery from '@/graphql/queries/referenceAutocompleteQuery'
+import ReferenceAutocompleteQuery from '@/graphql/queries/ReferenceAutocompleteQuery'
 
 const referenceAutocompleteSerializer = (reference) => {
   return reference.author.name + ' ' + reference.publicationYear
@@ -53,7 +53,7 @@ export default [
     name: "accordingTo",
     label: "According to",
     autocomplete: {
-      query: referenceAutocompleteQuery,
+      query: ReferenceAutocompleteQuery,
       serializer: referenceAutocompleteSerializer,
       showSelected: true,
       suggestionField: "referenceStringHtml"
