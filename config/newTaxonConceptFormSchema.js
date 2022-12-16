@@ -85,7 +85,6 @@ export default [
       { value: "SUBORDER", label: "Suborder" },
       { value: "FAMILY", label: "Family" },
       { value: "GENUS", label: "Genus" },
-      { value: "SECTION", label: "Section" },
       { value: "SPECIES", label: "Species" },
       { value: "SUBSPECIES", label: "Subspecies" },
       { value: "VARIETY", label: "Variety" },
