@@ -37,12 +37,12 @@ ol.breadcrumb {
     &:hover {
       text-decoration: none;
     }
-  
+
     span.vf-icon-button-icon, span.vf-icon-button-text {
       vertical-align: middle;
     }
   }
-  
+
 
 //
 // static content
@@ -62,9 +62,9 @@ ol.breadcrumb {
     }
 }
 
-// 
+//
 // Static pages Table of contents
-// 
+//
 .m-toc-container {
     text-align: left;
     list-style: none;
@@ -115,7 +115,7 @@ ol.breadcrumb {
     margin-top: 1.2rem;
     height: 30px;
 }
-  
+
 
 //
 // Taxon page breadcrumbs
@@ -254,12 +254,12 @@ ol.breadcrumb {
     color: $primary;
     cursor: pointer;
   }
-  
+
   .glossarize {
     margin-top: -18px;
     margin-bottom: 18px;
   }
-  
+
 
 //
 // Taxon page Distribution tab
@@ -329,17 +329,17 @@ ol.breadcrumb {
     }
 }
 
-// 
+//
 // Taxon page Synonymy tab
-// 
+//
 .vf-synonymy-author,
 .vf-synonymy-according-to {
     color: initial;
 }
 
-// 
+//
 // Taxon page Images tab
-// 
+//
 .m-images {
     &>.row {
         margin-left: -0.25rem;
@@ -372,9 +372,9 @@ ol.breadcrumb {
     }
 }
 
-// 
+//
 // Specimen images modal
-// 
+//
 #specimen-images-modal {
     iframe.m-modal-iframe {
         width: 100%;
@@ -387,8 +387,9 @@ ol.breadcrumb {
 
 //
 // Forms
-// 
+//
 .vf-form-control-description {
+    margin: 0.5rem 0.75rem;
     color: $secondary;
 }
 
