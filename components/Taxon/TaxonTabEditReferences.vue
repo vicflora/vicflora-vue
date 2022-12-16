@@ -134,7 +134,6 @@ export default {
           })
     },
     onSelected(item) {
-      console.log(item)
       this.newReference = item
     },
     onAddButtonClicked() {
@@ -158,7 +157,7 @@ export default {
           connect: this.newReference.id,
         },
       }
-      console.log(input)
+      console.log(JSON.stringify(input, null, 2))
       this.$apollo.mutate({
         mutation: createTaxonConceptReferenceMutation,
         variables: {
