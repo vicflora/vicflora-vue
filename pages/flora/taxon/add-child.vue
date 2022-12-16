@@ -24,6 +24,7 @@
           </header>
           <new-taxon-concept-form
             v-if="taxonConcept && defaultPublicationStatus"
+            :key="taxonConcept.parent.id"
             :id="'taxon-concept-create'"
             :taxonConcept="taxonConcept"
             :defaultPublicationStatus="defaultPublicationStatus"
