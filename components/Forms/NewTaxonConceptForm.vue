@@ -19,6 +19,22 @@
     :id="id"
     class="new-taxon-concept-form"
   >
+    <b-alert
+      v-if="success"
+      variant="success"
+      show
+      dismissible
+    >
+      <div v-html="success"/>
+    </b-alert>
+    <b-alert
+      v-if="error"
+      variant="danger"
+      show
+      dismissible
+    >
+      <div v-html="error"/>
+    </b-alert>
     <new-taxon-concept-form-generator
       :schema="schema"
       :value="formData"
@@ -69,6 +85,8 @@ export default {
     return {
       formData: null,
       okDisabled: true,
+      success: null,
+      error: null
     }
   },
   computed: {
@@ -95,6 +113,15 @@ export default {
         if (this.formData.publicationStatus === undefined) {
           this.formData.publicationStatus = this.defaultPublicationStatus
         }
+        const index = this.schema.map(element => element.name).indexOf('taxonRank')
+        let options = this.schema[index].options
+        const optionIndex = options.map(option => option.value).indexOf(this.taxonConcept.parent.taxonRank)
+        options.splice(0, optionIndex + 1)
+        this.schema[index].options = options
+        this.formData.taxonRank = options[0].value
+        this.formData.occurrenceStatus = 'PRESENT'
+        this.formData.establishmentMeans = 'NATIVE'
+        this.formData.degreeOfEstablishment = 'NATIVE'
       }
     },
     taxonConceptLabel: {
@@ -107,6 +134,8 @@ export default {
   created() {
     this.$nuxt.$on('taxon-name-updated', data => {
       this.formData.taxonName = data
+      const index = this.schema.map(element => element.name).indexOf('taxonName')
+      this.okDisabled = false
     })
 
     this.$nuxt.$on('new-taxon-concept-form-input', (fieldName, value) => {
@@ -119,12 +148,6 @@ export default {
       }
     })
 
-    const index = this.schema.map(element => element.name).indexOf('taxonRank')
-    let options = this.schema[index].options
-    const optionIndex = options.map(option => option.value).indexOf(this.taxonConcept.parent.taxonRank)
-    options.splice(0, optionIndex + 1)
-    this.schema[index].options = options
-    this.schema[index].defaultValue = options[0].value
 
   },
   methods: {
@@ -138,23 +161,45 @@ export default {
       this.formData = this.taxonConcept
     },
     onOk() {
+      this.success = null
+      this.error = null
       this.okDisabled = true
-      let input = new CreateTaxonConceptInput(this.formData)
-      console.log(JSON.stringify(input, null, 2))
-      this.$apollo.mutate({
-        mutation: CreateTaxonConceptMutation,
-        variables: {
-          input: {...input},
-        },
-      }).then(({ data }) => {
-        console.log(JSON.stringify(data, null, 2))
-        this.$router.push({
-          name: 'flora-taxon-edit',
-          params: {
-            id: data.createTaxonConcept.id
-          }
+      const errors = this.validate()
+      if (!errors.length) {
+        let input = new CreateTaxonConceptInput(this.formData)
+        console.log(JSON.stringify(input, null, 2))
+        this.$apollo.mutate({
+          mutation: CreateTaxonConceptMutation,
+          variables: {
+            input: {...input},
+          },
+        }).then(({ data }) => {
+          console.log(JSON.stringify(data, null, 2))
+          this.$router.push({
+            name: 'flora-taxon-edit',
+            params: {
+              id: data.createTaxonConcept.id
+            }
+          })
+        }).catch((error) => {
+          this.error = `Update failed: ${ error }`
         })
-      })
+      }
+      else {
+        let message = '<p><b>Form validation errors:</b></p><ul>'
+        errors.forEach(error => {
+          message += error
+        })
+        message += '</ul>'
+        this.error = message
+      }
+    },
+    validate() {
+      let errors = []
+      if (!this.formData.taxonName) {
+        errors.push("&apos;Taxon name&apos; field has no value")
+      }
+      return errors
     }
   },
 }
