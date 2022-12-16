@@ -322,7 +322,6 @@ export default {
         console.log(JSON.stringify(data, null, 2))
         $nuxt.$emit('taxon-name-updated',
             data.updateTaxonName || data.createTaxonName)
-        $nuxt.$emit('suggestion-updated', data.createTaxonName || data.updateTaxonName)
         this.$bvModal.hide(this.id)
       }).catch(error => {
         this.alert = error
