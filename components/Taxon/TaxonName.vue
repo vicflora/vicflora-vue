@@ -5,6 +5,7 @@
         :full-name="concept.taxonName.fullName"
         :rank-id="concept.taxonTreeDefItem.rankId"
         :taxonomic-status="concept.taxonomicStatus"
+        :occurrence-status="concept.occurrenceStatus"
       />
 
       <Authorship

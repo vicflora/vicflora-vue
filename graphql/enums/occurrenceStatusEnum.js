@@ -26,7 +26,8 @@ export default {
             area.`
     },
     "EXCLUDED": {
-        'excluded': `The taxon has been reported for the area, but the report
+        'label': 'Excluded',
+        'description': `The taxon has been reported for the area, but the report
             is based on a misdetermination. A "taxon" that is solely identified
             by its name can also be considered 'excluded', because the taxonomy
             has changed.`

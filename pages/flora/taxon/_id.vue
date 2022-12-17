@@ -23,7 +23,7 @@
         </b-col>
       </b-row>
       <b-row
-        v-if="taxonConcept.taxonomicStatus === 'ACCEPTED'"
+        v-if="taxonConcept.taxonomicStatus === 'ACCEPTED' && taxonConcept.occurrenceStatus !== 'EXCLUDED'"
         class="m-row">
         <b-col>
           <TaxonTabs

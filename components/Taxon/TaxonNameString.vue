@@ -1,6 +1,6 @@
 <template>
-  <h1 :class="getNameClasses(rankId, taxonomicStatus)">
-    {{ fullName }}  
+  <h1 :class="classes">
+    {{ fullName }}
   </h1>
 </template>
 
@@ -22,6 +22,16 @@ export default {
     taxonomicStatus: {
       type: String,
       default: "ACCEPTED"
+    },
+    occurrenceStatus: {
+      type: String,
+      default: 'PRESENT'
+    }
+  },
+  computed: {
+    classes() {
+      return this.getNameClasses(this.rankId, this.taxonomicStatus,
+          this.occurrenceStatus)
     }
   }
 }
