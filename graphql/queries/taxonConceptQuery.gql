@@ -26,6 +26,11 @@ query taxonConceptQuery($id: ID!) {
       id
       quickRef
       referenceStringHtml
+      author {
+        id
+        name
+      }
+      publicationYear
     }
     publicationStatus
     acceptedConcept {
