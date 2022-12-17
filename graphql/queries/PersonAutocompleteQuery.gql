@@ -1,0 +1,7 @@
+query PersonAutocompleteQuery($q: String!) {
+  suggestions: personAutocomplete(q: $q) {
+    id
+    agentType
+    name
+  }
+}

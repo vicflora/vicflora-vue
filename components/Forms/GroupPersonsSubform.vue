@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,7 @@
     <label>Members</label>
     <table class="table table-sm">
       <tbody>
-        <GroupPersonTableRow 
+        <GroupPersonTableRow
           v-for="(member, index) in members"
           :key="index"
           :member="member"
@@ -40,6 +40,7 @@
 <script>
 const GroupPersonTableRow = () => import('@/components/Forms/GroupPersonTableRow')
 const GroupPersonNewTableRow = () => import('@/components/Forms/GroupPersonNewTableRow')
+import { Agent } from '@/models/AgentModel'
 
 export default {
   name: 'GroupPersonsSubform',
@@ -70,16 +71,23 @@ export default {
       }
     }
   },
+  created() {
+    this.$nuxt.$on('add-group-person-button-clicked', (agent) => {
+      this.addGroupPerson(new Agent(agent))
+    })
+  },
   methods: {
     addGroupPerson(member) {
-      console.log(member)
       delete member.members
+      if (!this.members) {
+        this.members = []
+      }
       const newMember = {
         sequence: this.members.length,
         member: member,
       }
       this.members.push(newMember)
-      this.$nuxt.$emit('group-persons-changed')
+      this.$nuxt.$emit('group-persons-changed', this.members)
     },
     moveUpGroupPerson(index) {
       const thisGroupPerson = this.members[index],
@@ -88,7 +96,7 @@ export default {
       prevGroupPerson.sequence++
       this.members.splice(index-1, 1)
       this.members.splice(index, 0, prevGroupPerson)
-      this.$nuxt.$emit('group-persons-changed')
+      this.$nuxt.$emit('group-persons-changed', this.members)
     },
     moveDownGroupPerson(index) {
       const thisGroupPerson = this.members[index],
@@ -97,7 +105,7 @@ export default {
       nextGroupPerson.sequence--
       this.members.splice(index, 1)
       this.members.splice(index+1, 0, thisGroupPerson)
-      this.$nuxt.$emit('group-persons-changed')
+      this.$nuxt.$emit('group-persons-changed', this.members)
     },
     removeGroupPerson(index) {
       const thisGroupPerson = this.members[index],
@@ -110,7 +118,7 @@ export default {
           this.members[i].sequence--
         }
       })
-      this.$nuxt.$emit('group-persons-changed')
+      this.$nuxt.$emit('group-persons-changed', this.members)
     },
   }
 }

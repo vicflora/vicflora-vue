@@ -1,0 +1,21 @@
+query AgentQuery($id: ID!) {
+  agent(id: $id) {
+    id
+    agentType
+    name
+    lastName
+    firstName
+    initials
+    members {
+      id
+      sequence
+      member {
+        id
+        name
+        lastName
+        firstName
+        initials
+      }
+    }
+  }
+}

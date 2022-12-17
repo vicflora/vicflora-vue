@@ -1,0 +1,6 @@
+mutation UpdateAgentMutation($input: UpdateAgentInput!) {
+  agent: updateAgent(input: $input) {
+    id
+    name
+  }
+}
