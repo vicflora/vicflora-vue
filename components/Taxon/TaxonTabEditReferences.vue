@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,11 +27,11 @@
     </div>
     <div class="d-flex">
       <div class="flex-grow-1">
-        <AutocompleteControl 
+        <AutocompleteControl
           :key="autocompleteComponentKey"
           :name="'reference'"
           :autocomplete="{
-            query: referenceAutocompleteQuery,
+            query: ReferenceAutocompleteQuery,
             serializer: referenceAutocompleteSerializer,
             showSelected: true,
             suggestionField: 'referenceStringHtml',
@@ -45,7 +45,7 @@
         />
       </div>
       <div>
-        <BButton 
+        <BButton
           class="vf-add-taxon-reference"
           variant="primary"
           size="sm"
@@ -56,9 +56,9 @@
         </BButton>
       </div>
     </div>
-    <ReferenceForm 
-      :id="'update-reference-form'" 
-      :value="reference" 
+    <ReferenceForm
+      :id="'update-reference-form'"
+      :value="reference"
       :mode="'update'"
     />
   </div>
@@ -69,7 +69,7 @@ const ReferenceForm = () => import('@/components/Forms/ReferenceForm')
 const AutocompleteControl = () => import('@/components/FormControls/AppAutocompleteControl')
 import deleteTaxonConceptReferenceMutation from '@/graphql/mutations/deleteTaxonConceptReferenceMutation'
 import createTaxonConceptReferenceMutation from '@/graphql/mutations/createTaxonConceptReferenceMutation'
-import referenceAutocompleteQuery from '@/graphql/queries/referenceAutocompleteQuery'
+import ReferenceAutocompleteQuery from '@/graphql/queries/ReferenceAutocompleteQuery'
 
 const referenceAutocompleteSerializer = (reference) => {
   return reference.author.name + ' ' + reference.publicationYear
@@ -92,7 +92,7 @@ export default {
       reference: null,
       newReference: null,
       autocompleteComponentKey: 0,
-      referenceAutocompleteQuery,
+      ReferenceAutocompleteQuery,
       referenceAutocompleteSerializer
     }
   },
@@ -121,7 +121,7 @@ export default {
     onUpdateClicked(event, reference) {
       event.preventDefault()
       this.reference = reference
-      this.$bvModal.show('update-reference-form') 
+      this.$bvModal.show('update-reference-form')
     },
     onDeleteClicked(event, id) {
       event.preventDefault()
@@ -134,7 +134,6 @@ export default {
           })
     },
     onSelected(item) {
-      console.log(item)
       this.newReference = item
     },
     onAddButtonClicked() {
@@ -158,7 +157,7 @@ export default {
           connect: this.newReference.id,
         },
       }
-      console.log(input)
+      console.log(JSON.stringify(input, null, 2))
       this.$apollo.mutate({
         mutation: createTaxonConceptReferenceMutation,
         variables: {

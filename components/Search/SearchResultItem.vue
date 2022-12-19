@@ -1,14 +1,11 @@
 <template>
   <div class="vf-search-result-item vf-search-result-item row text-left">
-    <BCol 
+    <BCol
       cols="auto"
-      class="text-left mr-auto" 
+      class="text-left mr-auto"
     >
       <div
-        v-if="
-          item.taxonomicStatus &&
-            item.taxonomicStatus === 'accepted'
-        "
+        v-if="item.taxonomicStatus && item.taxonomicStatus === 'accepted' && item.occurrenceStatus !== 'excluded'"
       >
         <NuxtLink
           :to="`/flora/taxon/${item.id}`"
@@ -50,9 +47,9 @@
         </div>
       </div>
     </BCol>
-    
-    <BCol 
-      cols="auto" 
+
+    <BCol
+      cols="auto"
       class="m-responsive-disappear"
     >
       <span class="vf-search-result-item-familyname">{{ item.family }}</span>

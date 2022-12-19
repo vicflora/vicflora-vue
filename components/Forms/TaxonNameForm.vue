@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,14 +24,14 @@
     @show="onShow"
     @ok="onOk"
   >
-    <div 
+    <div
       v-if="alert"
       class="alert alert-danger"
     >
       {{ alert }}
     </div>
     <div class="taxon-name-form">
-      <TaxonNameFormGenerator 
+      <TaxonNameFormGenerator
         :schema="schema"
         :value="formData"
         @input="okDisabled = false"
@@ -44,9 +44,9 @@
 
 <script>
 import schema from "@/config/taxonNameFormSchema"
-import { 
-  TaxonName, 
-  UpdateTaxonNameInput, 
+import {
+  TaxonName,
+  UpdateTaxonNameInput,
   CreateTaxonNameInput
 } from "@/models/TaxonNameModel"
 import { formMethodsMixin } from "@/mixins/formMixins"
@@ -291,7 +291,7 @@ export default {
             between = ' '
         }
         if (this.formData.parent) {
-          this.formData.fullName = 
+          this.formData.fullName =
               this.formData.parent.fullName + between + this.formData.namePart
         }
       }
@@ -320,7 +320,7 @@ export default {
         },
       }).then(({data}) => {
         console.log(JSON.stringify(data, null, 2))
-        $nuxt.$emit('taxon-name-updated', 
+        $nuxt.$emit('taxon-name-updated',
             data.updateTaxonName || data.createTaxonName)
         this.$bvModal.hide(this.id)
       }).catch(error => {

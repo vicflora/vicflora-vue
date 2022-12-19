@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,7 +16,7 @@
 
 <template>
   <div>
-    <div 
+    <div
       v-if="show"
       class="form-group"
     >
@@ -31,49 +31,52 @@
           :serializer="item => autocomplete.serializer(item)"
           :maxMatches="100"
           :disabled="disabled"
+          :minMatchingChars="2"
           @hit="onSelected"
           @input="suggest"
         >
-          <template 
+          <template
             v-if="autocomplete.suggestionField"
-            slot="suggestion" 
+            slot="suggestion"
             slot-scope="{ data }"
           >
-            <div 
+            <div
               class="vf-autocomplete-suggestion"
               v-html="data[autocomplete.suggestionField]"
-            />
+            ></div>
+          </template>
+          <template slot="append">
+            <span
+              v-if="buttons"
+              class="vf-autocomplete-append"
+            >
+              <span
+                v-for="button in buttons"
+                  :key="button"
+                >
+                <ButtonAppend
+                  v-if="button === 'create' || (selectedSuggestion && selectedSuggestion.id !== undefined)"
+                  :button="button"
+                  :form="form"
+                  :field="`${inForm}-${name}`"
+                  :value="button === 'update' && selectedSuggestion ? selectedSuggestion : {}"
+                  :subtype="subtype"
+                  :index="index"
+                />
+              </span>
+            </span>
           </template>
         </vue-typeahead-bootstrap>
-        <span
-            v-if="buttons"
-            class="vf-autocomplete-append"
-        >
-          <span
-            v-for="button in buttons"
-              :key="button"
-            >
-            <ButtonAppend
-              v-if="button === 'create' || (selectedSuggestion && selectedSuggestion.id !== undefined)"
-              :button="button"
-              :form="form"
-              :field="`${inForm}-${name}`"
-              :value="button === 'update' && selectedSuggestion ? selectedSuggestion : {}"
-              :subtype="subtype"
-              :index="index"
-            />
-          </span>
-        </span>
       </div>
-      <small 
+      <div
+        v-if="autocomplete.showSelected && selectedSuggestion"
+        v-html="selectedSuggestion[autocomplete.suggestionField] || autocomplete.serializer(selectedSuggestion)"
+        class="vf-autocomplete-selected"
+      ></div>
+      <small
         v-if="description"
         class="vf-form-control-description"
       >{{ description }}</small>
-      <div
-        v-if="autocomplete.showSelected && selectedSuggestion" 
-        v-html="selectedSuggestion[autocomplete.suggestionField]"
-        class="vf-autocomplete-selected"
-      />
 
     </div>
   </div>
@@ -126,7 +129,7 @@ export default {
           this.selectedSuggestion = this.value
         }
       }
-    }
+    },
   },
   methods: {
     suggest: debounce(function() {
@@ -146,20 +149,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vf-autocomplete-wrapper {
-  position: relative;
-
-  .vf-autocomplete-append {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 38px;
-    z-index: 10;
-  }
-
-}
-
 .vf-autocomplete-selected {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0.75rem;
 }
 </style>

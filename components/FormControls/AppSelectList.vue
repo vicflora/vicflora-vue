@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div 
+    <div
       v-if="show"
       class="form-group"
     >
@@ -10,19 +10,19 @@
         :id="name"
         :name="name"
         :multiple="multi"
-        :value="value"
+        :value="value || defaultValue"
         :disabled="disabled"
         @input="onInput"
       >
-        <option 
-          v-for="option in options" 
-          :key="option.value" 
+        <option
+          v-for="option in options"
+          :key="option.value"
           :value="option.value"
         >
           {{ option.label }}
         </option>
       </select>
-      <small 
+      <small
         v-if="description"
         class="vf-form-control-description"
       >{{ description }}</small>
@@ -46,6 +46,10 @@ export default {
     options: {
       type: Array,
       required: true,
+    },
+    defaultValue: {
+      type: String,
+      required: false,
     },
   },
   methods: {

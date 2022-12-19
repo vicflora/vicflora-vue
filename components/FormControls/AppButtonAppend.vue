@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,16 +16,16 @@
 
 <template>
   <span class="vf-update-button">
-    <b-button 
-      variant="primary" 
+    <b-button
+      variant="primary"
       size="sm"
       @click="openModal"
     >
       <font-awesome-icon :icon="icon"/>
     </b-button>
-    <component 
+    <component
       :is="form"
-      :id="modal" 
+      :id="modal"
       :value="value"
       :subtype="subtype"
       :mode="button"
@@ -83,18 +83,18 @@ export default {
         case 'update':
           icon = 'pen-to-square'
           break;
-      
+
         case 'create':
           icon = 'plus'
           break;
-      
+
         default:
           break;
       }
       return icon
     },
     modal() {
-      let modal = this.button + this.form.replace(/[A-Z]/g, ($0) => '-' 
+      let modal = this.button + this.form.replace(/[A-Z]/g, ($0) => '-'
           + $0.toLowerCase())
       if (this.subtype !== undefined) {
         modal += '-' + this.subtype

@@ -17,9 +17,25 @@
 <template>
   <div
     :id="id"
-    class="taxon-concept-form"
+    class="new-taxon-concept-form"
   >
-    <taxon-concept-form-generator
+    <b-alert
+      v-if="success"
+      variant="success"
+      show
+      dismissible
+    >
+      <div v-html="success"/>
+    </b-alert>
+    <b-alert
+      v-if="error"
+      variant="danger"
+      show
+      dismissible
+    >
+      <div v-html="error"/>
+    </b-alert>
+    <new-taxon-concept-form-generator
       :schema="schema"
       :value="formData"
     />
@@ -31,25 +47,22 @@
 </template>
 
 <script>
-import schema from "@/config/taxonConceptFormSchema"
+import schema from "@/config/newTaxonConceptFormSchema"
 import {
   TaxonConcept,
-  UpdateTaxonConceptInput,
   CreateTaxonConceptInput
 } from "@/models/TaxonConceptModel"
 import { formMethodsMixin } from "@/mixins/formMixins"
-import UpdateTaxonConceptMutation
-    from '@/graphql/mutations/UpdateTaxonConceptMutation'
 import CreateTaxonConceptMutation
     from '@/graphql/mutations/CreateTaxonConceptMutation'
 
-const TaxonConceptFormGenerator = () =>
-  import('@/components/Forms/TaxonConceptFormGenerator')
+const NewTaxonConceptFormGenerator = () =>
+  import('@/components/Forms/NewTaxonConceptFormGenerator')
 
 export default {
-  name: "TaxonConceptForm",
+  name: "NewTaxonConceptForm",
   components: {
-    TaxonConceptFormGenerator,
+    NewTaxonConceptFormGenerator,
   },
   mixins: [
     formMethodsMixin,
@@ -72,6 +85,8 @@ export default {
     return {
       formData: null,
       okDisabled: true,
+      success: null,
+      error: null
     }
   },
   computed: {
@@ -79,7 +94,7 @@ export default {
       return schema
     },
     taxonConceptLabel() {
-      const name = this.formData.taxonName.fullName
+      const name = this.formData.taxonName ? this.formData.taxonName.fullName : ''
       const accordingTo = this.formData.accordingTo ?
           this.formData.accordingTo.quickRef : null
       let label = name
@@ -98,6 +113,15 @@ export default {
         if (this.formData.publicationStatus === undefined) {
           this.formData.publicationStatus = this.defaultPublicationStatus
         }
+        const index = this.schema.map(element => element.name).indexOf('taxonRank')
+        let options = this.schema[index].options
+        const optionIndex = options.map(option => option.value).indexOf(this.taxonConcept.parent.taxonRank)
+        options.splice(0, optionIndex + 1)
+        this.schema[index].options = options
+        this.formData.taxonRank = options[0].value
+        this.formData.occurrenceStatus = 'PRESENT'
+        this.formData.establishmentMeans = 'NATIVE'
+        this.formData.degreeOfEstablishment = 'NATIVE'
       }
     },
     taxonConceptLabel: {
@@ -110,13 +134,12 @@ export default {
   created() {
     this.$nuxt.$on('taxon-name-updated', data => {
       this.formData.taxonName = data
+      const index = this.schema.map(element => element.name).indexOf('taxonName')
+      this.okDisabled = false
     })
 
-    this.$nuxt.$on('taxon-concept-form-input', (fieldName, value) => {
+    this.$nuxt.$on('new-taxon-concept-form-input', (fieldName, value) => {
       this.okDisabled = false
-      if (fieldName === 'taxonomicStatus') {
-        this.handleTaxonomicStatus(value)
-      }
       if (fieldName === 'occurrenceStatus') {
         this.handleOccurrenceStatus(value)
       }
@@ -125,37 +148,9 @@ export default {
       }
     })
 
-    if (this.id === 'taxon-concept-update') {
-      const index = this.schema.map(element => element.name).indexOf('taxonName')
-      this.schema[index].disabled = true
-      this.schema[index].buttons = ['update']
-    }
+
   },
   methods: {
-    handleTaxonomicStatus(value) {
-      if (value === 'ACCEPTED') {
-        this.formData.acceptedConcept = null
-        this.showHideField('acceptedConcept', false)
-        this.showHideField('occurrenceStatus', true)
-        this.showHideField('establishmentMeans', true)
-        this.showHideField('degreeOfEstablishment', true)
-      }
-      else {
-        this.showHideField('occurrenceStatus', false)
-        this.showHideField('establishmentMeans', false)
-        this.showHideField('degreeOfEstablishment', false)
-
-        if (['SYNONYM', 'HOMOTYPIC_SYNONYM', 'HETEROTYPIC_SYNONYM', 'MISAPPLICATION']) {
-          this.formData.acceptedConcept = null
-          this.formData.acceptedConcept = this.id === 'taxon-concept-update'
-              ? new TaxonConcept(this.taxonConcept.acceptedConcept) : null
-          this.showHideField('acceptedConcept', true)
-        }
-        else {
-          this.showHideField('acceptedConcept', false)
-        }
-      }
-    },
     handleOccurrenceStatus(value) {
       this.showHideField('endemic', value === 'PRESENT')
     },
@@ -166,37 +161,45 @@ export default {
       this.formData = this.taxonConcept
     },
     onOk() {
+      this.success = null
+      this.error = null
       this.okDisabled = true
-      let mutation = false
-      let input = false
-      if (this.id === 'taxon-concept-update') {
-        mutation = UpdateTaxonConceptMutation
-        input = new UpdateTaxonConceptInput(this.formData)
-      }
-      else {
-        mutation = CreateTaxonConceptMutation
-        input = new CreateTaxonConceptInput(this.formData)
-      }
-      console.log(JSON.stringify(input, null, 2))
-      this.$apollo.mutate({
-        mutation: mutation,
-        variables: {
-          input: {...input},
-        },
-      }).then(({ data }) => {
-        console.log(JSON.stringify(data, null, 2))
-        if (this.$route.name === 'flora-taxon-add-child') {
+      const errors = this.validate()
+      if (!errors.length) {
+        let input = new CreateTaxonConceptInput(this.formData)
+        console.log(JSON.stringify(input, null, 2))
+        this.$apollo.mutate({
+          mutation: CreateTaxonConceptMutation,
+          variables: {
+            input: {...input},
+          },
+        }).then(({ data }) => {
+          console.log(JSON.stringify(data, null, 2))
           this.$router.push({
             name: 'flora-taxon-edit',
             params: {
               id: data.createTaxonConcept.id
             }
           })
-        }
-        else {
-          this.$nuxt.$emit('taxon-concept-updated')
-        }
-      })
+        }).catch((error) => {
+          this.error = `Update failed: ${ error }`
+        })
+      }
+      else {
+        let message = '<p><b>Form validation errors:</b></p><ul>'
+        errors.forEach(error => {
+          message += error
+        })
+        message += '</ul>'
+        this.error = message
+      }
+    },
+    validate() {
+      let errors = []
+      if (!this.formData.taxonName) {
+        errors.push("&apos;Taxon name&apos; field has no value")
+      }
+      return errors
     }
   },
 }

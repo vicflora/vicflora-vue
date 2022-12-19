@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,14 +20,14 @@
       <TaxonEditMenu v-if="$store.getters['isLoggedIn']"/>
       <b-row>
         <b-col class="page-header">
-          <TaxonName 
+          <TaxonName
             v-if="taxonConcept"
             :concept="taxonConcept"/>
         </b-col>
       </b-row>
       <b-row>
         <b-col>
-          <TaxonTabsEdit 
+          <TaxonTabsEdit
             v-if="taxonConcept"
             :concept="taxonConcept"/>
         </b-col>
@@ -44,7 +44,7 @@
 
 <script>
 import gql from "graphql-tag"
-import TaxonEditFormQuery from '@/graphql/queries/TaxonEditFormQuery'
+import TaxonConceptQuery from "@/graphql/queries/taxonConceptQuery"
 
 const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
 const TaxonName = () => import('@/components/Taxon/TaxonName')
@@ -59,10 +59,10 @@ const updateSolrIndexMutation = gql`mutation UpdateSolrIndexMutation($id: ID!) {
 
 export default {
   name: "EditTaxon",
-  components: { 
+  components: {
     TaxonEditMenu,
     TaxonName,
-    TaxonTabsEdit, 
+    TaxonTabsEdit,
   },
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
   },
   apollo: {
     taxonConcept: {
-      query: TaxonEditFormQuery,
+      query: TaxonConceptQuery,
       result({ data, loading }) {
         if (!loading) {
           $nuxt.$emit('progress-bar-stop')

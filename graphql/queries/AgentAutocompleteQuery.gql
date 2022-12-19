@@ -1,0 +1,7 @@
+query AgentAutocompleteQuery($q: String!) {
+  suggestions: agentAutocomplete(q: $q) {
+    id
+    agentType
+    name
+  }
+}

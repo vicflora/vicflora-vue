@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,12 +20,14 @@
     <b-row>
       <b-col>
           <header class="page-header">
-            <h2 :class="classes">Edit: {{ taxonConceptLabel }}</h2>
+            <h2 :class="classes">Add child: {{ taxonConceptLabel }}</h2>
           </header>
-          <taxon-concept-form 
-            v-if="taxonConcept"
+          <new-taxon-concept-form
+            v-if="taxonConcept && defaultPublicationStatus"
+            :key="taxonConcept.parent.id"
             :id="'taxon-concept-create'"
             :taxonConcept="taxonConcept"
+            :defaultPublicationStatus="defaultPublicationStatus"
           />
       </b-col>
     </b-row>
@@ -41,7 +43,7 @@
 <script>
 import { TaxonConcept } from '@/models/TaxonConceptModel'
 const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
-const TaxonConceptForm = () => import('@/components/Forms/TaxonConceptForm.vue')
+const NewTaxonConceptForm = () => import('@/components/Forms/NewTaxonConceptForm.vue')
 
 import gql from "graphql-tag"
 const taxonConceptParentQuery = gql`query ($id: ID!) {
@@ -52,6 +54,7 @@ const taxonConceptParentQuery = gql`query ($id: ID!) {
       fullName
       authorship
     }
+    taxonRank
   }
 }`
 
@@ -59,7 +62,7 @@ export default {
   name: 'AddChild',
   components: {
     TaxonEditMenu,
-    TaxonConceptForm,
+    NewTaxonConceptForm,
   },
   data() {
     return {
@@ -80,6 +83,13 @@ export default {
         }
       },
       skip: true,
+    }
+  },
+  computed: {
+    defaultPublicationStatus() {
+      if (this.$store.getters.user.preferences) {
+       return this.$store.getters.user.preferences.defaultPublicationStatus
+      }
     }
   },
   created() {

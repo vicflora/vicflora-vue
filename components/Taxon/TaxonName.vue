@@ -5,6 +5,7 @@
         :full-name="concept.taxonName.fullName"
         :rank-id="concept.taxonTreeDefItem.rankId"
         :taxonomic-status="concept.taxonomicStatus"
+        :occurrence-status="concept.occurrenceStatus"
       />
 
       <Authorship
@@ -19,7 +20,7 @@
     </div>
 
     <div
-      v-if="concept.taxonName.protologue || concept.taxonName.apniName"
+      v-if="concept.taxonName.publishedIn || concept.taxonName.apniName"
       class="vf-published-in"
     >
       <PublishedIn
@@ -33,7 +34,7 @@
       />
     </div>
 
-    <TaxonAccordingTo 
+    <TaxonAccordingTo
       v-if="concept.accordingTo"
       :accordingTo="concept.accordingTo"
     />

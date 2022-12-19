@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,9 +23,10 @@
     size="lg"
     @shown="onShown"
     @ok="onOk"
+    @cancel="onCancel"
   >
     <div class="agent-form">
-      <AgentFormGenerator 
+      <AgentFormGenerator
         :schema="schema"
         :mode="mode"
         :value="formData"
@@ -40,46 +41,14 @@
 <script>
 import schema from "@/config/agentFormConfig"
 import { formMethodsMixin } from "@/mixins/formMixins"
-import { CreateAgentInput, UpdateAgentInput } from '@/models/AgentModel'
+import { Agent, CreateAgentInput, UpdateAgentInput } from '@/models/AgentModel'
 
 const AgentFormGenerator = () => import("@/components/Forms/AgentFormGenerator.vue")
 
-import gql from "graphql-tag"
-const AgentQuery = gql`query ($id: ID!) {
-  agent(id: $id) {
-    id
-    agentType
-    name
-    lastName
-    firstName
-    initials
-    members {
-      id
-      sequence
-      member {
-        id
-        name
-        lastName
-        firstName
-        initials
-      }
-    }
-  }
-}`
+import AgentQuery from '@/graphql/queries/AgentQuery'
+import UpdateAgentMutation from '@/graphql/mutations/UpdateAgentMutation'
+import CreateAgentMutation from '@/graphql/mutations/CreateAgentMutation'
 
-const UpdateAgentMutation = gql`mutation ($input: UpdateAgentInput!) {
-  agent: updateAgent(input: $input) {
-    id
-    name
-  }
-}`
-
-const CreateAgentMutation = gql`mutation ($input: CreateAgentInput!) {
-  agent: createAgent(input: $input) {
-    id
-    name
-  }
-}`
 
 export default {
   name: 'AgentForm',
@@ -112,28 +81,26 @@ export default {
       agent: {},
       okDisabled: true,
       schema: [],
+      formData: null,
     }
   },
   apollo: {
     agent: {
       query: AgentQuery,
       skip: true,
-      result({ data, loading }) {
-        if (!loading) {
-          this.enableDisableNameInput(data.agent.agentType)
-        }
-      }
-    },
-  },
-  computed: {
-    formData() {
-      if (Object.keys(this.agent).length > 0) {
-        return this.agent
-      }
-      return {agentType: 'PERSON'}
     },
   },
   watch: {
+    agent: {
+      immediate: true,
+      deep: true,
+      handler(agent) {
+        if (Object.keys(this.agent).length > 0) {
+          this.formData = new Agent(this.agent)
+        }
+        this.formData = new Agent({agentType: 'PERSON'})
+      }
+    },
     'formData.agentType': {
       immediate: true,
       deep: true,
@@ -156,13 +123,15 @@ export default {
     }
   },
   created() {
-    this.$nuxt.$off('group-persons-changed')
-    this.$nuxt.$on('group-persons-changed', (member) => {
+    this.$nuxt.$on('group-persons-changed', (members) => {
+      this.formData.members = members
+      this.formData.name = members.map(item => item.member.name).join('; ')
       this.okDisabled = false
     })
   },
-  beforeDestroy() {
-    this.$nuxt.$off('group-persons-changed')
+  mounted() {
+    const index = this.schema.map(field => field.name).indexOf('name')
+    this.schema[index].disabled = true
   },
   methods: {
     onShown() {
@@ -177,7 +146,19 @@ export default {
       this.okDisabled = false
       if (fieldName === 'agentType') {
         this.schema = schema[value]
-        this.enableDisableNameInput(value)
+      }
+      if (['lastName', 'initials'].indexOf(fieldName) > -1) {
+        if (this.formData.agentType = 'ORGANIZATION') {
+          this.formData.name = this.formData.lastName
+        }
+        if (this.formData.agentType === 'PERSON') {
+          if (this.formData.initials) {
+            this.formData.name = `${this.formData.lastName}, ${this.formData.initials}`
+          }
+          else {
+            this.formData.name = this.formData.lastName
+          }
+        }
       }
     },
     enableDisableNameInput(agentType) {
@@ -190,6 +171,7 @@ export default {
       }
     },
     onOk(event) {
+      event.preventDefault()
       let input = null, mutation = null
       if (this.mode === 'update') {
         mutation = UpdateAgentMutation
@@ -199,6 +181,7 @@ export default {
         mutation = CreateAgentMutation
         input = new CreateAgentInput(this.formData)
       }
+      console.log(JSON.stringify({input: input}, null, 2))
       if (input.members) {
         input.members.forEach(item => {
           item.group = {
@@ -212,9 +195,15 @@ export default {
           input: input
         }
       }).then(({data}) => {
+        console.log(JSON.stringify(data, null, 2))
         this.$nuxt.$emit(`${this.calledFrom}-changed`, data.agent)
         this.$bvModal.hide(this.id)
       })
+    },
+    onCancel(event) {
+      event.preventDefault()
+      this.formData = new Agent({agentType: 'PERSON'})
+      this.$bvModal.hide(this.id)
     },
   },
 }

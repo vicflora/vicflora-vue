@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,7 @@
     @ok="onOk"
   >
     <div class="reference-form">
-      <ReferenceFormGenerator 
+      <ReferenceFormGenerator
         :schema="schema"
         :value="formData"
         @input="onInput"
@@ -39,7 +39,7 @@
 <script>
 import schema from "@/config/referenceFormConfig"
 import { formMethodsMixin } from "@/mixins/formMixins"
-import { CreateReferenceInput, UpdateReferenceInput } from '@/models/ReferenceModel'
+import { Reference, CreateReferenceInput, UpdateReferenceInput } from '@/models/ReferenceModel'
 
 const ReferenceFormGenerator = () => import("@/components/Forms/ReferenceFormGenerator.vue")
 
@@ -161,10 +161,7 @@ export default {
   },
   computed: {
     formData() {
-      if (Object.keys(this.reference).length > 0) {
-        return this.reference
-      }
-      return {referenceType: this.subtype.toUpperCase()}
+      return new Reference(this.reference || {referenceType: this.subtype.toUpperCase()})
     },
   },
   watch: {

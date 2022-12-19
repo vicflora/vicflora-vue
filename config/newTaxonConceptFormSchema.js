@@ -14,16 +14,7 @@
 
 import gql from "graphql-tag"
 
-const TaxonConceptAutoCompleteQuery = gql`query taxonConceptAutocomplete($q: String!) {
-  suggestions: taxonConceptAutocomplete(q: $q) {
-    id
-    taxonName {
-      id
-      fullName
-      authorship
-    }
-  }
-}`
+import TaxonConceptAutoCompleteQuery from '@/graphql/queries/TaxonConceptAutocompleteQuery'
 
 const taxonConceptSuggestionSerializer =  (concept) => {
   return concept.taxonName.authorship
@@ -31,29 +22,13 @@ const taxonConceptSuggestionSerializer =  (concept) => {
       : concept.taxonName.fullName
 }
 
-const taxonNameAutoCompleteQuery = gql`query($q: String!) {
-  suggestions: taxonNameAutocomplete(q: $q) {
-    id
-    fullName
-    authorship
-  }
-}`
+import taxonNameAutoCompleteQuery from '@/graphql/queries/TaxonNameAutocompleteQuery'
 
 const taxonNameSuggestionSerializer = (name) => {
   return name.authorship ? name.fullName + ' ' + name.authorship : name.fullName
 }
 
-const ReferenceAutocompleteQuery = gql`query ReferenceAutocompleteQuery($q: String!) {
-  suggestions: referenceAutocomplete(q: $q) {
-    id
-    quickRef
-    author {
-      name
-    }
-    publicationYear
-    referenceStringHtml
-  }
-}`
+import ReferenceAutocompleteQuery from '@/graphql/queries/ReferenceAutocompleteQuery'
 
 const referenceAutocompleteSerializer = (reference) => {
   return reference.author.name + ' ' + reference.publicationYear
@@ -67,9 +42,10 @@ export default [
     placeholder: "Start typing taxon name...",
     autocomplete: {
       query: taxonNameAutoCompleteQuery,
-      serializer: taxonNameSuggestionSerializer,
+      serializer: taxonNameSuggestionSerializer
     },
-    buttons: ["update", "create"],
+    buttons: ["create"],
+    description: "Please start typing a name and select a name from the drop-down list, or click the '+' button to create a new Taxon Name. Do not just type in a name and move on.",
     form: "TaxonNameForm"
   },
   {
@@ -109,36 +85,12 @@ export default [
       { value: "SUBORDER", label: "Suborder" },
       { value: "FAMILY", label: "Family" },
       { value: "GENUS", label: "Genus" },
-      { value: "SECTION", label: "Section" },
       { value: "SPECIES", label: "Species" },
       { value: "SUBSPECIES", label: "Subspecies" },
       { value: "VARIETY", label: "Variety" },
       { value: "SUBVARIETY", label: "Subvariety" },
       { value: "FORM", label: "Form" },
     ],
-  },
-  {
-    fieldType: "SelectList",
-    name: "taxonomicStatus",
-    label: "Taxonomic status",
-    multi: false,
-    options: [
-      { value: "ACCEPTED", label: "Accepted" },
-      { value: "SYNONYM", label: "Synonym" },
-      { value: "HOMOTYPIC_SYNONYM", label: "Homotypic synonym" },
-      { value: "HETEROTYPIC_SYNONYM", label: "Heterotypic synonym" },
-      { value: "MISAPPLICATION", label: "Misapplication" },
-      { value: "NOT_ACCEPTED", label: "Not accepted" },
-    ],
-  },
-  {
-    fieldType: "AutocompleteControl",
-    name: "acceptedConcept",
-    label: "Accepted name",
-    autocomplete: {
-      query: TaxonConceptAutoCompleteQuery,
-      serializer: taxonConceptSuggestionSerializer,
-    }
   },
   {
     fieldType: "SelectList",
@@ -151,6 +103,7 @@ export default [
       { value: "EXCLUDED", label: "Excluded" },
       { value: "DOUBTFUL", label: "Doubtful" },
     ],
+    defaultValue: "PRESENT"
   },
   {
     fieldType: "CheckboxInput",
@@ -167,6 +120,7 @@ export default [
       { value: "INTRODUCED", label: "Introduced" },
       { value: "UNCERTAIN", label: "Uncertain" },
     ],
+    defaultValue: "NATIVE"
   },
   {
     fieldType: "CheckboxInput",
@@ -186,12 +140,7 @@ export default [
       { value: "ESTABLISHED", label: "Established" },
       { value: "COLONISING", label: "Colonising" },
     ],
-  },
-  {
-    fieldType: "TextareaControl",
-    name: "remarks",
-    label: "Comments",
-    rows: 4,
+    defaultValue: "NATIVE"
   },
   {
     fieldType: "SelectList",

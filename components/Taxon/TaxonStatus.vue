@@ -15,13 +15,17 @@
     </TaxonStatusItem>
 
     <TaxonStatusItem
-      v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.establishmentMeans"
+      v-if="concept.taxonomicStatus === 'ACCEPTED'
+          && concept.occurrenceStatus && concept.occurrenceStatus !== 'EXCLUDED'
+          && concept.establishmentMeans"
       :label="'Establishment means'"
       :value="establishmentMeansEnum[concept.establishmentMeans]"
     />
 
     <TaxonStatusItem
-      v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.degreeOfEstablishment"
+      v-if="concept.taxonomicStatus === 'ACCEPTED'
+          && concept.occurrenceStatus && concept.occurrenceStatus !== 'EXCLUDED'
+          && concept.degreeOfEstablishment"
       :label="'Degree of establishment'"
       :value="degreeOfEstablishmentEnum[concept.degreeOfEstablishment]"
     />

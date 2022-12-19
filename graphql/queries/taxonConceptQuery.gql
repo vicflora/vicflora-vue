@@ -26,6 +26,11 @@ query taxonConceptQuery($id: ID!) {
       id
       quickRef
       referenceStringHtml
+      author {
+        id
+        name
+      }
+      publicationYear
     }
     publicationStatus
     acceptedConcept {
@@ -46,9 +51,11 @@ query taxonConceptQuery($id: ID!) {
     endemic
     establishmentMeans
     degreeOfEstablishment
+    hasIntroducedOccurrences
     epbc
     ffg
     vicAdvisory
+    remarks
 
     createdBy {
       name
@@ -100,9 +107,9 @@ query taxonConceptQuery($id: ID!) {
       name
       rankId
     }
+    taxonRank
     parent {
       id
-
       taxonName {
         id
         fullName
@@ -152,6 +159,26 @@ query taxonConceptQuery($id: ID!) {
       url
       icon
       sortOrder
+    }
+    changes {
+      id
+      to {
+        ...taxonConceptFields
+      }
+      changeType
+      changeSource {
+        quickRef
+      }
+      createdBy {
+        name
+      }
+      createdAt
+    }
+    vernacularNames {
+      id
+      name
+      isPreferred
+      nameUsage
     }
   }
 }

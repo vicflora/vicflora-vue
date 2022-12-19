@@ -1,12 +1,12 @@
 <!--
  Copyright 2022 Royal Botanic Gardens Board
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,7 +32,11 @@
           :key="change.id"
         >
           <td>{{ change.createdAt.substring(0,10) }}</td>
-          <td><b>{{ change.to.taxonName.fullName }}</b> {{ change.to.taxonName.authorship }}</td>
+          <td>
+            <div v-if="change.to">
+              <b>{{ change.to.taxonName.fullName }}</b> {{ change.to.taxonName.authorship }}
+            </div>
+          </td>
           <td>{{ taxonomicStatusEnum[change.changeType].label }}</td>
           <td>{{ change.changeSource ? change.changeSource.quickRef : '&nbsp;'}}</td>
           <td>{{ change.createdBy ? change.createdBy.name : '&nbsp;'}}</td>
