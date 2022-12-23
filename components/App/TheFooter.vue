@@ -25,30 +25,35 @@
         <BCol class="text-right">
           <div class="social-media">
             <a href="https://www.instagram.com/royalbotanicgardensvic/" target="_blank">
-              <BIconInstagram 
-                font-scale="1.5" 
+              <BIconInstagram
+                font-scale="1.5"
                 class="m-media"
               />
-            </a>  
+            </a>
             <a href="https://www.facebook.com/BotanicGardensVictoria" target="_blank">
-              <BIconFacebook 
-                font-scale="1.5" 
+              <BIconFacebook
+                font-scale="1.5"
                 class="m-media"
               />
-            </a>      
+            </a>
             <a href="https://twitter.com/RBG_Victoria" target="_blank">
-              <BIconTwitter 
-                font-scale="1.5" 
+              <BIconTwitter
+                font-scale="1.5"
                 class="m-media"
               />
             </a>
             <a href="https://www.youtube.com/channel/UCSVV1rE_DbHr8MPzFu9g5WQ" target="_blank">
-              <BIconYoutube 
-                font-scale="1.5" 
+              <BIconYoutube
+                font-scale="1.5"
                 class="m-media"
               />
             </a>
           </div>
+        </BCol>
+      </BRow>
+      <BRow>
+        <BCol>
+          <p class="acknowledgement-of-country">Royal Botanic Gardens Victoria acknowledges the Traditional Owners of the land on which we work and learn and pay our respects to their Elders past and present.</p>
         </BCol>
       </BRow>
     </BContainer>
@@ -72,11 +77,11 @@ export default {
 @import "~/assets/scss/custom_variables.scss";
 
 .m-footer {
-  padding: 15px;   
+  padding: 15px;
   background-color: $light;
   span {
     color: white;
-    font-size: small;  
+    font-size: small;
   }
 
   .container, .container-fluid {
@@ -102,5 +107,9 @@ export default {
   .rbgv-website img {
     max-height: 6rem;
   }
+}
+
+.acknowledgement-of-country {
+  margin: 1rem 3rem;
 }
 </style>
