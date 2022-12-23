@@ -146,6 +146,7 @@ export default [
     label: "Occurrence status",
     multi: false,
     options: [
+      { value: null, label: "" },
       { value: "PRESENT", label: "Present" },
       { value: "EXTINCT", label: "Extinct" },
       { value: "EXCLUDED", label: "Excluded" },
@@ -163,6 +164,7 @@ export default [
     label: "Origin",
     multi: false,
     options: [
+      { value: null, label: "" },
       { value: "NATIVE", label: "Native" },
       { value: "INTRODUCED", label: "Introduced" },
       { value: "UNCERTAIN", label: "Uncertain" },
@@ -179,6 +181,7 @@ export default [
     label: "Degree of establishment",
     multi: false,
     options: [
+      { value: null, label: "" },
       { value: "NATIVE", label: "Native" },
       { value: "CULTIVATED", label: "Cultivated" },
       { value: "CASUAL", label: "Casual" },

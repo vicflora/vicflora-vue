@@ -41,11 +41,11 @@ export class UpdateTaxonConceptInput {
     this.id = data.id
     this.taxonRank = data.taxonRank
     this.taxonomicStatus = data.taxonomicStatus
-    this.occurrenceStatus = data.occurrenceStatus
+    this.occurrenceStatus = data.occurrenceStatus || null
     this.endemic = data.endemic
-    this.establishmentMeans = data.establishmentMeans
+    this.establishmentMeans = data.establishmentMeans || null
     this.hasIntroducedOccurrences = data.hasIntroducedOccurrences
-    this.degreeOfEstablishment = data.degreeOfEstablishment
+    this.degreeOfEstablishment = data.degreeOfEstablishment || null
     this.remarks = data.remarks
     this.publicationStatus = data.publicationStatus
 
