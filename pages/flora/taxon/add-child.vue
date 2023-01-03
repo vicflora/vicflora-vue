@@ -23,10 +23,10 @@
             <h2 :class="classes">Add child: {{ taxonConceptLabel }}</h2>
           </header>
           <new-taxon-concept-form
-            v-if="taxonConcept && defaultPublicationStatus"
-            :key="taxonConcept.parent.id"
+            v-if="newTaxonConcept && defaultPublicationStatus"
+            :key="newTaxonConcept.parent.id"
             :id="'taxon-concept-create'"
-            :taxonConcept="taxonConcept"
+            :taxonConcept="newTaxonConcept"
             :defaultPublicationStatus="defaultPublicationStatus"
           />
       </b-col>
@@ -45,18 +45,7 @@ import { TaxonConcept } from '@/models/TaxonConceptModel'
 const TaxonEditMenu = () => import('@/components/Taxon/TaxonEditMenu')
 const NewTaxonConceptForm = () => import('@/components/Forms/NewTaxonConceptForm.vue')
 
-import gql from "graphql-tag"
-const taxonConceptParentQuery = gql`query ($id: ID!) {
-  parent: taxonConcept(id: $id) {
-    id
-    taxonName {
-      id
-      fullName
-      authorship
-    }
-    taxonRank
-  }
-}`
+import TaxonConceptQuery from "@/graphql/queries/taxonConceptQuery"
 
 export default {
   name: 'AddChild',
@@ -68,22 +57,24 @@ export default {
     return {
       parent: null,
       taxonConcept: null,
+      newTaxonConcept: null,
       taxonConceptLabel: null,
       classes: ['m-taxon-name'],
     }
   },
   apollo: {
-    parent: {
-      query: taxonConceptParentQuery,
+    taxonConcept: {
+      query: TaxonConceptQuery,
       result({ data, loading }) {
         if (!loading) {
           $nuxt.$emit('progress-bar-stop')
-          this.taxonConcept = new TaxonConcept()
-          this.taxonConcept.parent = new TaxonConcept(data.parent)
+          this.taxonConcept = data.taxonConcept
+          this.newTaxonConcept = new TaxonConcept()
+          this.newTaxonConcept.parent = new TaxonConcept(data.taxonConcept)
         }
       },
-      skip: true,
-    }
+      skip: true
+    },
   },
   computed: {
     defaultPublicationStatus() {
@@ -94,11 +85,15 @@ export default {
   },
   created() {
     this.$nuxt.$emit('progress-bar-start')
-    this.$apollo.queries.parent.setVariables({id: this.$route.params.id})
-    this.$apollo.queries.parent.skip = false
+    this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
+    this.$apollo.queries.taxonConcept.skip = false
 
     this.$nuxt.$on('taxon-concept-label-changed', (label) => {
       this.taxonConceptLabel = label
+    })
+
+    this.$nuxt.$on('new-taxon-concept-created', () => {
+      this.$apollo.queries.taxonConcept.refetch({id: this.$route.params.id})
     })
   },
 }

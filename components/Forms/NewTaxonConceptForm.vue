@@ -197,6 +197,7 @@ export default {
       }).then(({ data }) => {
         console.log(JSON.stringify(data, null, 2))
         this.updateSolr(data.createTaxonConcept.id)
+        this.$nuxt.$emit('new-taxon-concept-created')
         this.$router.push({
           name: 'flora-taxon-edit',
           params: {

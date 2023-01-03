@@ -114,18 +114,16 @@ export default {
       skip: true
     }
   },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      if (from && from.name === 'flora-taxon-edit') {
-        vm.$apollo.queries.taxonConcept.refetch()
-      }
-    })
-  },
   created() {
     this.$nuxt.$emit('progress-bar-start')
     this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
     this.$apollo.queries.taxonConcept.skip = false
     this.lastSearch = this.$store.state.lastSearch
+
+    this.$nuxt.$on('refetch-data-button-clicked', () => {
+      console.log('Refetching data...')
+      this.$apollo.queries.taxonConcept.refetch()
+    })
   },
 }
 </script>
