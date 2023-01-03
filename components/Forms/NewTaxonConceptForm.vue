@@ -55,6 +55,8 @@ import {
 import { formMethodsMixin } from "@/mixins/formMixins"
 import CreateTaxonConceptMutation
     from '@/graphql/mutations/CreateTaxonConceptMutation'
+import UpdateSolrIndexMutation
+    from '@/graphql/mutations/UpdateSolrIndexMutation'
 
 const NewTaxonConceptFormGenerator = () =>
   import('@/components/Forms/NewTaxonConceptFormGenerator')
@@ -166,24 +168,7 @@ export default {
       this.okDisabled = true
       const errors = this.validate()
       if (!errors.length) {
-        let input = new CreateTaxonConceptInput(this.formData)
-        console.log(JSON.stringify(input, null, 2))
-        this.$apollo.mutate({
-          mutation: CreateTaxonConceptMutation,
-          variables: {
-            input: {...input},
-          },
-        }).then(({ data }) => {
-          console.log(JSON.stringify(data, null, 2))
-          this.$router.push({
-            name: 'flora-taxon-edit',
-            params: {
-              id: data.createTaxonConcept.id
-            }
-          })
-        }).catch((error) => {
-          this.error = `Update failed: ${ error }`
-        })
+        this.createTaxonConcept()
       }
       else {
         let message = '<p><b>Form validation errors:</b></p><ul>'
@@ -200,7 +185,41 @@ export default {
         errors.push("&apos;Taxon name&apos; field has no value")
       }
       return errors
-    }
+    },
+    createTaxonConcept() {
+      let input = new CreateTaxonConceptInput(this.formData)
+      console.log(JSON.stringify(input, null, 2))
+      this.$apollo.mutate({
+        mutation: CreateTaxonConceptMutation,
+        variables: {
+          input: {...input},
+        },
+      }).then(({ data }) => {
+        console.log(JSON.stringify(data, null, 2))
+        this.updateSolr(data.createTaxonConcept.id)
+        this.$router.push({
+          name: 'flora-taxon-edit',
+          params: {
+            id: data.createTaxonConcept.id
+          }
+        })
+      }).catch((error) => {
+        this.error = `Update failed: ${ error }`
+      })
+    },
+    updateSolr(id) {
+      console.log('Update SOLR index...')
+      this.$apollo.mutate({
+        mutation: UpdateSolrIndexMutation,
+        variables: {
+          id: id,
+        },
+      }).then(({data}) => {
+        console.log('SOLR index updated: ' + data.updateSolrIndex.id)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   },
 }
 </script>

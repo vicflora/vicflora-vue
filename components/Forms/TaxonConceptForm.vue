@@ -40,8 +40,8 @@ import {
 import { formMethodsMixin } from "@/mixins/formMixins"
 import UpdateTaxonConceptMutation
     from '@/graphql/mutations/UpdateTaxonConceptMutation'
-import CreateTaxonConceptMutation
-    from '@/graphql/mutations/CreateTaxonConceptMutation'
+import UpdateSolrIndexMutation
+    from '@/graphql/mutations/UpdateSolrIndexMutation'
 
 const TaxonConceptFormGenerator = () =>
   import('@/components/Forms/TaxonConceptFormGenerator')
@@ -167,37 +167,35 @@ export default {
     },
     onOk() {
       this.okDisabled = true
-      let mutation = false
-      let input = false
-      if (this.id === 'taxon-concept-update') {
-        mutation = UpdateTaxonConceptMutation
-        input = new UpdateTaxonConceptInput(this.formData)
-      }
-      else {
-        mutation = CreateTaxonConceptMutation
-        input = new CreateTaxonConceptInput(this.formData)
-      }
+      this.updateTaxonConcept()
+    },
+    updateTaxonConcept() {
+      let input = new UpdateTaxonConceptInput(this.formData)
       console.log(JSON.stringify(input, null, 2))
       this.$apollo.mutate({
-        mutation: mutation,
+        mutation: UpdateTaxonConceptMutation,
         variables: {
           input: {...input},
         },
       }).then(({ data }) => {
         console.log(JSON.stringify(data, null, 2))
-        if (this.$route.name === 'flora-taxon-add-child') {
-          this.$router.push({
-            name: 'flora-taxon-edit',
-            params: {
-              id: data.createTaxonConcept.id
-            }
-          })
-        }
-        else {
-          this.$nuxt.$emit('taxon-concept-updated')
-        }
+        this.updateSolr(data.updateTaxonConcept.id)
+        this.$nuxt.$emit('taxon-concept-updated')
       })
-    }
+    },
+    updateSolr(id) {
+      console.log('Update SOLR index...')
+      this.$apollo.mutate({
+        mutation: UpdateSolrIndexMutation,
+        variables: {
+          id: id,
+        },
+      }).then(({data}) => {
+        console.log('SOLR index updated: ' + data.updateSolrIndex.id)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   },
 }
 </script>
