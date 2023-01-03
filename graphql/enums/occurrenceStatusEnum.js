@@ -15,21 +15,26 @@
  */
 
 export default {
-    "PRESENT": {
-        'label': 'Present',
-        'description': `There is at least one well-documented record of the
-            taxon in the area.`
-    },
-    "EXTINCT": {
-        'label': 'Extinct',
-        'description': `There is no evidence that the taxon is still present in the
-            area.`
-    },
-    "EXCLUDED": {
-        'label': 'Excluded',
-        'description': `The taxon has been reported for the area, but the report
-            is based on a misdetermination. A "taxon" that is solely identified
-            by its name can also be considered 'excluded', because the taxonomy
-            has changed.`
-    }
+  "PRESENT": {
+    'label': 'Present',
+    'description': `There is at least one well-documented record of the
+        taxon in the area.`
+  },
+  "EXTINCT": {
+    'label': 'Extinct',
+    'description': `There is no evidence that the taxon is still present in the
+        area.`
+  },
+  "EXCLUDED": {
+    'label': 'Excluded',
+    'description': `The taxon has been reported for the area, but the report
+        is based on a misdetermination. A "taxon" that is solely identified
+        by its name can also be considered 'excluded', because the taxonomy
+        has changed.`
+  },
+  "DOUBTFUL": {
+    'label': 'Doubtful',
+    'description': `It is doubtful that the taxon occurs in the area. Reports 
+        from the area are most likely based on misidentifications.`
+  }
 }
