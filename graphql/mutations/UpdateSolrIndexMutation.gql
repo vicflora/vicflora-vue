@@ -1,0 +1,5 @@
+mutation UpdateSolrIndexMutation($id: ID!) {
+	updateSolrIndex(id: $id) {
+    id
+  }
+}
