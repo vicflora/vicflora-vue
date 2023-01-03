@@ -210,6 +210,22 @@ export default {
       return schema
     }
   },
+  watch: {
+    parentName: {
+      immediate: true,
+      deep: true,
+      handler(parentName) {
+        if (this.formData.rank === undefined) {
+          const index = this.schema.map(element => element.name).indexOf('rank')
+          let options = this.schema[index].options
+          const optionIndex = options.map(option => option.value).indexOf(this.parentName.rank)
+          options.splice(0, optionIndex + 1)
+          this.schema[index].options = options
+          this.formData.rank = options[0].value
+        }
+      }
+    }
+  },
   created() {
     this.$nuxt.$on('taxon-name-form-input', (field, value) => {
       if (field === 'rank') {
