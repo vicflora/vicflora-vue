@@ -25,7 +25,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/scss/main.scss', 
+    '@/assets/scss/main.scss',
     '@fortawesome/fontawesome/styles.css'
   ],
 
@@ -76,6 +76,7 @@ export default {
     '~plugins/bootstrapicons.js',
     '~plugins/fontawesome.js',
     '~plugins/ckeditor4.client.js',
+    '~plugins/vue-gtag.js',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
