@@ -38,3 +38,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  .keybase-bracketed-key-filter {
+    display: none;
+  }
+</style>
