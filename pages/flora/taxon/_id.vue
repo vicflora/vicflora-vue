@@ -88,6 +88,7 @@ export default {
   head() {
     return {
       title: this.pageTitle,
+      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
     }
   },
   data() {
@@ -109,11 +110,6 @@ export default {
       lastSearch: null,
       pageTitle: 'Flora of Victoria',
       error: null,
-    }
-  },
-  head () {
-    return {
-      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }]
     }
   },
   apollo: {
