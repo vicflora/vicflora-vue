@@ -85,63 +85,82 @@ export default {
     TaxonEditMenu,
     ErrorMessage,
   },
-  head() {
-    return {
-      title: this.pageTitle,
-      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+  async asyncData({ app, params }) {
+    const client = app.apolloProvider.defaultClient;
+    const { id } = params;
+    try {
+      const res = await client.query({
+        query: taxonConceptQuery,
+        variables: {
+          id,
+        },
+      })
+
+      const { taxonConcept } = res.data;
+
+      return {
+        taxonConcept,
+      }
+    }
+    catch(error) {
+      return error
     }
   },
   data() {
     return {
-      structuredData: {
+      taxonConcept: null,
+      lastSearch: null,
+      error: null,
+    }
+  },
+  head() {
+    return {
+      title: `VicFlora: ${this.taxonConcept.taxonName.fullName}`,
+      script: [{ innerHTML: JSON.stringify({
         "@context": "http://schema.org",
         "@type": "Webpage",
-        "headline": "",
-        "datePublished": "",
-        "dateModified": "",
+        "headline": `VicFlora: ${this.taxonConcept.taxonName.fullName}`,
+        "datePublished": this.taxonConcept.createdAt,
+        "dateModified": this.taxonConcept.updatedAt,
         "publisher": {
           "@type": "Organization",
           "name": "Royal Botanic Gardens Victoria",
           "url": "https://www.rbg.vic.gov.au"
         },
         "keywords": [ "botany", "flora", "Australia", "Victoria" ]
-      },
-      taxonConcept: null,
-      lastSearch: null,
-      pageTitle: 'Flora of Victoria',
-      error: null,
+      }), type: 'application/ld+json' }],
     }
   },
-  apollo: {
-    taxonConcept: {
-      query: taxonConceptQuery,
-      result({ data, loading }) {
-        if (!loading) {
-          $nuxt.$emit('progress-bar-stop')
-          this.taxonConcept = data.taxonConcept
-          this.pageTitle = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
-          this.structuredData.headline = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
-          this.structuredData.datePublished = data.taxonConcept.createdAt
-          this.structuredData.dateModified = data.taxonConcept.updatedAt
-          this.structuredData.keywords.push(data.taxonConcept.taxonName.fullName)
-        }
-      },
-      error(error) {
-        this.error = error
-      },
-      skip: true
-    }
-  },
+  // apollo: {
+  //   taxonConcept: {
+  //     query: taxonConceptQuery,
+  //     result({ data, loading }) {
+  //       if (!loading) {
+  //         $nuxt.$emit('progress-bar-stop')
+  //         this.taxonConcept = data.taxonConcept
+  //         this.pageTitle = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
+  //         this.structuredData.headline = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
+  //         this.structuredData.datePublished = data.taxonConcept.createdAt
+  //         this.structuredData.dateModified = data.taxonConcept.updatedAt
+  //         this.structuredData.keywords.push(data.taxonConcept.taxonName.fullName)
+  //       }
+  //     },
+  //     error(error) {
+  //       this.error = error
+  //     },
+  //     skip: true
+  //   }
+  // },
   created() {
     this.$nuxt.$emit('progress-bar-start')
-    this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
-    this.$apollo.queries.taxonConcept.skip = false
+    // this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
+    // this.$apollo.queries.taxonConcept.skip = false
     this.lastSearch = this.$store.state.lastSearch
 
-    this.$nuxt.$on('refetch-data-button-clicked', () => {
-      console.log('Refetching data...')
-      this.$apollo.queries.taxonConcept.refetch()
-    })
+    // this.$nuxt.$on('refetch-data-button-clicked', () => {
+    //   console.log('Refetching data...')
+    //   this.$apollo.queries.taxonConcept.refetch()
+    // })
   },
 }
 </script>
