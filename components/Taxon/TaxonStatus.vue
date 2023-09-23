@@ -52,12 +52,6 @@
           :value="iucnThreatStatusEnum[concept.epbc]"
           :inline="true"
         />
-        <TaxonStatusItem
-          v-if="authority === 'vicAdvisory'"
-          :label="'Vic. Advisory'"
-          :value="vicAdvisoryEnum[concept.vicAdvisory]"
-          :inline="true"
-        />
         <span v-if="index < authorities.length - 1">&bull;&nbsp;</span>
       </div>
     </div>
@@ -74,7 +68,6 @@ import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
 import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
 import degreeOfEstablishmentEnum from "~/graphql/enums/degreeOfEstablishmentEnum"
 import iucnThreatStatusEnum from "~/graphql/enums/iucnThreatStatusEnum"
-import vicAdvisoryEnum from "~/graphql/enums/vicAdvisoryEnum"
 
 export default {
   name: "TaxonStatus",
@@ -95,7 +88,6 @@ export default {
       establishmentMeansEnum,
       degreeOfEstablishmentEnum,
       iucnThreatStatusEnum,
-      vicAdvisoryEnum,
     }
   },
   computed: {
@@ -107,9 +99,6 @@ export default {
         }
          if (this.concept.epbc) {
           authorities.push('epbc')
-        }
-        if (!this.concept.ffg && this.concept.vicAdvisory) {
-          authorities.push('vicAdvisory')
         }
      }
      return authorities

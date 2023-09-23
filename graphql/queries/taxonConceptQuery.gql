@@ -54,7 +54,6 @@ query taxonConceptQuery($id: ID!) {
     hasIntroducedOccurrences
     epbc
     ffg
-    vicAdvisory
     remarks
 
     createdBy {
