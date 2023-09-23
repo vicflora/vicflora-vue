@@ -86,9 +86,55 @@ export default {
     ErrorMessage,
   },
   head() {
-    return {
-      title: this.pageTitle,
-      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+    if (this.taxonConcept) {
+      return {
+        title: this.pageTitle,
+        link: [
+          {
+            rel: "schema.dcterms",
+            href: "http://purl.org/dc/terms/"
+          },
+          {
+            rel: "schema.AGLSTERMS",
+            href: "http://www.agls.gov.au/agls/terms/"
+          }
+        ],
+        meta: [
+          {
+            name: "dcterms.title",
+            content: this.pageTitle
+          },
+          {
+            name: "dcterms.identifier",
+            content: `https://vicflora.rbg.vic.gov.au${this.$route.path}`
+          },
+          {
+            name: "dcterms.creator",
+            content: "scheme=AGLSTERMS.AglsAgent; corporateName=Royal Botanic Gardens Victoria; address=Birdwood Avenue, Melbourne 3004; contact=+61 3 92522300"
+          },
+          {
+            name: "dcterms.publisher",
+            content: "scheme=AGLSTERMS.AglsAgent; corporateName=Royal Botanic Gardens Victoria; address=Birdwood Avenue, Melbourne 3004; contact=+61 3 92522300"
+          },
+          {
+            name: "dcterms.description",
+            content: `Treatment of ${this.taxonConcept.taxonName.fullName}`
+          },
+          {
+            name: "dcterms.created",
+            content: `scheme=dcterms.ISO8601; ${this.taxonConcept.createdAt}`
+          },
+          {
+            name: "dcterms.modified",
+            content: `scheme=dcterms.ISO8601; ${this.taxonConcept.createdAt}`
+          },
+          {
+            name: "dcterms.language",
+            content: "dcterms.RFC4646; en-AU"
+          },
+        ],
+        script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+      }
     }
   },
   data() {
