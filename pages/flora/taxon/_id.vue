@@ -136,36 +136,8 @@ export default {
       script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
     }
   },
-  // apollo: {
-  //   taxonConcept: {
-  //     query: taxonConceptQuery,
-  //     result({ data, loading }) {
-  //       if (!loading) {
-  //         $nuxt.$emit('progress-bar-stop')
-  //         this.taxonConcept = data.taxonConcept
-  //         this.pageTitle = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
-  //         this.structuredData.headline = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
-  //         this.structuredData.datePublished = data.taxonConcept.createdAt
-  //         this.structuredData.dateModified = data.taxonConcept.updatedAt
-  //         this.structuredData.keywords.push(data.taxonConcept.taxonName.fullName)
-  //       }
-  //     },
-  //     error(error) {
-  //       this.error = error
-  //     },
-  //     skip: true
-  //   }
-  // },
   created() {
-    this.$nuxt.$emit('progress-bar-start')
-    // this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
-    // this.$apollo.queries.taxonConcept.skip = false
     this.lastSearch = this.$store.state.lastSearch
-
-    // this.$nuxt.$on('refetch-data-button-clicked', () => {
-    //   console.log('Refetching data...')
-    //   this.$apollo.queries.taxonConcept.refetch()
-    // })
   },
 }
 </script>

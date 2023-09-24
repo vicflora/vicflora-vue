@@ -1,11 +1,10 @@
 import cache from './cache'
 
 export default function(ctx) {
-  const endpoint = process.env.graphqlEndpoint
-  const token = process.env.token
   return {
-    httpEndpoint: endpoint,
-    // getAuth: () => `Bearer ${token}`,
+    httpEndpoint: process.server
+        ? 'http://nginx:81/graphql'
+        : '/graphql',
     cache
   }
 }
