@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 const Breadcrumbs = () => import("@/components/Taxon/TaxonBreadcrumbs")
 const LastSearchButton = () => import("@/components/Taxon/TaxonLastSeachButton")
 const TaxonName = () => import("@/components/Taxon/TaxonName")
@@ -85,9 +87,46 @@ export default {
     TaxonEditMenu,
     ErrorMessage,
   },
-  head() {
-    return {
-      title: this.pageTitle,
+  async asyncData({ params }) {
+    if (process.server) {
+      const url = 'http://solr:8983/solr/vicflora/select'
+      const { id } = params
+      try {
+        const res = await axios.get(url, {
+            params: {
+              q: `id:${id}`,
+              fl: 'id,scientific_name,description,created,modified'
+            }
+          }
+        )
+        const { response } = res.data
+        if (response.numFound > 0) {
+          const doc = response.docs[0]
+          const pageTitle = `VicFlora: ${doc.scientific_name}`
+          const structuredData = {
+            "@context": "http://schema.org",
+            "@type": "Webpage",
+            "headline": pageTitle,
+            "description": doc.description ? doc.description[0] : null,
+            "datePublished": doc.created,
+            "dateModified": doc.modified,
+            "publisher": {
+              "@type": "Organization",
+              "name": "Royal Botanic Gardens Victoria",
+              "url": "https://www.rbg.vic.gov.au"
+            },
+            "keywords": [ "botany", "flora", "Australia", "Victoria" ]
+          }
+
+          return {
+            pageTitle,
+            structuredData,
+          }
+        }
+      }
+      catch(error) {
+        console.error(error)
+      }
     }
   },
   data() {
@@ -95,6 +134,7 @@ export default {
       taxonConcept: null,
       lastSearch: null,
       pageTitle: 'Flora of Victoria',
+      structuredData: {},
       error: null,
     }
   },
@@ -106,12 +146,32 @@ export default {
           $nuxt.$emit('progress-bar-stop')
           this.taxonConcept = data.taxonConcept
           this.pageTitle = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
+          this.structuredData = {
+            "@context": "http://schema.org",
+            "@type": "Webpage",
+            "headline": this.pageTitle,
+            "datePublished": this.taxonConcept.created,
+            "dateModified": this.taxonConcept.modified,
+            "publisher": {
+              "@type": "Organization",
+              "name": "Royal Botanic Gardens Victoria",
+              "url": "https://www.rbg.vic.gov.au"
+            },
+            "keywords": [ "botany", "flora", "Australia", "Victoria" ]
+          }
         }
       },
       error(error) {
         this.error = error
       },
       skip: true
+    }
+  },
+  head() {
+    return {
+      __dangerouslyDisableSanitizers: ['script'],
+      title: this.pageTitle,
+      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
     }
   },
   created() {

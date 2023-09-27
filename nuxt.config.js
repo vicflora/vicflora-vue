@@ -104,7 +104,7 @@ export default {
   hooks: {
     build: {
       before (builder) {
-        axios.post(process.env.GRAPHQL_ENDPOINT, {
+        axios.post('http://nginx:81/graphql', {
           query: `
             query schema{
               __schema{
