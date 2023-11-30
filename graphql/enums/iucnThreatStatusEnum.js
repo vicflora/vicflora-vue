@@ -97,4 +97,8 @@ export default {
         'description': `A taxon is Not Evaluated when it has not yet been
             evaluated against the criteria.`
     },
+    "TH": {
+        "label": 'Threatened',
+        "description": "This is a category made up in FFG: we do not know what it means."
+    }
 }
