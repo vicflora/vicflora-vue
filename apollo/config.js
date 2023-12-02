@@ -1,8 +1,9 @@
 import cache from './cache'
 
 export default function(ctx) {
+  const endpoint = process.env.graphqlEndpoint
   return {
-    httpEndpoint: '/graphql',
+    httpEndpoint: endpoint,
     cache
   }
 }
