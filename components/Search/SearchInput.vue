@@ -54,19 +54,24 @@ export default {
       immediate: true,
       handler: function() {
         if (typeof this.$route.query.q === "string") {
-          this.query = this.$route.query.q
-            .replace(/[*]/g, "")
-            .replace(/\\ /g, " ")
+          this.query = (this.$route.query.q.indexOf(':') == -1 
+              && this.$route.query.q.indexOf('""') == -1) ?
+            this.$route.query.q.replace(/[*]/g, "").replace(/\\ /g, " ") :
+            this.$route.query.q
         }
       }
     }
   },
   methods: {
     search: function() {
+      let q = this.query
+      if (q.indexOf(':') == -1 && q.indexOf('""') == -1) {
+        q = `*${q}*`.replace(/ /g, "\\ ")
+      }
       this.$router.push({
         path: "/flora/search",
         query: {
-          q: `*${this.query}*`.replace(/ /g, "\\ ")
+          q: q
         }
       })
     },
