@@ -76,7 +76,8 @@ export default {
           $nuxt.$emit('progress-bar-stop')
           this.taxonConceptPhenology = data.taxonConceptPhenology
         }
-      }
+      },
+      skip: true
     },
   },
   computed: {
@@ -101,5 +102,11 @@ export default {
       }
     }
   },
+  created() {
+    this.$apollo.queries.taxonConceptPhenology.setVariables({
+      id: this.concept.id
+    })
+    this.$apollo.queries.taxonConceptPhenology.skip = false
+  }
 }
 </script>
