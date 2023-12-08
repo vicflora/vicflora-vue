@@ -15,7 +15,7 @@
 -->
 <template>
   <div class="vf-taxon-concept-references">
-    <p
+    <div
       v-for="ref in concept.references"
       :key="ref.id"
       v-html="ref.reference.referenceStringHtml"
