@@ -61,8 +61,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 const Breadcrumbs = () => import("@/components/Taxon/TaxonBreadcrumbs")
 const LastSearchButton = () => import("@/components/Taxon/TaxonLastSeachButton")
 const TaxonName = () => import("@/components/Taxon/TaxonName")
@@ -87,84 +85,61 @@ export default {
     TaxonEditMenu,
     ErrorMessage,
   },
-  async asyncData({ params }) {
-    if (process.server) {
-      const url = 'http://solr:8983/solr/vicflora/select'
-      const { id } = params
-      try {
-        const res = await axios.get(url, {
-            params: {
-              q: `id:${id}`,
-              fl: 'id,scientific_name,description,created,modified'
-            }
-          }
-        )
-        const { response } = res.data
-        if (response.numFound > 0) {
-          const doc = response.docs[0]
-          const pageTitle = `VicFlora: ${doc.scientific_name}`
-          const structuredData = {
-            "@context": "http://schema.org",
-            "@type": "Webpage",
-            "headline": pageTitle,
-            "description": doc.description ? doc.description[0] : null,
-            "datePublished": doc.created,
-            "dateModified": doc.modified,
-            "publisher": {
-              "@type": "Organization",
-              "name": "Royal Botanic Gardens Victoria",
-              "url": "https://www.rbg.vic.gov.au"
-            },
-            "keywords": [ "botany", "flora", "Australia", "Victoria" ]
-          }
+  async asyncData({ app, params }) {
+    const client = app.apolloProvider.defaultClient;
+    const { id } = params;
+    try {
+      const res = await client.query({
+        query: taxonConceptQuery,
+        variables: {
+          id: id,
+        },
+      })
 
-          return {
-            pageTitle,
-            structuredData,
-          }
-        }
+      const { taxonConcept } = res.data
+      const pageTitle = `VicFlora: ${taxonConcept.taxonName.fullName}`
+      const structuredData = {
+        "@context": "http://schema.org",
+        "@type": "Webpage",
+        "headline": `VicFlora: ${taxonConcept.taxonName.fullName}`,
+        "datePublished": taxonConcept.createdAt,
+        "dateModified": taxonConcept.updatedAt,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Royal Botanic Gardens Victoria",
+          "url": "https://www.rbg.vic.gov.au"
+        },
+        "keywords": [ "botany", "flora", "Australia", "Victoria" ]
       }
-      catch(error) {
-        console.error(error)
+
+      const tabs = []
+      if (taxonConcept.currentProfile) {
+        tabs.push({
+          title: 'Treatment',
+          component: ''
+        })
       }
+      
+
+
+
+      return {
+        taxonConcept,
+        structuredData,
+        tabs
+      }
+    }
+    catch(error) {
+      return error
     }
   },
   data() {
     return {
       taxonConcept: null,
-      lastSearch: null,
-      pageTitle: 'Flora of Victoria',
+      pageTitle: "VicFlora",
       structuredData: {},
+      lastSearch: null,
       error: null,
-    }
-  },
-  apollo: {
-    taxonConcept: {
-      query: taxonConceptQuery,
-      result({ data, loading }) {
-        if (!loading) {
-          $nuxt.$emit('progress-bar-stop')
-          this.taxonConcept = data.taxonConcept
-          this.pageTitle = `VicFlora: ${data.taxonConcept.taxonName.fullName}`
-          this.structuredData = {
-            "@context": "http://schema.org",
-            "@type": "Webpage",
-            "headline": this.pageTitle,
-            "datePublished": this.taxonConcept.created,
-            "dateModified": this.taxonConcept.modified,
-            "publisher": {
-              "@type": "Organization",
-              "name": "Royal Botanic Gardens Victoria",
-              "url": "https://www.rbg.vic.gov.au"
-            },
-            "keywords": [ "botany", "flora", "Australia", "Victoria" ]
-          }
-        }
-      },
-      error(error) {
-        this.error = error
-      },
-      skip: true
     }
   },
   head() {
@@ -175,15 +150,7 @@ export default {
     }
   },
   created() {
-    this.$nuxt.$emit('progress-bar-start')
-    this.$apollo.queries.taxonConcept.setVariables({id: this.$route.params.id})
-    this.$apollo.queries.taxonConcept.skip = false
     this.lastSearch = this.$store.state.lastSearch
-
-    this.$nuxt.$on('refetch-data-button-clicked', () => {
-      console.log('Refetching data...')
-      this.$apollo.queries.taxonConcept.refetch()
-    })
   },
 }
 </script>
