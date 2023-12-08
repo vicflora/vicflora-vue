@@ -4,7 +4,7 @@
       <b-row class="m-row">
         <!-- text -->
         <!-- use .replaceAll() to replace the tags in HTML -->
-        <b-col class="text-left" v-if="concept.currentProfile" :lg="hasAside ? 8 : 12">
+        <b-col class="text-left" :lg="hasAside ? 8 : 12">
           <div
             class="current-profile"
             v-html="concept.currentProfile.profile"
@@ -174,8 +174,11 @@ export default {
         .getElementsByClassName('scientific_name')
 
     for (let i = 0, n = elements.length; i < n; i++) {
-      let sciname = elements[i].innerHTML
-      if (sciname.trim().indexOf(' ') > -1) {
+      let sciname = elements[i].innerHTML.trim()
+      if (sciname.endsWith('aceae') === false && 
+          sciname.endsWith('ales') === false &&
+          sciname.endsWith('opsida') === false &&
+          sciname.endsWith('phyta') === false) {
         sciname = `<em>${ sciname }</em>`
         sciname = sciname.replace(' subsp. ', '</em> subsp. <em>')
         sciname = sciname.replace(' var. ', '</em> var. <em>')
