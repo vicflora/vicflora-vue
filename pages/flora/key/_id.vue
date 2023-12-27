@@ -40,7 +40,10 @@
 
     <!-- /role:tabpanel -->
     <div class="keybase-key-source mt-2 m-keybase-key-source"></div>
-    <div class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link">
+    <div 
+      v-if="$store.getters['isLoggedIn']"
+      class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link"
+    >
       <a href="" target="_blank">Open key in KeyBase <small><b-icon-box-arrow-up-right/></small></a>
     </div>
   </div>
