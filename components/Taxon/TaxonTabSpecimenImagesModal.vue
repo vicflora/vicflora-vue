@@ -21,7 +21,7 @@
       <iframe
         class="m-modal-iframe"
         :src="
-          'https://keybase.rbg.vic.gov.au/projects/specimen_image_viewer/' +
+          '/specimen-image-viewer/' +
             images[currentThumbnail].alaImageUuid
         "
       >
