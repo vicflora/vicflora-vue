@@ -15,6 +15,8 @@ COPY package.json ./
 RUN yarn install
 COPY . .
 
+EXPOSE 5000
+
 ARG GRAPHQL_ENDPOINT
 ENV GRAPHQL_ENDPOINT=$GRAPHQL_ENDPOINT
 
@@ -23,7 +25,7 @@ ENV GEOSERVER_WMS=$GEOSERVER_WMS
 
 RUN yarn build
 
-EXPOSE 5000
+RUN cp ./.nuxt/routes.json ./public/routes.json
 
 ENV NUXT_HOST=0.0.0.0
 ENV NUXT_PORT=5000
