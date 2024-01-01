@@ -54,6 +54,10 @@ export default {
         name: "google-site-verification",
         content: "jlGnk1lKJk6vG-2w1rJbuv3eU8wKsIjWKXOBWmJyorE",
       },
+      {
+        name: "google-site-verification",
+        content: "H5HcgcAbw_qcmQxOsZ1Hs-x-CbhGqm_3GzQ_U96DFXQ",
+      },
     ]
   }
 }
