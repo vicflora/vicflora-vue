@@ -25,8 +25,6 @@ ENV GEOSERVER_WMS=$GEOSERVER_WMS
 
 RUN yarn build
 
-RUN cp ./.nuxt/routes.json ./public/routes.json
-
 ENV NUXT_HOST=0.0.0.0
 ENV NUXT_PORT=5000
 
