@@ -48,5 +48,13 @@ export default {
       newsItems
     }
   },
+  head: {
+    meta: [
+      {
+        name: "google-site-verification",
+        content: "jlGnk1lKJk6vG-2w1rJbuv3eU8wKsIjWKXOBWmJyorE",
+      },
+    ]
+  }
 }
 </script>
