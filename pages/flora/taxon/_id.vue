@@ -104,6 +104,7 @@ export default {
         "@context": "http://schema.org",
         "@type": "Webpage",
         "headline": `VicFlora: ${taxonConcept.taxonName.fullName}`,
+        "description": `VicFlora treatment of ${taxonConcept.taxonName.fullName}`,
         "datePublished": taxonConcept.createdAt.substr(0, 10),
         "dateModified": dateModified,
         "publisher": {
