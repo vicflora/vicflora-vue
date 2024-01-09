@@ -1,0 +1,10 @@
+query identificationKeyQuery($id: ID!) {
+  identificationKey(id: $id) {
+    id
+    title
+    taxonomicScope
+    geographicScope
+    created
+    modified
+  }
+}
