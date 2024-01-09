@@ -98,12 +98,14 @@ export default {
 
       const { taxonConcept } = res.data
       const pageTitle = `VicFlora: ${taxonConcept.taxonName.fullName}`
+      const dateModified = taxonConcept.currentProfile && taxonConcept.currentProfile.modified ? 
+              taxonConcept.currentProfile.modified : taxonConcept.updatedAt.substr(0, 10)
       const structuredData = {
         "@context": "http://schema.org",
         "@type": "Webpage",
         "headline": `VicFlora: ${taxonConcept.taxonName.fullName}`,
-        "datePublished": taxonConcept.createdAt,
-        "dateModified": taxonConcept.updatedAt,
+        "datePublished": taxonConcept.createdAt.substr(0, 10),
+        "dateModified": dateModified,
         "publisher": {
           "@type": "Organization",
           "name": "Royal Botanic Gardens Victoria",
