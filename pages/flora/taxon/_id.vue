@@ -102,7 +102,7 @@ export default {
               taxonConcept.currentProfile.modified : taxonConcept.updatedAt.substr(0, 10)
       const structuredData = {
         "@context": "http://schema.org",
-        "@type": "Webpage",
+        "@type": "Article",
         "headline": `VicFlora: ${taxonConcept.taxonName.fullName}`,
         "description": `VicFlora treatment of ${taxonConcept.taxonName.fullName}`,
         "datePublished": taxonConcept.createdAt.substr(0, 10),
