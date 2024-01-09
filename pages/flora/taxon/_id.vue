@@ -152,6 +152,7 @@ export default {
       }
 
       return {
+        pageTitle,
         taxonConcept,
         structuredData,
         tabs
