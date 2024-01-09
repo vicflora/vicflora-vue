@@ -113,7 +113,7 @@ export default {
           "name": "Royal Botanic Gardens Victoria",
           "url": "https://www.rbg.vic.gov.au"
         },
-        "keywords": [ "botany", "flora", "Australia", "Victoria" ]
+        "keywords": [ "botany", "flora", "Australia", "Victoria", taxonConcept.taxonName.fullName ]
       }
 
       const breadcrumbList = []
