@@ -100,7 +100,8 @@ export default {
       const pageTitle = `VicFlora: ${taxonConcept.taxonName.fullName}`
       const dateModified = taxonConcept.currentProfile && taxonConcept.currentProfile.modified ? 
               taxonConcept.currentProfile.modified : taxonConcept.updatedAt.substr(0, 10)
-      const structuredData = {
+
+      const articleData = {
         "@context": "http://schema.org",
         "@type": "Article",
         "headline": `VicFlora: ${taxonConcept.taxonName.fullName}`,
@@ -115,6 +116,33 @@ export default {
         "keywords": [ "botany", "flora", "Australia", "Victoria" ]
       }
 
+      const breadcrumbList = []
+      if (taxonConcept.higherClassification) {
+        taxonConcept.higherClassification.forEach((element, index) => {
+          const item = {
+            "@type": "ListItem",
+            position: index + 1,
+            name: element.taxonName.fullName,
+            item: `${process.env.APP_URL}/flora/taxon/${element.id}`
+          }
+          breadcrumbList.push(item)
+        })
+      }
+
+      let structuredData = articleData
+
+      if (breadcrumbList.length) {
+        const breadcrumbData = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": breadcrumbList
+        }
+        structuredData = [
+          articleData,
+          breadcrumbData
+        ]
+      }
+
       const tabs = []
       if (taxonConcept.currentProfile) {
         tabs.push({
@@ -122,9 +150,6 @@ export default {
           component: ''
         })
       }
-      
-
-
 
       return {
         taxonConcept,
