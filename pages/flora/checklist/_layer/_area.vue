@@ -119,7 +119,8 @@ export default {
       description: `This checklist of the flora of ${area} is based on 
           occurrence records from the Australasian Virtual Herbarium (AVH) and 
           the Victorian Biodiversity Atlas (VBA). The checklist is dynamically 
-          generated every time the page is entered, so is always up-to-date.`,
+          generated every time the page is entered, so is always 
+          up-to-date.`.replace(/\s+/g, ' '),
       dateModified: new Date().toJSON().slice(0, 10),
       publisher: {
         '@type': 'Organization',
