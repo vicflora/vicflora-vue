@@ -8,6 +8,11 @@
             <h1 v-else>Checklists</h1>
           </div>
 
+          <ChecklistPermalink 
+            v-if="'q' in $route.query && $route.query.q.indexOf('*') == -1" 
+            :q=" $route.query.q"
+          />
+
           <div class="intro">
             <NuxtContent :document="intro"/>
           </div>
@@ -26,7 +31,6 @@
         />
 
       </BRow>
-
 
       <BRow v-if="$route.query.q && data && data.search.docs.length" class="checklist-search-result">
         <BCol
@@ -81,6 +85,7 @@ const ChecklistAccordion = () => import("@/components/Checklists/ChecklistAccord
 const SearchApplied = () => import("@/components/Search/SearchApplied")
 const SearchFilters = () => import("@/components/Search/SearchFilters")
 const SearchResult = () => import("@/components/Search/SearchResult")
+const ChecklistPermalink = () => import("@/components/Checklists/ChecklistPermalink.vue")
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { selectedAreaMixin } from "@/mixins/checklistMixins"
 import ChecklistMapInfoQuery from "@/graphql/queries/checklists"
@@ -94,6 +99,7 @@ export default {
     SearchApplied,
     SearchFilters,
     SearchResult,
+    ChecklistPermalink,
   },
   mixins: [searchMixin, searchWatchMixin, selectedAreaMixin],
   async asyncData({ $content }) {
@@ -281,12 +287,14 @@ export default {
         case 'park_or_reserve':
           this.layer = 'Parks and Reserves'
           break
-        case 'bioregion': {
+        case 'bioregion': 
           this.layer = 'Bioregions'
           break
-        }
         case 'local_government_area':
           this.layer = 'Local Government Areas'
+          break
+        case 'registered_aboriginal_part':
+          this.layer = 'Registered Aboriginal Parties'
           break
       }
     }
