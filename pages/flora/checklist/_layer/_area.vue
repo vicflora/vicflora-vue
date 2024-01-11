@@ -22,12 +22,12 @@ export default {
     SearchResult,
   },
   mixins: [
-    visibleLayerMixin, 
+    visibleLayerMixin,
     selectedAreaMixin,
     searchMixin,
     searchWatchMixin,
   ],
-  async asyncData( { app, params, $content }) {
+  async asyncData({ app, params, $content }) {
     const client = app.apolloProvider.defaultClient
     const { layer } = params
     let featureQuery = null
@@ -69,16 +69,20 @@ export default {
 
       const pageTitle = `VicFlora: Checklist of the flora of ${areaName}`
 
+      const description = `This checklist of the flora of ${areaName} is based 
+            on occurrence records from the Australasian Virtual Herbarium (AVH) 
+            and the Victorian Biodiversity Atlas (VBA). All these record are 
+            obtained from the Atlas of Living Australia (ALA). Identifications 
+            from these sources have been matched to taxon concepts that are 
+            currently accepted in VicFlora. The checklist is newly generated 
+            every time the page is entered, so is always up-to-date.`
+        .replace(/\s+/g, ' ')
+
       const structuredData = {
         "@context": "http://schema.org",
         "@type": "WebPage",
         headline: pageTitle,
-        description: `This checklist of the flora of ${areaName} is based on 
-            occurrence records from the Australasian Virtual Herbarium (AVH) and 
-            the Victorian Biodiversity Atlas (VBA). Their identifications have 
-            been matched to the current taxonomy in VicFlora. The checklist is 
-            dynamically generated every time the page is entered, so is always 
-            up-to-date.`.replace(/\s+/g, ' '),
+        description: description,
         dateModified: new Date().toJSON().slice(0, 10),
         publisher: {
           '@type': 'Organization',
@@ -86,7 +90,7 @@ export default {
           url: 'https://www.rbg.vic.gov.au'
         },
         license: "https://creativecommons.org/licenses/by/4.0/",
-        keywords: [ 'flora', 'checklist', 'Victoria', 'Australia', areaName ]
+        keywords: ['flora', 'checklist', 'Victoria', 'Australia', areaName]
       }
 
       const attribution = await $content(path).fetch()
@@ -94,17 +98,19 @@ export default {
       return {
         areaName,
         pageTitle,
+        description,
         structuredData,
         attribution,
       }
     }
-    catch(error) {
+    catch (error) {
       return error
     }
   },
   data() {
     return {
       pageTitle: 'VicFlora: Checklist',
+      description: null,
       areaName: null,
       structuredData: {},
       checklistArea: null,
@@ -128,7 +134,7 @@ export default {
   apollo: {
     search: {
       query: SearchQuery,
-      result ({ data, loading }) {
+      result({ data, loading }) {
         if (loading) {
           $nuxt.$emit('progress-bar-start')
         }
@@ -138,6 +144,14 @@ export default {
         }
       },
       skip: true
+    }
+  },
+  computed: {
+    formattedDescription() {
+      return this.description.replace(this.areaName, `<b>${this.areaName}</b>`)
+        .replace('Australasian Virtual Herbarium', '<i>Australasian Virtual Herbarium</i>')
+        .replace('Victorian Biodiversity Atlas', '<i>Victorian Biodiversity Atlas</i>')
+        .replace('Atlas of Living Australia', '<i>Atlas of Living Australia</i>')
     }
   },
   head() {
@@ -164,7 +178,7 @@ export default {
     },
     input: {
       deep: true,
-      handler: function() {
+      handler: function () {
         this.$apollo.queries.search.refetch({
           input: {
             ...this.input,
@@ -202,13 +216,13 @@ export default {
       this.filtersFacet = false
     }
     this.input.page = "page" in this.$route.query
-        && this.$route.query.page !== undefined
-        ? parseInt(this.$route.query.page) : 1
+      && this.$route.query.page !== undefined
+      ? parseInt(this.$route.query.page) : 1
   },
   methods: {
     getQ() {
       let q = '*'
-      switch(this.$route.params.layer) {
+      switch (this.$route.params.layer) {
         case 'park-or-reserve':
           q = `park_or_reserve:"${this.areaName}"`
           break
@@ -236,53 +250,41 @@ export default {
           <div class="page-header">
             <h1>Checklist: {{ areaName }}</h1>
           </div>
+          <p v-if="formattedDescription !== undefined" v-html="formattedDescription" />
+          <p v-else>{{ description }}</p>
         </BCol>
       </BRow>
       <BRow>
         <BCol>
-          <ChecklistMap
-            :providedVisibleLayer="layer"
-            :providedArea="selectedArea"
-          />
+          <ChecklistMap :providedVisibleLayer="layer" :providedArea="selectedArea" />
         </BCol>
         <BCol>
-          <BButton 
-            v-b-toggle="'attribution'" 
-            variant="primary"
-            size="sm"
-          >
+          <BButton v-b-toggle="'attribution'" variant="primary" size="sm">
             Attribution
             <span class="when-open"><b-icon-caret-down-fill></b-icon-caret-down-fill></span>
             <span class="when-closed"><b-icon-caret-right-fill></b-icon-caret-right-fill></span>
           </BButton>
 
-          <BCollapse id="attribution">
+          <BCollapse id="attribution" visible>
             <div>&nbsp;</div>
-            <NuxtContent :document="attribution"/>
+            <NuxtContent :document="attribution" />
           </BCollapse>
         </BCol>
 
       </BRow>
 
       <BRow v-if="$route.params.area && data && data.search.docs.length" class="checklist-search-result">
-        <BCol
-          lg="4"
-          cols="12"
-          class="text-left"
-        >
+        <BCol lg="4" cols="12" class="text-left">
           <!-- Query -->
-          <SearchApplied 
-            :q="data.search.meta.params.q" 
-            :fq="data.search.meta.params.fq || []"
-            :queryTermDeleteOption="false"
-          />
+          <SearchApplied :q="data.search.meta.params.q" :fq="data.search.meta.params.fq || []"
+            :queryTermDeleteOption="false" />
           <!-- Filters -->
-          <SearchFilters :data="data"/>
+          <SearchFilters :data="data" />
 
         </BCol>
 
         <client-only>
-          <SearchResult :data="data"/>
+          <SearchResult :data="data" />
         </client-only>
       </BRow>
 
