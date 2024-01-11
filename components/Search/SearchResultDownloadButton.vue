@@ -17,7 +17,7 @@ export default {
           this.$route.params.layer !== undefined &&
           'area' in this.$route.params && 
           this.$route.params.area !== undefined) {
-        return `${this.$route.params.layer.replace(/-/g, '_')}:"${this.$route.params.area}"`
+        return `${this.$route.params.layer.replace(/-/g, '_')}:"${this.$store.getters['checklist/areaName']}"`
       }
       else {
         if ('q' in this.$route.query && this.$route.query.q !== undefined) {

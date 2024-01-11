@@ -9,8 +9,9 @@
           </div>
 
           <ChecklistPermalink 
-            v-if="'q' in $route.query && $route.query.q.indexOf('*') == -1" 
+            v-if="slug && $route.query.q.indexOf('*') == -1" 
             :q=" $route.query.q"
+            :slug="slug"
           />
 
           <div class="intro">
@@ -90,6 +91,10 @@ import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { selectedAreaMixin } from "@/mixins/checklistMixins"
 import ChecklistMapInfoQuery from "@/graphql/queries/checklists"
 import SearchQuery from "@/graphql/queries/search"
+import bioregionByNameQuery from "@/graphql/queries/bioregionByNameQuery"
+import localGovernmentAreaByNameQuery from "@/graphql/queries/localGovernmentAreaByNameQuery"
+import parkReserveByNameQuery from "@/graphql/queries/parkReserveByNameQuery"
+import registeredAboriginalPartyByNameQuery from "@/graphql/queries/registeredAboriginalPartyByNameQuery"
 
 export default {
   name: "CheckList",
@@ -102,10 +107,48 @@ export default {
     ChecklistPermalink,
   },
   mixins: [searchMixin, searchWatchMixin, selectedAreaMixin],
-  async asyncData({ $content }) {
+  async asyncData({ $content, app, query }) {
     const intro = await $content('checklists/index').fetch()
     const attribution = await $content('checklists/attribution').fetch()
-    return { intro, attribution }
+
+    const client = app.apolloProvider.defaultClient
+
+    let slug = null
+    if ('q' in query) {
+      const bits = query.q.split(':')
+      const field = bits[0]
+      const value = bits[1].replace(/^"+|"+$/g, '')
+
+      console.log({field: field, value: value})
+
+      let qry = null
+      switch (field) {
+        case 'bioregion': 
+          qry = bioregionByNameQuery
+          break
+        case 'local_government_area': 
+          qry = localGovernmentAreaByNameQuery
+          break
+        case 'park_or_reserve': 
+          qry = parkReserveByNameQuery
+          break
+        case 'registered_aboriginal_party': 
+          qry = registeredAboriginalPartyByNameQuery
+          break
+      }
+
+      const res = await client.query({
+        query: qry,
+        variables: {
+          name: value
+        }
+      })
+
+      const { feature } = res.data
+      slug = feature.properties.slug
+    }
+
+    return { intro, attribution, slug }
   },
   head() {
     return {
@@ -128,7 +171,8 @@ export default {
       selectedArea: {
         baseUrl: null,
         layers: null
-      }
+      },
+      slug: null,
     }
   },
   apollo: {
@@ -140,15 +184,19 @@ export default {
           let q = '-*:*'
           if (this.layer == 'Bioregions' && data.bioregions.length) {
             q = `bioregion:"${data.bioregions[0].properties.name}"`
+            this.slug = data.bioregions[0].properties.slug
           }
           if (this.layer == 'Local Government Areas' && data.localGovernmentAreas.length) {
             q = `local_government_area:"${data.localGovernmentAreas[0].properties.name}"`
+            this.slug = data.localGovernmentAreas[0].properties.slug
           }
           if (this.layer == 'Parks and Reserves' && data.parksOrReserves.length) {
             q = `park_or_reserve:"${data.parksOrReserves[0].properties.name}"`
+            this.slug =  data.parksOrReserves[0].properties.slug
           }
           if (this.layer == 'Registered Aboriginal Parties' && data.registeredAboriginalParties.length) {
             q = `registered_aboriginal_party:"${data.registeredAboriginalParties[0].properties.name}"`
+            this.slug = data.registeredAboriginalParties[0].properties.slug
           }
           this.$router.push({
             query: {

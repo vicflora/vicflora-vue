@@ -1,6 +1,6 @@
 <template>
   <p>
-    Permalink: <nuxt-link :to="permalink">{{ `${appUrl}${permalink}` }}</nuxt-link>
+    <nuxt-link :to="permalink">{{ `${appUrl}${permalink}` }}</nuxt-link>
   </p>
 </template>
 
@@ -9,6 +9,10 @@
     name: 'ChecklistPermalink',
     props: {
       q: {
+        type: String,
+        required: true
+      },
+      slug: {
         type: String,
         required: true
       }
@@ -20,8 +24,7 @@
       permalink() {
         let bits = this.q.split(':')
         let layer = bits[0].replace(/_/g, '-')
-        let area = encodeURI(bits[1].replace(/^"+|"+$/g, ''))
-        return `${this.$route.path}/${layer}/${area}`
+        return `${this.$route.path}/${layer}/${this.slug}`
       },
     }
   }

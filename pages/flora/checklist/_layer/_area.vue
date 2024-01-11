@@ -1,67 +1,3 @@
-<template>
-  <div class="vf-checklist-page">
-    <BContainer>
-      <BRow class="mb-2">
-        <BCol class="text-left">
-          <div class="page-header">
-            <h1>Checklist: {{ $route.params.area }}</h1>
-          </div>
-        </BCol>
-      </BRow>
-      <BRow>
-        <BCol>
-          <ChecklistMap
-            :providedVisibleLayer="layer"
-            :providedArea="selectedArea"
-          />
-        </BCol>
-        <BCol>
-          <BButton 
-            v-b-toggle="'attribution'" 
-            variant="primary"
-            size="sm"
-          >
-            Attribution
-            <span class="when-open"><b-icon-caret-down-fill></b-icon-caret-down-fill></span>
-            <span class="when-closed"><b-icon-caret-right-fill></b-icon-caret-right-fill></span>
-          </BButton>
-
-          <BCollapse id="attribution">
-            <div>&nbsp;</div>
-            <NuxtContent :document="attribution"/>
-          </BCollapse>
-        </BCol>
-
-      </BRow>
-
-      <BRow v-if="$route.params.area && data && data.search.docs.length" class="checklist-search-result">
-        <BCol
-          lg="4"
-          cols="12"
-          class="text-left"
-        >
-          <!-- Query -->
-          <SearchApplied 
-            :q="data.search.meta.params.q" 
-            :fq="data.search.meta.params.fq || []"
-            :queryTermDeleteOption="false"
-          />
-          <!-- Filters -->
-          <SearchFilters :data="data"/>
-
-        </BCol>
-
-        <client-only>
-          <SearchResult :data="data"/>
-        </client-only>
-      </BRow>
-
-
-
-    </BContainer>
-  </div>
-</template>
-
 <script>
 import 'leaflet/dist/leaflet.css'
 const ChecklistMap = () => import("@/components/Checklists/ChecklistMap")
@@ -71,10 +7,14 @@ const SearchResult = () => import("@/components/Search/SearchResult")
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { visibleLayerMixin, selectedAreaMixin } from "@/mixins/checklistMixins"
 import SearchQuery from "@/graphql/queries/search"
+import bioregionBySlugQuery from "@/graphql/queries/bioregionBySlugQuery"
+import localGovernmentAreaBySlugQuery from "@/graphql/queries/localGovernmentAreaBySlugQuery"
+import parkReserveBySlugQuery from "@/graphql/queries/parkReserveBySlugQuery"
+import registeredAboriginalPartyBySlugQuery from "@/graphql/queries/registeredAboriginalPartyBySlugQuery"
 
 
 export default {
-  name: "AreaChecklist",
+  name: "ChecklistPage",
   components: {
     ChecklistMap,
     SearchApplied,
@@ -87,59 +27,85 @@ export default {
     searchMixin,
     searchWatchMixin,
   ],
-  async asyncData( { params, $content }) {
-
+  async asyncData( { app, params, $content }) {
+    const client = app.apolloProvider.defaultClient
     const { layer } = params
+    let featureQuery = null
 
     let path = 'checklists/'
     switch (layer) {
       case 'bioregion':
+        featureQuery = bioregionBySlugQuery
         path += 'bioregions-layer'
         break
       case 'local-government-area':
+        featureQuery = localGovernmentAreaBySlugQuery
         path += 'local-government-areas-layer'
         break
       case 'park-or-reserve':
+        featureQuery = parkReserveBySlugQuery
         path += 'parks-and-reserves-layer'
         break
       case 'registered-aboriginal-party':
+        featureQuery = registeredAboriginalPartyBySlugQuery
         path += 'registered-aboriginal-parties-layer'
         break
     }
 
-    const attribution = await $content(path).fetch()
-    
-    const { area } = params
-    const pageTitle = `VicFlora: Checklist of the flora of ${area}`
-    
-    const structuredData = {
-      "@context": "http://schema.org",
-      "@type": "Article",
-      headline: pageTitle,
-      description: `This checklist of the flora of ${area} is based on 
-          occurrence records from the Australasian Virtual Herbarium (AVH) and 
-          the Victorian Biodiversity Atlas (VBA). Their identifications have 
-          been matched to the current taxonomy in VicFlora. The checklist is 
-          dynamically generated every time the page is entered, so is always 
-          up-to-date.`.replace(/\s+/g, ' '),
-      dateModified: new Date().toJSON().slice(0, 10),
-      publisher: {
-        '@type': 'Organization',
-        name: 'Royal Botanic Gardens Victoria',
-        url: 'https://www.rbg.vic.gov.au'
-      },
-      keywords: [ 'flora', 'checklist', 'Victoria', 'Australia', area ]
-    }
+    try {
+      const res = await client.query({
+        query: featureQuery,
+        variables: {
+          slug: params.area
+        }
+      })
 
-    return {
-      pageTitle,
-      structuredData,
-      attribution,
+      const { feature } = res.data
+
+      let areaName = null
+      if ('properties' in feature) {
+        areaName = feature.properties.name
+      }
+
+      const pageTitle = `VicFlora: Checklist of the flora of ${areaName}`
+
+      const structuredData = {
+        "@context": "http://schema.org",
+        "@type": "WebPage",
+        headline: pageTitle,
+        description: `This checklist of the flora of ${areaName} is based on 
+            occurrence records from the Australasian Virtual Herbarium (AVH) and 
+            the Victorian Biodiversity Atlas (VBA). Their identifications have 
+            been matched to the current taxonomy in VicFlora. The checklist is 
+            dynamically generated every time the page is entered, so is always 
+            up-to-date.`.replace(/\s+/g, ' '),
+        dateModified: new Date().toJSON().slice(0, 10),
+        publisher: {
+          '@type': 'Organization',
+          name: 'Royal Botanic Gardens Victoria',
+          url: 'https://www.rbg.vic.gov.au'
+        },
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        keywords: [ 'flora', 'checklist', 'Victoria', 'Australia', areaName ]
+      }
+
+      const attribution = await $content(path).fetch()
+
+      return {
+        areaName,
+        pageTitle,
+        structuredData,
+        attribution,
+      }
+    }
+    catch(error) {
+      return error
     }
   },
   data() {
     return {
       pageTitle: 'VicFlora: Checklist',
+      areaName: null,
       structuredData: {},
       checklistArea: null,
       layer: "Parks and Reserves",
@@ -209,7 +175,7 @@ export default {
     }
   },
   created() {
-    this.checklistArea = this.$route.params.area
+    this.checklistArea = this.areaName
     this.setVisibleLayer()
 
     this.$apollo.queries.search.setVariables({
@@ -228,6 +194,8 @@ export default {
         }
       })
     })
+
+    this.$store.dispatch('checklist/storeAreaName', this.areaName)
   },
   mounted() {
     if (window.innerWidth < 992) {
@@ -242,16 +210,16 @@ export default {
       let q = '*'
       switch(this.$route.params.layer) {
         case 'park-or-reserve':
-          q = `park_or_reserve:"${this.$route.params.area}"`
+          q = `park_or_reserve:"${this.areaName}"`
           break
         case 'bioregion':
-          q = `bioregion:"${this.$route.params.area}"`
+          q = `bioregion:"${this.areaName}"`
           break
         case 'local-government-area':
-          q = `local_government_area:"${this.$route.params.area}"`
+          q = `local_government_area:"${this.areaName}"`
           break
         case 'registered-aboriginal-party':
-          q = `registered_aboriginal_party:"${this.$route.params.area}"`
+          q = `registered_aboriginal_party:"${this.areaName}"`
           break
       }
       return q
@@ -259,3 +227,67 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="vf-checklist-page">
+    <BContainer>
+      <BRow class="mb-2">
+        <BCol class="text-left">
+          <div class="page-header">
+            <h1>Checklist: {{ areaName }}</h1>
+          </div>
+        </BCol>
+      </BRow>
+      <BRow>
+        <BCol>
+          <ChecklistMap
+            :providedVisibleLayer="layer"
+            :providedArea="selectedArea"
+          />
+        </BCol>
+        <BCol>
+          <BButton 
+            v-b-toggle="'attribution'" 
+            variant="primary"
+            size="sm"
+          >
+            Attribution
+            <span class="when-open"><b-icon-caret-down-fill></b-icon-caret-down-fill></span>
+            <span class="when-closed"><b-icon-caret-right-fill></b-icon-caret-right-fill></span>
+          </BButton>
+
+          <BCollapse id="attribution">
+            <div>&nbsp;</div>
+            <NuxtContent :document="attribution"/>
+          </BCollapse>
+        </BCol>
+
+      </BRow>
+
+      <BRow v-if="$route.params.area && data && data.search.docs.length" class="checklist-search-result">
+        <BCol
+          lg="4"
+          cols="12"
+          class="text-left"
+        >
+          <!-- Query -->
+          <SearchApplied 
+            :q="data.search.meta.params.q" 
+            :fq="data.search.meta.params.fq || []"
+            :queryTermDeleteOption="false"
+          />
+          <!-- Filters -->
+          <SearchFilters :data="data"/>
+
+        </BCol>
+
+        <client-only>
+          <SearchResult :data="data"/>
+        </client-only>
+      </BRow>
+
+
+
+    </BContainer>
+  </div>
+</template>

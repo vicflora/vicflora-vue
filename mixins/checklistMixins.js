@@ -48,7 +48,7 @@ export const selectedAreaMixin = {
           'area' in this.$route.params && 
           this.$route.params.area !== undefined) {
         field = this.$route.params.layer.replace(/-/g, '_')
-        area = this.$route.params.area
+        area = this.areaName
       }
       else {
         if ('q' in this.$route.query && this.$route.query.q !== undefined) {

@@ -1,0 +1,8 @@
+query registeredAboriginalPartyBySlugQuery($slug: String!){
+  feature: registeredAboriginalPartyBySlug(slug: $slug) {
+    properties {
+      name
+      slug
+    }
+  }
+}

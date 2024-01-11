@@ -1,0 +1,8 @@
+query parkReserveByNameQuery($name: String!) {
+  feature: parkReserveByName(name: $name) {
+    properties {
+      name
+      slug
+    }
+  }
+}
