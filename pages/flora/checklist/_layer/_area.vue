@@ -71,11 +71,12 @@ export default {
 
       const description = `This checklist of the flora of ${areaName} is based 
             on occurrence records from the Australasian Virtual Herbarium (AVH) 
-            and the Victorian Biodiversity Atlas (VBA). All these record are 
-            obtained from the Atlas of Living Australia (ALA). Identifications 
-            from these sources have been matched to taxon concepts that are 
-            currently accepted in VicFlora. The checklist is newly generated 
-            every time the page is entered, so is always up-to-date.`
+            and the Victorian Biodiversity Atlas (VBA). Records from these data 
+            sources are obtained from the Atlas of Living Australia (ALA) every 
+            week. Identifications from these records are matched to taxon 
+            concepts that are currently accepted in VicFlora. The checklist is 
+            newly generated every time the page is entered, so is always 
+            up-to-date.`
         .replace(/\s+/g, ' ')
 
       const structuredData = {
