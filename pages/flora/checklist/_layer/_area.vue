@@ -73,9 +73,9 @@ export default {
             on occurrence records from the Australasian Virtual Herbarium (AVH) 
             and the Victorian Biodiversity Atlas (VBA). Records from these data 
             sources are obtained from the Atlas of Living Australia (ALA) every 
-            week. Identifications from these records are matched to taxon 
-            concepts that are currently accepted in VicFlora. The checklist is 
-            newly generated every time the page is entered, so is always 
+            week. Identifications on these records are matched to taxon concepts 
+            that are currently accepted in VicFlora every night. The checklist 
+            is newly generated every time the page is entered, so is always 
             up-to-date.`
         .replace(/\s+/g, ' ')
 
