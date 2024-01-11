@@ -23,7 +23,22 @@
       },
       permalink() {
         let bits = this.q.split(':')
-        let layer = bits[0].replace(/_/g, '-')
+        const field = bits[0]
+        let layer = ''
+        switch (field) {
+          case 'bioregion':
+            layer = 'bioregion'
+            break
+          case 'local_government_area':
+            layer = 'lga'
+            break
+          case 'park_or_reserve':
+            layer = 'parkres'
+            break
+          case 'registered_aboriginal_party':
+            layer = 'rap'
+            break
+        }
         return `${this.$route.path}/${layer}/${this.slug}`
       },
     }

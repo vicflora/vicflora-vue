@@ -40,15 +40,15 @@ export default {
         featureQuery = bioregionBySlugQuery
         path += 'bioregions-layer'
         break
-      case 'local-government-area':
+      case 'lga':
         featureQuery = localGovernmentAreaBySlugQuery
         path += 'local-government-areas-layer'
         break
-      case 'park-or-reserve':
+      case 'parkres':
         featureQuery = parkReserveBySlugQuery
         path += 'parks-and-reserves-layer'
         break
-      case 'registered-aboriginal-party':
+      case 'rap':
         featureQuery = registeredAboriginalPartyBySlugQuery
         path += 'registered-aboriginal-parties-layer'
         break
@@ -226,16 +226,16 @@ export default {
     getQ() {
       let q = '*'
       switch (this.$route.params.layer) {
-        case 'park-or-reserve':
+        case 'parkres':
           q = `park_or_reserve:"${this.areaName}"`
           break
         case 'bioregion':
           q = `bioregion:"${this.areaName}"`
           break
-        case 'local-government-area':
+        case 'lga':
           q = `local_government_area:"${this.areaName}"`
           break
-        case 'registered-aboriginal-party':
+        case 'rap':
           q = `registered_aboriginal_party:"${this.areaName}"`
           break
       }

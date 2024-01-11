@@ -7,7 +7,13 @@ export const visibleLayerMixin = {
           this.$route.params.layer !== undefined &&
           'area' in this.$route.params && 
           this.$route.params.area !== undefined) {
-        field = this.$route.params.layer.replace(/-/g, '_')
+        const map = {
+          'bioregion': 'bioregion',
+          'lga': 'local_government_area',
+          'parkres': 'park_or_reserve',
+          'rap': 'registered_aboriginal_party',
+        }
+        field = map[this.$route.params.layer]
       }
       else {
         if ('q' in this.$route.query && this.$route.query.q !== undefined) {
@@ -47,7 +53,13 @@ export const selectedAreaMixin = {
           this.$route.params.layer !== undefined &&
           'area' in this.$route.params && 
           this.$route.params.area !== undefined) {
-        field = this.$route.params.layer.replace(/-/g, '_')
+        const map = {
+          'bioregion': 'bioregion',
+          'lga': 'local_government_area',
+          'parkres': 'park_or_reserve',
+          'rap': 'registered_aboriginal_party',
+        }
+        field = map[this.$route.params.layer]
         area = this.areaName
       }
       else {
