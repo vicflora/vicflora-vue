@@ -1,6 +1,6 @@
 <template>
   <BButton 
-    :to="{ name: 'flora-checklist', query: query }"
+    :to="{ name: 'checklist', query: query }"
     variant="outline-primary" 
     size="sm"
   >
