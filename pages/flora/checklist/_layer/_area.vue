@@ -4,6 +4,7 @@ const ChecklistMap = () => import("@/components/Checklists/ChecklistMap")
 const SearchApplied = () => import("@/components/Search/SearchApplied")
 const SearchFilters = () => import("@/components/Search/SearchFilters")
 const SearchResult = () => import("@/components/Search/SearchResult")
+const BackToChecklistIndexButton = () => import("@/components/Checklists/BackToChecklistIndexButton")
 import { searchMixin, searchWatchMixin } from "@/mixins/searchMixins"
 import { visibleLayerMixin, selectedAreaMixin } from "@/mixins/checklistMixins"
 import SearchQuery from "@/graphql/queries/search"
@@ -20,6 +21,7 @@ export default {
     SearchApplied,
     SearchFilters,
     SearchResult,
+    BackToChecklistIndexButton,
   },
   mixins: [
     visibleLayerMixin,
@@ -248,6 +250,10 @@ export default {
     <BContainer>
       <BRow class="mb-2">
         <BCol class="text-left">
+          <BackToChecklistIndexButton 
+            :query="input"
+            class="back-to-checklist-index float-right"
+          />
           <div class="page-header">
             <h1>Checklist: {{ areaName }}</h1>
           </div>
@@ -270,6 +276,7 @@ export default {
             <div>&nbsp;</div>
             <NuxtContent :document="attribution" />
           </BCollapse>
+
         </BCol>
 
       </BRow>
@@ -294,3 +301,10 @@ export default {
     </BContainer>
   </div>
 </template>
+
+<style>
+.back-to-checklist-index {
+  margin-top: 2.4rem;
+  height: 30px;
+}
+</style>
