@@ -1,0 +1,8 @@
+query localGovernmentAreaByNameQuery($name: String!) {
+  feature: localGovernmentAreaByName(name: $name) {
+    properties {
+      name
+      slug
+    }
+  }
+}

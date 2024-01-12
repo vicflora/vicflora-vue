@@ -3,7 +3,7 @@
     <client-only>
       <l-map
         :zoom="6"
-        :center="[-36.155, 144.81]"
+        :center="[-36.6, 145.4 ]"
         class="m-map"
         @click="mapClicked"
       >
@@ -146,7 +146,7 @@ export default {
   },
   mounted() {
     this.setVisibleLayer()
-    // this.setSelectedArea()
+    this.selectedArea = this.providedArea
   },
   beforeDestroy() {
     this.$nuxt.$off('visible-layer')

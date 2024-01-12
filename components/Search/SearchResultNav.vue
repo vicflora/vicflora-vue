@@ -49,6 +49,7 @@ export default {
     onChange: function(pageNum) {
       this.$router.push({
         name: this.$route.name,
+        params: this.$route.params,
         query: {
           ...this.$route.query,
           page: pageNum,

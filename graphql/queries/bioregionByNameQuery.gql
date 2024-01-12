@@ -1,0 +1,8 @@
+query bioregionByNameQuery($name: String!) {
+  feature: bioregionByName(name: $name) {
+    properties {
+      name
+      slug
+    }
+  }
+}

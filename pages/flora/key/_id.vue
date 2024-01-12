@@ -50,12 +50,11 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex'
 const KeybasePlayer = () => import("@/components/Keybase/KeybasePlayer");
 const BracketedKey = () => import("@/components/Keybase/BracketedKey");
+import identificationKeyQuery from "@/graphql/queries/identificationKeyQuery"
 
 require("./keybase");
-// require("./jquery.keybase.key");
 
 export default {
   name: 'KeyPage',
@@ -63,9 +62,44 @@ export default {
     KeybasePlayer,
     BracketedKey
   },
-  head() {
-    return {
-      title: 'VicFlora – Key',
+  async asyncData({ app, params }) {
+    const client = app.apolloProvider.defaultClient;
+    const { id } = params;
+    try {
+      const res = await client.query({
+        query: identificationKeyQuery,
+        variables: {
+          id: id,
+        },
+      })
+
+      const { identificationKey } = res.data
+      const pageTitle = `VicFlora: ${identificationKey.title}`
+      const structuredData = {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        headline: pageTitle,
+        description: `This page provides a pathway key to the members of 
+                ${identificationKey.taxonomicScope} that occur in Victoria. 
+                The key is provided both in the form of an interactive key 
+                player and as a bracketed key.`.replace(/\s+/g, ' '),
+        datePublished: identificationKey.created,
+        dateModified: identificationKey.modified,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Royal Botanic Gardens Victoria',
+          url: 'https://www.rbg.vic.gov.au',
+        },
+        keywords: [ 'botany', 'identification', 'key', 'Australia', 'Victoria', identificationKey.taxonomicScope ],
+      }
+
+      return {
+        pageTitle,
+        structuredData,
+      }
+    }
+    catch(error) {
+      return error
     }
   },
   data() {
@@ -80,7 +114,16 @@ export default {
       discardedItems: false,
       bracketedKey: false,
       bracketedKeyDisplay: false,
+      pageTitle: "VicFlora",
+      structuredData: {},
     };
+  },
+  head() {
+    return {
+      __dangerouslyDisableSanitizers: ['script'],
+      title: this.pageTitle,
+      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+    }
   },
   computed: {
     // ...mapState({

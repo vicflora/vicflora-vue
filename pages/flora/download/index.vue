@@ -97,7 +97,7 @@ var downloadGql = gql`
 `
 
 export default {
-  name: "Dowload",
+  name: "Download",
   head() {
     return {
       title: 'VicFlora – Download',

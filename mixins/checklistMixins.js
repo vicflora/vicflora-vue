@@ -1,26 +1,42 @@
 export const visibleLayerMixin = {
   methods: {
     setVisibleLayer() {
-      if ('q' in this.$route.query && this.$route.query.q !== undefined) {
-        const q = this.$route.query.q
-        const field = q.substring(0, q.indexOf(':'))
-        let layer =''
-        switch(field) {
-          case 'bioregion':
-            layer = 'Bioregions'
-            break
-          case 'local_government_area':
-            layer = 'Local Government Areas'
-            break
-          case 'registered_aboriginal_party':
-            layer = 'Registered Aboriginal Parties'
-            break
-          default:
-            layer = 'Parks and Reserves'
+      let field = ''
+
+      if ('layer' in this.$route.params && 
+          this.$route.params.layer !== undefined &&
+          'area' in this.$route.params && 
+          this.$route.params.area !== undefined) {
+        const map = {
+          'bioregion': 'bioregion',
+          'lga': 'local_government_area',
+          'parkres': 'park_or_reserve',
+          'rap': 'registered_aboriginal_party',
         }
-        this.visibleLayer = layer
-        this.setSelectedArea()
+        field = map[this.$route.params.layer]
       }
+      else {
+        if ('q' in this.$route.query && this.$route.query.q !== undefined) {
+          const q = this.$route.query.q
+          field = q.substring(0, q.indexOf(':'))
+        }
+      }
+      let layer =''
+      switch(field) {
+        case 'bioregion':
+          layer = 'Bioregions'
+          break
+        case 'local_government_area':
+          layer = 'Local Government Areas'
+          break
+        case 'registered_aboriginal_party':
+          layer = 'Registered Aboriginal Parties'
+          break
+        default:
+          layer = 'Parks and Reserves'
+      }
+      this.visibleLayer = layer
+      this.setSelectedArea()
     },
   },
 }
@@ -28,39 +44,58 @@ export const visibleLayerMixin = {
 export const selectedAreaMixin = {
   methods: {
     setSelectedArea() {
-      if ('q' in this.$route.query && this.$route.query.q !== undefined) {
-        let arr = this.$route.query.q.split(':')
-        let field = arr[0]
-        let area = arr[1].replace(/"/g, '')
-        let baseUrl = process.env.geoserverWms
-        let layers = 'vicflora-mapper:'
+      let field = null
+      let area = null
+      let baseUrl = process.env.geoserverWms
+      let layers = 'vicflora-mapper:'
 
-        switch (field) {
-          case 'bioregion':
-            baseUrl += `?cql_filter=bioregion%3D%27${area}%27`
-            layers += 'bioregions'
-            break
-          case 'local_government_area':
-            baseUrl += `?cql_filter=lga_name%3D%27${area}%27`
-            layers += 'local_government_areas'
-            break
-          case 'park_or_reserve':
-            baseUrl += `?cql_filter=name%3D%27${area}%27`
-            layers += 'park_reserves'
-            break
-          case 'registered_aboriginal_party':
-              baseUrl += `?cql_filter=name%3D%27${area}%27`
-              layers += 'raps'
-              break
-          default:
-            baseUrl = null
-            layers = null
+      if ('layer' in this.$route.params && 
+          this.$route.params.layer !== undefined &&
+          'area' in this.$route.params && 
+          this.$route.params.area !== undefined) {
+        const map = {
+          'bioregion': 'bioregion',
+          'lga': 'local_government_area',
+          'parkres': 'park_or_reserve',
+          'rap': 'registered_aboriginal_party',
         }
-        this.selectedArea = {
-          baseUrl: baseUrl,
-          layers: layers
+        field = map[this.$route.params.layer]
+        area = this.areaName
+      }
+      else {
+        if ('q' in this.$route.query && this.$route.query.q !== undefined) {
+          let arr = this.$route.query.q.split(':')
+          field = arr[0]
+          area = arr[1].replace(/"/g, '')
         }
       }
+
+      switch (field) {
+        case 'bioregion':
+          baseUrl += `?cql_filter=bioregion%3D%27${area}%27`
+          layers += 'bioregions'
+          break
+        case 'local_government_area':
+          baseUrl += `?cql_filter=lga_name%3D%27${area}%27`
+          layers += 'local_government_areas'
+          break
+        case 'park_or_reserve':
+          baseUrl += `?cql_filter=name%3D%27${area}%27`
+          layers += 'park_reserves'
+          break
+        case 'registered_aboriginal_party':
+            baseUrl += `?cql_filter=name%3D%27${area}%27`
+            layers += 'raps'
+            break
+        default:
+          baseUrl = null
+          layers = null
+      }
+      this.selectedArea = {
+        baseUrl: baseUrl,
+        layers: layers
+      }
+      this.$nuxt.$emit('selected-area-set', this.selectedArea)
     },
   }
 }

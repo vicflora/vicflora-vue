@@ -3,6 +3,7 @@ query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
     properties {
       name
       label
+      slug
     }
   }
 
@@ -10,6 +11,7 @@ query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
     properties {
       name
       label
+      slug
     }
   }
 
@@ -17,6 +19,7 @@ query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
     properties {
       name
       label
+      slug
     }
   }
 
@@ -24,6 +27,7 @@ query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
     properties {
       name
       label
+      slug
     }
   }
 }

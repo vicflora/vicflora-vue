@@ -2,7 +2,7 @@
 export default {
   middleware: [
         function({ redirect }) {
-            redirect('/checklist');
+            redirect('/api');
         },
     ],
 }

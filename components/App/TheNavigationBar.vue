@@ -38,7 +38,7 @@
 
             <BNavItem
               class="m-menu-item"
-              to="/flora/checklist"
+              to="/checklist"
             >CheckLists</BNavItem>
 
             <BNavItem

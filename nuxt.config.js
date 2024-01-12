@@ -98,13 +98,14 @@ export default {
     host: "0"
   },
   env: {
+    appUrl: process.env.APP_URL || 'https://vicflora.rbg.vic.gov.au',
     graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || 'http://localhost/graphql',
     geoserverWms: process.env.GEOSERVER_WMS || 'http://localhost:8080/geoserver'
   },
   hooks: {
     build: {
       before (builder) {
-        axios.post('http://nginx:81/graphql', {
+        axios.post(process.env.GRAPHQL_ENDPOINT, {
           query: `
             query schema{
               __schema{

@@ -1,0 +1,8 @@
+query parkReserveBySlugQuery($slug: String!) {
+  feature: parkReserveBySlug(slug: $slug) {
+    properties {
+      name
+      slug
+    }
+  }
+}
