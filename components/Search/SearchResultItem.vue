@@ -35,7 +35,7 @@
           </NuxtLink>
         </div>
         <div v-if="item.acceptedNameUsageId">
-          <span>{{ `= ` }}</span>
+          <span>{{ item.taxonomicStatus == 'misapplication' ? `misaplied to: ` : `= ` }}</span>
           <NuxtLink
             :to="`/flora/taxon/${item.acceptedNameUsageId}`"
             :style="rankClass[item.taxonRank] > 140 ? 'font-style: italic;' : ''"
