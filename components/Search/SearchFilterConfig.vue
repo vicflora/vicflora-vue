@@ -58,7 +58,14 @@ export default {
   },
   computed: {
     filterGroups() {
-      return this.$store.getters['search/getFilterGroups']
+      let groups = this.$store.getters['search/getFilterGroups']
+      const loggedIn = this.$store.getters['isLoggedIn']
+      if (!loggedIn) {
+        groups = groups.filter( group => {
+          return group.visibility === 'public'
+        })
+      }
+      return groups
     }
   }, 
   methods: {
