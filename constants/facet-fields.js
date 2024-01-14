@@ -1,7 +1,8 @@
 export const FILTER_GROUPS = [
   {
     "name": "attributes",
-    "label": "Attributes"
+    "label": "Attributes",
+    "visibility": "public",
   },
   {
     "name": "threat_status",
@@ -9,19 +10,28 @@ export const FILTER_GROUPS = [
   },
   {
     "name": "classification",
-    "label": "Classification"
+    "label": "Classification",
+    "visibility": "public",
   },
   {
     "name": "spatial",
-    "label": "Geography"
+    "label": "Geography",
+    "visibility": "public",
   },
   {
     "name": "phenology",
-    "label": "Phenology"
+    "label": "Phenology",
+    "visibility": "public",
+  },
+  {
+    "name": "history",
+    "label": "Changes and additions",
+    "visibility": "private",
   },
   {
     "name": "miscellaneous",
-    "label": "Miscellaneous"
+    "label": "Miscellaneous",
+    "visibility": "private",
   },
 ]
 
@@ -145,6 +155,46 @@ export const FILTER_FIELDS = [
     "name": "fruit",
     "label": "Fruit",
     "group": "phenology"
+  },
+  {
+    "name": "created_year",
+    "label": "Created year",
+    "group": "history"
+  },
+  {
+    "name": "created_year_month",
+    "label": "Created year month",
+    "group": "history"
+  },
+  {
+    "name": "changed_year",
+    "label": "Changed year",
+    "group": "history"
+  },
+  {
+    "name": "changed_year_month",
+    "label": "Changed year month",
+    "group": "history"
+  },
+  {
+    "name": "profile_created_year",
+    "label": "Profile created year",
+    "group": "history"
+  },
+  {
+    "name": "profile_created_year_month",
+    "label": "Profile created year month",
+    "group": "history"
+  },
+  {
+    "name": "profile_updated_year",
+    "label": "Profile updated year",
+    "group": "history"
+  },
+  {
+    "name": "profile_updated_year_month",
+    "label": "Profile updated year month",
+    "group": "history"
   },
   {
     "name": "media",
