@@ -43,6 +43,11 @@ import MultiAccessKeysQuery from '@/graphql/queries/MultiAccessKeysQuery'
 
 export default {
   name: 'MultiAccessKeysIndexPage',
+  head() {
+    return {
+      meta:[{name: 'robots', content: 'noindex'}]
+    }
+  },
   data() {
     return {
       multiAccessKeys: null,

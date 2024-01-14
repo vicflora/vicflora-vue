@@ -44,17 +44,65 @@ export default {
     MarkdownFigureComponent,
     NaturalRegionMapImage,
   },
+  head() {
+    return {
+      __dangerouslyDisableSanitizers: ['script'],
+      title: this.pageTitle,
+      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+    }
+  },
   async asyncData({ $content, params }) {
     const markdown = await $content(`pages/${params.id.toLowerCase()}`).fetch()
-    return { markdown }
+
+    const pageTitle = `VicFlora: ${markdown.title}—character descriptions`
+
+    let description = markdown.description.indexOf('\n') > -1 ?
+      markdown.description.substr(markdown.description.indexOf('\n') + 1) :
+      markdown.description
+
+    if (markdown.category == 'Multi-access keys' ) {
+      description = `Character descriptions for the ${markdown.title}`
+    }
+
+    const keywords = [
+      "botany",
+      "flora",
+      "identification",
+      "multi-access key",
+      "Australia",
+      "Victoria"
+    ].concat(markdown.taxonomicScope)
+
+    const structuredData = {
+      "@context": "http://schema.org",
+      "@type": "WebPage",
+      headline: pageTitle,
+      description: description,
+      publisher: {
+        "@type": "Organization",
+        name: "Royal Botanic Gardens Victoria",
+        url: "https://www.rbg.vic.gov.au"
+      },
+      license: "https://creativecommons.org/licenses/by/4.0/",
+      keywords: keywords
+    }
+
+    if ('datePublished' in markdown) {
+      structuredData.datePublished = markdown.datePublished
+    }
+
+    if ('dateModified' in markdown) {
+      structuredData.dateModified = markdown.dateModified
+    }
+
+    return { pageTitle, structuredData, markdown }
   },
   data() {
     return {
-      content: ""
-    };
+      pageTitle: null,
+      structuredData: null,
+    }
   },
-  computed: {
-  }
 }
 </script>
 

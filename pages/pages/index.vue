@@ -19,14 +19,12 @@
 
 <script>
 export default {
-  data() {
+  name: "StaticPages",
+  head() {
     return {
-      categories: [
-        'About',
-        'Multi-access keys',
-        'Bioregions',
-        'Miscellaneous'
-      ],
+      __dangerouslyDisableSanitizers: ['script'],
+      title: this.pageTitle,
+      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
     }
   },
   async asyncData({ $content, params }) {
@@ -36,6 +34,32 @@ export default {
         .sortBy('category').sortBy('title')
         .fetch()
     return { pages }
+  },
+  data() {
+    return {
+      categories: [
+        'About',
+        'Multi-access keys',
+        'Bioregions',
+        'Miscellaneous'
+      ],
+      pageTitle: 'VicFlora: Static pages',
+      structuredData: {
+        "@context": "http://schema.org",
+        "@type": "WebPage",
+        headline: 'VicFlora: Static pages',
+        description: "Index of static pages in VicFlora",
+        datePublished: "2022-07-28",
+        dateModified:"2022-07-28",
+        publisher: {
+          "@type": "Organization",
+          name: "Royal Botanic Gardens Victoria",
+          url: "https://www.rbg.vic.gov.au"
+        },
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        keywords: [ "botany", "flora", "Australia", "Victoria" ]
+      }
+    }
   },
   computed: {
     pagesByCategory() {

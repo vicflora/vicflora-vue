@@ -111,6 +111,30 @@ export default {
     const intro = await $content('checklists/index').fetch()
     const attribution = await $content('checklists/attribution').fetch()
 
+    const pageTitle = `VicFlora: ${intro.title}`
+
+    const structuredData = {
+        "@context": "http://schema.org",
+        "@type": "WebPage",
+        headline: pageTitle,
+        description: intro.description,
+        datePublished: "2022-07-28",
+        dateModified: "2024-01-10",
+        publisher: {
+          "@type": "Organization",
+          name: "Royal Botanic Gardens Victoria",
+          url: "https://www.rbg.vic.gov.au"
+        },
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        keywords: [ 
+          "botany", 
+          "flora", 
+          "checklist",
+          "Australia", 
+          "Victoria"
+        ]
+      }
+
     const client = app.apolloProvider.defaultClient
 
     let slug = null
@@ -118,8 +142,6 @@ export default {
       const bits = query.q.split(':')
       const field = bits[0]
       const value = bits[1].replace(/^"+|"+$/g, '')
-
-      console.log({field: field, value: value})
 
       let qry = null
       switch (field) {
@@ -148,11 +170,19 @@ export default {
       slug = feature.properties.slug
     }
 
-    return { intro, attribution, slug }
+    return { 
+      pageTitle,
+      structuredData,
+      intro, 
+      attribution, 
+      slug 
+    }
   },
   head() {
     return {
-      title: 'VicFlora – Checklist',
+      __dangerouslyDisableSanitizers: ['script'],
+      title: this.pageTitle,
+      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
     }
   },
   data() {

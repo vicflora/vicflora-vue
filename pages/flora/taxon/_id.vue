@@ -103,17 +103,18 @@ export default {
 
       const articleData = {
         "@context": "http://schema.org",
-        "@type": "Article",
-        "headline": `VicFlora: ${taxonConcept.taxonName.fullName}`,
-        "description": `VicFlora treatment of ${taxonConcept.taxonName.fullName}`,
-        "datePublished": taxonConcept.createdAt.substr(0, 10),
-        "dateModified": dateModified,
-        "publisher": {
+        "@type": "WebPage",
+        headline: `VicFlora: ${taxonConcept.taxonName.fullName}`,
+        description: `VicFlora treatment of ${taxonConcept.taxonName.fullName}`,
+        datePublished: taxonConcept.createdAt.substr(0, 10),
+        dateModified: dateModified,
+        publisher: {
           "@type": "Organization",
-          "name": "Royal Botanic Gardens Victoria",
-          "url": "https://www.rbg.vic.gov.au"
+          name: "Royal Botanic Gardens Victoria",
+          url: "https://www.rbg.vic.gov.au"
         },
-        "keywords": [ "botany", "flora", "Australia", "Victoria", taxonConcept.taxonName.fullName ]
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        keywords: [ "botany", "flora", "Australia", "Victoria", taxonConcept.taxonName.fullName ]
       }
 
       const breadcrumbList = []

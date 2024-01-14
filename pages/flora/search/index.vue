@@ -61,8 +61,14 @@ export default {
   },
   mixins: [searchMixin, searchWatchMixin],
   head() {
+    let meta = null
+    if (Object.keys(this.$route.query).length > 0) {
+      meta = [{name: 'robots', content: 'noindex'}]
+    }
+
     return {
       title: 'VicFlora – Search',
+      meta: meta
     }
   },
   data() {

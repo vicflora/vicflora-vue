@@ -77,7 +77,7 @@ export default {
       const pageTitle = `VicFlora: ${identificationKey.title}`
       const structuredData = {
         "@context": "http://schema.org",
-        "@type": "Article",
+        "@type": "WebPage",
         headline: pageTitle,
         description: `This page provides a pathway key to the members of 
                 ${identificationKey.taxonomicScope} that occur in Victoria. 
@@ -90,6 +90,7 @@ export default {
           name: 'Royal Botanic Gardens Victoria',
           url: 'https://www.rbg.vic.gov.au',
         },
+        license: "https://creativecommons.org/licenses/by/4.0/",
         keywords: [ 'botany', 'identification', 'key', 'Australia', 'Victoria', identificationKey.taxonomicScope ],
       }
 

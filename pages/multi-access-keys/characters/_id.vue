@@ -40,6 +40,11 @@ export default {
   components: {
     MultiAccessKeyCharacter
   },
+  head() {
+    return {
+      meta:[{name: 'robots', content: 'noindex'}]
+    }
+  },
   data() {
     return {
       multiAccessKeyCharacter: null,

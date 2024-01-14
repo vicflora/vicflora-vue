@@ -35,8 +35,40 @@ export default {
     Highlights,
     CardDeck,
   },
+  head() {
+    return {
+      __dangerouslyDisableSanitizers: ['script'],
+      title: this.pageTitle,
+      script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+    }
+  },
   async asyncData ({ $content }) {
     const homePage = await $content('home-page/index').fetch()
+
+    const pageTitle = `VicFlora: ${homePage.title}`
+
+    const structuredData = {
+        "@context": "http://schema.org",
+        "@type": "WebPage",
+        headline: pageTitle,
+        description: homePage.intro,
+        publisher: {
+          "@type": "Organization",
+          name: "Royal Botanic Gardens Victoria",
+          url: "https://www.rbg.vic.gov.au"
+        },
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        keywords: [ "botany", "flora", "Australia", "Victoria" ]
+      }
+
+    if ('datePublished' in homePage) {
+      structuredData.datePublished = homePage.datePublished
+    }
+
+    if ('dateModified' in homePage) {
+      structuredData.dateModified = homePage.dateModified
+    }
+
     const newsItems = await $content('articles')
       .only(['title', 'description', 'path', 'thumbnail'])
       .sortBy('created', 'desc')
@@ -44,21 +76,18 @@ export default {
       .fetch()
 
     return {
+      pageTitle,
+      structuredData,
       homePage,
-      newsItems
+      newsItems,
     }
   },
-  head: {
-    meta: [
-      {
-        name: "google-site-verification",
-        content: "jlGnk1lKJk6vG-2w1rJbuv3eU8wKsIjWKXOBWmJyorE",
-      },
-      {
-        name: "google-site-verification",
-        content: "H5HcgcAbw_qcmQxOsZ1Hs-x-CbhGqm_3GzQ_U96DFXQ",
-      },
-    ]
+  data() {
+    return {
+      pageTitle: null,
+      structuredData: null,
+      homePage: null,
+    }
   }
 }
 </script>

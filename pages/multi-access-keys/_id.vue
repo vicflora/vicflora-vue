@@ -40,6 +40,11 @@ export default {
   components: {
     MultiAccessKey,
   },
+  head() {
+    return {
+      meta:[{name: 'robots', content: 'noindex'}]
+    }
+  },
   data() {
     return {
       multiAccessKey: null,
@@ -60,15 +65,6 @@ export default {
       skip: true,
     },
   },
-  // beforeRouteEnter(to, from, next) {
-  //   next(vm => {
-  //     if (!vm.$store.getters['isLoggedIn']) {
-  //       vm.$router.push({
-  //         name: 'flora-matrix-keys'
-  //       })
-  //     }
-  //   })
-  // },
   created() {
     this.$apollo.queries.multiAccessKey.setVariables({id: this.$route.params.id})
     this.$apollo.queries.multiAccessKey.skip = false

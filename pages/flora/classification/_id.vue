@@ -50,6 +50,7 @@ export default {
   },
   head() {
     return {
+      meta: [{name: "robots", content: "noindex"}],
       title: 'VicFlora – Classification',
     }
   },
