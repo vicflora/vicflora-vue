@@ -56,9 +56,9 @@ export default {
 
     const pageTitle = `VicFlora: ${markdown.title}—character descriptions`
 
-    let description = markdown.description.indexOf('\n') > -1 ?
+    let description = markdown.description ? (markdown.description.indexOf('\n') > -1 ?
       markdown.description.substr(markdown.description.indexOf('\n') + 1) :
-      markdown.description
+      markdown.description) : null
 
     if (markdown.category == 'Multi-access keys' ) {
       description = `Character descriptions for the ${markdown.title}`
