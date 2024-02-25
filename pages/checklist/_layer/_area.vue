@@ -151,10 +151,13 @@ export default {
   },
   computed: {
     formattedDescription() {
-      return this.description.replace(this.areaName, `<b>${this.areaName}</b>`)
-        .replace('Australasian Virtual Herbarium', '<i>Australasian Virtual Herbarium</i>')
-        .replace('Victorian Biodiversity Atlas', '<i>Victorian Biodiversity Atlas</i>')
-        .replace('Atlas of Living Australia', '<i>Atlas of Living Australia</i>')
+      if (this.description) {
+        return this.description.replace(this.areaName, `<b>${this.areaName}</b>`)
+          .replace('Australasian Virtual Herbarium', '<i>Australasian Virtual Herbarium</i>')
+          .replace('Victorian Biodiversity Atlas', '<i>Victorian Biodiversity Atlas</i>')
+          .replace('Atlas of Living Australia', '<i>Atlas of Living Australia</i>')
+      }
+      return null
     }
   },
   head() {
