@@ -1,7 +1,10 @@
 module.exports = {
   apps : [{
+    exec_mode: "cluster",
     name   : "VicFlora",
-    script : "yarn start",
+    instances: "2",
+    script : "./node_modules/nuxt/bin/nuxt.js",
+    args: "start",
     env: {
       "HOST": "0.0.0.0",
       "PORT": 5000,
