@@ -51,11 +51,15 @@
           </div>
         </BCol>
       </BRow>
-      <BRow>
-        <BCol>
-          <p class="acknowledgement-of-country">Royal Botanic Gardens Victoria acknowledges the Traditional Owners of the land on which we work and learn and pay our respects to their Elders past and present.</p>
-        </BCol>
-      </BRow>
+      <div class="acknowledgement-of-country">
+        <div><img src="@/assets/images/inclusion-flags.png"/></div>
+        <div>Royal Botanic Gardens Victoria acknowledges the Traditional Owners
+        of the land on which we work and learn and pay our respects to their
+        Elders past and present. Read more about how the Gardens values
+        inclusion <a
+        href="https://www.rbg.vic.gov.au/about-us/publications/">here</a>.
+        </div>
+      </div>
     </BContainer>
     </div>
   </footer>
@@ -109,7 +113,19 @@ export default {
   }
 }
 
-.acknowledgement-of-country {
-  margin: 1rem 3rem;
+.acknowledgement-of-country>div {
+  margin: 1rem 0;
 }
+
+@media only screen and (min-width: 768px) {
+  .acknowledgement-of-country {
+    display: flex;
+    align-items:center;
+
+    div:nth-child(2) {
+      margin: 1rem 0 1rem 1rem;
+    }
+  }
+}
+
 </style>
