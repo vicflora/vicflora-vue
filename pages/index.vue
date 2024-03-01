@@ -1,7 +1,7 @@
 <template>
   <div class="m-homepage">
     <BContainer>
-      <BRow>
+      <BRow align-h="center">
         <BCol 
           cols="12" 
           class="text-left" 
@@ -12,11 +12,6 @@
           <CardDeck :cards="homePage.cards"/>
 
           <Highlights :highlights="newsItems"/>
-        </BCol>
-
-        
-        <BCol cols="12" lg="6" align-self="center">
-          <Carousel :slides="homePage.slides" class="m-carousel"/>
         </BCol>
       </BRow>
     </BContainer>
