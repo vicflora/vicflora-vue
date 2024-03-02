@@ -75,6 +75,7 @@ const RegisterUserModal = () => import('@/components/Admin/RegisterUserModal')
 
 export default {
   name: 'User',
+  middleware: 'authenticated',
   components: {
     UserPreferencesModal,
     ChangePasswordModal,
