@@ -5,7 +5,7 @@
         <BCol 
           cols="12" 
           class="text-left" 
-          lg="6"
+          lg="12"
         >
           <div class="m-introduction" v-html="homePage.intro"/>
 
@@ -86,3 +86,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.m-introduction {
+  font-size: 120%;
+  padding: 1.5rem 0;
+}
+</style>
