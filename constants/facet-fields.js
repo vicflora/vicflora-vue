@@ -6,7 +6,8 @@ export const FILTER_GROUPS = [
   },
   {
     "name": "threat_status",
-    "label": "Threat status"
+    "label": "Threat status",
+    "visibility": "public",
   },
   {
     "name": "classification",
@@ -79,11 +80,6 @@ export const FILTER_FIELDS = [
   {
     "name": "epbc",
     "label": "EPBC",
-    "group": "threat_status"
-  },
-  {
-    "name": "vic_advisory",
-    "label": "Vic. Advisory",
     "group": "threat_status"
   },
   {
