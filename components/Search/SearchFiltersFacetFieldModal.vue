@@ -219,7 +219,8 @@ export default {
         let values = this.modalSelected.map(item => {
           return item.substring(item.indexOf(':')+1)
         })
-        newFq = `${this.data.fieldName}:(${values.join(' OR ')})`
+        const searchFieldName = this.data.fieldName.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
+        newFq = `${searchFieldName}:(${values.join(' OR ')})`
       }
       else {
         newFq = this.modalSelected[0]
