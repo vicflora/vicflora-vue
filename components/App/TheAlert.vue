@@ -10,7 +10,7 @@
       VicFlora to hopefully put an end to the performance issues VicFlora has 
       been experiencing in the last few weeks. We hope to be able to do this 
       without disruption to service, but unforeseen circumstances might lead to 
-      short disruptions during the day.
+      short outages during the day.
     </b-alert>
   </div>
 </template>
