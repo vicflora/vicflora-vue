@@ -1,16 +1,16 @@
 <template>
   <div class="m-homepage">
     <BContainer>
-      <BRow align-h="center">
+      <BRow>
         <BCol 
-          cols="12" 
           class="text-left" 
-          lg="6"
+          md="8"
         >
           <div class="m-introduction" v-html="homePage.intro"/>
 
           <CardDeck :cards="homePage.cards"/>
-
+        </BCol>
+        <BCol md="4">
           <Highlights :highlights="newsItems"/>
         </BCol>
       </BRow>
@@ -86,3 +86,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.m-introduction {
+  font-size: 120%;
+  padding: 1rem 0;
+}
+</style>
