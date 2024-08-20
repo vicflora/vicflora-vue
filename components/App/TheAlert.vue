@@ -6,11 +6,10 @@
       dismissible
       @dismissed="onDismissed"
     >
-      On <b>Thursday</b>, <b>July 14<sup>th</sup></b>, we will be rebuilding 
-      VicFlora to hopefully put an end to the performance issues VicFlora has 
-      been experiencing in the last few weeks. We hope to be able to do this 
-      without disruption to service, but unforeseen circumstances might lead to 
-      short outages during the day.
+      Due to planned maintenance and an expected power outage at Melbourne 
+      Gardens, Vicflora will be offline from <b>Wednesday, August 21<sup>st</sup>, 
+      5 pm</b> till <b>Thursday, August 22<sup>nd</sup>, 8 am</b>. We apologise for the 
+      inconvenience.
     </b-alert>
   </div>
 </template>
