@@ -147,7 +147,7 @@ export default {
         h: Math.floor(image.h/2),
       }
       item.preview2048 = {
-        src: image.previewUrl.replace('/preview/', '/highestres/'),
+        src: image.highestResUrl,
         w: image.w,
         h: image.h,
       }
