@@ -2,7 +2,7 @@ module.exports = {
   apps : [{
     exec_mode: "cluster",
     name   : "VicFlora",
-    instances: "2",
+    instances: "max",
     script : "./node_modules/nuxt/bin/nuxt.js",
     args: "start",
     env: {
