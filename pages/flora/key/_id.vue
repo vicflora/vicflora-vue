@@ -184,10 +184,10 @@ export default {
   },
   methods: {
     getKey(keyID) {
-      var baseUrl = 'https://keybase.rbg.vic.gov.au/show/'
+      var baseUrl = 'https://keybase.rbg.vic.gov.au/keys/show/'
        
       if (this.$store.getters['isLoggedIn']) {
-        baseUrl = 'https://vicflora-keys.rbg.vic.gov.au/show/'
+        baseUrl = 'https://vicflora-keys.rbg.vic.gov.au/keys/show/'
       }
      
       $(".keybase-link a").attr(
