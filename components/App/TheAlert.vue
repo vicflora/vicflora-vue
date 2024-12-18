@@ -1,15 +1,15 @@
 <template>
   <div class="vf-alert">
-    <b-alert 
-      :show="showDismissibleAlert" 
-      variant="danger" 
+    <b-alert
+      :show="showDismissibleAlert"
+      variant="danger"
       dismissible
       @dismissed="onDismissed"
     >
-      Due to planned maintenance and an expected power outage at Melbourne 
-      Gardens, Vicflora will be offline from <b>Wednesday, August 21<sup>st</sup>, 
-      5 pm</b> till <b>Thursday, August 22<sup>nd</sup>, 8 am</b>. We apologise for the 
-      inconvenience.
+      Due to works in the National Herbarium of Victoria there will be a power
+      outage that affects almost all services in VicFlora on Thursday, 19
+      December, from c. 7:30 am AEDT. We hope to have all services back up by 9
+      am. We apologise for the inconvenience.
     </b-alert>
   </div>
 </template>
