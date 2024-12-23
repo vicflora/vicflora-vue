@@ -8,7 +8,7 @@
     >
       Due to electrical works in the National Herbarium of Victoria there will
       be a power outage that affects almost all services in VicFlora on
-      Monday, 23 December, from c. 7:30 am AEDT. We hope to have all services
+      Tuesday, 24 December, from c. 7:30 am AEDT. We hope to have all services
       back up by 9 am. We apologise for the inconvenience.
     </b-alert>
   </div>
