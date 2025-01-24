@@ -137,8 +137,10 @@ export default [
       { value: "CULTIVATED", label: "Cultivated" },
       { value: "CASUAL", label: "Casual" },
       { value: "REPRODUCING", label: "Reproducing" },
+      { value: "ADVENTIVE", label: "Adventive"},
       { value: "ESTABLISHED", label: "Established" },
       { value: "COLONISING", label: "Colonising" },
+      { value: "UNCERTAIN", label: "Uncertain" },
     ],
     defaultValue: "NATIVE"
   },
