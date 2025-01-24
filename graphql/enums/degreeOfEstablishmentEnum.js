@@ -31,19 +31,15 @@ export default {
             self-sustaining.\n\nOffspring are produced, but these either do not
             survive or are not fertile enough to maintain the population.`
     },
-    "REPRODUCING": {
-        'label': 'Reproducing',
+    "ADVENTIVE": {
+        'label': 'Adventive',
         'description': `Individuals surviving outside of captivity or
             cultivation in a location. Reproduction occurring, and population
             self-sustaining.\n\nThe population is maintained by reproduction,
             but is not spreading.`
     },
-    "ADVENTIVE": {
-        "label": "Adventive",
-        "description": "Union of Casula and Reproducing."
-    },
-    "ESTABLISHED": {
-        'label': 'Established',
+    "NATURALISED": {
+        'label': 'Naturalised',
         'description': `Self-sustaining population outside of captivity or
             cultivation, with individuals surviving a significant distance from
             the original point of introduction.\n\nThe population is maintained
