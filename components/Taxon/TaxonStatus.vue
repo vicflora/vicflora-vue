@@ -18,7 +18,7 @@
       v-if="concept.taxonomicStatus === 'ACCEPTED'
           && concept.occurrenceStatus && concept.occurrenceStatus !== 'EXCLUDED'
           && concept.establishmentMeans"
-      :label="'Establishment means'"
+      :label="'Origin'"
       :value="establishmentMeansEnum[concept.establishmentMeans]"
     />
 
