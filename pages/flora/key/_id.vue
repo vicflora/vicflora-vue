@@ -40,10 +40,7 @@
 
     <!-- /role:tabpanel -->
     <div class="keybase-key-source mt-2 m-keybase-key-source"></div>
-    <div 
-      v-if="$store.getters['isLoggedIn']"
-      class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link"
-    >
+    <div class="keybase-link text-right w-100 mb-4 mt-2 m-keybase-link">
       <a href="" target="_blank">Open key in KeyBase <small><b-icon-box-arrow-up-right/></small></a>
     </div>
   </div>
@@ -187,10 +184,17 @@ export default {
   },
   methods: {
     getKey(keyID) {
+      var baseUrl = 'https://keybase.rbg.vic.gov.au/keys/show/'
+       
+      if (this.$store.getters['isLoggedIn']) {
+        baseUrl = 'https://vicflora-keys.rbg.vic.gov.au/keys/show/'
+      }
+     
       $(".keybase-link a").attr(
         "href",
-        "http://keybase.rbg.vic.gov.au/keys/show/" + keyID
+        baseUrl + keyID
       );
+
       var wsUrl = "https://data.rbg.vic.gov.au/keybase-ws";
 
       $.prototype.keybase("player", {

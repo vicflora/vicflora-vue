@@ -6,10 +6,11 @@ query taxonConceptImagesQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
       id
       previewUrl
       thumbnailUrl
+      highestResUrl
       w: pixelXDimension
       h: pixelYDimension
       caption
-      assetCreationDate
+      creationDate
       creator
       license
       copyrightOwner

@@ -2,23 +2,21 @@
   <div class="m-banner">
     <BContainer>
       <TheLoginBar/>
-      <div class="m-logo-title">
-        <div class="m-logo-container">
-          <a href="/">
-            <img 
-              class="m-logo img-fluid" 
-              src="@/assets/images/rbgv-logo-pink-badge.png" 
-              alt="Royal Botanic Garedns Victoria logo" 
-            />
-          </a>
+      <a href="/">
+        <div class="m-logo-title d-flex">
+            <div class="m-logo-container">
+                <img 
+                  class="m-logo img-fluid" 
+                  src="@/assets/images/rbgv-logo-pink-badge.png" 
+                  alt="Royal Botanic Garedns Victoria logo" 
+                />
+            </div>
+            <div class="m-title-container">
+                <span class="m-title">VicFlora</span>
+                <span class="m-subtitle">Flora of Victoria</span>  
+            </div>                
         </div>
-        <div class="m-title-container">
-          <a href="/">
-            <span class="m-title">VicFlora</span>
-            <span class="m-subtitle">Flora of Victoria</span>  
-          </a>  
-        </div>                
-      </div>
+      </a>
     </BContainer>
   </div>
 </template>

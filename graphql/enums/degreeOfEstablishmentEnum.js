@@ -31,15 +31,15 @@ export default {
             self-sustaining.\n\nOffspring are produced, but these either do not
             survive or are not fertile enough to maintain the population.`
     },
-    "REPRODUCING": {
-        'label': 'Reproducing',
+    "ADVENTIVE": {
+        'label': 'Adventive',
         'description': `Individuals surviving outside of captivity or
             cultivation in a location. Reproduction occurring, and population
             self-sustaining.\n\nThe population is maintained by reproduction,
             but is not spreading.`
     },
-    "ESTABLISHED": {
-        'label': 'Established',
+    "NATURALISED": {
+        'label': 'Naturalised',
         'description': `Self-sustaining population outside of captivity or
             cultivation, with individuals surviving a significant distance from
             the original point of introduction.\n\nThe population is maintained
@@ -54,14 +54,18 @@ export default {
     },
     "INVASIVE": {
         'label': 'Invasive',
-        'description': `Self-sustaining population outside of captivity or 
-            cultivation, with individuals surviving and reproducing a 
+        'description': `Self-sustaining population outside of captivity or
+            cultivation, with individuals surviving and reproducing a
             significant distance from the original point of introduction.`
     },
     "WIDESPREAD_INVASIVE": {
         'label': 'Widespread invasive',
-        'description': `Fully invasive species, with individuals dispersing, 
-            surviving and reproducing at multiple sites across a spectrum of 
+        'description': `Fully invasive species, with individuals dispersing,
+            surviving and reproducing at multiple sites across a spectrum of
             habitats and geographic range.`
+    },
+    "UNCERTIAN": {
+        "label": "Uncertain",
+        "description": ""
     }
 }

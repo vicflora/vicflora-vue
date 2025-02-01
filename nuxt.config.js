@@ -53,7 +53,8 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
-    "@nuxt/content"
+    "@nuxt/content",
+    'nuxtjs-microsoft-clarity',
   ],
   bootstrapVue: {
     bootstrapCSS: false,
@@ -62,6 +63,14 @@ export default {
   apollo: {
     clientConfigs: {
       default: '~/apollo/config.js'
+    }
+  },
+  microsoftClarity: {
+    id: "lxvt4dyjoz"
+  },
+  publicRuntimeConfig: {
+    microsoftClarity: {
+      id: "lxvt4dyjoz"
     }
   },
   content: {

@@ -23,11 +23,14 @@
       <BCol 
         cols="9" 
         class="m-highlight-col"
+        align-self="center"
       >
         <div 
-          class="h5 m-hightlight-1" 
+          class="m-hightlight-title-1" 
           v-html="item.title"
         ></div> 
+      </BCol>
+      <BCol cols="12">
         <div>
           <BlogArticleExcerpt :excerpt="item.description"/> 
           <BlogArticleLink :path="item.path"/>

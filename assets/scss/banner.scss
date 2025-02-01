@@ -27,23 +27,25 @@
     }
   }
 
+  a:hover {
+    text-decoration: none;
+  }
+
   span {
     color: $primary;
   }
   .m-logo-title {
     width: 100%;
     
-    a {
-      display: inline-block;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
 
     .m-logo{
       max-width: 6vw;
       min-width: 70px;
+    }
+
+    .m-title-container {
+      display: inline-block;
+      padding-top: 2rem;
     }
 
     .m-title {

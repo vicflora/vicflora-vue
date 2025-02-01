@@ -3,20 +3,15 @@
     <BContainer>
       <BRow>
         <BCol 
-          cols="12" 
           class="text-left" 
-          lg="6"
+          md="8"
         >
           <div class="m-introduction" v-html="homePage.intro"/>
 
           <CardDeck :cards="homePage.cards"/>
-
-          <Highlights :highlights="newsItems"/>
         </BCol>
-
-        
-        <BCol cols="12" lg="6" align-self="center">
-          <Carousel :slides="homePage.slides" class="m-carousel"/>
+        <BCol md="4">
+          <Highlights :highlights="newsItems"/>
         </BCol>
       </BRow>
     </BContainer>
@@ -91,3 +86,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.m-introduction {
+  font-size: 120%;
+  padding: 1rem 0;
+}
+</style>
