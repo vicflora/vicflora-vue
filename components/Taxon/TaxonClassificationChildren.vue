@@ -51,18 +51,18 @@ export default {
   computed: {
     childrenSorted() {
       return this.children
-        .slice()
-        .sort((a, b) => {
-          let fa = a.taxonName.fullName.toLowerCase(),
-            fb = b.taxonName.fullName.toLowerCase()
-          if (fa < fb) {
-            return -1
-          }
-          if (fa > fb) {
-            return 1
-          }
-          return 0
-        })
+        // .slice()
+        // .sort((a, b) => {
+        //   let fa = a.taxonName.fullName.toLowerCase(),
+        //     fb = b.taxonName.fullName.toLowerCase()
+        //   if (fa < fb) {
+        //     return -1
+        //   }
+        //   if (fa > fb) {
+        //     return 1
+        //   }
+        //   return 0
+        // })
     }
   }
 }

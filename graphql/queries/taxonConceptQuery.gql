@@ -17,10 +17,10 @@ query taxonConceptQuery($id: ID!) {
         quickRef
         referenceStringHtml
       }
-      apniName {
-        id
-        apniNumber
-      }
+      # apniName {
+      #   id
+      #   apniNumber
+      # }
     }
     accordingTo {
       id

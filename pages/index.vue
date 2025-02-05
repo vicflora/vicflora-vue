@@ -40,7 +40,7 @@ export default {
   async asyncData ({ $content }) {
     const homePage = await $content('home-page/index').fetch()
 
-    const pageTitle = `VicFlora: ${homePage.title}`
+    const pageTitle = `VicFunga: ${homePage.title}`
 
     const structuredData = {
         "@context": "http://schema.org",

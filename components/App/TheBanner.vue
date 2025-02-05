@@ -12,8 +12,8 @@
                 />
             </div>
             <div class="m-title-container">
-                <span class="m-title">VicFlora</span>
-                <span class="m-subtitle">Flora of Victoria</span>  
+                <span class="m-title">VicFunga</span>
+                <span class="m-subtitle">Fungi and slime moulds of Victoria</span>  
             </div>                
         </div>
       </a>
