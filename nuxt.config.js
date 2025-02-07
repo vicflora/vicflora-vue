@@ -108,36 +108,7 @@ export default {
   },
   env: {
     appUrl: process.env.APP_URL || 'https://vicflora.rbg.vic.gov.au',
-    graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || 'http://localhost/graphql',
+    graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || 'http://vicflora.localhost/graphql',
     geoserverWms: process.env.GEOSERVER_WMS || 'http://localhost:8080/geoserver'
   },
-  hooks: {
-    build: {
-      before (builder) {
-        axios.post(process.env.GRAPHQL_ENDPOINT, {
-          query: `
-            query schema{
-              __schema{
-                types{
-                  kind
-                  name
-                  possibleTypes {
-                    name
-                    description
-                  }
-                }
-              }
-            }`
-        }).then(({ data }) => {
-          fs.writeFile('apollo/fragmentTypes.json', JSON.stringify(data.data) + '\r\n', ((err) => {
-            if (err) {
-              /* eslint-disable-next-line */
-              console.log(err)
-            }
-          }))
-        })
-      }
-    }
-  }
-
 }

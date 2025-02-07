@@ -12,20 +12,5 @@ RUN apk update \
     && rm -rf /var/cache/apk/*
 
 COPY package.json ./
-RUN yarn install
+RUN yarn install --ignore-engines
 COPY . .
-
-EXPOSE 5000
-
-ARG GRAPHQL_ENDPOINT
-ENV GRAPHQL_ENDPOINT=$GRAPHQL_ENDPOINT
-
-ARG GEOSERVER_WMS
-ENV GEOSERVER_WMS=$GEOSERVER_WMS
-
-RUN yarn build
-
-ENV NUXT_HOST=0.0.0.0
-ENV NUXT_PORT=5000
-
-CMD [ "yarn", "start" ]

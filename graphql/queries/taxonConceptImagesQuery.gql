@@ -1,5 +1,3 @@
-#import "~/graphql/fragments/paginatorInfoFields.gql"
-
 query taxonConceptImagesQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
   taxonConceptImages(taxonConceptId: $id, first: $first, page: $page) {
     data {
@@ -17,7 +15,13 @@ query taxonConceptImagesQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
       subtype
     }
     paginatorInfo {
-      ...paginatorInfoFields
+      count
+      total
+      perPage
+      firstItem
+      currentPage
+      lastPage
+      hasMorePages
     }
   }
 }
