@@ -15,13 +15,16 @@ query taxonConceptImagesQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
       subtype
     }
     paginatorInfo {
-      count
-      total
-      perPage
-      firstItem
-      currentPage
-      lastPage
-      hasMorePages
+      ...paginatorInfoFields
     }
   }
+}
+fragment paginatorInfoFields on PaginatorInfo {
+  count
+  total
+  perPage
+  firstItem
+  currentPage
+  lastPage
+  hasMorePages
 }

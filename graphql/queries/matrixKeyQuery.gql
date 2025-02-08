@@ -3,12 +3,18 @@ query matrixKeyQuery($path: String!) {
     id
     title
     taxonConcepts {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
   }
+}
+fragment taxonConceptFields on TaxonConcept {
+  id
+  taxonName {
+    ...taxonNameFields
+  }
+}
+fragment taxonNameFields on TaxonName {
+  id
+  fullName
+  authorship
 }

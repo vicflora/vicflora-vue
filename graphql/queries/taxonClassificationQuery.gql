@@ -1,31 +1,16 @@
 query taxonClassificationQuery($id: ID!) {
   taxonConcept(id: $id) {
-    id
-    taxonName {
-      id
-      fullName
-      authorship
-    }
+    ...taxonConceptFields
     taxonTreeDefItem {
       rankId
       id
       name
     }
-    parent  {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+    parent {
+      ...taxonConceptFields
     }
     children {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
       taxonTreeDefItem {
         id
         name
@@ -33,20 +18,10 @@ query taxonClassificationQuery($id: ID!) {
       }
     }
     siblings {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
     higherClassification {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
       taxonTreeDefItem {
         id
         name
@@ -54,4 +29,15 @@ query taxonClassificationQuery($id: ID!) {
       }
     }
   }
+}
+fragment taxonConceptFields on TaxonConcept {
+  id
+  taxonName {
+    ...taxonNameFields
+  }
+}
+fragment taxonNameFields on TaxonName {
+  id
+  fullName
+  authorship
 }

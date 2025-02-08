@@ -15,10 +15,10 @@ query taxonConceptQuery($id: ID!) {
         quickRef
         referenceStringHtml
       }
-      apniName {
-        id
-        apniNumber
-      }
+      # apniName {
+      #   id
+      #   apniNumber
+      # }
     }
     accordingTo {
       id
@@ -32,28 +32,13 @@ query taxonConceptQuery($id: ID!) {
     }
     publicationStatus
     acceptedConcept {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
     synonymUsages {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
     misapplications {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
       accordingTo {
         id
         title
@@ -129,12 +114,7 @@ query taxonConceptQuery($id: ID!) {
       }
     }
     children {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
       taxonTreeDefItem {
         id
         name
@@ -142,20 +122,10 @@ query taxonConceptQuery($id: ID!) {
       }
     }
     siblings {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
     }
     higherClassification {
-      id
-      taxonName {
-        id
-        fullName
-        authorship
-      }
+      ...taxonConceptFields
       taxonTreeDefItem {
         id
         name
@@ -190,12 +160,7 @@ query taxonConceptQuery($id: ID!) {
     changes {
       id
       to {
-        id
-        taxonName {
-          id
-          fullName
-          authorship
-        }
+        ...taxonConceptFields
       }
       changeType
       changeSource {
@@ -213,4 +178,15 @@ query taxonConceptQuery($id: ID!) {
       nameUsage
     }
   }
+}
+fragment taxonConceptFields on TaxonConcept {
+  id
+  taxonName {
+    ...taxonNameFields
+  }
+}
+fragment taxonNameFields on TaxonName {
+  id
+  fullName
+  authorship
 }
