@@ -1,5 +1,3 @@
-#import "~/graphql/fragments/taxonConceptFields.gql"
-
 query matrixKeyQuery($path: String!) {
   matrixKey(path: $path) {
     id
@@ -8,4 +6,15 @@ query matrixKeyQuery($path: String!) {
       ...taxonConceptFields
     }
   }
+}
+fragment taxonConceptFields on TaxonConcept {
+  id
+  taxonName {
+    ...taxonNameFields
+  }
+}
+fragment taxonNameFields on TaxonName {
+  id
+  fullName
+  authorship
 }

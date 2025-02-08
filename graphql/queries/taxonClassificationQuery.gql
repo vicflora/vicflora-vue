@@ -1,5 +1,3 @@
-#import "~/graphql/fragments/taxonConceptFields.gql"
-
 query taxonClassificationQuery($id: ID!) {
   taxonConcept(id: $id) {
     ...taxonConceptFields
@@ -31,4 +29,15 @@ query taxonClassificationQuery($id: ID!) {
       }
     }
   }
+}
+fragment taxonConceptFields on TaxonConcept {
+  id
+  taxonName {
+    ...taxonNameFields
+  }
+}
+fragment taxonNameFields on TaxonName {
+  id
+  fullName
+  authorship
 }

@@ -1,5 +1,0 @@
-fragment taxonNameFields on TaxonName {
-  id
-  fullName
-  authorship
-}
