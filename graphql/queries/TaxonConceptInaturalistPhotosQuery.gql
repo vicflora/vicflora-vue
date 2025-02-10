@@ -1,0 +1,51 @@
+query taxonConceptInaturalistPhotosQuery($id: ID!, $first: Int = 24, $page: Int = 1) {
+  taxonConceptInaturalistPhotos(taxonConceptId: $id, first: $first, page: $page) {
+    data {
+      id
+      w:pixelXDimension
+      h:pixelYDimension
+      thumbnailUrl
+      previewUrl
+      originalImageUrl
+      license {
+        label
+        licenseUrl
+        licenseLogoUrl
+      }
+      observations {
+        id
+        identification {
+          id
+          name
+        }
+        placeGuess
+        observedOn
+        user {
+          id
+          login
+          name
+          orcid
+        }
+      }
+      taxonConcepts {
+        id
+        taxonName {
+          id
+          fullName
+        }
+      }
+    }
+    paginatorInfo {
+      ...paginatorInfoFields
+    }
+  }
+}
+fragment paginatorInfoFields on PaginatorInfo {
+  count
+  total
+  perPage
+  firstItem
+  currentPage
+  lastPage
+  hasMorePages
+}

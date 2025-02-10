@@ -68,7 +68,7 @@ query taxonConceptQuery($id: ID!) {
       previewUrl
     }
     hasSpecimenImages
-
+    hasInaturalistPhotos
     mapLinks {
       profileMap
       distributionMap
