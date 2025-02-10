@@ -155,8 +155,8 @@ export default {
       return item
     },
     createCaption(image) {
-      let caption = '<i>' + image.taxonConcepts[0].taxonName.fullName + '</i>'
-      if (image.observations[0].identification.name != image.taxonConcepts[0].taxonName.fullName) {
+      let caption = '<i>' + image.taxonConcepts[0].acceptedConcept.taxonName.fullName + '</i>'
+      if (image.observations[0].identification.name != image.taxonConcepts[0].acceptedConcept.taxonName.fullName) {
         caption += ` (as <i>${image.observations[0].identification.name}</i>)`
       }
       caption += '. '

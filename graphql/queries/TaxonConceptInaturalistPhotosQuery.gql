@@ -33,6 +33,13 @@ query taxonConceptInaturalistPhotosQuery($id: ID!, $first: Int = 24, $page: Int 
           id
           fullName
         }
+        acceptedConcept {
+          id
+          taxonName {
+            id
+            fullName
+          }
+        }
       }
     }
     paginatorInfo {
