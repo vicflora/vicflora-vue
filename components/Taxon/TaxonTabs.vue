@@ -26,6 +26,7 @@ const TaxonClassification = () => import("@/components/Taxon/TaxonClassification
 const TaxonTabSynonymy = () => import("@/components/Taxon/TaxonTabSynonymy")
 const TaxonTabImages = () => import("@/components/Taxon/TaxonTabImages")
 const TaxonTabSpecimenImages = () => import("@/components/Taxon/TaxonTabSpecimenImages")
+const TaxonTabInaturalistPhotos = () => import("@/components/Taxon/TaxonTabInaturalistPhotos")
 const TaxonTabDistribution = () => import("@/components/Taxon/TaxonTabDistribution")
 const TaxonTabReferences = () => import("@/components/Taxon/TaxonTabReferences")
 const TaxonTabFloraLinks = () => import("@/components/Taxon/TaxonTabFloraLinks")
@@ -39,6 +40,7 @@ export default {
     TaxonTabOverview,
     TaxonTabImages,
     TaxonTabSpecimenImages,
+    TaxonTabInaturalistPhotos,
     TaxonTabDistribution,
     TaxonClassification,
     TaxonTabSynonymy,
@@ -119,6 +121,13 @@ export default {
         tabs.push({
           title: "Specimen images",
           component: TaxonTabSpecimenImages
+        })
+      }
+
+      if (this.concept.hasInaturalistPhotos) {
+        tabs.push({
+          title: "iNaturalist photos",
+          component: "TaxonTabInaturalistPhotos"
         })
       }
 
