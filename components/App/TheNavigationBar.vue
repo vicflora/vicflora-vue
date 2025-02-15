@@ -39,7 +39,7 @@
             <BNavItem
               class="m-menu-item"
               to="/checklist"
-            >CheckLists</BNavItem>
+            >Checklists</BNavItem>
 
             <BNavItem
               class="m-menu-item"
