@@ -1,8 +1,3 @@
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
-import introspectionQueryResultData from './fragmentTypes.json'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData
-})
-
-export default new InMemoryCache({ fragmentMatcher })
+export default new InMemoryCache()
