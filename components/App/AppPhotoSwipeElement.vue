@@ -132,3 +132,9 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+.pswp__caption__center {
+  max-width: 1040px;
+}
+</style>
