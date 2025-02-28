@@ -155,10 +155,17 @@ export default {
       return item
     },
     createCaption(image) {
-      let caption = '<i>' + image.taxonConcepts[0].acceptedConcept.taxonName.fullName + '</i>'
-      if (image.observations[0].identification.name != image.taxonConcepts[0].acceptedConcept.taxonName.fullName) {
-        caption += ` (as <i>${image.observations[0].identification.name}</i>)`
+      let caption = ''
+      if (image.taxonConcepts[0].acceptedConcept) {
+        caption += '<i>' + image.taxonConcepts[0].acceptedConcept.taxonName.fullName + '</i>'
+        if (image.observations[0].identification.name != image.taxonConcepts[0].acceptedConcept.taxonName.fullName) {
+          caption += ` (as <i>${image.observations[0].identification.name}</i>)`
+        }
       }
+      else {
+        caption += '<i>' + image.taxonConcepts[0].taxonName.fullName + '</i>'
+      }
+
       caption += '. '
       caption += image.observations[0].placeGuess + ', ' + image.observations[0].observedOn
       caption += `&emsp;<a target="_blank" href="${image.observations[0].observationUrl}">iNaturalistAU</a><br>`
