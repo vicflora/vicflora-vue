@@ -1,0 +1,12 @@
+services:
+  vicflora-client:
+    build:
+      context: .
+    image: vicflora-client
+    container_name: vicflora-client
+    command: npm run dev
+    volumes:
+    - .:/usr/src/nuxt-app
+    - /usr/src/nuxt-app/node_modules
+    ports:
+      - "3000:3000"
