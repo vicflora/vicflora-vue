@@ -54,7 +54,7 @@ export default {
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
     "@nuxt/content",
-    'nuxtjs-microsoft-clarity',
+    // 'nuxtjs-microsoft-clarity',
   ],
   bootstrapVue: {
     bootstrapCSS: false,
@@ -65,14 +65,14 @@ export default {
       default: '~/apollo/config.js'
     }
   },
-  microsoftClarity: {
-    id: "lxvt4dyjoz"
-  },
-  publicRuntimeConfig: {
-    microsoftClarity: {
-      id: "lxvt4dyjoz"
-    }
-  },
+  // microsoftClarity: {
+  //   id: "lxvt4dyjoz"
+  // },
+  // publicRuntimeConfig: {
+  //   microsoftClarity: {
+  //     id: "lxvt4dyjoz"
+  //   }
+  // },
   content: {
     markdown: {
       tocDepth: 6
