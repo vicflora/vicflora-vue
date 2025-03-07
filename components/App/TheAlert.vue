@@ -1,15 +1,17 @@
 <template>
   <div class="vf-alert">
-    <b-alert 
-      :show="showDismissibleAlert" 
-      variant="danger" 
+    <b-alert
+      :show="showDismissibleAlert"
+      variant="warning"
       dismissible
-      @dismissed="onDismissed"
     >
-      Due to planned maintenance and an expected power outage at Melbourne 
-      Gardens, Vicflora will be offline from <b>Wednesday, August 21<sup>st</sup>, 
-      5 pm</b> till <b>Thursday, August 22<sup>nd</sup>, 8 am</b>. We apologise for the 
-      inconvenience.
+      In an effort to deal with the high number of requests to VicFlora we have
+      moved the maps into a new subdomain. If the maps do not work, it might be
+      that your browser is still trying to connect to the old map server.
+      Clearing the browser's cache should clear that up. We hope that this
+      change, together with other changes we made in the last few weeks, will
+      bring about a positive change in user experience for VicFlora. Thanks to
+      all our users for hanging in there.
     </b-alert>
   </div>
 </template>
