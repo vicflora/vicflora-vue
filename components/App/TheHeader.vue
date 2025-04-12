@@ -3,7 +3,7 @@
     <TheNavigationBar/>
     <TheBanner/>
     <TheProgressBar/>
-    <TheAlert/>
+    <!-- <TheAlert/> -->
   </header>
 </template>
 
