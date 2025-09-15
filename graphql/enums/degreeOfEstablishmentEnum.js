@@ -15,56 +15,56 @@
 export default {
     "NATIVE": {
         'label': 'Native',
-        'description': `Not transported beyond limits of native range.
+        'description': `Not transported beyond limits of native range.\n\n
             Considered native and naturally occurring.`
     },
     "CULTIVATED": {
         'label': 'Cultivated',
-        'description': `Individuals surviving outside of captivity or
-            cultivation in a location with no reproduction.\n\nTrees planted in
-            the wild for forestry or ornament may come under this category.`
+        'description': `Individuals in cultivation (i.e., individuals provided 
+            with conditions suitable for them, but explicit measures to prevent 
+            dispersal are limited at best).`
     },
     "CASUAL": {
         'label': 'Casual',
-        'description': `Individuals surviving outside of captivity or cultivation
-            in a location. Reproduction is occurring, but population not
-            self-sustaining.\n\nOffspring are produced, but these either do not
-            survive or are not fertile enough to maintain the population.`
+        'description': `Individuals surviving outside of captivity or 
+            cultivation in a location with no reproduction.`
     },
     "ADVENTIVE": {
         'label': 'Adventive',
-        'description': `Individuals surviving outside of captivity or
-            cultivation in a location. Reproduction occurring, and population
-            self-sustaining.\n\nThe population is maintained by reproduction,
-            but is not spreading.`
+        'description': `Individuals surviving outside of captivity or 
+            cultivation in a location.Reproduction is occurring, but population 
+            not self-sustaining.\n\nOffspring are produced, but these either do 
+            not survive or are not fertile enough to maintain the population.`
     },
     "NATURALISED": {
         'label': 'Naturalised',
-        'description': `Self-sustaining population outside of captivity or
-            cultivation, with individuals surviving a significant distance from
-            the original point of introduction.\n\nThe population is maintained
-            by reproduction and is spreading.`
+        'description': `Individuals surviving outside of captivity or 
+            cultivation in a location. Reproduction occurring, and population 
+            self-sustaining.\n\nThe population is maintained by reproduction, 
+            but is not spreading.`
     },
     "COLONISING": {
         'label': 'Colonising',
         'description': `Self-sustaining population outside of captivity or
             cultivation, with individuals surviving a significant distance from
-            the original point of The population is maintained by reproduction
-            and is spreading.`
+            the original point of introduction.\n\nThe population is maintained 
+            by reproduction and is spreading.`
     },
     "INVASIVE": {
         'label': 'Invasive',
         'description': `Self-sustaining population outside of captivity or
             cultivation, with individuals surviving and reproducing a
-            significant distance from the original point of introduction.`
+            significant distance from the original point of introduction.\n\nThe 
+            population is maintained by reproduction, is spreading, and its 
+            progeny are also reproducing and spreading.`
     },
     "WIDESPREAD_INVASIVE": {
         'label': 'Widespread invasive',
-        'description': `Fully invasive species, with individuals dispersing,
-            surviving and reproducing at multiple sites across a spectrum of
+        'description': `Fully invasive species, with individuals dispersing, 
+            surviving and reproducing at multiple sites across a spectrum of 
             habitats and geographic range.`
     },
-    "UNCERTIAN": {
+    "UNCERTAIN": {
         "label": "Uncertain",
         "description": ""
     }
