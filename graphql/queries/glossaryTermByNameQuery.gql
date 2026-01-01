@@ -22,6 +22,8 @@ query glossaryTermByNameQuery($name: String="abaxial") {
       title
       caption
       source
+      thumbnailUrl
+      previewUrl
     }
   }
 }

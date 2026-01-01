@@ -24,8 +24,8 @@
         fluid
         v-show="showImage"
         @load="loadImage"
-        :src="image.imageUrl"
-        :data-src="image.imageUrl"
+        :src="image.previewUrl"
+        :data-src="image.previewUrl"
         :alt="image.caption"
       >
       </b-img>
