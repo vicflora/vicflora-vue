@@ -1,6 +1,6 @@
 {
   "name": "Laradock",
-  "dockerComposeFile": "../../laradock/docker-compose.yml",
+  "dockerComposeFile": "../../laradock/docker-compose.vicflora.yml",
   "runServices": [
     "nginx",
     "postgres-postgis",
@@ -10,5 +10,21 @@
   "service": "workspace",
   "workspaceFolder": "/var/www/vicflora-vue",
   "shutdownAction": "stopCompose",
-  "postCreateCommand": "uname -a"
+  "postCreateCommand": "uname -a",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "neilbrayfield.php-docblocker",
+        "laravel.vscode-laravel",
+        "graphql.vscode-graphql-syntax",
+        "mechatroner.rainbow-csv",
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "bierner.markdown-preview-github-styles",
+        "brunnerh.insert-unicode",
+        "vue.volar"
+      ]
+    }
+  }
 }
