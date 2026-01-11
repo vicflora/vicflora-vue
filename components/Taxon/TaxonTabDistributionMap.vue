@@ -115,11 +115,10 @@ export default {
         version: "1.1.0",
         request: "GetMap",
         visible: true,
-        layers: "vicflora-mapper:taxon_occurrences",
+        layers: "vicflora-mapper:taxon_concept_occurrences",
         srs: "EPSG:4326",
         format: "image/png",
         transparent: true,
-        styles: "vicflora-mapper:vicflora_point",
       },
       mapOptions: {
         name: "Victoria map"
