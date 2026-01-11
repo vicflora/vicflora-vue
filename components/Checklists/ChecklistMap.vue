@@ -56,7 +56,7 @@
           ]"
           srs="EPSG:4326"
           format="image/png"
-          styles="vicflora-mapper:polygon-red"
+          styles="polygon-red"
           visible
         />
       </l-map>

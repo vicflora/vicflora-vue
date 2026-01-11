@@ -3,8 +3,8 @@ query TaxonConceptRegisteredAboriginalPartiesQuery($taxonConceptId: ID!) {
     id
     registeredAboriginalPartyName
     registeredAnoriginalPartyShortName
-    registeredAnoriginalPartyTraditionalOwners
     occurrenceStatus
     establishmentMeans
+    degreeOfEstablishment
   }
 }

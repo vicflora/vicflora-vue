@@ -32,6 +32,7 @@
 <script>
 import occurrenceStatusEnum from "~/graphql/enums/occurrenceStatusEnum"
 import establishmentMeansEnum from "~/graphql/enums/establishmentMeansEnum"
+import degreeOfEstablishmentEnum from "~/graphql/enums/degreeOfEstablishmentEnum"
 
 export default {
   name: "TaxonTabDistributionTable",
@@ -49,6 +50,7 @@ export default {
     return {
       occurrenceStatusEnum,
       establishmentMeansEnum,
+      degreeOfEstablishmentEnum
     }
   },
   computed: {
@@ -104,7 +106,11 @@ export default {
         },
         {
           key: 'establishmentMeans',
-          label: 'Establishment means',
+          label: 'Origin',
+        },
+        {
+          key: 'degreeOfEstablishment',
+          label: 'Degree of establishment',
         },
       ]
     },
@@ -115,6 +121,7 @@ export default {
           areaName: rec[this.areaNameProperty],
           occurrenceStatus: this.occurrenceStatusEnum[rec.occurrenceStatus].label,
           establishmentMeans: this.establishmentMeansEnum[rec.establishmentMeans].label,
+          degreeOfEstablishment: this.degreeOfEstablishmentEnum[rec.degreeOfEstablishment].label,
         }
       })
       return items
