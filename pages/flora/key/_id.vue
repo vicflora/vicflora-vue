@@ -184,21 +184,17 @@ export default {
   },
   methods: {
     getKey(keyID) {
-      var baseUrl = 'https://keybase.rbg.vic.gov.au/keys/show/'
+      var baseUrl = 'https://keybase.rbg.vic.gov.au/keys'
        
-      if (this.$store.getters['isLoggedIn']) {
-        baseUrl = 'https://vicflora-keys.rbg.vic.gov.au/keys/show/'
-      }
-     
       $(".keybase-link a").attr(
         "href",
         baseUrl + keyID
       );
 
-      var wsUrl = "https://data.rbg.vic.gov.au/keybase-ws";
+      var wsUrl = "https://keybase.rbg.vic.gov.au/api/v1";
 
       $.prototype.keybase("player", {
-        baseUrl: wsUrl + "/ws/key_get",
+        baseUrl: wsUrl + "/key_get",
         playerDiv: "#keybase-player",
         key: keyID,
         title: false,

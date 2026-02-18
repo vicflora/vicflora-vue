@@ -197,16 +197,14 @@ try {
         contentType = "text/plain";
 
       $.ajax({
-        url: settings.baseUrl,
-        data: { key_id: settings.key },
-        dataType: "jsonp",
+        url: settings.baseUrl + '/' + settings.key,
         contentType: contentType,
         crossDomain: true,
         processData: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "origin, content-type, accept"
-        },
+        // headers: {
+        //   "Access-Control-Allow-Origin": "*",
+        //   "Access-Control-Allow-Headers": "origin, content-type, accept"
+        // },
         beforeSend: function() {
           settings.beforeSend();
         },
