@@ -184,7 +184,7 @@ export default {
   },
   methods: {
     getKey(keyID) {
-      var baseUrl = 'https://keybase.rbg.vic.gov.au/keys'
+      var baseUrl = 'https://keybase.rbg.vic.gov.au/keys/'
        
       $(".keybase-link a").attr(
         "href",
