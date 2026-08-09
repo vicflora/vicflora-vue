@@ -62,6 +62,7 @@ import TaxonConceptBioregionsQuery from "~/graphql/queries/taxonConceptBioregion
 import TaxonConceptLocalGovernmentAreasQuery from "~/graphql/queries/taxonConceptLocalGovernmentAreasQuery"
 import TaxonConceptParkReservesQuery from "~/graphql/queries/taxonConceptParkReservesQuery"
 import TaxonConceptRegisteredAboriginalPartiesQuery from "~/graphql/queries/taxonConceptRegisteredAboriginalPartiesQuery"
+import TaxonConceptCatchmentsQuery from "~/graphql/queries/TaxonConceptCatchmentsQuery"
 
 export default {
   name: "TaxonTabDistribution",
@@ -90,6 +91,7 @@ export default {
       taxonConceptLocalGovernmentAreas: [],
       taxonConceptParkReserves: [],
       taxonConceptRegisteredAboriginalParties: [],
+      taxonConceptCatchments: [],
       tableData: [],
     }
   },
@@ -130,6 +132,15 @@ export default {
       },
       skip: true,
     },
+    taxonConceptCatchments: {
+      query: TaxonConceptCatchmentsQuery,
+      result ({ data, loading }) {
+        if (!loading) {
+          this.tableData = data.taxonConceptCatchments
+        }
+      },
+      skip: true,
+    },
   },
   computed: {
     variables() {
@@ -143,6 +154,7 @@ export default {
     this.$apollo.queries.taxonConceptLocalGovernmentAreas.setVariables({ ...this.variables })
     this.$apollo.queries.taxonConceptParkReserves.setVariables({ ...this.variables })
     this.$apollo.queries.taxonConceptRegisteredAboriginalParties.setVariables({ ...this.variables })
+    this.$apollo.queries.taxonConceptCatchments.setVariables({ ...this.variables })
   },
   methods:{
     switchLayer: function(newLayer){
@@ -178,6 +190,14 @@ export default {
           }
           else {
             this.$apollo.queries.taxonConceptRegisteredAboriginalParties.skip = false
+          }
+          break
+        case 'Catchments':
+          if (this.taxonConceptCatchments.length) {
+            this.tableData = this.taxonConceptCatchments
+          }
+          else {
+            this.$apollo.queries.taxonConceptCatchments.skip = false
           }
           break
       }

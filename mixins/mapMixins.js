@@ -83,6 +83,20 @@ export const baseLayersMixin = {
                     transparent: true,
                     opacity: 0.8,
                     attribution: "DataVic"
+                },
+                {
+                    name: "Catchments",
+                    service: "WMS",
+                    version: "1.1.0",
+                    request: "GetMap",
+                    visible: false,
+                    layers: "vicflora-mapper:taxon_concept_catchments,vicflora-mapper:catchments",
+                    srs: "EPSG:4326",
+                    format: "image/png",
+                    styles: "vicflora-mapper:polygon-establishment-means-transparent,polygon-no-fill-grey-outline",
+                    transparent: true,
+                    opacity: 0.8,
+                    attribution: "DataVic"
                 }
             ]
         }

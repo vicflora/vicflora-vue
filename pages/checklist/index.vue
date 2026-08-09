@@ -95,6 +95,7 @@ import bioregionByNameQuery from "@/graphql/queries/bioregionByNameQuery"
 import localGovernmentAreaByNameQuery from "@/graphql/queries/localGovernmentAreaByNameQuery"
 import parkReserveByNameQuery from "@/graphql/queries/parkReserveByNameQuery"
 import registeredAboriginalPartyByNameQuery from "@/graphql/queries/registeredAboriginalPartyByNameQuery"
+import CatchmentByNameQuery from "@/graphql/queries/CatchmentByNameQuery"
 
 export default {
   name: "CheckList",
@@ -157,6 +158,9 @@ export default {
         case 'registered_aboriginal_party': 
           qry = registeredAboriginalPartyByNameQuery
           break
+        case 'catchment':
+          qry = CatchmentByNameQuery
+          break
       }
 
       const res = await client.query({
@@ -211,6 +215,7 @@ export default {
       result({ data, loading }) {
         if (!loading) {
           this.pointData = data
+          console.log("Checklist Map Info:", JSON.stringify(data, null, 2))
           let q = '-*:*'
           if (this.layer == 'Bioregions' && data.bioregions.length) {
             q = `bioregion:"${data.bioregions[0].properties.name}"`
@@ -227,6 +232,10 @@ export default {
           if (this.layer == 'Registered Aboriginal Parties' && data.registeredAboriginalParties.length) {
             q = `registered_aboriginal_party:"${data.registeredAboriginalParties[0].properties.name}"`
             this.slug = data.registeredAboriginalParties[0].properties.slug
+          }
+          if (this.layer == 'Catchments' && data.catchments.length) {
+            q = `catchment:"${data.catchments[0].properties.name}"`
+            this.slug = data.catchments[0].properties.slug
           }
           this.$router.push({
             query: {
@@ -371,8 +380,11 @@ export default {
         case 'local_government_area':
           this.layer = 'Local Government Areas'
           break
-        case 'registered_aboriginal_part':
+        case 'registered_aboriginal_party':
           this.layer = 'Registered Aboriginal Parties'
+          break
+        case 'catchment':
+          this.layer = 'Catchments'
           break
       }
     }
@@ -408,6 +420,18 @@ export default {
         if (this.pointData && this.pointData.localGovernmentAreas.length) {
           field = 'local_government_area'
           value = this.pointData.localGovernmentAreas[0].properties.name
+        }
+      }
+      if (layer == 'Registered Aboriginal Parties') {
+        if (this.pointData && this.pointData.registeredAboriginalParties.length) {
+          field = 'registered_aboriginal_party'
+          value = this.pointData.registeredAboriginalParties[0].properties.name
+        }
+      }
+      if (layer == 'Catchments') {
+        if (this.pointData && this.pointData.catchments.length) {
+          field = 'catchment'
+          value = this.pointData.catchments[0].properties.name
         }
       }
       if (value) {

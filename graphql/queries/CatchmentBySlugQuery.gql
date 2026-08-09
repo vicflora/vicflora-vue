@@ -1,0 +1,8 @@
+query CatchmentBySlugQuery($slug: String!) {
+  feature: catchmentBySlug(slug: $slug) {
+    properties {
+      name
+      slug
+    }
+  }
+}

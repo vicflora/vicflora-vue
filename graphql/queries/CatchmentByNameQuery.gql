@@ -1,0 +1,8 @@
+query CatchmentByPointQuery($point: PointInput!) {
+  feature: catchmentByName(point: $point) {
+    properties {
+      name
+      slug
+    }
+  }
+}

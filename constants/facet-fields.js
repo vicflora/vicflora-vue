@@ -138,6 +138,11 @@ export const FILTER_FIELDS = [
     "group": "spatial"
   },
   {
+    "name": "catchment",
+    "label": "Catchment",
+    "group": "spatial"
+  },
+  {
     "name": "buds",
     "label": "Buds",
     "group": "phenology"

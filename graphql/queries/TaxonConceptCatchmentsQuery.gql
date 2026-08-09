@@ -1,0 +1,9 @@
+query TaxonConceptCatchmentsQuery($taxonConceptId: ID!) {
+    taxonConceptCatchments(taxonConceptId: $taxonConceptId) {
+        id
+        catchmentName
+        occurrenceStatus
+        establishmentMeans
+        degreeOfEstablishment
+    }
+}

@@ -12,6 +12,7 @@ export const visibleLayerMixin = {
           'lga': 'local_government_area',
           'parkres': 'park_or_reserve',
           'rap': 'registered_aboriginal_party',
+          'catchment': 'catchment',
         }
         field = map[this.$route.params.layer]
       }
@@ -31,6 +32,9 @@ export const visibleLayerMixin = {
           break
         case 'registered_aboriginal_party':
           layer = 'Registered Aboriginal Parties'
+          break
+        case 'catchment':
+          layer = 'Catchments'
           break
         default:
           layer = 'Parks and Reserves'
@@ -58,6 +62,7 @@ export const selectedAreaMixin = {
           'lga': 'local_government_area',
           'parkres': 'park_or_reserve',
           'rap': 'registered_aboriginal_party',
+          'catchment': 'catchment',
         }
         field = map[this.$route.params.layer]
         area = this.areaName
@@ -76,7 +81,7 @@ export const selectedAreaMixin = {
           layers += 'bioregions'
           break
         case 'local_government_area':
-          baseUrl += `?cql_filter=lga_name%3D%27${area}%27`
+          baseUrl += `?cql_filter=name%3D%27${area}%27`
           layers += 'local_government_areas'
           break
         case 'park_or_reserve':
@@ -86,6 +91,10 @@ export const selectedAreaMixin = {
         case 'registered_aboriginal_party':
             baseUrl += `?cql_filter=name%3D%27${area}%27`
             layers += 'raps'
+            break
+        case 'catchment':
+            baseUrl += `?cql_filter=area_name%3D%27${area}%27`
+            layers += 'catchments'
             break
         default:
           baseUrl = null

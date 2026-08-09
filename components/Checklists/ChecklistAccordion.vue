@@ -60,6 +60,11 @@ export default {
           dataField: 'registeredAboriginalParties',
           searchField: 'label',
         },
+        {
+          name: 'Catchments',
+          dataField: 'catchments',
+          searchField: 'catchment', 
+        }
       ],
     }
   },

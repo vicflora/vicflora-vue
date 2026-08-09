@@ -106,6 +106,10 @@ export default {
           name: "Registered Aboriginal Parties",
           layers: "vicflora-mapper:raps",
         },
+        {
+          name: "Catchments",
+          layers: "vicflora-mapper:catchments",
+        }
       ],
       overlay: {
         name: "Parks and Reserves",
@@ -157,6 +161,7 @@ export default {
       this.addmarker(event.latlng)
       this.latitude = event.latlng.lat
       this.longitude = event.latlng.lng
+      console.log(`Map clicked at ${this.latitude}, ${this.longitude}`)
       $nuxt.$emit('map-clicked', event.latlng)
     },
     addmarker: function({ lat, lng }) {

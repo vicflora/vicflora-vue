@@ -30,4 +30,12 @@ query ChecklistMapInfoQuery($latitude: Float!,$longitude: Float!){
       slug
     }
   }
+
+  catchments: catchmentsByPoint(latitude: $latitude, longitude: $longitude) {
+    properties {
+      name
+      label
+      slug
+    }
+  }
 }
