@@ -1,6 +1,6 @@
 {
   "name": "Laradock",
-  "dockerComposeFile": "../../laradock/docker-compose.vicflora.yml",
+  "dockerComposeFile": "../../laradock/docker-compose.custom.yml",
   "runServices": [
     "nginx",
     "postgres-postgis",
@@ -8,6 +8,7 @@
     "geoserver"
   ],
   "service": "workspace",
+  "remoteUser": "laradock",
   "workspaceFolder": "/var/www/vicflora-vue",
   "shutdownAction": "stopCompose",
   "postCreateCommand": "uname -a",
