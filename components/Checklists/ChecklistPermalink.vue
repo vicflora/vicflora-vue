@@ -38,6 +38,9 @@
           case 'registered_aboriginal_party':
             layer = 'rap'
             break
+          case 'catchment':
+            layer = 'cma'
+            break
         }
         return `${this.$route.path}/${layer}/${this.slug}`
       },
