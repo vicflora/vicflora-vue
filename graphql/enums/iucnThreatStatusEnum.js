@@ -14,7 +14,7 @@
 
 export default {
     "EX": {
-        'label': 'Extinct (EX)',
+        'label': 'Extinct',
         'description': `A taxon is Extinct when there is no reasonable doubt
             that the last individual has died. A taxon is presumed Extinct when
             exhaustive surveys in known and/or expected habitat, at appropriate
@@ -23,7 +23,7 @@ export default {
             frame appropriate to the taxons life cycle and life form.`
     },
     "EW": {
-        'label': 'Extinct in the wild (EW)',
+        'label': 'Extinct in the wild',
         'description': `A taxon is Extinct in the Wild when it is known only to
         survive in cultivation, in captivity or as a naturalized population
         (or populations) well outside the past range. A taxon is presumed
@@ -34,7 +34,7 @@ export default {
         form.`
     },
     "RE": {
-        'label': 'Regionally extinct (RE)',
+        'label': 'Regionally extinct',
         'description': `Category for a taxon when there is no reasonable doubt
             that the last individual potentially capable of reproduction within
             the region has died or has disappeared from the wild in the region,
@@ -45,48 +45,48 @@ export default {
             AD.`
     },
     "CR": {
-        'label': 'Critically Endangered (CR)',
+        'label': 'Critically Endangered',
         'description': `A taxon is Critically Endangered when the best available
             evidence indicates that it meets any of the criteria A to E for
             Critically Endangered, and it is therefore considered to be facing
             an extremely high risk of extinction in the wild.`
     },
     "EN": {
-        'label': 'Endangered (EN)',
+        'label': 'Endangered',
         'description': `A taxon is Endangered when the best available evidence
             indicates that it meets any of the criteria A to E for Endangered,
             and it is therefore considered to be facing a very high risk of
             extinction in the wild.`
     },
     "VU": {
-        'label': 'Vulnerable (VU)',
+        'label': 'Vulnerable',
         'description': `A taxon is Vulnerable when the best available evidence
         indicates that it meets any of the criteria A to E for Vulnerable and it
         is therefore considered to be facing a high risk of extinction in the
         wild.`
     },
     "NT": {
-        'label': 'Near Threatened (NT)',
+        'label': 'Near Threatened',
         'description': `A taxon is Near Threatened when it has been evaluated
             against the criteria but does not qualify for Critically Endangered,
             Endangered or Vulnerable now, but is close to qualifying for or is
             likely to qualify for a threatened category in the near future.`
     },
     "LC": {
-        'label': 'Least Concern (LC)',
+        'label': 'Least Concern',
         'description': `A taxon is Least Concern when it has been evaluated
             against the criteria and does not qualify for Critically Endangered,
             Endangered, Vulnerable or Near Threatened. Widespread and abundant
             taxa are included in this category.`
     },
     "DD": {
-        'label': 'Data Deficient (DD)',
+        'label': 'Data Deficient',
         'description': `A taxon is Data Deficient when there is inadequate
             information to make a direct, or indirect, assessment of its risk
             of extinction based on its distribution and/or population status.`
     },
     "NA": {
-        'label': 'Not Applicable (NA)',
+        'label': 'Not Applicable',
         'description': `Category for a taxon deemed to be ineligible for
             assessment at a regional level. A taxon may be NA because it is not a
             wild population or not within its natural range in the region, or
@@ -97,8 +97,4 @@ export default {
         'description': `A taxon is Not Evaluated when it has not yet been
             evaluated against the criteria.`
     },
-    "TH": {
-        "label": 'Threatened',
-        "description": "This is a category made up in FFG: we do not know what it means."
-    }
 }

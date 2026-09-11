@@ -30,32 +30,25 @@
       :value="degreeOfEstablishmentEnum[concept.degreeOfEstablishment]"
     />
 
-    <div
-      v-if="concept.taxonomicStatus === 'ACCEPTED' && authorities.length"
+    <div 
+      v-if="concept.taxonomicStatus === 'ACCEPTED' && concept.threatStatusAssessments.length"
       class="tc-status-item-group"
     >
       <span class="tc-status-label tc-status-label-flex">Threat status</span>
-      <div
-        v-for="authority, index in authorities"
-        :key="authority"
+      <div 
+        v-for="assessment, index in concept.threatStatusAssessments"
+        :key="assessment.authority"
         class="tc-status-item-group-item"
       >
         <TaxonStatusItem
-          v-if="authority === 'ffg'"
-          :label="'FFG'"
-          :value="iucnThreatStatusEnum[concept.ffg]"
+          :label="assessment.authority.code.toUpperCase()"
+          :value="iucnThreatStatusEnum[assessment.iucnCategory.code]"
+          :comment="(assessment.as ? 'as <i>' + assessment.as + '</i>' : '')"
           :inline="true"
         />
-        <TaxonStatusItem
-          v-if="authority === 'epbc'"
-          :label="'EPBC'"
-          :value="iucnThreatStatusEnum[concept.epbc]"
-          :inline="true"
-        />
-        <span v-if="index < authorities.length - 1">&bull;&nbsp;</span>
+        <span v-if="index < concept.threatStatusAssessments.length - 1">&bull;&nbsp;</span>
       </div>
     </div>
-
   </div>
 </template>
 

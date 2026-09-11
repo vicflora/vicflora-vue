@@ -17,6 +17,7 @@
         <template #title>{{ value.label }}</template>
         {{ value.description }}
       </b-popover>
+      <span v-if="comment" class="m-status-comment" v-html="`(${ comment })`"></span>
     </span>
     <span v-else class="m-status-content" v-html="value"/>
     <slot></slot>
@@ -34,6 +35,10 @@ export default {
     value: {
       type: [ String, Number, Object ],
       required: true,
+    },
+    comment: {
+      type: String,
+      required: false,
     },
     inline: {
       type: Boolean,

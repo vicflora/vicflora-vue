@@ -52,6 +52,17 @@ query taxonConceptQuery($id: ID!) {
     hasIntroducedOccurrences
     epbc
     ffg
+    threatStatusAssessments {
+      id
+      authority {
+        code
+      }
+      iucnCategory {
+        code
+        name
+      }
+      as
+    }
     remarks
 
     createdBy {
