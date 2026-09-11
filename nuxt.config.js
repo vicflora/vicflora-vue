@@ -109,6 +109,7 @@ export default {
   env: {
     appUrl: process.env.APP_URL || 'https://vicflora.rbg.vic.gov.au',
     graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || 'http://vicflora.localhost/graphql',
-    geoserverWms: process.env.GEOSERVER_WMS || 'http://localhost:8080/geoserver'
+    geoserverWms: process.env.GEOSERVER_WMS || 'http://localhost:8080/geoserver',
+    CARTO_API_KEY: process.env.CARTO_API_KEY
   },
 }

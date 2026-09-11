@@ -18,8 +18,8 @@ export const tileLayerMixin = {
     data() {
         return {
             tileLayer: {
-                url: "https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
-                attibution: 'map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, imagery © <a href="https://cartodb.com/attributions">CartoDB</a>'
+                url: `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${process.env.CARTO_API_KEY}`,
+                attibution: "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com'>CARTO</a>"
             }
         }
     }

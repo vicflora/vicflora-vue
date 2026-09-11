@@ -28,8 +28,9 @@
         <l-control-layers position="topright"/>
 
         <l-tile-layer
-          url="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
-        />
+          :url="`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${cartoApiKey}`"
+          attribution="&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com'>CARTO</a>"
+        ></l-tile-layer>
 
         <l-wms-tile-layer
           name="None"
@@ -105,6 +106,7 @@ export default {
   },
   data() {
     return {
+      cartoApiKey: process.env.CARTO_API_KEY,
       visibleLayer: "None",
       zoom: 7,
       marker: null,
