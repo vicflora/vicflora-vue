@@ -50,8 +50,6 @@ query taxonConceptQuery($id: ID!) {
     establishmentMeans
     degreeOfEstablishment
     hasIntroducedOccurrences
-    epbc
-    ffg
     threatStatusAssessments {
       id
       authority {
